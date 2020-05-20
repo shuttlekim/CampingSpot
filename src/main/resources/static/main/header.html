@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	#main_title{
+		float: left;
+		margin: 22px 20px 2px 20px;
+	}
+	#main_title h2{
+		all: unset;
+		font-size: 1.5em;
+		font-weight: bold;
+	}
+	#main_menu{
+		float: left;
+		margin: 27px 20px 2px 0px;
+	}
+	#main_menu i{
+		transform: scale(1.5);
+	}
+	#main_status{
+		float: right;
+		margin: 22px 20px 2px 20px;
+	}
+	.head_section{
+		height: 53px;
+	}
+	.main_search{
+		display: flex;
+	}
+	.main_menu_bar{
+		display: none;
+		position: absolute;
+		left: 200px;
+		padding: 20px;
+		padding-right: 45px;
+		background-color: #404040;
+		color: #fff;
+	}
+	.header{
+		min-width: 100vw;
+		width: auto;
+	}
+	.header img{
+		min-width: 100vw;
+		width: auto;
+		height: 300px;
+	}
+	h4{
+		padding-left: 25px;
+	}
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://kit.fontawesome.com/3da0640e3c.js" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$(function(){
+		var menu = false;
+		
+		//타이틀 클릭시 메인으로 이동
+		$("#main_title").click(function(){
+			location.href="main.html";
+		})
+		
+		//로그인 버튼
+		$("#main_login").click(function(){
+			alert("로그인 입니다.");
+		})
+		//회원가입 버튼
+		$("#main_signup").click(function(){
+			alert("회원가입 입니다.");
+		})
+		//사이트맵 버튼
+		$("#main_sitemap").click(function(){
+			alert("사이트맵 입니다.");
+		})
+		
+		//메뉴 버튼
+		$("#main_menu").click(function(){
+			
+			if(menu==false){
+				
+				$(".main_menu_bar").css('display','flex')
+				menu = true
+			}else{
+				
+				$(".main_menu_bar").css('display','none')
+				menu = false
+			}
+		})
+	})
+</script>
+</head>
+<body>
+	<div class="head_section">
+		<div id="main_title">
+			<h2>CAMPINGSPOT</h2>
+		</div>
+		<div id="main_menu">
+			<i class="fas fa-bars"></i>
+		</div>
+		<div id="main_status">
+			<span id="main_login">로그인</span>&nbsp&nbsp|&nbsp&nbsp
+			<span id="main_signup">회원가입</span>&nbsp&nbsp|&nbsp&nbsp
+			<span id="main_sitemap">사이트맵</span>
+		</div>
+	</div>
+	<hr>
+	<div class="header">
+		<div class="main_menu_bar">
+			<div>
+				<h4>검색SPOT</h4>
+				<ul>
+					<li>캠핑장 검색</li>
+				</ul>
+			</div>
+			<div>
+				<h4>축제이야기</h4>
+				<ul>
+					<li>지역축제</li>
+				</ul>
+			</div>
+			<div>
+				<h4>커뮤니티</h4>
+				<ul>
+					<li>공지사항</li>
+					<li>캠핑후기</li>
+					<li>자유게시판</li>
+				</ul>
+			</div>
+			<div>
+				<h4>고객센터</h4>
+				<ul>
+					<li>FAQ</li>
+					<li>QnA</li>
+				</ul>
+			</div>
+		</div>
+		<div>
+			<img src="../resource/main_img/cropped_img1.png">
+		</div>
+	</div>
+</body>
+</html>

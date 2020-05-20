@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<style type="text/css">
+   #detail{
+   
+      position:relative;
+      float:right;
+      width:100%;
+      height:1000px;
+      
+      /*
+      margin-top: 5px;
+      margin-bottom: 5px;
+      */
+      
+      background-color: pink;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      
+   }
+   .btn{
+      width: 100px;
+      height: 40px;
+   }
+   #main_img{
+      width:300px;
+      height:200px;
+   }
+   #div_top{
+      position:absolute;
+      top : 3%;
+      margin-left: 3%;
+      width:90%;
+      height: 1200px;
+   }
+   #div_btns{
+      position:absolute;
+      top: 10%;
+      left: 60%;
+      z-index: 1;
+   }
+</style>
+<script type="text/javascript">
+
+$(function(){
+	//헤더출력
+	$("#headers").load("header.html")
+	//푸터출력
+	$("#footers").load("footer.html")
+	
+   
+   var wishData;
+   // var mc_id = "test1234";
+   
+   var data = decodeURI(location.search).split('&cs_no=');
+   // alert(data[1]); cs_no
+    
+   var data2 = data[0].split('&campingType=');
+   
+   var data3 = data2[0].split('&checkout=');
+   var data4 = data3[0].split('?checkin=');
+   
+   var cs_no = data[1];
+   var campingType = data2[1];
+   var checkout = data3[1];
+   var checkin = data4[1];
+   
+    // cs_no = cs_no.substring(cs_no.indexOf("=")+1);
+    // var str = location.serach.split(,)
+    // cs_no = Number(cs_no);
+    
+    $.ajax("/detailCampingSpot.do", {data:{"cs_no":cs_no}, success:function(data){
+       
+       // console.log(data);
+       
+       var div_top = $("<div></div>").attr("id", "div_top");
+       var cs_name = $("<span></span>").text(data.cs_name);
+       var avg = $("<span></span>").text(data.avg);
+       var img = $("<img id='main_img'></img>").attr("src", "img/" + data.cs_camp_fname, "<br>");
+       
+       var div_mid = $("<div></div>").attr("id", "div_mid");
+       
+       // var review = $(this).attr("name", "review")
+       // var review_btn = $("<a href='#review'><button>리뷰 보러가기</buttion></a>").attr("class","btn");
+       
+       $(div_top).append(img, cs_name, avg);
+       
+       $("#detail").append(div_top);
+       // $("#detail").append(review_btn);
+       
+    }}) // detail ajax 종료
+    
+   $.ajax("/campingReviewList.do", {data:{"cs_no":cs_no},
+      async: false,
+      success:function(data){
+         
+      alert(cs_no);
+      var div_review = $("<div></div>").attr("id", "div_review");
+      
+      var li1 = $("<li></li>").text(data.cre_no);
+      var li2 = $("<li></li>").text(data.cre_content);
+      var li3 = $("<li></li>").text(data.cre_rate);
+      var li4 = $("<li></li>").text(data.cre_date);
+      var li5 = $("<li></li>").text(data.mc_id);
+      var li6 = $("<li></li>").text(data.mb_id);
+      var li7 = $("<li></li>").text(data.cre_re_contents);
+      var li8 = $("<li></li>").text(data.cs_no);
+      
+      $(div_review).append(li1, li2, li3, li4, li5, li6, li7, li8);
+      $("#review_detail").append(div_review);
+      
+   }})  // reviewList ajex 종료
+    
+    $("#btn_insert").click(function(){
+       
+       $.ajax("/detailCampingSpot.do", {data:{"cs_no":cs_no},
+          async : false,
+          success:function(data){
+          
+          var cw_no = "1";
+          // var cs_no = data.cs_no;
+          var mc_id = "test1234";
+          
+          var form = document.createElement("form");
+          form.setAttribute("charset", "UTF-8");
+          // form.setAttribute("method", "POST");
+          form.setAttribute("id", "wishForm")
+
+          var hiddenField = document.createElement("input");
+          hiddenField.setAttribute("type", "hidden");
+          hiddenField.setAttribute("name", "cw_no");
+          hiddenField.setAttribute("value", cw_no);
+          form.appendChild(hiddenField);
+
+          hiddenField = document.createElement("input");
+          hiddenField.setAttribute("type", "hidden");
+          hiddenField.setAttribute("name", "mc_id");
+          hiddenField.setAttribute("value", mc_id);
+          form.appendChild(hiddenField);
+          
+          hiddenField = document.createElement("input");
+          hiddenField.setAttribute("type", "hidden");
+          hiddenField.setAttribute("name", "cs_no");
+          hiddenField.setAttribute("value", cs_no);
+          form.appendChild(hiddenField);
+
+          document.body.appendChild(form);
+          form.submit();
+          console.log(form);
+          
+          wishData = $("#wishForm").serialize();
+          // return wishData;
+          alert("ajax : " + wishData);
+       }}) // detailCampingSpot ajax 종료
+       
+       alert("out : " + wishData);       
+       
+       $.ajax("/campingInsertWish.do", {data:wishData,
+          // processData:false,
+            // contentType:false,
+            // type:"post",
+          success: function(data){
+             alert(data);
+            alert("성공?")
+      }}) // campingInsertWish ajax 종료
+    });
+    
+   $("#btn_reserva").click(function(){
+      location.href = "reserveCampingSpot.html"
+    });
+   
+   $("#btn_back").click(function(){
+      location.href = "campingSearchList2.html"
+   })
+    
+
+   
+});
+</script>
+</head>
+<body>
+	<div id="headers"></div>
+	<h2>상세페이지임</h2>
+	<hr>
+	집에가고싶당
+	<hr>
+	<button class="btn" id="btn_back">리스트로</button>
+	<div id="detail">
+	
+	   <div id="div_btns">
+	      <button class="btn" id="btn_reserva">예약하기</button>
+	      <button class="btn" id="btn_insert">찜하기</button>
+	      <a href=#review><button class="btn" name="btn_review">리뷰 보러가기</button></a>
+	   </div>
+	</div>
+	
+	<hr>
+	   <div id="review_detail">
+	      <a name="review">리뷰내용 왜 안나와</a>
+	   </div>
+	<div id="footers"></div>
+</body>
+</html>
