@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bean id="mailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl">
+   <property name="host" value="smtp.mail.yahoo.com" />
+   <property name="port" value="587" />
+   <property name="username" value="campingspot@yahoo.com" />
+   <property name="password" value="camp12345678" />
+   <property name="javaMailProperties">
+      <props>
+            <prop key="mail.transport.protocol">smtp</prop>
+            <prop key="mail.smtp.auth">true</prop>
+            <prop key="mail.smtp.starttls.enable">true</prop>
+            <prop key="mail.debug">true</prop>
+      </props>
+   </property>
+
+</bean>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <properties resource="com/example/demo/db/pro.properties"/>
+  <typeAliases>
+  	<!-- 영현 -->
+  	<typeAlias type="com.example.demo.vo.ReserveSearchVo" alias="reserveSearchVo" />
+  	<typeAlias type="com.example.demo.vo.CampingSpotVo" alias="campingSpotVo" />
+  	<typeAlias type="com.example.demo.vo.CampingSearchResultVo" alias="campingSearchResultVo" />
+   	<!-- 근희 -->
+   	<typeAlias type="com.example.demo.vo.CampingReviewVo" alias="campingreviewVo" />
+   	<!-- 요한 -->
+   	<typeAlias type="com.example.demo.vo.MemberVo" alias="memberVo"/>
+    <typeAlias type="com.example.demo.vo.BusinessVo" alias="businessVo"/>
+  </typeAliases>
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>  
+ 	<!-- 영현 -->
+    <mapper resource="com/example/demo/db/reserve_searchMapper.xml"/>
+    <mapper resource="com/example/demo/db/camping_spotMapper.xml"/>
+    <!-- 근희 -->
+    <mapper resource="com/example/demo/db/campingReviewMapper.xml"/>
+    <!-- 현성 -->
+    <mapper resource="com/example/demo/db/myPageMapper.xml"/>
+    <!-- 요한 -->
+    <mapper resource="com/example/demo/db/MemberMapper.xml"/> 
+    <mapper resource="com/example/demo/db/BusinessMapper.xml"/>     
+  </mappers>
+</configuration>

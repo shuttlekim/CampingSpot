@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	#canvas{
+		position:relative;
+		display: flex;
+	}
+	#location_map{
+		width: 50vw;
+		padding: 50px 0 0 100px;
+	}
+	#festival_list{
+		width: 60vw;
+	}
+	#marker{
+		font-size: 25px;
+	}
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="../resource/js_src/raphael_min.js"></script>
+<script type="text/javascript" src="../resource/js_src/festival_path_s.korea.js?ver=10"></script>
+<script type="text/javascript">
+	$(function(){
+		//헤더출력
+		$("#headers").load("header.html")
+		//푸터출력
+		$("#footers").load("footer.html")
+	})
+</script>
+</head>
+<body>
+	<div id="headers"></div>
+	<h2>지역 축제</h2>
+	<hr>
+	<p>지역을 선택하여 그 지역의 축제에 참여하세요! 여러분을 기다립니다.</p>
+	<div class="sub_img_Layer">
+	<!--content: s -->
+	<div id="canvas">
+		<div id="location_map"></div>
+		
+		<div id="festival_list">
+			<!-- <button id="ing_festBtn">진행중인 축제</button>
+			<button id="all_festBtn">진행예정 축제</button><br> -->
+			<hr>
+			<span id="whole">시/도 전체</span>
+			<b><p id="marker"></p></b>
+			<span id="marker1">전체 지역</span>의 축제 정보입니다.
+			<br>
+			<div id="itemList"></div>
+		</div>
+	</div>
+	<br><br>
+	<div id="footers"></div>
+	<script>
+		var sca = '';
+	 </script>
+</body>
+</html>

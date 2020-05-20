@@ -19,7 +19,7 @@ public class DBManager {
 	private static SqlSessionFactory factory = null;
 	static {
 		try {
-			Reader reader = Resources.getResourceAsReader("com/example/demo/db/sqlMapConfing.xml");
+			Reader reader = Resources.getResourceAsReader("com/example/demo/db/sqlMapConfig.xml");
 			System.out.println("reader:"+reader);
 			factory = new SqlSessionFactoryBuilder().build(reader);
 			System.out.println("factory:"+factory);

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+
+	$("#btnSendMail").click(function(){
+		
+		//alert(input_email);			
+		//var data = $("#s").serialize();
+		
+		var input_id = $("#mb_id").val();
+		var input_email = $("#mb_email").val();
+		
+		var data = {
+				"mb_id": input_id,
+				"mb_email": input_email
+				};
+		
+		console.log(data);
+	
+		$.ajax("email2.do", {data:data, success:function(re){
+			alert("메일전송 성공 \n메일이 도착하지 않으셨다면 가입한 아이디/이메일 주소가 아닙니다.");
+			window.location.href = "/main.html";
+		}});
+		
+	});
+
+	
+	
+	
+
+	
+});
+</script>
+</head>
+<body>
+	<h2>비밀번호 찾기</h2>
+	<hr>
+	<form id="s">
+	아디 : <input type="text" id="mb_id" name="mb_id" placeholder="아이디" required="required"><br>
+	메일 : <input type="text" id="mb_email" name="mb_email" placeholder="이메일" required="required"><br>
+	</form>
+	<button id="btnSendMail">메일보내기</button>
+	
+</body>
+</html>
