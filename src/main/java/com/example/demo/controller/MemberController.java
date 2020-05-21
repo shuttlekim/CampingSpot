@@ -97,7 +97,7 @@ public class MemberController {
 	        m.setSalt(salt);
 	        
 	        
-	        String path = "C:\\study\\STS_Study\\campingspot_0514\\src\\main\\resources\\static\\profile";
+	        String path = "C:\\study\\STS_Study\\campingspot_0514\\src\\main\\resources\\static\\resource";
 			MultipartFile uploadFile = m.getUploadFile();
 			String fname = "";
 			 if(uploadFile != null) {
@@ -182,7 +182,7 @@ public class MemberController {
         mv.setMc_pwd(newPassword);
         mv.setSalt(check.getSalt());  
         
-        String path = "C:\\study\\STS_Study\\campingspot_0514\\src\\main\\resources\\static\\profile";
+        String path = "C:\\study\\STS_Study\\campingspot_0514\\src\\main\\resources\\static\\resource";
 		String oldFname = mv.getMc_fname();
         MultipartFile uploadFile = mv.getUploadFile();
 		String fname = null;

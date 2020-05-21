@@ -12,9 +12,9 @@ $(function(){
 	$("#btnJoinOk").click(function(){
 		//var member = $("#join").serialize();
 		var member =  new FormData(document.getElementById("join"));
-		$.ajax("signIn.do", {data:member, processData:false, contentType:false, type:"POST", success:function(r){
+		$.ajax("/signIn.do", {data:member, processData:false, contentType:false, type:"POST", success:function(r){
 			alert("회원가입 성공 \n 로그인 페이지로 이동!");
-			window.location.href = "/login.html";
+			window.location.href = "/login/login.html";
 		}}); 
 	});
 		
@@ -43,7 +43,7 @@ $(function(){
 		var input_id = $("#mc_id").val();
 		//alert(input_id);
 		var data = {"mc_id":input_id};
-		$.ajax("checkId.do", {data:data, success:function(mc_id){
+		$.ajax("/checkId.do", {data:data, success:function(mc_id){
 			if(mc_id == 1){
 				alert("사용중인 아이디입니다.");
 			}else{
