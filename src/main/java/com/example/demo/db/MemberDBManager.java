@@ -141,7 +141,7 @@ public class MemberDBManager {
 	    System.out.println("MemberDBManager 메시지 updateMember updateMember : " + re);
 	    return re;		
 	}
-	
+	 
 	//맴버수정2
 	public static int updateMember2(MemberVo um) {
 		int re = -1;
