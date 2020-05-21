@@ -4,11 +4,24 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+	input[type="text"],input[type="date"],input[type="number"],select{
+		height:30px;
+		line-height: 30px;
+		border:1px solid #e7e7e7;
+		padding: 0 10px;
+		font-size:14px;
+		border-radius : 7px;
+		background-color:#fff;
+	}
+	body,html{
+		margin:0;
+		color:#333;
+	}
 	.footer{
 		position: relative;
 		color: #fff;
-		background-color: #404040;
-		min-width: 100vw;
+		
+		min-width: 100%;
 		height: 200px;
 		width: auto;
 		left: 0px;
@@ -39,10 +52,165 @@
 		margin: 20px;
 		
 	}
+	.head_section, .body-wrap,.footer-wrap{
+		width:1120px;
+		margin: 0 auto;
+	}
+	#footers{
+		background-color: #404040;
+		margin-top:40px;
+	}
+	#listThumb > div{
+		width:33.33%;
+		position:relative;
+		overflow: hidden;
+	}
+	#listThumb > div div{
+/* 		padding:10px; */
+	}
+	#listThumb > div div+div{
+		/* margin-top:20px; */
+		
+	}
+	#listThumb > div img{
+		width:100%;
+		height:auto;
+	}
+	.backCover{
+		width:100%;
+		height:400px;
+		background-size: cover!important;
+	}
+	.text-cover{
+		margin-top:20px;
+		background-color:rgba(0,0,0,0.7);
+		position:absolute;
+		left:0;
+		bottom:0;
+		width:100%;
+		color:#fff;
+		height:95px;
+		padding:20px;
+		box-sizing:border-box;
+		transition: all .4s;
+	}
+	.text-cover:hover{
+		height:180px;
+	}
+	.text-cover div:nth-child(1){
+		color:#fff;
+		font-size:24px;
+		margin-bottom:4px;
+	}
+	.text-cover div:nth-child(1)+div{
+		font-size:12px;
+	}
+	.text-cover div{
+		color:rgba(255,255,255,0.7);
+		word-break: keep-all;
+	}
+	.text-cover .address{
+		font-size:12px;
+		margin-bottom:14px;
+	}
+	.main_search{
+		background:#f7f7f7;
+		margin-top:-77px;
+		position:relative;
+		z-index:2;
+		padding:20px;
+		border-radius:10px 10px 0 0;
+		text-align:center;
+	}
+	#main_search_form{
+		font-size:13px;
+		display:inline-block;
+		color:#666;
+	}
+	button{
+		background:#2a2a2a;
+		color:#fff;
+		height:30px;
+		line-height:30px;
+		padding:0 10px;
+		border:none;
+		font-size:14px;
+		border-radius:7px;
+	}
+	.main_search_inner{
+		display:inline-block;
+		margin:0 auto;
+	}
+	.main_search + div h2{
+		font-size:30px;
+	}
+	.main-festival{
+		overflow:hidden;
+		margin-top:80px;
+	}
+	.main-festival h2{text-align:center}
+
+	.btn-box{text-align:center;margin-top:30px;}
+	#festMore{
+		display:inline-block;
+		border-radius:50px;
+		min-width:140px;
+		background-color:#2a2a2a;
+		color:#fff;
+		height:50px;
+		line-height:50px;
+	}
+	.subtit{
+		display:block;
+		font-size:15px;
+		color:#999;
+		text-align:center;
+		margin-bottom:30px;
+		position:relative;
+	}
+	.subtit:before{
+		content:'';
+		display:inline-block;
+		width:600px;
+		height:1.5px;
+		background:#bbb;
+		position:absolute;
+		left:0;
+		right:0;
+		top:-34px;
+		margin:20px auto;
+	}
+	.main_menu_bar{
+		display: none;
+		position: absolute;
+		left: 200px;
+		padding: 20px;
+		padding-right: 45px;
+		background-color: rgba(250,250,250,0.8);
+		color: #666;
+	}
+	.main_menu_bar div{
+		margin-right: 100px;
+	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+		//메뉴위치이동
+		$(window).on('resize', function(){
+			
+			var iconPos = $('.fas').offset().left - 40;
+			$('.main_menu_bar').css('left',iconPos);
+		});
+		
+		$('.fas').on('click',function(){
+			var iconPos = $(this).offset().left - 40;
+			$('.main_menu_bar').css('left',iconPos);
+		});
+		
+		
+		$('.body').wrap('<div class="body-wrap"></div>');
+		$('#footers').wrapInner('<div class="footer-wrap"></div>');
 		
 		$("#instagram_icon").click(function(){
 			alert("인스타그램 페이지로 이동");
@@ -59,6 +227,8 @@
 		$("#youtube_icon").click(function(){
 			alert("유튜브 페이지로 이동");
 		})
+		
+		
 		
 	})
 </script>
