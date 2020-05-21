@@ -25,7 +25,7 @@
 		var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "{N52d8pyuRBbBX81BWok_}",
-				callbackUrl: "{http://192.168.0.6:8088/loginCallBack.html}",
+				callbackUrl: "{http://192.168.0.3:8088/login/loginCallBack.html}",
 				isPopup: false,
 				callbackHandle: true
 				/* callback 페이지가 분리되었을 경우에 callback 페이지에서는 callback처리를 해줄수 있도록 설정합니다. */
@@ -62,7 +62,7 @@
 					
 					var mc_id = uniqId;
 					
-					$.ajax("naver.do", {data:insert_data, success:function(result){			
+					$.ajax("/naver.do", {data:insert_data, success:function(result){			
 						
 						//alert("naver.do 에서 받아온 ID : " + result);
 						
@@ -98,7 +98,7 @@
 					}});	
 														
 
-					window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/main.html");
+					window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/main/main.html");
 				} else {
 					console.log("callback 처리에 실패하였습니다.");
 				}
