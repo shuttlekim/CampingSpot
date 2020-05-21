@@ -54,5 +54,4 @@ public class MemberDao {
 		return MemberDBManager.updateMember2(um);
 	}
 	
-	
 }

@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class BusinessVo {
-
 	
 		private String mb_id;
 		private String mb_pwd;

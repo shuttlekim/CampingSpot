@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -29,10 +28,7 @@ public class MailController {
 	
 	public void setMaildao(BusinessDao maildao2) {
 		this.maildao2 = maildao2;
-	}
-	
-	
-	
+	}	
 	
 	@Autowired
 	private MailSender javaMailSender;
@@ -40,23 +36,10 @@ public class MailController {
 	public void setJavaMailSender(MailSender mailSender) {
 		this.javaMailSender = mailSender;
 	}
+
 	
-//	//비밀번호 찾기
-//	@RequestMapping("/findPwd.do")
-//	public int findPwd(String mc_id, String mc_email) {
-//		System.out.println("입력아이디: " + mc_id);
-//		System.out.println("입력이메일: " + mc_email);
-//		
-//		HashMap<String, String> map = new HashMap<String, String>();
-//		map.put("mc_id", mc_id);
-//		map.put("mc_email", mc_email);
-//		
-//		int re = maildao.findPwd(map);
-//		return re;
-//	}
-		
 	
-	//일반회원 비밀번호 찾기
+	//회원 비밀번호 찾기
 	@RequestMapping("/email.do")
 	@ResponseBody
 	public String mailMember(String mc_id, String mc_email) {
@@ -70,8 +53,7 @@ public class MailController {
 			System.out.println(mc_email);
 			mailMessage.setTo(mc_email);
 			
-			javaMailSender.send(mailMessage);
-			
+			javaMailSender.send(mailMessage);			
 			
 			int re = maildao.updatePwd(mc_id, mc_email);
 			
@@ -82,8 +64,6 @@ public class MailController {
 			System.out.println("메일 컨트롤러 동작 re: " + re);
 			System.out.println("메일 컨트롤러 동작 id: " + mc_id);
 			System.out.println("메일 컨트롤러 동작 pw: " + m.getMc_pwd());
-			
-			 	
 			System.out.println("메일 컨트롤러 동작 id: " + m.getMc_id());
 	        String newPassword = SHA256Util.getEncrypt(m.getMc_pwd(), m.getSalt());
 	        System.out.println("이전 비밀번호" + m.getMc_pwd());
@@ -104,13 +84,11 @@ public class MailController {
 		        }
 			}else {
 				System.out.println("아이디, 메일이 존재하지 않습니다.");
-			}
-	        
+			}	        
 
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
-		}
-			
+		}			
 		
 		return r;
 	}
@@ -129,8 +107,7 @@ public class MailController {
 			System.out.println(mb_email);
 			mailMessage.setTo(mb_email);
 			
-			javaMailSender.send(mailMessage);
-			
+			javaMailSender.send(mailMessage);			
 			
 			int re = maildao2.updatePwd(mb_id, mb_email);
 			
@@ -140,9 +117,7 @@ public class MailController {
 			
 			System.out.println("메일 컨트롤러 동작 re: " + re);
 			System.out.println("메일 컨트롤러 동작 id: " + mb_id);
-			System.out.println("메일 컨트롤러 동작 pw: " + m.getMb_pwd());
-			
-			 	
+			System.out.println("메일 컨트롤러 동작 pw: " + m.getMb_pwd());			
 			System.out.println("메일 컨트롤러 동작 id: " + m.getMb_id());
 	        String newPassword = SHA256Util.getEncrypt(m.getMb_pwd(), m.getSalt());
 	        System.out.println("이전 비밀번호" + m.getMb_pwd());
@@ -163,16 +138,13 @@ public class MailController {
 		        }
 			}else {
 				System.out.println("아이디, 메일이 존재하지 않습니다.");
-			}
-	        
+			}	        
 
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
-		}
-			
+		}			
 		
 		return r;
-	}
-	
+	}	
 	
 }

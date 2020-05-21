@@ -8,8 +8,7 @@ import org.springframework.stereotype.Component;
  
 @Component
 public class SmtpCompoent {
-    
-	
+
     @Bean
     public JavaMailSenderImpl javaMailSender()
     {
@@ -28,7 +27,5 @@ public class SmtpCompoent {
         r.setJavaMailProperties(prop);
         
         return r;
-    }   
-       
+    }          
 }
-

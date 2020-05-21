@@ -36,6 +36,7 @@ public class BusinessController {
 		String newPassword = mb_pwd;			
 		String str = "no";
 		System.out.println(newPassword);
+		
 		if(m != null) {				
 			newPassword = SHA256Util.getEncrypt(mb_pwd, m.getSalt());		
 			m.setMb_pwd(newPassword); 
@@ -55,8 +56,7 @@ public class BusinessController {
 				System.out.println("접속일 업데이트");
 			}else {
 				System.out.println("접속일 업데이트 실패");
-			}
-			
+			}			
 		}else {
 			System.out.println("r 없음, 로그인 실패");		
 		}
@@ -68,7 +68,7 @@ public class BusinessController {
 	}
 	
 	
-	//사업자목록
+	//사업자 목록 조회
 	@RequestMapping(value = "/listBusiness.do", produces = "application/json;charset=UTF-8")
 	public String listBusiness() {
 		String str = "";
@@ -80,7 +80,7 @@ public class BusinessController {
 	}
 	
 	
-	//사업자 등록
+	//사업자 회원가입
 	@RequestMapping("/signIn2.do")
 	public String insertBusiness(BusinessVo m) {
 		String str = "";
@@ -88,8 +88,7 @@ public class BusinessController {
         String newPassword = SHA256Util.getEncrypt(m.getMb_pwd(), salt);
         m.setMb_pwd(newPassword);
         m.setSalt(salt);
-        
-        
+                
         String path = "C:\\study\\STS_Study\\campingspot_0514\\src\\main\\resources\\static\\profile";
 		MultipartFile uploadFile = m.getUploadFile();
 		String fname = "";
@@ -112,7 +111,8 @@ public class BusinessController {
 		return str;
 	}	
 	
-	//아이디 중복체크
+	
+	//사업자 아이디 중복체크
 	@RequestMapping("/checkId2.do")
 	public int checkId(String mb_id) {
 		System.out.println("입력아이디: " + mb_id);
@@ -121,7 +121,8 @@ public class BusinessController {
 		return re;
 	}
 	
-	//사업자 삭제
+	
+	//사업자 회원탈퇴
 	@RequestMapping("/deleteBusiness.do")
 	public int deleteBusiness(String mb_id) {		
 		System.out.println("사업자회원삭제 " + mb_id);		
@@ -130,15 +131,17 @@ public class BusinessController {
 		return re;
 	}
 	
-	//사업자 수정 - 세션정보들 불러오기 mc_id에 vo 담아서
+	
+	//사업자 세션정보들 불러오기 MC_ID에 VO 담아서
 	@RequestMapping("/sessionBusiness.do")
-	public BusinessVo sessionBusiness(String mb_id) {		//dao에서 받아옴
+	public BusinessVo sessionBusiness(String mb_id) {		
 		BusinessVo smout = dao.sessionBusiness(mb_id);
 		System.out.println("BusinessController 메시지 : sessionBusiness 동작 " + smout);
 		return smout;
 	}	
 	
-	//회원수정
+	
+	//사업자 정보 수정
 	@RequestMapping("/updateBusiness.do")
 	public String updateBusiness(BusinessVo mv) {
 		String str = "";
@@ -158,8 +161,7 @@ public class BusinessController {
 			fname = uploadFile.getOriginalFilename();
 			System.out.println(fname);
 			if(fname != null && !fname.equals("")) {	
-				//수정할 파일이 올라왔다면
-				
+				//수정할 파일이 올라왔다면				
 				mv.setMb_fname(fname);
 				try {
 					byte []data = uploadFile.getBytes();
@@ -184,8 +186,6 @@ public class BusinessController {
 			}
 		return str;		
 	}
-	
-	
 	
 	
 }

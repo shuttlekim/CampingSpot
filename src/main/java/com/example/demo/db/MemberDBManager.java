@@ -25,10 +25,6 @@ public class MemberDBManager {
 		}
 	}
 	 
-	///////////////////////////////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////////////////////////////
-	
 	//회원세션
 	public static MemberVo isMember(MemberVo m) {
 		MemberVo r = null;
@@ -114,8 +110,7 @@ public class MemberDBManager {
 		re = session.update("member.updatePwd", map);
 		System.out.println("MemberDBManager 임시비밀번호 re : " + re);
 		return re;
-	}
-	
+	}	
 	
 	//회원탈퇴
 	public static int deleteMember(String mc_id) {
@@ -156,8 +151,5 @@ public class MemberDBManager {
 	    System.out.println("MemberDBManager 메시지 updateMember2 : " + re);
 	    return re;		
 	}
-
-	
-	
 	
 }

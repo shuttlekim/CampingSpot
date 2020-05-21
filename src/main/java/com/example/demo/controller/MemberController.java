@@ -25,10 +25,8 @@ public class MemberController {
 		this.dao = dao;
 	}
 
-	//////////////////////////////////////////////////////////////////////////////
 
-
-	//로그인
+	//회원 로그인
 	@RequestMapping("/login.do")
 	public String login(String mc_id, String mc_pwd) {
 		
@@ -83,7 +81,7 @@ public class MemberController {
 	}
 	
 	
-	//회원등록
+	//회원가입
 	@RequestMapping("/signIn.do")
 	public String insertMember(MemberVo m) {
 		System.out.println("================sign.do 작동 시작 =======================");
@@ -127,7 +125,8 @@ public class MemberController {
 		return str;
 	}	
 	
-	//아이디 중복체크
+	
+	//회원 아이디 중복체크
 	@RequestMapping("/checkId.do")
 	public int checkId(String mc_id) {
 		System.out.println("입력아이디: " + mc_id);
@@ -136,7 +135,7 @@ public class MemberController {
 		return re;
 	}
 	
-	//회원 삭제
+	//회원 탈퇴
 	@RequestMapping("/deleteMember.do")
 	public int deleteMember(String mc_id) {		
 		System.out.println("회원삭제 " + mc_id);		
@@ -162,7 +161,9 @@ public class MemberController {
 //		return str;
 //	}	
 	//위에꺼 네이버 로그인테스트 하느라 저거였고 원본은 지금 이거
-	//회원정보 업데이트 할때 사용.
+	
+	
+	//회원정보 세션
     @RequestMapping("/sessionMember.do")
     public MemberVo sessionMember(String mc_id) {        //dao에서 받아옴
         MemberVo smout = dao.sessionMember(mc_id);
@@ -219,7 +220,7 @@ public class MemberController {
 	}
 	
 	
-	//네이버 세션 및 가입 처리
+	//네아로(네이버 아이디 로그인) 세션 및 가입 처리
 	@RequestMapping("/naver.do")
 	public String naver(MemberVo n) {		//dao에서 받아옴
 		
@@ -228,15 +229,15 @@ public class MemberController {
 		String str = "";
 		MemberVo smout = dao.sessionMember(n.getMc_id());
 		System.out.println("MemberController 메시지 : 불러온 smout 의 상태 " + smout);
+			
 		if(smout != null) {
-		//str = smout.getMc_id();
-		str = smout.getMc_name();
-		System.out.println("str : " + str);
+			//str = smout.getMc_id();
+			str = smout.getMc_name();
+			System.out.println("str : " + str);
 		}else {
 			str = null;
 			System.out.println("str : " + str);
-		}
-		
+		}		
 		
 		System.out.println("================sign.do 작동 시작 =======================");
 		System.out.println("MemberVo:"+smout);
@@ -256,8 +257,5 @@ public class MemberController {
 		
 	}	
 
-	
-	
-	
 	
 }

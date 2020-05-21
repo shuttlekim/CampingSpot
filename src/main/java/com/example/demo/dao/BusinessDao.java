@@ -9,7 +9,6 @@ import com.example.demo.db.BusinessDBManager;
 
 import com.example.demo.vo.BusinessVo;
 
-
 @Repository
 public class BusinessDao {
 
@@ -55,7 +54,6 @@ public class BusinessDao {
 	
 	public int updateBusiness2(BusinessVo um) {
 		return BusinessDBManager.updateBusiness2(um);
-	}
-	
+	}	
 	
 }
