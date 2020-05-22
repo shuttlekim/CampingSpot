@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<script type="text/javascript">
+$(function(){	
+
+	$("#header").load("/main/header.html");	
+
+	$("#footers").load("/main/footer.html");
+		
+});
+
+</script>
 <style type="text/css">
 
 .container{
@@ -37,17 +48,6 @@
 
 }
 </style>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script type="text/javascript">
-$(function(){	
-
-	$("#header").load("/main/header.html");	
-
-	$("#footers").load("/main/footer.html");
-		
-});
-</script>
-</head>
 <body>
 
 	<!-- TOP  -->

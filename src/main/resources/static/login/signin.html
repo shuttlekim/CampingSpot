@@ -55,13 +55,14 @@ input[type="text"],input[type="date"],input[type="number"],input[type="password"
 <script type="text/javascript">
 $(function(){	
 
+
 	//가입하기 버튼 클릭시 동작
 	$("#btnJoinOk").click(function(){
 		//var member = $("#join").serialize();
-		var business =  new FormData(document.getElementById("join"));
-		$.ajax("/signIn2.do", {data:business, processData:false, contentType:false, type:"POST", success:function(r){
+		var member =  new FormData(document.getElementById("join"));
+		$.ajax("/signIn.do", {data:member, processData:false, contentType:false, type:"POST", success:function(r){
 			alert("회원가입 성공 \n 로그인 페이지로 이동!");
-			window.location.href = "/login.html";
+			window.location.href = "/login/login.html";
 		}}); 
 	});
 		
@@ -69,7 +70,7 @@ $(function(){
 	$("#alert-success").hide(); 
 	$("#alert-danger").hide(); 
 	$("input").keyup(function(){ 
-		var pwd1=$("#mb_pwd").val(); 
+		var pwd1=$("#mc_pwd").val(); 
 		var pwd2=$("#checkpwd").val(); 
 		if(pwd1 != "" || pwd2 != ""){ 
 			if(pwd1 == pwd2){ 
@@ -87,11 +88,11 @@ $(function(){
 	
 	//아이디 중복검사
 	$("#idCheck").click(function(){
-		var input_id = $("#mb_id").val();
+		var input_id = $("#mc_id").val();
 		//alert(input_id);
-		var data = {"mb_id":input_id};
-		$.ajax("/checkId2.do", {data:data, success:function(mb_id){
-			if(mb_id == 1){
+		var data = {"mc_id":input_id};
+		$.ajax("/checkId.do", {data:data, success:function(mc_id){
+			if(mc_id == 1){
 				alert("사용중인 아이디입니다.");
 			}else{
 				alert("사용가능한 아이디입니다.");
@@ -100,7 +101,6 @@ $(function(){
 		
 		}}); 
 	});
-	
 	
 	$("#header").load("/main/header.html");	
 
@@ -113,25 +113,24 @@ $(function(){
 
 	<!-- TOP  -->
 	<div class="top" id="header">
-	   <span>TOP (1000 x 80) <br/> #FF5E00;</span>
 	</div>
 
 	<div class="container">
 	<!-- MIDDLE -->
 	  <div class="middle">
-	    <div class="middle-center">
-	    <br><h2>CAMPINGSPOT 회원가입</h2><br>
+	    <div class="middle-center"> 
+			<br><h2>CAMPINGSPOT 회원가입</h2><br>
 <hr width="300px">
-			<div>
+<div>
 	<form id="join" method="post" enctype="multipart/form-data">
-		<table>
+		<table style="text-align: center;">
 		<br><br>
-			<tr>
-				<td><input type="text" name="mb_id" id="mb_id" placeholder="회원 아이디 (15자 이내)" required="required" maxlength="15"></td>
+			<tr>		
+				<td><input type="text" name="mc_id" id="mc_id" placeholder="회원 아이디 (15자 이내)" required="required" maxlength="15"></td>
 				<td><button id="idCheck">중복검사</button></td>
 			</tr>				
 			<tr>
-				<td><input type="password" name="mb_pwd" id="mb_pwd" placeholder="비밀번호 (8자이내)" required="required" maxlength="8"></td>
+				<td><input type="password" name="mc_pwd" id="mc_pwd" placeholder="비밀번호 (8자이내)" required="required" maxlength="8"></td>
 			</tr>
 			<tr>
 				<td><input type="password" name="checkpwd" id="checkpwd" placeholder="비밀번호 확인 (8자이내)" required="required" maxlength="8">
@@ -142,29 +141,34 @@ $(function(){
 				</td>	
 			</tr>
 			<tr>
-				<td><input type="email" name="mb_email" id="mb_email" placeholder="E-MAIL" required="required" maxlength="50"></td>
+				<td><input type="email" name="mc_email" id="mc_email" placeholder="E-MAIL" required="required" maxlength="50"></td>
 			</tr>
 			<tr>
-				<td><input type="text" name="mb_name" id="mb_name" placeholder="성함" required="required"></td>
+				<td><input type="text" name="mc_name" id="mc_name" placeholder="성함" required="required"></td>
 			</tr>
 			<tr>
-				<td><input type="text" name="mb_nickname" id="mb_nickname" placeholder="닉네임 (8자 이내)" required="required"></td>
+				<td><input type="text" name="mc_nickname" id="mc_nickname" placeholder="닉네임 (8자 이내)" required="required"></td>
 			</tr>
 			<tr>
-				<td><input type="text" name="mb_tel" id="mb_tel" placeholder="전화번호 (-)없이 입력" required="required"></td>
+				<td><input type="text" name="mc_tel" id="mc_tel" placeholder="전화번호 (-)없이 입력" required="required"></td>
 			</tr>
 			<tr>
-				<td><input type="text" name="mb_licence" id="mb_licence" placeholder="사업자등록번호" required="required"  maxlength="10"></td>
+				<td><input type="text"  placeholder="다음 중 회원님의 취향은?" required="required" disabled="disabled" style="background-color: #e2e2e2;"></td>
+			</tr>
+			<tr>				
+				<td><label style="margin-left: 150px;">산</label><input type="checkbox" name="mc_taste" id="mc_taste" value="산">
+                 	<label>강</label><input type="checkbox" name="mc_taste" id="mc_taste" value="강">
+                 	<label>바다</label><input type="checkbox" name="mc_taste" id="mc_taste" value="바다">
+                 	<label>계곡</label><input type="checkbox" name="mc_taste" id="mc_taste" value="계곡"></td>
 			</tr>	
 			<tr>
 				<td><input type="text" disabled="disabled" placeholder="프로필 사진" style="background-color: #e2e2e2;"></td>			
 			</tr>
-			<tr>
-
+			<tr>			
 				<td><input type="file" name="uploadFile" id="uploadFile" style="width:200px;height:30px;font-size:15px;margin-left: 150px;"></td>
 			</tr>
 			<tr>
-				<td><input type="hidden" name="mb_auth" id="mb_auth" value="2"></td>
+				<td><input type="hidden" name="mc_auth" id="mc_auth" value="3"></td>
 			</tr>
 			
 		</table>
@@ -172,7 +176,9 @@ $(function(){
 	<br><br><br>
 	<button id="btnJoinOk" style="width:200px;height:40px;font-size:20px;margin-left: 65px;">회원가입</button>
 </div>
-		</div>
+
+
+		 </div>
 	  </div>  
 	</div>
 
