@@ -23,6 +23,7 @@
 	#main_status{
 		float: right;
 		margin: 22px 20px 2px 20px;
+		padding-left: 
 	}
 	#main_status span{
 		width: auto;
@@ -59,7 +60,7 @@
 	}		
 
 	#main_logout{
-   		display: none;     	
+   		display: none;
    		//border: solid;   		
     }
 </style>
@@ -133,25 +134,26 @@
 		//세션유지(사업자)
 	    if(sessionStorage.getItem("businessId") != null){
 	   		//$("#btnLogin").html("로그아웃");
-	   		 $("#afterLogin").css("display", "block");
-	         $("#btnLogin").css("display", "none");         
+	   		 $("#main_logout").css("display", "block");
+	         $("#main_login").css("display", "none");         
 	    }
 		//세션유지(네이버)
 	    if(sessionStorage.getItem("memberName") != null){
 	   		//$("#btnLogin").html("로그아웃");
-	   		 $("#afterLogin").css("display", "block");
-	         $("#btnLogin").css("display", "none");         
+	   		 $("#main_logout").css("display", "block");
+	         $("#main_login").css("display", "none");         
 	    }
 			
 		
 		//로그인 버튼
 		$("#main_login").click(function(){			
-			alert("로그인 입니다.");
+			//alert("로그인 입니다.");
 			window.location.href = "/login/login.html";
 		})
 		//회원가입 버튼
 		$("#main_signup").click(function(){
-			alert("회원가입 입니다.");
+			//alert("회원가입 입니다.");
+			window.location.href = "/login/signInMain.html";
 		})
 		//사이트맵 버튼
 		$("#main_sitemap").click(function(){
@@ -199,13 +201,14 @@
 <body>
 	<div class="head_section">
 			<div id="main_title">
-				<h2>CAMPINGSPOT</h2>
+				<h2 onclick="location.href='/main/main.html'">CAMPINGSPOT</h2>
 			</div>
 			<div id="main_menu">
 				<i class="fas fa-bars"></i>
 			</div>
 			<div id="main_status">
-				<span id="main_login">로그인</span><span id="main_logout">로그아웃</span>&nbsp&nbsp|&nbsp&nbsp
+				<span id="main_login">로그인</span>
+				<span id="main_logout">로그아웃</span>&nbsp&nbsp|&nbsp&nbsp
 				<span id="main_signup">회원가입</span>&nbsp&nbsp|&nbsp&nbsp
 				<span id="main_sitemap">사이트맵</span>
 			</div>

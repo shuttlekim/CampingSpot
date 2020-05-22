@@ -22,7 +22,8 @@
 	}
 	#main_status{
 		float: right;
-		margin: 22px 20px 2px 20px;
+		margin: 22px 20px 2px 40px;
+		width: 300px;
 	}
 	.head_section{
 		height: 53px;
@@ -43,6 +44,10 @@
 	h4{
 		padding-left: 25px;
 	}
+	#main_logout{
+   		display: none;     	
+   		//border: solid;   		
+    }
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://kit.fontawesome.com/3da0640e3c.js" crossorigin="anonymous"></script>
@@ -52,21 +57,54 @@
 		
 		//타이틀 클릭시 메인으로 이동
 		$("#main_title").click(function(){
-			location.href="main.html";
+			wondow.location.href="/main/main.html";
 		})
 		
 		//로그인 버튼
 		$("#main_login").click(function(){
-			alert("로그인 입니다.");
+			//alert("로그인 입니다.");
+			window.location.href = "/login/login.html";
 		})
 		//회원가입 버튼
 		$("#main_signup").click(function(){
-			alert("회원가입 입니다.");
+			//alert("회원가입 입니다.");
+			window.location.href = "/login/signInMain.html";
 		})
 		//사이트맵 버튼
 		$("#main_sitemap").click(function(){
 			alert("사이트맵 입니다.");
 		})
+		
+		
+		//로그아웃버튼 동작
+		$("#main_logout").click(function(){	
+	        sessionStorage.removeItem("memberId");
+	        sessionStorage.removeItem("businessId");  
+	        sessionStorage.removeItem("memberName");  
+	        $("#main_login").css("display", "block");
+	        $("#main_logout").css("display", "none");
+	        //$("#dock").empty();
+	    });		
+		
+		//세션유지(일반회원)
+	    if(sessionStorage.getItem("memberId") != null){
+	   		//$("#btnLogin").html("로그아웃");
+	   		 $("#main_logout").css("display", "block");
+	         $("#main_login").css("display", "none");         
+	    }
+		//세션유지(사업자)
+	    if(sessionStorage.getItem("businessId") != null){
+	   		//$("#btnLogin").html("로그아웃");
+	   		 $("#main_logout").css("display", "block");
+	         $("#main_login").css("display", "none");         
+	    }
+		//세션유지(네이버)
+	    if(sessionStorage.getItem("memberName") != null){
+	   		//$("#btnLogin").html("로그아웃");
+	   		 $("#main_logout").css("display", "block");
+	         $("#main_login").css("display", "none");         
+	    }
+		
 		
 		//메뉴 버튼
 		$("#main_menu").click(function(){
@@ -92,13 +130,13 @@
 <body>
 	<div class="head_section">
 		<div id="main_title">
-			<h2>CAMPINGSPOT</h2>
+			<h2 onclick="location.href='/main/main.html'">CAMPINGSPOT</h2>
 		</div>
 		<div id="main_menu">
 			<i class="fas fa-bars"></i>
 		</div>
 		<div id="main_status">
-			<span id="main_login">로그인</span>&nbsp&nbsp|&nbsp&nbsp
+			<span id="main_login">로그인</span><span id="main_logout">로그아웃</span>&nbsp&nbsp|&nbsp&nbsp
 			<span id="main_signup">회원가입</span>&nbsp&nbsp|&nbsp&nbsp
 			<span id="main_sitemap">사이트맵</span>
 		</div>
