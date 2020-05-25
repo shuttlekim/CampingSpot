@@ -10,6 +10,7 @@
   
   <select id="detailCampingSpot" resultType="campingSpotVo">
   	select * from camping_spot where cs_no = #{cs_no}
+  	
   </select>
 
   <select id="getCampingSpot" resultType="campingSearchResultVo">
