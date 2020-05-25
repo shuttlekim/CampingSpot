@@ -117,15 +117,18 @@
 	    if(sessionStorage.getItem("businessId") != null){
 	   		//$("#btnLogin").html("로그아웃");
 	   		 $("#main_logout").css("display", "block");
-	         $("#main_login").css("display", "none");         
+	         $("#main_login").css("display", "none"); 
+	         $("#main_mypage").css("display", "block");
+	         $("#main_signup").css("display", "none"); 
 	    }
 		//세션유지(네이버)
 	    if(sessionStorage.getItem("memberName") != null){
 	   		//$("#btnLogin").html("로그아웃");
 	   		 $("#main_logout").css("display", "block");
-	         $("#main_login").css("display", "none");         
-	    }
-		
+	         $("#main_login").css("display", "none"); 
+	         $("#main_mypage").css("display", "block");
+	         $("#main_signup").css("display", "none"); 
+	    }		
 		
 		//메뉴 버튼
 		$("#main_menu").click(function(){
@@ -139,10 +142,7 @@
 				$(".main_menu_bar").css('display','none')
 				menu = false
 			}
-		})
-		
-		
-
+		});
 		
 		
 	})

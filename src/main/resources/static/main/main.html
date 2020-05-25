@@ -153,21 +153,24 @@
 	   		 $("#main_logout").css("display", "block");
 	         $("#main_login").css("display", "none"); 
 	         $("#main_mypage").css("display", "block");
-	         $("#main_signup").css("display", "none")
+	         $("#main_signup").css("display", "none");
 	    }
 		//세션유지(사업자)
 	    if(sessionStorage.getItem("businessId") != null){
 	   		//$("#btnLogin").html("로그아웃");
 	   		 $("#main_logout").css("display", "block");
-	         $("#main_login").css("display", "none");         
+	         $("#main_login").css("display", "none");   
+	         $("#main_mypage").css("display", "block");
+	         $("#main_signup").css("display", "none");
 	    }
 		//세션유지(네이버)
 	    if(sessionStorage.getItem("memberName") != null){
 	   		//$("#btnLogin").html("로그아웃");
 	   		 $("#main_logout").css("display", "block");
-	         $("#main_login").css("display", "none");         
-	    }
-			
+	         $("#main_login").css("display", "none");  
+	         $("#main_mypage").css("display", "block");
+	         $("#main_signup").css("display", "none");
+	    }			
 		
 		//로그인 버튼
 		$("#main_login").click(function(){			
@@ -221,8 +224,7 @@
 		//축제 썸네일 호출
 		listThumb();
 		
-		$("#footers").load("footer.html");
-		
+		$("#footers").load("footer.html");		
 
 	})
 </script>
