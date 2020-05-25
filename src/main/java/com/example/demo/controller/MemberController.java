@@ -97,8 +97,8 @@ public class MemberController {
 	        m.setSalt(salt);
 	        
 	        
-	        String path = "/resources/static/resource/profile";
-	        //String path = "C:\\study\\STS_Study\\campingspot_0514\\src\\main\\resources\\static\\resource";
+	        //String path = "/resources/static/resource/profile";
+	        String path = "C:\\study\\STS_Study\\campingspot_0514\\src\\main\\resources\\static\\resource";
 			MultipartFile uploadFile = m.getUploadFile();
 			String fname = "";
 			 if(uploadFile != null) {
@@ -145,6 +145,23 @@ public class MemberController {
 		return re;
 	}
 	
+	//회원수정 - 세션정보들 불러오기 mc_id에 vo 담아서 (백업본)
+//	@RequestMapping("/sessionMember.do")
+//	public String sessionMember(String mc_id) {		//dao에서 받아옴
+//		System.out.println("------sessionMember 작동------");
+//		String str = "";
+//		MemberVo smout = dao.sessionMember(mc_id);
+//		System.out.println("MemberController 메시지 : smout 의 상태 " + smout);
+//		if(smout != null) {
+//		str = smout.getMc_id();
+//		System.out.println("str : " + str);
+//		}else {
+//			str = null;
+//			System.out.println("str : " + str);
+//		}
+//		return str;
+//	}	
+	
 	//회원수정 - 세션정보들 불러오기 mc_id에 vo 담아서
 	@RequestMapping("/sessionMember.do")
 	public String sessionMember(String mc_id) {		//dao에서 받아옴
@@ -155,6 +172,7 @@ public class MemberController {
 		if(smout != null) {
 		str = smout.getMc_id();
 		System.out.println("str : " + str);
+		//System.out.println("smout: " + smout);
 		}else {
 			str = null;
 			System.out.println("str : " + str);
@@ -165,12 +183,12 @@ public class MemberController {
 	
 	//위에꺼 네이버 로그인테스트 하느라 저거였고 원본은 지금 이거
 	//회원정보 세션
-//    @RequestMapping("/sessionMember.do")
-//    public MemberVo sessionMember(String mc_id) {        //dao에서 받아옴
-//        MemberVo smout = dao.sessionMember(mc_id);
-//        System.out.println("MemberController 메시지 : sessionMember 동작 " + smout);
-//        return smout;
-//    }    
+    @RequestMapping("/sessionMember2.do")
+    public MemberVo sessionMember2(String mc_id) {        //dao에서 받아옴
+        MemberVo smout = dao.sessionMember(mc_id);
+        System.out.println("MemberController 메시지 : sessionMember2 동작 " + smout);
+        return smout;
+    }    
 	
 	
 	//회원수정

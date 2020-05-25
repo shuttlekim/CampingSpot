@@ -48,6 +48,17 @@
    		display: none;     	
    		//border: solid;   		
     }
+    #main_mypage{
+    	display: none;
+    	cursor: pointer; 	
+    }
+    
+    #main_sitemap{
+    	cursor: pointer;
+    }
+    #festMore{
+    	cursor: pointer;
+    }
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://kit.fontawesome.com/3da0640e3c.js" crossorigin="anonymous"></script>
@@ -70,11 +81,14 @@
 			//alert("회원가입 입니다.");
 			window.location.href = "/login/signInMain.html";
 		})
+		//마이페이지 버튼
+		$("#main_mypage").click(function(){
+			window.location.href = "/login/myPage.html";
+		});	
 		//사이트맵 버튼
 		$("#main_sitemap").click(function(){
 			alert("사이트맵 입니다.");
-		})
-		
+		})		
 		
 		//로그아웃버튼 동작
 		$("#main_logout").click(function(){	
@@ -82,15 +96,20 @@
 	        sessionStorage.removeItem("businessId");  
 	        sessionStorage.removeItem("memberName");  
 	        $("#main_login").css("display", "block");
+	        $("#main_signup").css("display", "none");	       
 	        $("#main_logout").css("display", "none");
-	        //$("#dock").empty();
+	        $("#main_mypage").css("display", "none");
+	        $("#main_signup").css("display", "block");
+	        window.location.href = "/main/main.html";
+	        //$("#dock").empty(); 
 	    });		
 		
 		//세션유지(일반회원)
 	    if(sessionStorage.getItem("memberId") != null){
-	   		//$("#btnLogin").html("로그아웃");
 	   		 $("#main_logout").css("display", "block");
-	         $("#main_login").css("display", "none");         
+	         $("#main_login").css("display", "none"); 
+	         $("#main_mypage").css("display", "block");
+	         $("#main_signup").css("display", "none");       
 	    }
 		//세션유지(사업자)
 	    if(sessionStorage.getItem("businessId") != null){
@@ -137,7 +156,7 @@
 		</div>
 		<div id="main_status">
 			<span id="main_login">로그인</span><span id="main_logout">로그아웃</span>&nbsp&nbsp|&nbsp&nbsp
-			<span id="main_signup">회원가입</span>&nbsp&nbsp|&nbsp&nbsp
+			<span id="main_signup">회원가입</span><span id="main_mypage">마이페이지</span>&nbsp&nbsp|&nbsp&nbsp
 			<span id="main_sitemap">사이트맵</span>
 		</div>
 	</div>

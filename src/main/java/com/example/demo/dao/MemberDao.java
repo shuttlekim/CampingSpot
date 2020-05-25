@@ -46,6 +46,10 @@ public class MemberDao {
 		return MemberDBManager.sessionMember(mc_id);
 	}
 	
+	public MemberVo sessionMember2(String mc_id) {
+		return MemberDBManager.sessionMember2(mc_id);
+	}
+	
 	public int updateMember(MemberVo um) {
 		return MemberDBManager.updateMember(um);
 	}
