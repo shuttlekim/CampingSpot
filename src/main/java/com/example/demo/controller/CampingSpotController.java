@@ -69,6 +69,14 @@ public class CampingSpotController {
       
       return str;
    }
+   
+   // 캠핑장 번호와 캠핑타입으로 해당 캠핑룸들을 불러오도록 요청
+   @RequestMapping(value="/callCampingRoomForReserve.do", produces = "application/json;charset=utf8")
+   public String callCampingRoomForReserve(int cs_no, String CampingType) {
+	   String str = "";
+	   
+	   return str;
+   }
 
    // 캠핑장 예약 상세페이지 리뷰목록 요청
    @RequestMapping(value="/campingReviewList.do", produces = "application/json;charset=utf8")

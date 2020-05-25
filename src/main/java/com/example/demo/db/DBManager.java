@@ -33,7 +33,7 @@ public class DBManager {
 	// 영현
 	public static DetailCampingSearchResultVo detailCampingSearchResult(HashMap map) {
 		SqlSession session = factory.openSession();
-		DetailCampingSearchResultVo dcsrv = session.selectOne("campingSpot.detailCampingSearchResult", map);
+		DetailCampingSearchResultVo dcsrv = session.selectOne("reservation.detailCampingSearchResult", map);
 		session.close();
 		return dcsrv;
 	}
@@ -49,7 +49,7 @@ public class DBManager {
 	// 영현
 	public static CampingSearchResultVo getCampingSpot(HashMap map) {
 		SqlSession session = factory.openSession();
-		CampingSearchResultVo csrv = session.selectOne("campingSpot.getCampingSpot", map);
+		CampingSearchResultVo csrv = session.selectOne("reservation.getCampingSpot", map);
 		session.close();
 		return csrv;
 	}
@@ -57,7 +57,7 @@ public class DBManager {
 	// 영현
 	public static List<CampingSearchResultVo> search_list(HashMap map){
 		SqlSession session = factory.openSession();
-		List<CampingSearchResultVo> list = session.selectList("campingSpot.campingList", map);
+		List<CampingSearchResultVo> list = session.selectList("reservation.campingList", map);
 		System.out.println("search_List 매니저 메소드 동작:"+list);
 		session.close();
 		return list;

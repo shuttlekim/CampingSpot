@@ -104,8 +104,22 @@ $(function(){
     	}
     	$.ajax("/detailCampingSpot.do", {data:input_data, success:function(data){
     		
+    		var title = $("<h2></h2>").html(data.cs_name);
+    		var fname = $("<div></div>").html("사진파일: "+data.cs_camp_fname);
+    		var rate = $("<div></div>").html("평점: "+data.rate);
+    		var detail = $("<div></div>").html("상세설명: "+data.cs_detail);
+    		var addr = $("<div></div>").html("주소: "+data.cs_addr_head+"&nbsp"+data.cs_addr_remain);
+    		var tel = $("<div></div").html("연락처: "+data.cs_tel);
+    		var url = $("<div></div>").html("홈페이지: "+data.cs_url);
+    		var map_fname = $("<div></div>").html("캠핑장 약도 & 룸위치: "+data.cs_map_fname);
+    		var fac = $("<div></div>").html("시설: "+data.cs_fac);
+    		var theme = $("<div></div>").html("테마: "+data.cs_theme);
+    		
+    		$("#campingSpot_detail").append(title, fname, rate, detail, addr, tel, url, map_fname, fac, theme);
+    		
     	}})
     }
+    
     var callReview = function(cs_no){
     	var reviewList;	
     	$.ajax("/campingReviewList.do", {data:{"cs_no":cs_no}, success:function(data){        
@@ -132,6 +146,7 @@ $(function(){
     	}})  // reviewList ajex 종료
     	    
     }
+    getDetail(cs_no, campingType, checkout, checkin);
    	callReview(cs_no);
    
     $("#btn_insert").click(function(){
@@ -205,16 +220,19 @@ $(function(){
 	<div id="headers"></div>
 	<div class="body-wrap">
 		<h2>상세페이지</h2>
-		<hr>
 		<button class="btn" id="btn_back">돌아가기</button>
 		<hr>
 		
 		<div id="detail">
-		   <div id="div_btns">
-		      <button class="btn" id="btn_reservation">예약하기</button>
-		      <button class="btn" id="btn_insert">찜하기</button>
-		      <a href=#review><button class="btn" name="btn_review">리뷰 보러가기</button></a>
-		   </div>
+			<div id="room_selector"></div>
+			
+			<div id="div_btns">
+		    	<button class="btn" id="btn_reservation">예약하기</button>
+		        <button class="btn" id="btn_insert">찜하기</button>
+		        <a href=#review><button class="btn" name="btn_review">리뷰 보러가기</button></a>
+		    </div>
+		 
+		   <div id="campingSpot_detail"></div>
 		</div>
 		
 		<hr>
