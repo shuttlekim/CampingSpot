@@ -121,6 +121,34 @@ $(function(){
     	}})
     }
     
+    var selectRoom = function(cs_no, campingType, checkout, checkin){
+   		var roomList;
+    	var input_data = {
+    			"cs_no":cs_no,
+    			"campingType": campingType,
+    			"checkout": checkout,
+    			"checkin": checkin
+    	}
+    	$.ajax("/callCampingRoomForReserve.do", {data:input_data, success:function(data){
+    		roomList = data;
+    		
+    		var select = $("<select name='room'></select>");
+    		$.each(roomList, function(idx, item){
+    			var option1 = $("<option></option>").html("룸이름: "+item.cr_name+", 최대수용인원: "+item.cr_max).attr("value",item.cr_no);
+    			var option2 = $("<option></option>").html("룸이름: "+item.cr_name+", 품절").attr({
+    				"value": item.cr_no,
+    				"disabled": true
+    			})
+    			if( item.empty ){
+    				$(select).append(option1);
+    			}else{
+    				$(select).append(option2);
+    			}
+    		})
+    	}})
+    	
+    }
+    
     var callReview = function(cs_no){
     	var reviewList;	
     	$.ajax("/campingReviewList.do", {data:{"cs_no":cs_no}, success:function(data){        
@@ -150,6 +178,7 @@ $(function(){
     	    
     }
     getDetail(cs_no, campingType, checkout, checkin);
+    selectRoom(cs_no, campingType, checkout, checkin);
    	callReview(cs_no);
    
     $("#btn_insert").click(function(){

@@ -31,6 +31,14 @@ public class DBManager {
 			// TODO: handle exception
 		}
 	}
+	// 영현) 체크인 체크아웃 사이에 사용중인 룸을 조회
+	public static List<CampingRoomVo> ingRoom(HashMap map){
+		SqlSession session = factory.openSession();
+		List<CampingRoomVo> list = session.selectList("reservation.ingRoom", map);
+		session.close();
+		return list;
+	}
+	
 	// 영현) 캠핑장별 캠핑룸 현황 조회
 	public static List<CampingRoomVo> selectorRoom(HashMap map) {
 		SqlSession session = factory.openSession();

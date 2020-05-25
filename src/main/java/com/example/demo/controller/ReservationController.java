@@ -79,10 +79,28 @@ public class ReservationController {
 		   HashMap map = new HashMap();
 		   map.put("cs_no", cs_no);
 		   map.put("campingType", campingType);
+		   map.put("checkout", checkout);
+		   map.put("checkin", checkin);
 		   
+		   //캠핑장번호와 캠핑타입으로 해당하는 전체룸을 불러온다.
 		   List<CampingRoomVo> list = dao.selectorRoom(map);
 		   
+		   //체크인 체크아웃 사이에 이미 이용중인 룸을 불러온다.
+		   List<CampingRoomVo> ingList = dao.ingRoom(map);
 		   
+		   for(int i=0; i<list.size(); i++) {
+			   for(int j=0; j<ingList.size(); j++) {
+				  if(list.get(i).getCr_no() == ingList.get(j).getCr_no()) {
+					  list.get(i).setEmpty(false);
+					  break;
+				  }else {
+					  list.get(i).setEmpty(true);
+				  }
+			   }
+		   }
+		   
+		   Gson gson = new Gson();
+		   str = gson.toJson(list);
 		   
 		   return str;
 	   }
