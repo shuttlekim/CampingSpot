@@ -36,12 +36,12 @@ public class CampingSpotController {
    @RequestMapping(value="/campingReviewList.do", produces = "application/json;charset=utf8")
    public String campingReviewList(int cs_no) {
       String str = "";
-      System.out.println("현재 cs_no : "+cs_no);
+      //System.out.println("현재 cs_no : "+cs_no);
 
       Gson gson = new Gson();
       str = gson.toJson(dao.campingReviewList(cs_no));
       
-      System.out.println(str);
+      //System.out.println(str);
       
       return str;
    }

@@ -14,7 +14,7 @@
 
   <select id="getCampingSpot" resultType="campingSearchResultVo">
   	select cs_name name, A.cs_no no, A.min price, A.avg rate, cs_addr_head addr_head, cs_addr_remain addr_remain, cs_detail detail, cs_tel tel, cs_theme theme, cs_fac fac, cs_camp_fname camp_fname
-	from (select cr.cs_no cs_no, min(cr_price) min, avg(cre_rate) avg from camping_room cr, camping_review cre where cr.cs_no = cre.cs_no group by cr.cs_no) A, camping_spot cs
+	from (select cr.cs_no cs_no, cr_price, avg(cre_rate) avg from camping_room cr, camping_review cre where cr.cs_no = cre.cs_no and cr_type=#{campingType} group by cr.cs_no) A, camping_spot cs
 	where A.cs_no = cs.cs_no
 	and cs.cs_no = #{no}
 	<if test="theme1 != null">

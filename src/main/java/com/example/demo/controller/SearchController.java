@@ -93,6 +93,7 @@ public class SearchController {
 		
 		//필터를 위한 정보를 담은 map_filter
 		HashMap map_filter = new HashMap();
+		map_filter.put("campingType", campingType);
 		
 		//테마가 null이 아니고 ""(공백)이 아니라면
 		System.out.println("-------테마 필터-------");

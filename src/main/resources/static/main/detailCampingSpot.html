@@ -10,7 +10,7 @@
       position:relative;
       float:right;
       width:100%;
-      height:1000px;
+      height: auto;
       
       /*
       margin-top: 5px;
@@ -69,10 +69,11 @@ $(function(){
    var checkout = data3[1];
    var checkin = data4[1];
    
+   
     // cs_no = cs_no.substring(cs_no.indexOf("=")+1);
     // var str = location.serach.split(,)
     // cs_no = Number(cs_no);
-    
+    /*
     $.ajax("/detailCampingSpot.do", {data:{"cs_no":cs_no}, success:function(data){
        
        // console.log(data);
@@ -93,28 +94,35 @@ $(function(){
        // $("#detail").append(review_btn);
        
     }}) // detail ajax 종료
-    
-   $.ajax("/campingReviewList.do", {data:{"cs_no":cs_no},
-      async: false,
-      success:function(data){
-         
-      alert(cs_no);
-      var div_review = $("<div></div>").attr("id", "div_review");
-      
-      var li1 = $("<li></li>").text(data.cre_no);
-      var li2 = $("<li></li>").text(data.cre_content);
-      var li3 = $("<li></li>").text(data.cre_rate);
-      var li4 = $("<li></li>").text(data.cre_date);
-      var li5 = $("<li></li>").text(data.mc_id);
-      var li6 = $("<li></li>").text(data.mb_id);
-      var li7 = $("<li></li>").text(data.cre_re_contents);
-      var li8 = $("<li></li>").text(data.cs_no);
-      
-      $(div_review).append(li1, li2, li3, li4, li5, li6, li7, li8);
-      $("#review_detail").append(div_review);
-      
-   }})  // reviewList ajex 종료
-    
+    */
+    var callReview = function(cs_no){
+    	var reviewList;	
+    	$.ajax("/campingReviewList.do", {data:{"cs_no":cs_no}, success:function(data){        
+    		alert(cs_no);
+    		reviewList = data;
+			$.each(reviewList, function(idx, item){
+				var div_review = $("<div></div>")
+	    	      
+	    	    var re_writer = $("<div></div>").html("작성자: "+item.mc_id);
+	    	    var re_content = $("<div></div>").text("리뷰내용: "+item.cre_content);
+	    	    var re_rate = $("<div></div>").text("평점: "+item.cre_rate);
+	    	    var re_date = $("<div></div>").text("작성일자: "+item.cre_date);
+	    	   
+	    	    var re_reply = $("<div></div>").text("ㄴ 사장님: "+item.cre_re_contents);
+	    	    
+	    	    if(item.cre_re_contents != null) {
+	    	    	$(div_review).append(re_writer, re_content, re_rate, re_date, re_reply);
+	    	    }else{
+		    	    $(div_review).append(re_writer, re_content, re_rate, re_date);
+	    	    }
+	    	    $("#review_list").append(div_review);
+			})
+
+    	}})  // reviewList ajex 종료
+    	    
+    }
+   	callReview(cs_no);
+   
     $("#btn_insert").click(function(){
        
        $.ajax("/detailCampingSpot.do", {data:{"cs_no":cs_no},
@@ -193,7 +201,7 @@ $(function(){
 		<div id="detail">
 		
 		   <div id="div_btns">
-		      <button class="btn" id="btn_reserva">예약하기</button>
+		      <button class="btn" id="btn_reservation">예약하기</button>
 		      <button class="btn" id="btn_insert">찜하기</button>
 		      <a href=#review><button class="btn" name="btn_review">리뷰 보러가기</button></a>
 		   </div>
@@ -201,7 +209,8 @@ $(function(){
 		
 		<hr>
 		<div id="review_detail">
-		   <a name="review">리뷰내용 왜 안나와</a>
+		   <div>캠핑장 리뷰</div>
+		   <div id="review_list"></div>
 		</div>
 	</div>
 	<div id="footers"></div>
