@@ -63,6 +63,7 @@ public class CampingSpotController {
       //해당 체크인날짜의 날씨정보를 기상청에서 크롤링해서 담아준다.
       /// 진행예정
       
+      
       Gson gson = new Gson();
       str = gson.toJson(detail);
       
