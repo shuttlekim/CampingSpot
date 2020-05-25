@@ -49,6 +49,7 @@ public class DBManager {
 	public static List<CampingSearchResultVo> search_list(HashMap map){
 		SqlSession session = factory.openSession();
 		List<CampingSearchResultVo> list = session.selectList("campingSpot.campingList", map);
+		System.out.println("search_List 매니저 메소드 동작:"+list);
 		session.close();
 		return list;
 	}
