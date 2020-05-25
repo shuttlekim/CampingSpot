@@ -42,14 +42,13 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $(function(){	
-
 	
 	var mc_id = sessionStorage.getItem("memberId");
 	var mb_id = sessionStorage.getItem("businessId");
 	var mc_id2 = sessionStorage.getItem("memberName");
 	
-	console.log("memberId");
-	console.log(mc_id);
+	//console.log("memberId");
+	//console.log(mc_id);
 		
 	$("#mc_id").html(mc_id);
 	$("#mb_id").html(mb_id);
@@ -70,26 +69,24 @@ $(function(){
 		}else{
 		    alert("^_____^");
 		}
-
-
 	});
 	
 	
 	$("#btnDeleteBusiness").click(function(){			
-		//data:mc_id 	// json 형태로
-		$.ajax("/deleteBusiness.do", {data:{"mb_id":mb_id}, success:function(r){
-			//alert("삭제성공");			
-			var result = confirm("정말 탈퇴하실건가요? ㅠㅠ");
-			
-			if(result){
-			    alert("잘가요...");
-			    sessionStorage.clear();
-				window.location.href = "main.html";
-			}else{
-			    alert("^_____^");
-			}
-		}});
-
+		//data:mc_id 	// json 형태로		
+		
+		var result = confirm("정말 탈퇴하실건가요? ㅠㅠ");
+	
+		if(result == true){
+			$.ajax("/deleteBusiness.do", {data:{"mb_id":mb_id}, success:function(r){
+				//alert("삭제성공");	
+			}});
+		    alert("잘가요...");
+		    sessionStorage.clear();
+			window.location.href = "/main/main.html";
+		}else{
+		    alert("^_____^");
+		}
 	});
 
 	

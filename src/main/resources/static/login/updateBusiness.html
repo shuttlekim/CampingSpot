@@ -56,22 +56,24 @@ $(function(){
 		var uploadFile = $("#uploadFile").val();
 		var data = new FormData(document.getElementById("update"));
 		     
-        $.ajax("/updateBusiness.do", {data:data,
-			processData:false,
-			contentType:false,
-			type:"POST",
-			success:function(data){
-				var result = confirm("정말 수정하실건가요 ?");				
-				if(result){
-				    alert("수정완료");	    
-				    window.location.href = "mypage.html";
-				}else{
-				    alert("^_____^");
-				}           
-           } 
-        });
-	});								
+		var result = confirm("정말 수정하실건가요 ?");	
+
+		if(result == true){
 			
+	        $.ajax("/updateBusiness.do", {data:data,
+				processData:false,
+				contentType:false,
+				type:"POST",
+	        });			
+			
+		    alert("수정완료");	    
+		    window.location.href = "/login/mypage.html";
+		}else{
+		    alert("^_____^");
+		}           
+		
+
+	});	
 									
 });
 </script>

@@ -61,7 +61,7 @@ $(function(){
 		var business =  new FormData(document.getElementById("join"));
 		$.ajax("/signIn2.do", {data:business, processData:false, contentType:false, type:"POST", success:function(r){
 			alert("회원가입 성공 \n 로그인 페이지로 이동!");
-			window.location.href = "/login.html";
+			window.location.href = "/login/login.html";
 		}}); 
 	});
 		
@@ -137,8 +137,8 @@ $(function(){
 				<td><input type="password" name="checkpwd" id="checkpwd" placeholder="비밀번호 확인 (8자이내)" required="required" maxlength="8">
 				</td>
 				<td>
-					<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
-					<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
+					<div class="alert alert-success" id="alert-success">비밀번호 일치</div>
+					<div class="alert alert-danger" id="alert-danger">비밀번호 불일치</div>
 				</td>	
 			</tr>
 			<tr>
@@ -179,7 +179,7 @@ $(function(){
 <br>
 
 	<!-- BOTTOM -->
-  <div id="footers" class="bottom"> <span>BOTTOM (1000 x 100) <br/> #5D5D5D;</span> </div>
+  <div id="footers" class="bottom"></div>
 
 
 </body>

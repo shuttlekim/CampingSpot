@@ -26,7 +26,7 @@
 	  //outline: 1px solid #9F9F9F;
 	  top: 0px;
 	  width: 1000px;
-	  height: 800px;
+	  height: 650px;
 	  //background-color: #00D8FF;
 	}
     #afterLogin{
@@ -36,7 +36,7 @@
   		outline: 1px solid #9F9F9F;
 		position: absolute;
 		left: 90px;
-		top: 150px;
+		top: 100px;
 	  	width: 350px;
 		height: 450px;
 		border: double;
@@ -45,7 +45,7 @@
 	.middle-right{
   		outline: 1px solid #9F9F9F;
 		position: absolute;
-		top: 150px;
+		top: 100px;
 		left: 550px;
 	  	width: 350px;
 		height: 450px;
@@ -115,7 +115,7 @@ $(function(){
 	$("#btnLogin").click(function(){		
 		 
 		var member = $("#loginForm").serialize();
-		$.ajax("/login.do", {data:member, success:function(memberId){
+		$.ajax("/login.do", {data:member, type:"get", success:function(memberId){
 			if(memberId != "no"){					
 				sessionStorage.setItem("memberId", memberId);	
 				alert("로그인 성공하였습니다.");
@@ -130,9 +130,7 @@ $(function(){
 	$("#btnLogin2").click(function(){		
 		 
 		var business = $("#loginForm2").serialize();
-		$.ajax("/login2.do", {data:business, success:function(businessId){
-			var id = $("#mb_id").val();
-			
+		$.ajax("/login2.do", {data:business, type:"get", success:function(businessId){		
 			if(businessId != "no"){	
 				sessionStorage.setItem("businessId", businessId);
 				alert("로그인 성공하였습니다.");
