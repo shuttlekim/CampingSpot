@@ -106,8 +106,9 @@ $(function(){
 				type:"POST",
 	        });			
 			
-		    alert("수정완료");	    
-		    window.location.href = "/login/mypage.html";
+		    alert("수정완료\n새로운 비밀번호로 로그인 하여 주십시오.");
+		    sessionStorage.clear();
+		    window.location.href = "/login/login.html";
 		}else{
 		    alert("^_____^");
 		}           
@@ -149,8 +150,8 @@ $(function(){
 				<td><input type="password" name="checkpwd" id="checkpwd" placeholder="비밀번호 확인 (8자이내)" required="required" maxlength="8">
 			</td>
 				<td>
-					<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
-					<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
+					<div class="alert alert-success" id="alert-success">비밀번호 일치</div>
+					<div class="alert alert-danger" id="alert-danger">비밀번호 불일치</div>
 				</td>	
 			</tr>
 			<tr>
