@@ -106,7 +106,6 @@ public class SearchController {
 					themeArray[i] = themeSplit[i];
 				}else {
 					themeArray[i]=null;
-
 				}
 				System.out.println("themeArray "+(i+1)+"번째 값:"+themeArray[i]);
 				map_filter.put("theme"+(i+1), themeArray[i]);
