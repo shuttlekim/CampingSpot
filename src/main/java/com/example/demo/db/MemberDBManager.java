@@ -132,6 +132,14 @@ public class MemberDBManager {
 		return smout;
 	}
 	
+	public static MemberVo sessionMember2(String mc_id) {	//in (mc_id)
+		SqlSession session = factory.openSession();
+		MemberVo smout = session.selectOne("member.sessionMember", mc_id);	//out 
+		session.close();
+		System.out.println("MemberDBManager 메시지 sessionMember2 : " + smout);
+		return smout;
+	}
+	
 	//맴버수정
 	public static int updateMember(MemberVo um) {
 		int re = -1;

@@ -2,58 +2,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style type="text/css">
-
-.container{
-  width: 1000px;
-  margin: 0 auto;
-}
-.container div{
-  text-align: center;
-  display: table;
-}
-.container div span{
-  display: table-cell;
-  vertical-align: middle;
-}
-.top{
-
-}
-.middle{
-  margin-top: 20px;
-  width: 1000px;
-  height: 500px;
-  position: relative;
-}
-.middle-center{
-  outline: 1px solid #9F9F9F;
-  top: 0px;
-  width: 500px;
-  height: 750px;
-  background-color: #E6E6E6;
-  margin-left: 300px;
-}
-
-.bottom{
-
-}
-
-input[type="text"], input[type="date"],input[type="number"],input[type="password"],input[type="email"],input[type="email"],select{
-		height:30px;		
-		line-height: 30px;
-		border:1px solid #e7e7e7;
-		padding: 0 10px;
-		font-size:14px;
-		border-radius : 7px;
-		background-color:#fff;
-		margin-left: 140px;
-		
-	}
-</style>
+<title>Insert title here</title>
+</head>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-$(function(){	
-
+$(function(){
+		
 	//비밀번호 맞는지 확인
 	$("#alert-success").hide(); 
 	$("#alert-danger").hide(); 
@@ -83,7 +37,7 @@ $(function(){
 	//alert(mc_id);
 
 									//보내는값(wher절),                  받은 (컨트롤러에서 리턴값)
-	$.ajax("/sessionMember2.do", {data:{"mc_id":mc_id}, success:function(r){
+	$.ajax("/sessionMember.do", {data:{"mc_id":mc_id}, success:function(r){
 		$("#mc_id").val(r.mc_id);
 		$("#mc_email").val(r.mc_email);
 		$("#mc_name").val(r.mc_name);
@@ -101,49 +55,31 @@ $(function(){
 		var uploadFile = $("#uploadFile").val();
 		var data = new FormData(document.getElementById("update"));
 		     
-		var result = confirm("정말 수정하실건가요 ?");	
-
-		if(result == true){
+        $.ajax("/updateMember.do", {data:data,
+			processData:false,
+			contentType:false,
+			type:"POST",
+			success:function(data){
+				var result = confirm("정말 수정하실건가요 ?");				
+				if(result){
+				    alert("수정완료");	    
+				    window.location.href = "mypage.html";
+				}else{
+				    alert("^_____^");
+				}           
+           } 
+        });
+	});								
 			
-	        $.ajax("/updateMember.do", {data:data,
-				processData:false,
-				contentType:false,
-				type:"POST",
-	        });			
-			
-		    alert("수정완료");	    
-		    window.location.href = "mypage.html";
-		}else{
-		    alert("^_____^");
-		}           
-		
-
-	});			
-	
-	
-	$("#header").load("/main/header.html");	
-
-	$("#footers").load("/main/footer.html");
-		
+									
 });
 </script>
-</head>
 <body>
-
-	<!-- TOP  -->
-	<div class="top" id="header">
-	   <span>TOP (1000 x 80) <br/> #FF5E00;</span>
-	</div>
-
-	<div class="container">
-	<!-- MIDDLE -->
-	  <div class="middle">
-	    <div class="middle-center">
-	    	<br><h2>회원정보 수정</h2>
-<hr width = "300px">
+<h2>회원정보 수정</h2>
+<hr>
 <div>
 	<form id="update" method="post" enctype="multipart/form-data">
-		<table style="text-align: center;"><br><br>
+		<table>
 			<tr>
 				<td>회원아디</td>
 				<td><input type="text" name="mc_id" id="mc_id" readonly="readonly"></td>
@@ -190,24 +126,12 @@ $(function(){
 				<td><input type="hidden" name="mc_fname" id="mc_fname"></td>
 					 <!--  <input type="hidden" name="mc_fname" id="mc_fname">  -->
 			</tr>
-			<tr>
-				<td><input type="hidden" name="mc_auth" value="3"></td>
-			</tr>
 		
 		
 		</table>
 	</form>
 	<button id="btnUpdateOk">수정하기</button>
 </div>
-	    </div>
-	  </div>  
-	</div>
-
-<br>
-
-	<!-- BOTTOM -->
-  <div id="footers" class="bottom"> <span>BOTTOM (1000 x 100) <br/> #5D5D5D;</span> </div>
-
 
 </body>
 </html>

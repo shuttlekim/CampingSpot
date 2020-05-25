@@ -10,7 +10,7 @@ $(function(){
 	var arr;	
 	
 	//모든 맴버 확인
-	$.getJSON("listBusiness.do", function(data){
+	$.getJSON("/listBusiness.do", function(data){
 		arr = data;	
 		
 		$.each(arr, function(idx, e){
