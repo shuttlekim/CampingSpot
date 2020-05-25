@@ -61,22 +61,21 @@
 
 	#main_logout{
    		display: none;
-   		//border: solid;   		
+   		//border: solid;  
+   		cursor: pointer; 		
     }
     
-    #login_menu{
-   	 transform: scale(1.19);
+    #main_mypage{
+    	display: none;
+    	cursor: pointer; 	
     }
     
-    .login_bar_test{
-		display: none;
-		position: absolute;
-		left: 10px;
-		padding: 10px;
-		padding-right: 10px;
-		background-color: #404040;
-		color: #fff;
-	}
+    #main_sitemap{
+    	cursor: pointer;
+    }
+    #festMore{
+    	cursor: pointer;
+    }
     
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -137,7 +136,11 @@
 	        sessionStorage.removeItem("businessId");  
 	        sessionStorage.removeItem("memberName");  
 	        $("#main_login").css("display", "block");
+	        $("#main_signup").css("display", "none");	       
 	        $("#main_logout").css("display", "none");
+	        $("#main_mypage").css("display", "none");
+	        $("#main_signup").css("display", "block");
+	        
 	        //$("#dock").empty();
 	    });		
 		
@@ -145,7 +148,9 @@
 	    if(sessionStorage.getItem("memberId") != null){
 	   		//$("#btnLogin").html("로그아웃");
 	   		 $("#main_logout").css("display", "block");
-	         $("#main_login").css("display", "none");         
+	         $("#main_login").css("display", "none"); 
+	         $("#main_mypage").css("display", "block");
+	         $("#main_signup").css("display", "none")
 	    }
 		//세션유지(사업자)
 	    if(sessionStorage.getItem("businessId") != null){
@@ -171,6 +176,10 @@
 			//alert("회원가입 입니다.");
 			window.location.href = "/login/signInMain.html";
 		})
+		//마이페이지 버튼
+		$("#main_mypage").click(function(){
+			window.location.href = "/login/myPage.html";
+		});		
 		//사이트맵 버튼
 		$("#main_sitemap").click(function(){
 			alert("사이트맵 입니다.");
@@ -211,35 +220,6 @@
 		
 		$("#footers").load("footer.html");
 		
-		//메인에 세션 아이디표시
-		var mc_id = sessionStorage.getItem("memberId");
-		$("#login_menu").html(mc_id);
-		
-		//세션아이디 누르면 펼치기동작	
-		/*
-		$(".login_menu").click(function(){ 
-			if($(".hidden_login_List").is(":visible")){ 
-					alert("동작");
-					$(".hidden_login_List").slideUp(); 
-				}else{ 
-					$(".hidden_login_List").slideDown(); 
-				} 
-		});
-		*/
-		
-		$("#login_menu").click(function(){
-			
-			if(login_menu==false){
-				
-				$(".login_bar_test").css('display','flex')
-				login_menu = true				
-			}else{
-				
-				$(".login_bar_test").css('display','none')
-				login_menu = false
-			}
-		})
-
 
 	})
 </script>
@@ -254,9 +234,8 @@
 			</div>
 			<div id="main_status">
 				<span id="main_login">로그인</span>			
-				<img src="/resource/login_img/User.png" alt="My Image">&nbsp[<span id="login_menu" class="login_menu"></span>]&nbsp&nbsp|&nbsp&nbsp			
-				<!-- <span id="main_logout">로그아웃</span>&nbsp&nbsp|&nbsp&nbsp -->
-				<span id="main_signup">회원가입</span>&nbsp&nbsp|&nbsp&nbsp
+				<span id="main_logout">로그아웃</span>&nbsp&nbsp|&nbsp&nbsp
+				<span id="main_signup">회원가입</span><span id="main_mypage">마이페이지</span>&nbsp&nbsp|&nbsp&nbsp
 				<span id="main_sitemap">사이트맵</span>
 			</div>
 		</div>
@@ -340,18 +319,7 @@
 	</div>
 	<div id="footers"></div>
 	
-	
-	
-	<div class="login_bar_test">
-		<ul>
-			<h2>하이</h2>
-			<li>마이페이지</li>
-			<li>로그아웃</li>		
-		</ul>
-	</div>
-	
-	
-	
+
 	
 </body>
 </html>
