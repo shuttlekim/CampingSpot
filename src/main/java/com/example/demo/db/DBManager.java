@@ -13,6 +13,8 @@ import com.example.demo.vo.CampingReviewVo;
 import com.example.demo.vo.CampingSearchResultVo;
 import com.example.demo.vo.CampingSpotVo;
 import com.example.demo.vo.CampingWishVo;
+import com.example.demo.vo.DetailCampingSearchResultVo;
+
 
 public class DBManager {
 
@@ -27,6 +29,13 @@ public class DBManager {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+	}
+	// 영현
+	public static DetailCampingSearchResultVo detailCampingSearchResult(HashMap map) {
+		SqlSession session = factory.openSession();
+		DetailCampingSearchResultVo dcsrv = session.selectOne("campingSpot.detailCampingSearchResult", map);
+		session.close();
+		return dcsrv;
 	}
 	
 	// 영현
@@ -55,12 +64,15 @@ public class DBManager {
 	}
 	
 	// 영현) 캠핑장번호로 캠핑스팟 테이블 정보 불러오기 
+	/*
 	public static CampingSpotVo detailCampingSpot(int cs_no){
 		SqlSession session = factory.openSession();
 		CampingSpotVo c = session.selectOne("campingSpot.detailCampingSpot", cs_no);
 		session.close();
 		return c;
 	}
+	위에 detailCampingSearchResult 메소드로 대체됨, 혹시 추후 필요성여부에 의해 남김
+	*/
 	// 근희) 리뷰리스트 호출
 	public static List<CampingReviewVo> campingReviewList(int cs_no){
 	      SqlSession session = factory.openSession();

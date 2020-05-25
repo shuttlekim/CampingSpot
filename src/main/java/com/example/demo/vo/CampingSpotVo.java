@@ -23,7 +23,7 @@ public class CampingSpotVo {
 	private double cs_long;
 	private int cs_glamping_cnt;
 	private int cs_caravan_cnt;
-	private int autocamping_cnt;
+	private int cs_autocamping_cnt;
 	private String cs_theme;
 	private String cs_fac;
 	private String cs_detail;

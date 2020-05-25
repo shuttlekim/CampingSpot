@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DetailCampingSpotVo {
+public class DetailCampingSearchResultVo {
 
 	private int cs_no;
 	private String cs_name;
@@ -20,13 +20,17 @@ public class DetailCampingSpotVo {
 	private String cs_map_fname;
 	private int cs_glamping_cnt;
 	private int cs_caravan_cnt;
-	private int autocamping_cnt;
+	private int cs_autocamping_cnt;
 	private String cs_theme;
 	private String cs_fac;
 	private String cs_detail;
 	private String mb_id;
+	private String campingType;
+	private String checkin;
+	private String checkout;
 	private int price;
 	private double rate;
 	private String weather;
-	
+	private double max_temp;
+	private double min_temp;
 }
