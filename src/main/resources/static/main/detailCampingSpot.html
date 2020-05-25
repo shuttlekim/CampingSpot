@@ -10,7 +10,7 @@
       position:relative;
       float:right;
       width:100%;
-      height: auto;
+      height: 70vh;
       
       /*
       margin-top: 5px;
@@ -95,6 +95,17 @@ $(function(){
        
     }}) // detail ajax 종료
     */
+    var getDetail = function(cs_no, campingType, checkout, checkin){
+    	var input_data = {
+    			"cs_no":cs_no,
+    			"campingType": campingType,
+    			"checkout": checkout,
+    			"checkin": checkin
+    	}
+    	$.ajax("/detailCampingSpot.do", {data:input_data, success:function(data){
+    		
+    	}})
+    }
     var callReview = function(cs_no){
     	var reviewList;	
     	$.ajax("/campingReviewList.do", {data:{"cs_no":cs_no}, success:function(data){        
@@ -195,11 +206,10 @@ $(function(){
 	<div class="body-wrap">
 		<h2>상세페이지</h2>
 		<hr>
-		집에가고싶당
+		<button class="btn" id="btn_back">돌아가기</button>
 		<hr>
-		<button class="btn" id="btn_back">리스트로</button>
-		<div id="detail">
 		
+		<div id="detail">
 		   <div id="div_btns">
 		      <button class="btn" id="btn_reservation">예약하기</button>
 		      <button class="btn" id="btn_insert">찜하기</button>

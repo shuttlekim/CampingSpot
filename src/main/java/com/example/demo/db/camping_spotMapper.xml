@@ -13,8 +13,8 @@
   </select>
 
   <select id="getCampingSpot" resultType="campingSearchResultVo">
-  	select cs_name name, A.cs_no no, A.cr_price price, A.avg rate, cs_addr_head addr_head, cs_addr_remain addr_remain, cs_detail detail, cs_tel tel, cs_theme theme, cs_fac fac, cs_camp_fname camp_fname
-	from (select cr.cs_no cs_no, cr_price, avg(cre_rate) avg from camping_room cr, camping_review cre where cr.cs_no = cre.cs_no and cr_type=#{campingType} group by cr.cs_no) A, camping_spot cs
+  	select cs_name name, A.cs_no no, A.price price, A.avg rate, cs_addr_head addr_head, cs_addr_remain addr_remain, cs_detail detail, cs_tel tel, cs_theme theme, cs_fac fac, cs_camp_fname camp_fname
+	from (select cr.cs_no cs_no, min(cr_price) price, avg(cre_rate) avg from camping_room cr, camping_review cre where cr.cs_no = cre.cs_no and cr_type=#{campingType} group by cr.cs_no) A, camping_spot cs
 	where A.cs_no = cs.cs_no
 	and cs.cs_no = #{no}
 	<if test="theme1 != null">
@@ -54,8 +54,8 @@
 	<if test="facility6 != null">
 		and cs_fac like '%' || #{facility6} || '%'
 	</if>
-		and A.min >= #{lowPrice}
-		and A.min <![CDATA[<=]]> #{highPrice}
+		and A.price >= #{lowPrice}
+		and A.price <![CDATA[<=]]> #{highPrice}
   </select>
 
   <select id="campingList" resultType="campingSearchResultVo">
