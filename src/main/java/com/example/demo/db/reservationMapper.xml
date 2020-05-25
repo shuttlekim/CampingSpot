@@ -5,7 +5,7 @@
 <mapper namespace="reservation">
 
   <select id="ingRoom" resultType="campingRoomVo">
-  	select avg(cr_no) cr_no from reserve_search where rs_date >= to_date(#{checkin}, 'yyyy-mm-dd') and rs_date < to_date(#{checkout}, 'yyyy-mm-dd') and cs_no=#{cs_no} and cr_type=#{cr_type} group by cr_no
+  	select avg(cr_no) cr_no from reserve_search where rs_date >= to_date(#{checkin}, 'yyyy-mm-dd') and rs_date <![CDATA[<]]> to_date(#{checkout}, 'yyyy-mm-dd') and cs_no=#{cs_no} and cr_type=#{campingType} group by cr_no
   </select>
 
   <select id="selectorRoom" resultType="campingRoomVo">
@@ -67,7 +67,10 @@
 	</if>
   </select>
 
-  <select id="campingList" resultType="campingSearchResultVo">
+  <!-- 
+  예약 못하는 경우가 발생 -->
+  
+  <!-- <select id="campingList" resultType="campingSearchResultVo">
     select cs_no no from camping_spot 
     <if test="keyword != null">
     	where cs_name like '%' || #{keyword} || '%' 
@@ -116,6 +119,33 @@
 		(select cs_no, count(cr_no) cnt from camping_room where cr_type=#{campingType} group by cs_no) b
 		where a.cs_no = b.cs_no and
 		a.cnt = b.cnt
+    </if>
+  </select> -->
+  <select id="campingList" resultType="campingSearchResultVo">
+    select distinct cs.cs_no no from camping_spot cs,
+    (select cr_no, cs_no from camping_room where cr_type = #{campingType}
+	
+	<if test="validDate1 != null">
+	minus
+	select cr_no, cs_no from reserve_search where rs_date = to_date(#{validDate1},'yyyy-mm-dd')
+	</if>
+	<if test="validDate2 != null">
+	minus
+	select cr_no, cs_no from reserve_search where rs_date = to_date(#{validDate2},'yyyy-mm-dd')
+	</if>
+	<if test="validDate3 != null">
+	minus
+	select cr_no, cs_no from reserve_search where rs_date = to_date(#{validDate3},'yyyy-mm-dd')
+	</if>
+	<if test="validDate4 != null">
+	minus
+	select cr_no, cs_no from reserve_search where rs_date = to_date(#{validDate4},'yyyy-mm-dd')
+	</if>
+	) A
+	where A.cs_no = cs.cs_no
+    <if test="keyword != null">
+    	and ( cs_name like '%' || #{keyword} || '%' 
+    	or cs_addr_head like '%' || #{keyword} || '%' )
     </if>
   </select>
 </mapper>

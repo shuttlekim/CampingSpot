@@ -74,7 +74,7 @@ public class ReservationController {
 		   System.out.println("캠핑장 번호: "+cs_no);
 		   System.out.println("캠핑타입: "+campingType);
 		   System.out.println("체크인날짜: "+checkin);
-		   System.out.println("체크아웃날짜: "+checkin);
+		   System.out.println("체크아웃날짜: "+checkout);
 		   
 		   HashMap map = new HashMap();
 		   map.put("cs_no", cs_no);
@@ -101,6 +101,7 @@ public class ReservationController {
 		   
 		   Gson gson = new Gson();
 		   str = gson.toJson(list);
+		   System.out.println(str);
 		   
 		   return str;
 	   }

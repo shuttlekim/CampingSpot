@@ -102,7 +102,7 @@ $(function(){
     			"checkout": checkout,
     			"checkin": checkin
     	}
-    	$.ajax("/detailCampingSpot.do", {data:input_data, success:function(data){
+    	$.ajax("/detailCampingSpot.do", {data:input_data, async:false, success:function(data){
     		
     		var title = $("<h2></h2>").html(data.cs_name);
     		var min_price = $("<div></div>").html("최저가: "+data.price);
@@ -129,7 +129,7 @@ $(function(){
     			"checkout": checkout,
     			"checkin": checkin
     	}
-    	$.ajax("/callCampingRoomForReserve.do", {data:input_data, success:function(data){
+    	$.ajax("/callCampingRoomForReserve.do", {data:input_data, async:false, success:function(data){
     		roomList = data;
     		
     		var select = $("<select name='room'></select>");
@@ -145,13 +145,14 @@ $(function(){
     				$(select).append(option2);
     			}
     		})
+    		$("#form_selector").append(select);
     	}})
   
     }
     
     var callReview = function(cs_no){
     	var reviewList;	
-    	$.ajax("/campingReviewList.do", {data:{"cs_no":cs_no}, success:function(data){        
+    	$.ajax("/campingReviewList.do", {data:{"cs_no":cs_no}, async:false, success:function(data){        
 
     		reviewList = data;
 			$.each(reviewList, function(idx, item){
@@ -256,7 +257,9 @@ $(function(){
 		<hr>
 		
 		<div id="detail">
-			<div id="room_selector"></div>
+			<div id="room_selector">
+				<form id="form_selector"></form>
+			</div>
 			
 			<div id="div_btns">
 		    	<button class="btn" id="btn_reservation">예약하기</button>
