@@ -23,7 +23,10 @@
 	#main_status{
 		float: right;
 		margin: 22px 20px 2px 20px;
-		padding-left: 
+		//padding-left: 100px;
+		//border: double;	
+		width: 300px;
+		display: flex;
 	}
 	#main_status span{
 		width: auto;
@@ -150,21 +153,24 @@
 	   		 $("#main_logout").css("display", "block");
 	         $("#main_login").css("display", "none"); 
 	         $("#main_mypage").css("display", "block");
-	         $("#main_signup").css("display", "none")
+	         $("#main_signup").css("display", "none");
 	    }
 		//세션유지(사업자)
 	    if(sessionStorage.getItem("businessId") != null){
 	   		//$("#btnLogin").html("로그아웃");
 	   		 $("#main_logout").css("display", "block");
-	         $("#main_login").css("display", "none");         
+	         $("#main_login").css("display", "none");   
+	         $("#main_mypage").css("display", "block");
+	         $("#main_signup").css("display", "none");
 	    }
 		//세션유지(네이버)
 	    if(sessionStorage.getItem("memberName") != null){
 	   		//$("#btnLogin").html("로그아웃");
 	   		 $("#main_logout").css("display", "block");
-	         $("#main_login").css("display", "none");         
-	    }
-			
+	         $("#main_login").css("display", "none");  
+	         $("#main_mypage").css("display", "block");
+	         $("#main_signup").css("display", "none");
+	    }			
 		
 		//로그인 버튼
 		$("#main_login").click(function(){			
@@ -218,8 +224,7 @@
 		//축제 썸네일 호출
 		listThumb();
 		
-		$("#footers").load("footer.html");
-		
+		$("#footers").load("footer.html");		
 
 	})
 </script>
@@ -234,8 +239,8 @@
 			</div>
 			<div id="main_status">
 				<span id="main_login">로그인</span>			
-				<span id="main_logout">로그아웃</span>&nbsp&nbsp|&nbsp&nbsp
-				<span id="main_signup">회원가입</span><span id="main_mypage">마이페이지</span>&nbsp&nbsp|&nbsp&nbsp
+				<span id="main_logout" style="width: auto;">로그아웃</span>&nbsp&nbsp|&nbsp&nbsp
+				<span id="main_signup">회원가입</span><span id="main_mypage" style="width: auto;">마이페이지</span>&nbsp&nbsp|&nbsp&nbsp
 				<span id="main_sitemap">사이트맵</span>
 			</div>
 		</div>
