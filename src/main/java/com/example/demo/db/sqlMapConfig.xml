@@ -10,6 +10,7 @@
   	<typeAlias type="com.example.demo.vo.CampingSpotVo" alias="campingSpotVo" />
   	<typeAlias type="com.example.demo.vo.CampingSearchResultVo" alias="campingSearchResultVo" />
   	<typeAlias type="com.example.demo.vo.DetailCampingSearchResultVo" alias="detailCampingSearchResultVo" />
+  	<typeAlias type="com.example.demo.vo.CampingRoomVo" alias="campingRoomVo" />
    	<!-- 근희 -->
    	<typeAlias type="com.example.demo.vo.CampingReviewVo" alias="campingreviewVo" />
    	<!-- 요한 -->

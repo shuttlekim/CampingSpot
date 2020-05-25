@@ -4,8 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reservation">
 
+  <select id="selectorRoom" resultType="campingRoomVo">
+  	select * from camping_room where cs_no=#{cs_no} and cr_type=#{campingType}
+  </select>
+
   <select id="detailCampingSearchResult" resultType="detailCampingSearchResultVo">
-  	select cs_no, cs_tel, cs_addr_head, cs_addr_remain, cs_url, cs_account, cs_camp_fname, cs_map_fname, cs_glamping_cnt, cs_caravan_cnt, cs_autocamping_cnt, cs_theme, cs_fac, cs_detail, mb_id 
+  	select cs_no, cs_name, cs_tel, cs_addr_head, cs_addr_remain, cs_url, cs_account, cs_camp_fname, cs_map_fname, cs_glamping_cnt, cs_caravan_cnt, cs_autocamping_cnt, cs_theme, cs_fac, cs_detail, mb_id 
   	from camping_spot where cs_no = #{cs_no}
   </select>
 
@@ -51,8 +55,12 @@
 	<if test="facility6 != null">
 		and cs_fac like '%' || #{facility6} || '%'
 	</if>
+	<if test="lowPrice != null">
 		and A.price >= #{lowPrice}
+	</if>
+	<if test="highPrice != null">
 		and A.price <![CDATA[<=]]> #{highPrice}
+	</if>
   </select>
 
   <select id="campingList" resultType="campingSearchResultVo">

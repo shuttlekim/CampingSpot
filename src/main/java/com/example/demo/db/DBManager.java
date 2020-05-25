@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.example.demo.vo.CampingReviewVo;
+import com.example.demo.vo.CampingRoomVo;
 import com.example.demo.vo.CampingSearchResultVo;
 import com.example.demo.vo.CampingSpotVo;
 import com.example.demo.vo.CampingWishVo;
@@ -30,7 +31,15 @@ public class DBManager {
 			// TODO: handle exception
 		}
 	}
-	// 영현
+	// 영현) 캠핑장별 캠핑룸 현황 조회
+	public static List<CampingRoomVo> selectorRoom(HashMap map) {
+		SqlSession session = factory.openSession();
+		List<CampingRoomVo> list = session.selectList("reservation.selectorRoom", map);
+		session.close();
+		return list;
+	}
+	
+	// 영현) 캠핑장 예약 상세페이지
 	public static DetailCampingSearchResultVo detailCampingSearchResult(HashMap map) {
 		SqlSession session = factory.openSession();
 		DetailCampingSearchResultVo dcsrv = session.selectOne("reservation.detailCampingSearchResult", map);
@@ -38,7 +47,7 @@ public class DBManager {
 		return dcsrv;
 	}
 	
-	// 영현
+	// 영현) 캠핑장 데이터 업데이트
 	public static int updateCampingSpot(int cs_no) {
 		SqlSession session = factory.openSession(true);
 		int re = session.update("campingSpot.updateCampingSpot", cs_no);
@@ -46,7 +55,7 @@ public class DBManager {
 		return re;
 	}
 	
-	// 영현
+	// 영현) 캠핑장 검색 리스트 호출
 	public static CampingSearchResultVo getCampingSpot(HashMap map) {
 		SqlSession session = factory.openSession();
 		CampingSearchResultVo csrv = session.selectOne("reservation.getCampingSpot", map);
@@ -54,7 +63,7 @@ public class DBManager {
 		return csrv;
 	}
 	
-	// 영현
+	// 영현) 캠핑장 날짜외 정보에 따른 리스트 호출
 	public static List<CampingSearchResultVo> search_list(HashMap map){
 		SqlSession session = factory.openSession();
 		List<CampingSearchResultVo> list = session.selectList("reservation.campingList", map);
