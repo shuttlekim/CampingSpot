@@ -60,26 +60,28 @@
      height: auto;
      z-index: -1;
      overflow: hidden;
-	}		 
-
+	} 
+	#main_login{
+		cursor: pointer; 
+	}
 	#main_logout{
    		display: none;
    		//border: solid;  
    		cursor: pointer; 		
     }
-    
+    #main_signup{
+    	cursor: pointer;
+    }
     #main_mypage{
     	display: none;
     	cursor: pointer; 	
     }
-    
     #main_sitemap{
     	cursor: pointer;
     }
     #festMore{
     	cursor: pointer;
     }
-    
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://kit.fontawesome.com/3da0640e3c.js" crossorigin="anonymous"></script>
@@ -232,10 +234,10 @@
 <body>
 	<div class="head_section">
 			<div id="main_title">
-				<h2 onclick="location.href='/main/main.html'">CAMPINGSPOT</h2>
+				<h2 onclick="location.href='/main/main.html'" style="cursor: pointer;">CAMPINGSPOT</h2>
 			</div>
 			<div id="main_menu">
-				<i class="fas fa-bars"></i>
+				<i class="fas fa-bars" style="cursor: pointer;"></i>
 			</div>
 			<div id="main_status">
 				<span id="main_login">로그인</span>			

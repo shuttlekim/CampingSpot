@@ -113,21 +113,21 @@ public class MailController {
 			
 			if(re != 0) {
 			
-			BusinessVo m = maildao2.getBusiness(mb_id);
+			BusinessVo m2 = maildao2.getBusiness(mb_id);
 			
 			System.out.println("메일 컨트롤러 동작 re: " + re);
 			System.out.println("메일 컨트롤러 동작 id: " + mb_id);
-			System.out.println("메일 컨트롤러 동작 pw: " + m.getMb_pwd());			
-			System.out.println("메일 컨트롤러 동작 id: " + m.getMb_id());
-	        String newPassword = SHA256Util.getEncrypt(m.getMb_pwd(), m.getSalt());
-	        System.out.println("이전 비밀번호" + m.getMb_pwd());
-	        System.out.println("불러온 salt" + m.getSalt());
-	        m.setMb_pwd(newPassword);
+			System.out.println("메일 컨트롤러 동작 pw: " + m2.getMb_pwd());			
+			System.out.println("메일 컨트롤러 동작 id: " + m2.getMb_id());
+	        String newPassword = SHA256Util.getEncrypt(m2.getMb_pwd(), m2.getSalt());
+	        System.out.println("이전 비밀번호" + m2.getMb_pwd());
+	        System.out.println("불러온 salt" + m2.getSalt());
+	        m2.setMb_pwd(newPassword);
 	        System.out.println("새로운 비밀번호: " + newPassword);
 	        
 	        int re2 = 0;
 	        
-	        re2 = maildao2.updateBusiness2(m);
+	        re2 = maildao2.updateBusiness2(m2);
 	        
 		        if(re2 >= 1) {
 		        	r = "success";

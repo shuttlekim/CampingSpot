@@ -46,15 +46,21 @@
 	h4{
 		padding-left: 25px;
 	}
+	#main_login{
+		cursor: pointer; 	
+	}
 	#main_logout{
    		display: none;     	
-   		//border: solid;   		
+   		//border: solid;   
+   		cursor: pointer; 		
     }
     #main_mypage{
     	display: none;
     	cursor: pointer; 	
+    }    
+    #main_signup{
+    	cursor: pointer;
     }
-    
     #main_sitemap{
     	cursor: pointer;
     }
@@ -151,10 +157,10 @@
 <body>
 	<div class="head_section">
 		<div id="main_title">
-			<h2 onclick="location.href='/main/main.html'">CAMPINGSPOT</h2>
+			<h2 onclick="location.href='/main/main.html'" style="cursor: pointer;">CAMPINGSPOT</h2>
 		</div>
 		<div id="main_menu">
-			<i class="fas fa-bars"></i>
+			<i class="fas fa-bars" style="cursor: pointer;"></i>
 		</div>
 		<div id="main_status">
 			<span id="main_login">로그인</span><span id="main_logout">로그아웃</span>&nbsp&nbsp|&nbsp&nbsp
