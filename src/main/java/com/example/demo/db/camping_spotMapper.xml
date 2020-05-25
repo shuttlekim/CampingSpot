@@ -5,7 +5,7 @@
 <mapper namespace="campingSpot">
 
   <update id="updateCampingSpot">
-  	update camping_spot set cs_name='디노담양힐링파크', cs_addr_head='전라남도', cs_addr_remain='담양군 봉산면 탄금길 9-25', cs_account='우리, 1002-154-564435, 나미숙', cs_theme='바다, 강, 섬', cs_fac='와이파이, 온수, 운동시설, 에어컨, 바베큐', cs_detail='국내 최고 럭셔리 오토캠핑장!' where cs_no=300
+  	update camping_spot set cs_name='비토섬오토캠핑장', cs_addr_head='경상남도', cs_addr_remain='사천시 서포면 비토리 255-20 비토섬오토캠핑장', cs_account='농협, 317-0012-6548-11, 신우에이엠씨', cs_theme='산, 강, 호수', cs_fac='와이파이, 샤워실, 운동시설, 바베큐', cs_detail='차가져와유!' where cs_no=100
   </update>
   
   <select id="detailCampingSpot" resultType="campingSpotVo">
