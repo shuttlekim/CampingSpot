@@ -264,12 +264,14 @@ public class MemberController {
 		if(smout == null) {
 	        dao.insertMember(n);
 	        System.out.println("insertMember 작동");
-	        //String memberId = dao.sessionMember(n.getMc_id()).getMc_id();
-	        String memberId = dao.sessionMember(n.getMc_name()).getMc_name();
+	        String memberId = dao.sessionMember(n.getMc_id()).getMc_id();
+	        memberId = n.getMc_name();
 	        System.out.println("memberId : " + memberId);
-	        str = memberId;
+	        str = memberId;	        
 	        System.out.println("회원 가입 후 str : " + str);
-	        
+	        System.out.println("MemberVo:"+smout);
+	        smout = dao.sessionMember(n.getMc_id());
+	        str = smout.getMc_name();
 		}
 		
 		return str;

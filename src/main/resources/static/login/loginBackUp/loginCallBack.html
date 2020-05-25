@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>NaverLoginSDK</title>
 </head>
@@ -14,7 +14,6 @@
 
 	<!-- (1) LoginWithNaverId Javscript SDK -->
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
-
 
 	<!-- (2) LoginWithNaverId Javscript 설정 정보 및 초기화 -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -43,14 +42,11 @@
 					var uniqId = naverLogin.user.getId();
 					var email = naverLogin.user.getEmail();
 			        var name = naverLogin.user.getNickName();
-			        var profileImage = naverLogin.user.getProfileImage();    		
+			        var profileImage = naverLogin.user.getProfileImage();  						
 					
-					//var input_id = $("#mc_id").val();
-					//var input_email = $("#mc_email").val();						
-					
-					var memberName = sessionStorage.getItem("memberName");
-									
-					//alert("현재 세션에 저장된 ID : " + memberId);
+					var memberName = sessionStorage.getItem("memberName");									
+					var memberId = sessionStorage.getItem("memberId");									
+					//alert("현재 세션에 저장된 ID : " + memberName);
 				
 					var insert_data = {
 								"mc_id"    : uniqId,
@@ -62,22 +58,24 @@
 					
 					var mc_id = uniqId;
 					
+					alert("이거 동작은 하냐?");
+					
 					$.ajax("/naver.do", {data:insert_data, success:function(result){			
 						
-						//alert("naver.do 에서 받아온 ID : " + result);
+						alert("naver.do 에서 받아온 ID : " + result);
 						
 						memberName = result;
 						if(result == ""){
-							memberName = "OK";
+							memberName = "ok";
 							alert("memberName : " + memberName);
 						}else{
 							sessionStorage.setItem("memberName", result);
 						}
 						
-						console.log("memberName:"+memberName);
+						//console.log("memberName:"+memberName);
 						//alert(memberId);
 						
-						if(memberName == "OK"){
+						if(memberName == "ok"){
 							
 							alert("회원가입진행");
 							
@@ -98,7 +96,7 @@
 					}});	
 														
 
-					window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/main/main.html");
+					window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/login/login.html");
 				} else {
 					console.log("callback 처리에 실패하였습니다.");
 				}
