@@ -38,7 +38,7 @@ table{
 
 }
 
-input[type="text"],input[type="date"],input[type="number"],input[type="password"],input[type="email"],input[type="email"],select{
+input[type="text"], input[type="date"],input[type="number"],input[type="password"],input[type="email"],input[type="email"],select{
 		height:30px;		
 		line-height: 30px;
 		border:1px solid #e7e7e7;
@@ -49,7 +49,13 @@ input[type="text"],input[type="date"],input[type="number"],input[type="password"
 		margin-left: 140px;
 		
 	}
-
+	
+#alert-span{
+	position: absolute;
+	left: 100xp;
+}
+	
+	
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -135,10 +141,13 @@ $(function(){
 			<tr>
 				<td><input type="password" name="checkpwd" id="checkpwd" placeholder="비밀번호 확인 (8자이내)" required="required" maxlength="8">
 				</td>
-				<td>
-					<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
-					<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
-				</td>	
+			</tr>
+			<tr>
+				<td><div id="alert-span">
+					<span class="alert alert-success" id="alert-success">비밀번호 일치</span>
+					<span class="alert alert-danger" id="alert-danger">비밀번호 불일치</span>
+					</div>
+				</td>				
 			</tr>
 			<tr>
 				<td><input type="email" name="mc_email" id="mc_email" placeholder="E-MAIL" required="required" maxlength="50"></td>

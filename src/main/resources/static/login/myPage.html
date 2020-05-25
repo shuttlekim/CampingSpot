@@ -2,10 +2,47 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<style type="text/css">
+
+.container{
+  width: 1000px;
+  margin: 0 auto;
+}
+.container div{
+  text-align: center;
+  display: table;
+}
+.container div span{
+  //display: table-cell;
+  //vertical-align: middle;
+}
+.top{
+
+}
+.middle{
+  margin-top: 20px;
+  width: 1000px;
+  height: 500px;
+  position: relative;
+}
+.middle-center{
+  outline: 1px solid #9F9F9F;
+  top: 0px;
+  width: 1000px;
+  height: 800px;
+  background-color: #00D8FF;
+}
+
+.bottom{
+
+}
+
+
+</style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-$(function(){
+$(function(){	
+
 	
 	var mc_id = sessionStorage.getItem("memberId");
 	var mb_id = sessionStorage.getItem("businessId");
@@ -61,7 +98,7 @@ $(function(){
          $("#businessPanel").css("display", "block");     
          $("#hiBusiness").css("display", "block");
          $("#naverPanel").css("display", "none");
-         $("#hiNaver").css("display", "none");
+         $("#hiNaver").css("display", "none");         
     }
 	
 	if(sessionStorage.getItem("memberId") != null){
@@ -85,13 +122,27 @@ $(function(){
     }
 	
 	
+	$("#header").load("/main/header.html");	
+
+	$("#footers").load("/main/footer.html");
+		
 });
 </script>
 </head>
 <body>
-	<h2>마이페이지</h2>
+
+	<!-- TOP  -->
+	<div class="top" id="header">
+	   <span>TOP (1000 x 80) <br/> #FF5E00;</span>
+	</div>
+
+	<div class="container">
+	<!-- MIDDLE -->
+	  <div class="middle">
+	    <div class="middle-center">
+	    	<h2>마이페이지</h2>
 	
-	<div id="hiMember">
+	<div id="hiMember" style="border: solid; position:relative;">
 		[<span id="mc_id"></span>] 님의 마이페이지 입니다.
 	</div>
 	
@@ -121,7 +172,15 @@ $(function(){
 	<div id="naverPanel">
 	<button onclick="location.href='listMember.html'">회원정보 보기</button>
 	</div>
+	    </div>
+	  </div>  
+	</div>
 
-	
+<br>
+
+	<!-- BOTTOM -->
+  <div id="footers" class="bottom"> <span>BOTTOM (1000 x 100) <br/> #5D5D5D;</span> </div>
+
+
 </body>
 </html>
