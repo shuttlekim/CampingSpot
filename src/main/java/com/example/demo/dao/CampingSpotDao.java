@@ -17,16 +17,6 @@ public class CampingSpotDao {
 //   public List<CampingListVo> campingList(){
 //      return DBManager.campingList();
 //   }
-
-	// 영현
-	public CampingSearchResultVo getCampingSpot(HashMap map) {
-		return DBManager.getCampingSpot(map);
-	}
-	
-	// 영현 
-   public DetailCampingSearchResultVo detailCampingSearchResult(HashMap map) {
-      return DBManager.detailCampingSearchResult(map);
-   }
    
    public List<CampingReviewVo> campingReviewList(int cs_no) {
       return DBManager.campingReviewList(cs_no);
