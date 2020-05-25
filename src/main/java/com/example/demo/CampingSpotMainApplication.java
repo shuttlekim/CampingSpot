@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import com.example.demo.db.DBManager;
+
 
 @SpringBootApplication
 public class CampingSpotMainApplication {
@@ -16,6 +18,6 @@ public class CampingSpotMainApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CampingSpotMainApplication.class, args);
-		
+//		DBManager.updateCampingSpot(200);
 	}	
 }
