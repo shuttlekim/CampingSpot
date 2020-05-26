@@ -69,35 +69,18 @@ $(function(){
    var checkout = data3[1];
    var checkin = data4[1];
    
+   //체크인 체크아웃 일수 차이 계산
+   var date_out = new Date(checkout);
+   var date_in = new Date(checkin);
+   
+   var days = (date_out.getTime() - date_in.getTime())/(1000*60*60*24);
+   //--------------------------------------------------------------------
+   
+   $("#input_cs_no").attr("value", cs_no);
    $("#input_chkin").attr("value", checkin);
    $("#input_chkout").attr("value", checkout);
    
    
-    // cs_no = cs_no.substring(cs_no.indexOf("=")+1);
-    // var str = location.serach.split(,)
-    // cs_no = Number(cs_no);
-    /*
-    $.ajax("/detailCampingSpot.do", {data:{"cs_no":cs_no}, success:function(data){
-       
-       // console.log(data);
-       
-       var div_top = $("<div></div>").attr("id", "div_top");
-       var cs_name = $("<span></span>").text(data.cs_name);
-       var avg = $("<span></span>").text(data.avg);
-       var img = $("<img id='main_img'></img>").attr("src", "img/" + data.cs_camp_fname, "<br>");
-       
-       var div_mid = $("<div></div>").attr("id", "div_mid");
-       
-       // var review = $(this).attr("name", "review")
-       // var review_btn = $("<a href='#review'><button>리뷰 보러가기</buttion></a>").attr("class","btn");
-       
-       $(div_top).append(img, cs_name, avg);
-       
-       $("#detail").append(div_top);
-       // $("#detail").append(review_btn);
-       
-    }}) // detail ajax 종료
-    */
     var getDetail = function(cs_no, campingType, checkout, checkin){
     	var input_data = {
     			"cs_no":cs_no,
@@ -135,11 +118,15 @@ $(function(){
     	$.ajax("/callCampingRoomForReserve.do", {data:input_data, async:false, success:function(data){
     		roomList = data;
     		
-    		var select = $("<select name='room'></select>");
+    		var select = $("<select id='select_room' name='room'></select>");
     		$.each(roomList, function(idx, item){
-    			var option1 = $("<option></option>").html("룸이름: "+item.cr_name+", 최대수용인원: "+item.cr_max).attr("value",item.cr_no);
-    			var option2 = $("<option></option>").html("룸이름: "+item.cr_name+", 품절").attr({
+    			var option1 = $("<option></option>").html("룸이름: "+item.cr_name+", 1박 가격: "+item.cr_price).attr({
     				"value": item.cr_no,
+    				"price": item.cr_price
+    			});
+    			var option2 = $("<option></option>").html("룸이름: "+item.cr_name+", 1박 가격: "+item.cr_price+", 품절").attr({
+    				"value": item.cr_no,
+    				"price": item.cr_price,
     				"disabled": true
     			})
     			if( item.empty ){
@@ -149,9 +136,11 @@ $(function(){
     			}
     		})
     		$("#form_selector").append(select);
+    		
     	}})
   
     }
+    
     
     var callReview = function(cs_no){
     	var reviewList;	
@@ -184,6 +173,17 @@ $(function(){
     getDetail(cs_no, campingType, checkout, checkin);
     selectRoom(cs_no, campingType, checkout, checkin);
    	callReview(cs_no);
+   	
+   	// 룸을 선택할때 해당 숙박비용을 구해서 input 에 지정해준다.
+   	var total = $("#select_room option:selected()").attr("price") * days;
+    
+    $("#input_total").attr("value", total);
+    
+    $("#select_room").on('change', function(){
+    	total = $("#select_room option:selected()").attr("price") * days;
+    	$("#input_total").attr("value", total);
+    })
+    //------------------------------------------------------------------
    
     $("#btn_insert").click(function(){
        
@@ -240,15 +240,21 @@ $(function(){
     });
     
    $("#btn_reservation").click(function(){
-      location.href = "reserveCampingSpot.html"
-    });
+      var reservation_data = $("#form_selector").serialize();
+      console.log(reservation_data);
+      
+      location.href="../pay/reservationPay.html?"+reservation_data;
+   });
+   
+   $("#btn_review").click(function(){
+	   var review_top = $("#review_detail").offset().top;
+	   window.scrollTo(0, review_top);
+   })
    
    $("#btn_back").click(function(){
       window.history.back();
    })
     
-
-   
 });
 </script>
 </head>
@@ -262,8 +268,10 @@ $(function(){
 		<div id="detail">
 			<div id="room_selector">
 				<form id="form_selector">
+					<input type="hidden" id="input_cs_no" name="cs_no">
 					체크인&nbsp&nbsp<input type="date" id="input_chkin" name="checkin" readonly="readonly"><br>
 					체크아웃&nbsp&nbsp<input type="date" id="input_chkout" name="checkout"  readonly="readonly"><br>
+					총액 <input type="number" id="input_total" name="total" readonly="readonly"><br>
 					룸 선택&nbsp&nbsp
 				</form>
 			</div>
@@ -271,7 +279,7 @@ $(function(){
 			<div id="div_btns">
 		    	<button class="btn" id="btn_reservation">예약하기</button>
 		        <button class="btn" id="btn_insert">찜하기</button>
-		        <a href=#review><button class="btn" name="btn_review">리뷰 보러가기</button></a>
+		        <button class="btn" id="btn_review">리뷰 보러가기</button>
 		    </div>
 		 
 		   	<div id="campingSpot_detail"></div>
