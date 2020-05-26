@@ -97,7 +97,7 @@ public class MemberController {
 	        m.setSalt(salt);
 	        
 	        
-	        //String path = "/resources/static/resource/profile";
+	        //String path = "/resources/static/resource/profile"; 
 	        String path = "C:\\Users\\YOGO\\git\\CampingSpot\\src\\main\\resources\\static\\resource\\profile";
 			MultipartFile uploadFile = m.getUploadFile();
 			String fname = "";
