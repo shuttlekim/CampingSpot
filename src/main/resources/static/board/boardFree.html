@@ -16,7 +16,6 @@ ul{
 	overflow: hidden;
 }
 li{
-	float: left;
 	list-style: none;
 	padding: 5px;
 	cursor: pointer;
@@ -26,6 +25,27 @@ a{
 	display: block; 
 	cursor: pointer;
 } 
+.paging_button{
+	text-align: center;
+}
+#container{
+	width: 1000px;
+	margin: 0 auto;
+	//background-color: lightgrey;
+	
+}
+h2{
+	text-align: center;
+}
+#btnList{
+	text-align: right;
+}
+.btn{
+	position: absolute;
+	left: 1130px;
+}
+.btn2{
+	
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
@@ -111,14 +131,21 @@ $(function(){
 		location.href = "boardInsertFree.html"
 	});
 	
+	$("#headers").load("/main/header.html");	
+
+	$("#footers").load("/main/footer.html");
 });
 </script>
 </head>
 <body>
-
-	<h2>자유게시판 목록</h2> 총 게시글: <span id="totalRecord"></span>
+	<div id="headers"></div>
+	<br><br>
+	<h2>자유게시판 목록</h2>
+	 
+	<div id="container">
+	총 게시글: <span id="totalRecord"></span>
 	<hr>
-	<button id="btnAdd">글쓰기</button>
+	<button id="btnAdd" class="btn">글쓰기</button>
 	
 	<form id="searchF">
 		<input type="hidden" name="b_del" value="1">
@@ -128,7 +155,7 @@ $(function(){
 			<option value="mc_id">이름</option>
 		</select>:<input type="text" name="keyword" id="keyword">	
 	</form>
-	<button id="btnSearch">검색</button>
+	<button id="btnSearch" class="btn2">검색</button>
 	
 	<hr>
 	
@@ -136,5 +163,7 @@ $(function(){
 	</table>
 	<ul class="paging_button"></ul>
 	<hr>
+	</div>
+	<div id="footers"></div>
 </body>
 </html>
