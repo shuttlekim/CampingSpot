@@ -3,16 +3,16 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style type="text/css">
-body {
+/* body {
     margin-top: 2%;
     padding-left: 50px;
     padding-right: 50px;
     vertical-align: middle;
-}
+} */
 a{ 
 	text-decoration:none;
 	display: block; 
@@ -145,31 +145,33 @@ $(function(){
 </head>
 <body>
 	<div id="headers"></div>
-	<br><br>
-	<h2>공지사항 목록</h2> 
-	
-	<div id="container">
-	총 게시글: <span id="totalRecord"></span>
-	<hr>
-	<button id="btnAdd" class="btn">글쓰기</button>
-	<!-- 관리자가 아니면 글을 쓸 수 없음-->
-	<form id="searchF">
-		<input type="hidden" name="b_del" value="2">
-		<select name="searchColumn" id="searchColumn">
-			<option value="">검색조건</option>
-			<option value="b_title">제목</option>
-			<option value="mc_id">이름</option>
-		</select>:<input type="text" name="keyword" id="keyword">
-	</form>
-	<button id="btnSearch" class="btn2">검색</button>
-	<hr>
-	
-	<table class="table table-list-search" id="tb">
-	</table>
-	<div class="container2">
-		<ul class="paging_button"></ul>
-	</div>
-	<hr>
+	<div class="body-wrap">
+		<br><br>
+		<h2>공지사항 목록</h2> 
+		
+		<div id="container">
+		총 게시글: <span id="totalRecord"></span>
+		<hr>
+		<button id="btnAdd" class="btn">글쓰기</button>
+		<!-- 관리자가 아니면 글을 쓸 수 없음-->
+		<form id="searchF">
+			<input type="hidden" name="b_del" value="2">
+			<select name="searchColumn" id="searchColumn">
+				<option value="">검색조건</option>
+				<option value="b_title">제목</option>
+				<option value="mc_id">이름</option>
+			</select>:<input type="text" name="keyword" id="keyword">
+		</form>
+		<button id="btnSearch" class="btn2">검색</button>
+		<hr>
+		
+		<table class="table table-list-search" id="tb">
+		</table>
+		<div class="container2">
+			<ul class="paging_button"></ul>
+		</div>
+		<hr>
+		</div>
 	</div>
 	<div id="footers"></div>
 </body>

@@ -199,6 +199,7 @@
 		padding-right: 45px;
 		background-color: rgba(250,250,250,0.8);
 		color: #666;
+		z-index: 2;
 	}
 	.main_menu_bar div{
 		margin-right: 100px;
@@ -255,6 +256,17 @@
 		$("#youtube_icon").click(function(){
 			alert("유튜브 페이지로 이동");
 		})
+		
+		//각 페이지로 이동
+		$("#boardNotice").click(function(){
+			location.href = "/board/boardNotice.html";
+		});
+		$("#boardReview").click(function(){
+			location.href = "/board/boardReview.html";
+		});
+		$("#boardFree").click(function(){
+			location.href = "/board/boardFree.html";
+		});
 	
 	})
 </script>
