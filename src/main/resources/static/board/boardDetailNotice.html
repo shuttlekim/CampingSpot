@@ -3,24 +3,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style type="text/css">
-body {
-    margin-top: 2%;
-    padding-left: 50px;
-    padding-right: 50px;
-    vertical-align: middle;
-}
-ul{
-	overflow: hidden;
-}
-li{
-	list-style: none;
-	padding: 5px;
-	cursor: pointer;
-}
 a{ 
 	text-decoration:none;
 	display: block; 
@@ -28,12 +11,16 @@ a{
 } 
 .paging_button{
 	text-align: center;
+	overflow: hidden;
+	list-style: none;
+	padding: 5px;
+	cursor: pointer;
 }
-.container{
-	width: 1000px;
-	margin: 0 auto;
-	//background-color: lightgrey;
-	
+#re_f{
+	margin-left: 80px;
+}
+#reList{
+	margin-left: 80px;
 }
 h2{
 	text-align: center;
@@ -43,10 +30,17 @@ h2{
 }
 .btn{
 	position: relative;
-	left: 1020px;
+	left: 780px;
 }
 .btn2{
-	position: relative;
+	position: static;
+	margin-left: 80px;
+}
+#tb {
+  //font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-left: 150px;
 }
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -120,36 +114,32 @@ $(function(){
 </head>
 <body>
 	<div id="headers"></div>
-	<br><br>
-	<h2>공지사항 상세 보기</h2>
-	<br>
-	<div class="container">
-	<table class="table table-list-search" id="tb">
-		<tr>
-			<td><button id="btnList">목록보기</button></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td><div id="b_fname"></div></td>
-		</tr>
-		<tr>
-			<td>글제목:</td>
-			<td><span id="b_title"></span></td>
-		</tr>
-		<tr>
-			<td>작성자:</td>
-			<td><span id="mc_id"></span></td>
-		</tr>
-		<tr>
-			<td>글내용:</td>
-			<td><span id="b_contents"></span></td>
-		</tr>
-	</table>
-	<hr>
+	<div class="body-wrap">
+		<h2>공지사항 상세 보기</h2>
+		<br>
+		<table class="table table-list-search" id="tb">
+			<tr>
+				<td></td>
+				<td><div id="b_fname"></div></td>
+			</tr>
+			<tr>
+				<td>글제목</td>
+				<td><span id="b_title"></span></td>
+			</tr>
+			<tr>
+				<td>작성자</td>
+				<td><span id="mc_id"></span></td>
+			</tr>
+			<tr>
+				<td>글내용</td>
+				<td><span id="b_contents"></span></td>
+			</tr>
+		</table>
+		<hr>
+		<button id="btnList" type="button" class="btn2">목록보기</button>
+		<button id="btnUpdate" type="button" class="btn">수정</button>
+		<button id="btnDelete" type="button" class="btn">삭제</button>
 	</div>
-	<button id="btnUpdate" class="btn">수정</button>
-	<button id="btnDelete" class="btn">삭제</button>
 	<div id="footers"></div>
 </body>
 </html>

@@ -3,24 +3,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style type="text/css">
-body {
-    margin-top: 2%;
-    padding-left: 50px;
-    padding-right: 50px;
-    vertical-align: middle;
-}
-ul{
-	overflow: hidden;
-}
-li{
-	list-style: none;
-	padding: 5px;
-	cursor: pointer;
-}
 a{ 
 	text-decoration:none;
 	display: block; 
@@ -28,12 +11,16 @@ a{
 } 
 .paging_button{
 	text-align: center;
+	overflow: hidden;
+	list-style: none;
+	padding: 5px;
+	cursor: pointer;
 }
-.container{
-	width: 1000px;
-	margin: 0 auto;
-	//background-color: lightgrey;
-	
+#re_f{
+	margin-left: 80px;
+}
+#reList{
+	margin-left: 80px;
 }
 h2{
 	text-align: center;
@@ -43,10 +30,20 @@ h2{
 }
 .btn{
 	position: relative;
-	left: 850px;
+	left: 780px;
 }
 .btn2{
-	position: relative;
+	position: static;
+	margin-left: 80px;
+}
+#tb {
+  //font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-left: 150px;
+}
+h5{
+	margin-left: 80px;
 }
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -136,8 +133,8 @@ $(function(){
 			var re = arrRe[i-1];
 			var idx = i-1;
 			var reMc_id = $("<span></span>").html(re.mc_id);
-			var reBr_contents = $("<span></span>").html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/"+re.br_contents);
-			var reBr_regdate = $("<span></span>").html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/"+re.br_regdate+"&nbsp;&nbsp;");
+			var reBr_contents = $("<span></span>").html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;"+re.br_contents);
+			var reBr_regdate = $("<span></span>").html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;"+re.br_regdate+"&nbsp;&nbsp;");
 			var reBtn = $("<button></button>").html("삭제").attr({
 				"idx":idx,
 				"no":re.br_no
@@ -185,57 +182,48 @@ $(function(){
 </head>
 <body>
 	<div id="headers"></div>
-	<br><br>
-	<h2>캠핑후기 상세 보기</h2>
-	<br>
-	<div class="container">
-	<hr>
-	<table class="table table-list-search" id="tb">
-		<tr>
-			<td><button id="btnList">목록보기</button></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td><div id="b_fname"></div></td>
-		</tr>
-		<tr>
-			<td>글제목:</td>
-			<td><span id="b_title"></span></td>
-		</tr>
-		<tr>
-			<td>작성자:</td>
-			<td><span id="mc_id"></span></td>
-		</tr>
-		<tr>
-			<td>글내용:</td>
-			<td><span id="b_contents"></span></td>
-		</tr>
-	</table>
-	<hr>
-	</div>
-	<div class="container">
-	<button id="btnUpdate" class="btn">수정</button>
-	<button id="btnDelete" class="btn">삭제</button>
-	<hr>
-	
-	<h5>댓글목록</h5>
-	<hr>
-	<div id="reList"></div>
-	<ul class="paging_button"></ul>
-	<hr>
-	<h5>댓글쓰기</h5>
-	<form id="re_f">
-		<table>
+	<div class="body-wrap">
+		<h2>캠핑후기 상세 보기</h2>
+		<br>
+		<table id="tb">
 			<tr>
-				<td><input type="text" name="mc_id" id="re_mc_id" readonly="readonly"></td>
-				<td><input type="text" name="br_contents" id="br_contents"></td>
-				<td><input type="hidden" name="b_no" id="b_no"></td>
-				<td><input type="hidden" name="br_del" id="br_del"></td>
+				<td></td>
+				<td><div id="b_fname"></div></td>
+			</tr>
+			<tr>
+				<td>글제목</td>
+				<td><span id="b_title"></span></td>
+			</tr>
+			<tr>
+				<td>작성자</td>
+				<td><span id="mc_id"></span></td>
+			</tr>
+			<tr>
+				<td>글내용</td>
+				<td><span id="b_contents"></span></td>
 			</tr>
 		</table>
-	</form>
-	<button id="re_btnAdd">등록</button>
+		<br>
+		<br>
+		<button id="btnList" class="btn2">목록보기</button>
+		<button type="button" id="btnUpdate" class="btn">수정</button>
+		<button type="button" id="btnDelete" class="btn">삭제</button>
+		<br>
+		<hr>
+			
+		<h5>댓글목록</h5>
+		<div id="reList"></div>
+		<!-- <ul class="paging_button"></ul> -->
+		<br>
+		<hr>
+		<h5>댓글쓰기</h5>
+		<form id="re_f">
+			<input type="text" name="mc_id" id="re_mc_id" readonly="readonly">
+			<input type="text" name="br_contents" id="br_contents">
+			<input type="hidden" name="b_no" id="b_no">
+			<input type="hidden" name="br_del" id="br_del">	
+			<button type="button" id="re_btnAdd">등록</button>
+		</form>
 	</div>
 	<div id="footers"></div>
 </body>
