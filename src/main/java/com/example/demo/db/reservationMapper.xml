@@ -3,17 +3,17 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reservation">
-
+    
   <!-- 영현) 예약검색등록 -->
-  <insert id="insertReserveSearch">
+  <!-- <insert id="insertReserveSearch">
   	insert into reserve_search values(reserve_search_seq, #{r_no), #{validDate}, #{cr_no}, #{cs_no}, #{cr_type})
-  </insert>
+  </insert> -->
   
   <!-- 영현) 예약등록 -->
-  <insert id="insertReservation">
+  <!-- <insert id="insertReservation">
   	insert into reservation values(reservation_seq, to_date(#{checkin},'yyyy-mm-dd'), to_date(#{checkout},'yyyy-mm-dd'), sysdate, #{price}, #{payment}, 0, 0, #{cr_no}, #{mc_id})
-  </insert>
-
+  </insert> -->
+  
   <select id="ingRoom" resultType="campingRoomVo">
   	select avg(cr_no) cr_no from reserve_search where rs_date >= to_date(#{checkin}, 'yyyy-mm-dd') and rs_date <![CDATA[<]]> to_date(#{checkout}, 'yyyy-mm-dd') and cs_no=#{cs_no} and cr_type=#{campingType} group by cr_no
   </select>

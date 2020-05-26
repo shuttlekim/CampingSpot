@@ -243,8 +243,9 @@ $(function(){
    $("#btn_reservation").click(function(){
       var reservation_data = $("#form_selector").serialize();
       console.log(reservation_data);
+      sessionStorage.setItem("reservation_data", reservation_data);
       
-      location.href="../pay/reservationPay.html?"+encodeURI(reservation_data);
+      location.href="../pay/reservationPay.html"
       
    });
    
