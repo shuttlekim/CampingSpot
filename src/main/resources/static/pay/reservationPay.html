@@ -38,7 +38,6 @@ $(function(){
 		$("#chkName").html("<b>"+data.cs_name+"</b>");
 	}})
 	
-	
 	$.ajax("/getRoomInfo.do", {data:{"cr_no":cr_no}, success:function(data){
 		$("#chkRoom").html("이름: <b>"+data.cr_name+"</b>, 비용: "+data.cr_price+", 최대수용인원: "+data.cr_max);
 		$("#chkIn").html(checkin+", 입실시간: "+data.cr_checkin);
@@ -68,10 +67,11 @@ $(function(){
 		$("#applyPoint").click(function(){
 			var putPoint = $("#putPoint").val();
 			//사용할 포인트 입력한 값
-			$("#uesPoint").append(putPoint);
+			$("#usePoint").append(putPoint);
 			//입력한 값 '포인트사용'에 뿌려주기
-			$("#totla_price").append(price - putPoint);
+			$("#total_price").append(price - putPoint);
 			//결제할 총 가격(가격-사용할포인트)	
+			
 		});
 	}});
 	
@@ -86,14 +86,23 @@ $(function(){
 		//라디오 버튼이 눌려진 처리에 따라
 		var r_payment = $('input[name=r_payment]:checked').val();
 		
+		//포인트가 적용된 가격으로 다시 session에 저장한다.
+		total = $("#total_price").text();
+		
+		var newData = "cs_no="+cs_no+"&checkin="+checkin+"&checkout="+checkout+"&total="+total+"&room="+cr_no;
+		sessionStorage.setItem("reservation_data", newData);
+		//--------------------------------------------------------------------
+			
 		//라디오버튼 무통장입금을 눌렀을때
 		//무통장입금 정보 페이지로 넘어가기
 		if(r_payment == '무통장입금'){
+		
 			location.href = "payMu.html";
 		}
 		//라디오버튼 카드결제를 눌렀을때
 		//카드결제 API
 		if(r_payment == '카드결제'){
+		
 			location.href = "payCard.html";
 		}
 		
@@ -124,9 +133,9 @@ $(function(){
 		<span>보유포인트: <span id="point"></span>원</span><input type="number" id="putPoint"></input><button id="applyPoint">적용하기</button><br><br><hr>
 		<!-- 로그인한 아이디가 가지고 있는 포인트 id="totalPoint"에먼저 뿌려준다음 가격 입력하고 적용하기 누르면 총 가격-포인트=결제할금액 알려준다 -->
 		
-		<h4 id="total_price">결제할 금액:</h4>
-		<span id="price">총가격: </span><br>
-		<span id="uesPoint">포인트 사용: </span><br><hr>
+		결제할 금액: <h4 id="total_price"></h4>
+		총가격: <span id="price"></span><br>
+		포인트 사용: <span id="usePoint"></span><br><hr>
 		
 		<ul>
 			<li>

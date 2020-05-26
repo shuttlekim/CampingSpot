@@ -34,6 +34,7 @@ public class ReservationController {
 		  System.out.println("가격: "+price);
 		  System.out.println("지불방법: "+payment);
 		  
+		  // 예약테이블에 넣기위한 map
 		  HashMap map = new HashMap();
 		  map.put("mc_id", mc_id);
 		  map.put("cr_no", cr_no);
@@ -41,6 +42,11 @@ public class ReservationController {
 		  map.put("checkout", checkout);
 		  map.put("price", price);
 		  map.put("payment", payment);
+		  
+		  //int result1 = dao.insertReservation(map);
+		  
+		  // 예약검색테이블에 넣기위한 map
+		  HashMap map_search = new HashMap();
 		  
 		  
 		  

@@ -2,12 +2,55 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<style type="text/css">
+
+.container{
+  width: 1200px;
+  margin: 0 auto;
+}
+.container div{
+  text-align: center;
+  display: table;
+}
+.container div span{
+  display: table-cell;
+  vertical-align: middle;
+}
+.top{
+
+}
+.middle{
+  margin-top: 20px;
+  width: 1000px;
+  height: 500px;
+  position: relative;
+}
+.middle-center{
+  //outline: 1px solid #9F9F9F;
+  top: 0px;
+  width: 600px;
+  height: 600px;
+  //background-color: #00D8FF;
+}
+
+input[type="button"],select{
+		height:30px;		
+		line-height: 30px;
+		border:1px solid #e7e7e7;
+		padding: 0 30px;
+		font-size:15px;
+		border-radius : 7px;
+		background-color: #2E2E2E;
+		color:white;
+		margin-left: 30px;
+		
+	}
+</style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-$(function(){
+$(function(){	
 
-	var num = 0;
+var num = 0;
 	
 	$("#termsOk").click(function(){		
 
@@ -24,10 +67,10 @@ $(function(){
 		//alert(check);
 		//alert(num);		
 		if(num == 1){
-			window.location.href = "/signIn.html";
+			window.location.href = "/login/signIn.html";
 	 	}else{
 	  		alert("개인정보 약관에 동의하셔야 합니다.");
-	  		window.location.href = "/terms.html";
+	  		window.location.href = "/login/terms.html";
 	 	}		
 	});
 	
@@ -41,31 +84,43 @@ $(function(){
 		
 		if(num == 1){
 			alert("동의하지 않으시면 가입하실 수 없으십니다.");
-			window.location.href = "/main.html";
+			window.location.href = "/main/main.html";
 	 	}else{
 	 		alert("동의하지 않으시면 가입하실 수 없으십니다.");
-	  		window.location.href = "/main.html";
+	  		window.location.href = "/main/main.html";
 	 	}		
 	});
-		
 	
+	
+	$("#header").load("/main/header.html");	
+
+	$("#footers").load("/main/footer.html");
+		
 });
 </script>
 </head>
 <body>
-<h2>CAMPINGSPOT 이용약관</h2>
-<hr>
+
+	<!-- TOP  -->
+	<div class="top" id="header">
+	   <span>TOP (1000 x 80) <br/> #FF5E00;</span>
+	</div>
+
+	<div class="container">
+	<!-- MIDDLE -->
+	  <div class="middle">
+	    <div class="middle-center"><br>
+	    	<h2>CAMPINGSPOT 이용약관</h2>
+<hr width="500px">
 <form name="terms">
 	<table width="1400" height="650">
   	<tr>
    		<td width="100%" height="50%" align="center">
    		<p align="left">
-   		<span style="padding-left: 160px">CAMPINGSPOT 약관동의</span>
+   		<span style="padding-left: 160px">[CAMPINGSPOT 약관동의]</span>
    		</p>
-   		
-   <br>
-   
-   <textarea rows="20" cols="150">가. 수집하는 개인정보의 항목첫째, 회사는 회원가 입, 원활한 고객상담, 각종 서비스의 제공을 위해 최초 회원가입 당시 아래와 같은 최소한의 개인정보를 필수항목으로 수집하고 있습니다.
+
+   <textarea rows="20" cols="150" style="border: double; font-size:14px;">가. 수집하는 개인정보의 항목첫째, 회사는 회원가 입, 원활한 고객상담, 각종 서비스의 제공을 위해 최초 회원가입 당시 아래와 같은 최소한의 개인정보를 필수항목으로 수집하고 있습니다.
 회원가입
 - 이름, 생년월일, 성별, 아이디, 비밀번호, 별명, 연락처(메일주소, 휴대폰 번호 중 선택), 가입인증정보
 만14세 미만 아동 회원가입
@@ -95,12 +150,23 @@ $(function(){
   	</tr>
   
   <tr>
-	<td align="center" valign="top">
-		<input type="button" value="동의" id="termsOk"/>&nbsp;&nbsp;&nbsp;
+
+	<td align="center" valign="top"><br>
+		<input type="button" value="동의" id="termsOk"/>
 		<input type="button" value="동의하지 않습니다" id="termsNo"/>
    	</td>
   </tr>
 </table>
 </form>
+	    </div>
+	  </div>  
+	</div>
+
+<br>
+
+	<!-- BOTTOM -->
+  <div id="footers" class="bottom"></div>
+
+
 </body>
-</html>
+</html> 

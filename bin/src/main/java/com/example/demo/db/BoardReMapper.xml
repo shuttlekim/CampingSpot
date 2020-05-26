@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardRe">
+  <select id="selectAll" resultType="BoardReVo">
+    select br_no, b_no, mc_id, br_contents, br_regdate, br_del from board_re where br_del = #{br_del} and b_no = #{b_no} order by br_regdate desc 
+  </select>
+  <insert id="insert">
+  	insert into board_re values(seq_board_re.nextval,#{b_no},#{mc_id},sysdate,#{br_contents},#{br_del})
+  </insert>
+  <delete id="delete">
+  	delete board_re where br_no = #{br_no} and mc_id = #{mc_id}
+  </delete>
+</mapper>

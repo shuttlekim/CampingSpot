@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminmember">
+<select id="selectAllAdminMember" resultType="membercustomervo">
+	select mc_id,mc_name,mc_nickname,mc_email,mc_tel,to_char(mc_regdate, 'yyyy-mm-dd')as mc_regdate, to_char(mc_recdate, 'yyyy-mm-dd')as mc_recdate from member_customer where mc_auth =3
+</select>
+
+<select id="selectAdminMemberSearch" resultType="membercustomervo">
+	select * from member_customer 
+	 where 1=1
+	 <if test="keyword != ''">
+        <if test="searchColumn == 'mc_id'">
+          and  mc_id like '%' || #{keyword} || '%'
+        </if>
+        <if test="searchColumn == 'mc_name'">
+          and  mc_name like '%' || #{keyword} || '%'
+        </if>
+        <if test="searchColumn == 'mc_email'">
+          and  mc_email like '%' || #{keyword} || '%'
+        </if>
+    </if>
+</select>
+
+
+<select id="selectAllBusiness" resultType="memberbusinessvo">
+	select mb_id,mb_name,mb_nickname,mb_email,mb_tel,to_char(mb_regdate, 'yyyy-mm-dd')as mb_regdate, to_char(mb_recdate, 'yyyy-mm-dd')as mb_recdate from member_business where mb_auth = 2
+</select>
+
+<select id="selectAdminBusinessSearch" resultType="memberbusinessvo">
+	select * from member_business
+	 where 1=1
+	 <if test="keyword != ''">
+        <if test="searchColumn == 'mb_id'">
+          and  mb_id like '%' || #{keyword} || '%'
+        </if>
+        <if test="searchColumn == 'mb_name'">
+          and  mb_name like '%' || #{keyword} || '%'
+        </if>
+        <if test="searchColumn == 'mb_email'">
+          and  mb_email like '%' || #{keyword} || '%'
+        </if>
+    </if>
+</select>
+
+<select id="AdminMemberBusinesstotRecord"  resultType="java.lang.Integer">
+  	select count(*) from member_business
+  </select>
+
+
+<select id="getMember" resultType="membercustomervo">
+	select mc_id,mc_name,mc_nickname,mc_email,mc_tel,to_char(mc_regdate, 'yyyy-mm-dd')as mc_regdate,to_char(mc_recdate, 'yyyy-mm-dd') as mc_recdate,mc_point, mc_auth from member_customer where mc_id = #{mc_id}
+</select>
+<select id="getBusiness" resultType="memberbusinessvo">
+	select mb_id,mb_name,mb_nickname,mb_email,mb_tel,mb_licence, to_char(mb_regdate, 'yyyy-mm-dd')as mb_regdate, to_char(mb_recdate, 'yyyy-mm-dd')as mb_recdate, mb_auth from member_business where mb_id = #{mb_id}
+</select>
+  
+  
+<insert id="insertAdminMember">
+	insert into member_customer values(#{mc_id},#{mc_pwd},#{mc_email},#{mc_name},#{mc_nickname},#{mc_tel},null,null,sysdate,sysdate,1000,3,#{mc_salt})
+</insert>
+
+<insert id="insertAdminBusiness">
+	insert into member_business values(#{mb_id},#{mb_pwd},#{mb_email},#{mb_name},#{mb_nickname},#{mb_tel},#{mb_licence},null,sysdate,sysdate,2)
+</insert>
+
+<delete id="deleteAdminMember">
+	delete member_customer where mc_id=#{mc_id}
+</delete>
+
+<delete id="deleteAdminBusiness">
+	delete member_business where mb_id=#{mb_id}
+</delete>
+
+<update id="updateAdminMember">
+	update member_customer set mc_email=#{mc_email}, mc_name=#{mc_name},mc_nickname=#{mc_nickname},mc_tel=#{mc_tel},mc_point=#{mc_point} where mc_id=#{mc_id}
+</update>
+
+<update id="updateAdminBusiness">
+	update member_business set mb_email=#{mb_email}, mb_name=#{mb_name},mb_nickname=#{mb_nickname},mb_tel=#{mb_tel},mb_licence=#{mb_licence} where mb_id=#{mb_id}
+</update>
+
+<select id="selectAdminAuth" resultType="membercustomervo">
+    select mc_id, mc_name, mc_email, mc_tel, to_char(mc_regdate, 'yyyy-mm-dd') as mc_regdate, to_char(mc_recdate, 'yyyy-mm-dd') as mc_recdate from member_customer where mc_auth=1
+</select>
+
+<select id="selectAdminAuthSearch" resultType="membercustomervo">
+	select * from member_customer 
+	 where 1=1
+	 <if test="keyword != ''">
+        <if test="searchColumn == 'mc_id'">
+          and  mc_id like '%' || #{keyword} || '%'
+        </if>
+        <if test="searchColumn == 'mc_name'">
+          and  mc_name like '%' || #{keyword} || '%'
+        </if>
+        <if test="searchColumn == 'mc_email'">	
+          and  mc_email like '%' || #{keyword} || '%'
+        </if>
+    </if>
+</select>
+
+
+
+
+
+<select id="getAdminAuth" resultType="membercustomervo">
+	select mc_id, mc_name,mc_nickname, mc_email, mc_tel, to_char(mc_regdate, 'yyyy-mm-dd') as mc_regdate, to_char(mc_recdate, 'yyyy-mm-dd') as mc_recdate, mc_point, mc_auth from member_customer where mc_id = #{mc_id} 
+</select>
+
+<update id="updateAdminAuth">
+	update member_customer set mc_email=#{mc_email}, mc_name=#{mc_name},mc_nickname=#{mc_nickname},mc_tel=#{mc_tel},mc_point=#{mc_point},mc_auth=1 where mc_id=#{mc_id}
+</update>
+
+<update id="deleteAdminAuth">
+	update member_customer set mc_auth=3 where mc_id=#{mc_id}
+</update>
+
+</mapper>

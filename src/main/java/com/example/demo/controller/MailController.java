@@ -43,7 +43,7 @@ public class MailController {
 	@RequestMapping("/email.do")
 	@ResponseBody
 	public String mailMember(String mc_id, String mc_email) {
-		String r = "";
+		String r = ""; 
 	
 		try {		
 			SimpleMailMessage mailMessage = new SimpleMailMessage();

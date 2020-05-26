@@ -18,14 +18,15 @@ import com.example.demo.vo.BoardVo;
 import com.google.gson.Gson;
 
 @RestController
-public class BoardController {
+public class BoardController { 
 
-	@Autowired
+	@Autowired 
 	private BoardDao dao;
 
 	public BoardDao getDao() {
 		return dao;
 	}
+	
 	//각 보드에 모든 list
 	@RequestMapping(value = "/listBoard.do", produces = "application/json;cahrset=UTF-8")
 	public String listBoard(int b_del, String keyword, String searchColumn, HttpSession session) {

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	
+	//가입하기 버튼 클릭시 동작
+	$("#btnJoinOk").click(function(){
+		//var member = $("#join").serialize();
+		var member =  new FormData(document.getElementById("join"));
+		$.ajax("/signIn.do", {data:member, processData:false, contentType:false, type:"POST", success:function(r){
+			alert("회원가입 성공 \n 로그인 페이지로 이동!");
+			window.location.href = "/login/login.html";
+		}}); 
+	});
+		
+	//비밀번호 맞는지 확인
+	$("#alert-success").hide(); 
+	$("#alert-danger").hide(); 
+	$("input").keyup(function(){ 
+		var pwd1=$("#mc_pwd").val(); 
+		var pwd2=$("#checkpwd").val(); 
+		if(pwd1 != "" || pwd2 != ""){ 
+			if(pwd1 == pwd2){ 
+				$("#alert-success").show(); 
+				$("#alert-danger").hide(); 
+				$("#submit").removeAttr("disabled"); 
+			}else{ 
+				$("#alert-success").hide(); 
+				$("#alert-danger").show(); 
+				$("#submit").attr("disabled", "disabled"); 
+			}
+		} 
+	}); 
+				
+	
+	//아이디 중복검사
+	$("#idCheck").click(function(){
+		var input_id = $("#mc_id").val();
+		//alert(input_id);
+		var data = {"mc_id":input_id};
+		$.ajax("/checkId.do", {data:data, success:function(mc_id){
+			if(mc_id == 1){
+				alert("사용중인 아이디입니다.");
+			}else{
+				alert("사용가능한 아이디입니다.");
+			}
+			
+		
+		}}); 
+	});
+	
+	
+});
+</script>
+</head>
+<body>
+<h2>회원가입</h2>
+<hr>
+<div>
+	<form id="join" method="post" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<td>회원아디</td>
+				<td><input type="text" name="mc_id" id="mc_id" placeholder="15자이내" required="required" maxlength="15"></td>
+				<td><button id="idCheck">중복검사</button></td>
+			</tr>				
+			<tr>
+				<td>비밀번호</td>
+				<td><input type="password" name="mc_pwd" id="mc_pwd" placeholder="8자이내" required="required" maxlength="8"></td>
+			</tr>
+			<tr>
+				<td>비번확인</td>
+				<td><input type="password" name="checkpwd" id="checkpwd" placeholder="8자이내" required="required" maxlength="8">
+				</td>
+				<td>
+					<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
+					<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
+				</td>	
+			</tr>
+			<tr>
+				<td>E-MAIL</td>
+				<td><input type="email" name="mc_email" id="mc_email" placeholder="E-MAIL" required="required" maxlength="50"></td>
+			</tr>
+			<tr>
+				<td>회원이름</td>
+				<td><input type="text" name="mc_name" id="mc_name" placeholder="이름" required="required"></td>
+			</tr>
+			<tr>
+				<td>회원별명</td>
+				<td><input type="text" name="mc_nickname" id="mc_nickname" placeholder="8자 이내" required="required"></td>
+			</tr>
+			<tr>
+				<td>전화번호</td>
+				<td><input type="text" name="mc_tel" id="mc_tel" placeholder="(-)없이 입력" required="required"></td>
+			</tr>
+			<tr>
+				<td>회원취향</td>
+				<td>산<input type="checkbox" name="mc_taste" id="mc_taste" value="산">
+                     	강<input type="checkbox" name="mc_taste" id="mc_taste" value="강">
+                     	바다<input type="checkbox" name="mc_taste" id="mc_taste" value="바다">
+                     	계곡<input type="checkbox" name="mc_taste" id="mc_taste" value="계곡"></td>
+			</tr>	
+			<tr>
+				<td>프로필사진</td>
+				<td><input type="file" name="uploadFile" id="uploadFile"></td>
+			</tr>
+			<tr>
+				<td><input type="hidden" name="mc_auth" id="mc_auth" value="3"></td>
+			</tr>
+			
+		</table>
+	</form>
+	<button id="btnJoinOk">가입하기</button>
+</div>
+</body>
+</html>

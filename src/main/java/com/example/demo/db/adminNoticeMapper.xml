@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminnotice">
+  <select id="select_an" resultType="adminnoticevo">
+    select an_no, an_title, an_content, to_char(an_regdate, 'yyyy-mm-dd') as an_regdate, mc_id, ispost from admin_notice order by an_no desc
+  </select>
+  
+  <select id="get_an" resultType="adminnoticevo">
+  	select an_title, an_content, to_char(an_regdate, 'yyyy-mm-dd') as an_regdate, mc_id, ispost, to_char(startdate, 'yyyy-mm-dd') as startdate, to_char(enddate, 'yyyy-mm-dd') as enddate, mc_auth from admin_notice where an_no=#{an_no}
+  </select>
+  
+  <insert id="insert_an">
+  	insert into admin_notice values(seq_admin_notice.nextval,#{an_title},#{an_content},sysdate ,#{mc_id},#{ispost},#{startdate},#{enddate},#{mc_auth})
+  </insert>
+  
+  <update id="update_an">
+  	update admin_notice set an_title=#{an_title}, an_content=#{an_content},an_regdate=sysdate, ispost=#{ispost}, startdate=#{startdate}, enddate=#{enddate}, mc_auth=#{mc_auth} WHERE an_no=#{an_no}
+  </update>
+  
+  <delete id="delete_an">
+  	delete admin_notice where an_no=#{an_no}
+  </delete>
+  
+  <select id="getpop">
+  	select * from admin_notice where an_no=#{an_no}
+  </select>
+  
+  
+<!--   <select id="uniuonAll"> -->
+<!--   SELECT MC_ID,MC_PWD,MC_EMAIL,MC_NAME,MC_NICKNAME,MC_TEL,MC_FNAME,MC_REGDATE,MC_RECDATE,MC_AUTH,t.mc_taste FROM member_customer t UNION ALL SELECT MB_ID ,MB_PWD ,MB_EMAIL,MB_NAME,MB_NICKNAME,MB_TEL,MB_FNAME,MB_REGDATE,MB_RECDATE,MB_AUTH,'' FROM member_business; -->
+<!--   </select> -->
+  
+  
+  
+
+  
+  
+  <select id="selectAdminLog" resultType="adminlogvo">
+    select al_no, al_regdate, al_cancel,al_ip,r_no from admin_log order by al_no desc
+  </select>
+  
+  <insert id="insertAdminLog">
+  	insert into admin_log values(#{al_no},#{al_regdate},#{al_cancel},#{al_ip},#{r_no})
+  </insert>
+  
+  
+  
+  
+  <select id="district" resultType="districtchartvo">
+	SELECT cs.cs_addr_head AS district
+      ,COUNT(*) AS cnt
+  FROM camping_spot cs
+      ,camping_room cr
+      ,reservation  r
+ WHERE cs.cs_no = cr.cs_no
+   AND cr.cr_no = r.cr_no
+   AND r.r_revstatus = 1 -- 0 : 예약대기, 1 : 예약확인
+ GROUP BY cs.cs_addr_head
+</select>
+
+<select id="camptype" resultType="camptypechartvo">
+	SELECT cr_type AS camptype
+      ,COUNT(*) AS cnt
+  FROM camping_room cr
+      ,reservation  r
+ WHERE cr.cr_no = r.cr_no
+   AND r.r_revstatus = 1
+ GROUP BY cr_type
+</select>
+
+<select id="campingrank" resultType="campingrankchartvo">
+SELECT * FROM
+(
+SELECT cs_name campingName
+      ,COUNT(*) cnt ,rank() over(order BY count(*) desc) AS rank
+  FROM camping_spot cs
+      ,camping_room cr
+      ,reservation r
+ WHERE cs.cs_no = cr.cs_no
+   AND cr.cr_no = r.cr_no
+   AND r.r_revstatus = 1
+ GROUP BY cs_name
+ )
+ order BY cnt desc
+</select>  
+  
+</mapper>

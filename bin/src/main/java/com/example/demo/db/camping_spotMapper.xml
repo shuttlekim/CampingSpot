@@ -5,108 +5,11 @@
 <mapper namespace="campingSpot">
 
   <update id="updateCampingSpot">
-  	update camping_spot set cs_name='디노담양힐링파크', cs_addr_head='전라남도', cs_addr_remain='담양군 봉산면 탄금길 9-25', cs_account='우리, 1002-154-564435, 나미숙', cs_theme='바다, 강, 섬', cs_fac='와이파이, 온수, 운동시설, 에어컨, 바베큐', cs_detail='국내 최고 럭셔리 오토캠핑장!' where cs_no=300
+  	update camping_spot set cs_name='비토섬오토캠핑장', cs_addr_head='경상남도', cs_addr_remain='사천시 서포면 비토리 255-20 비토섬오토캠핑장', cs_account='농협, 317-0012-6548-11, 신우에이엠씨', cs_theme='산, 강, 호수', cs_fac='와이파이, 샤워실, 운동시설, 바베큐', cs_detail='차가져와유!' where cs_no=100
   </update>
   
-  <select id="detailCampingSpot" resultType="campingSpotVo">
-  	select * from camping_spot where cs_no = #{cs_no}
-  </select>
-
-  <select id="getCampingSpot" resultType="campingSearchResultVo">
-  	select cs_name name, A.cs_no no, A.min price, A.avg rate, cs_addr_head addr_head, cs_addr_remain addr_remain, cs_detail detail, cs_tel tel, cs_theme theme, cs_fac fac, cs_camp_fname camp_fname
-	from (select cr.cs_no cs_no, min(cr_price) min, avg(cre_rate) avg from camping_room cr, camping_review cre where cr.cs_no = cre.cs_no group by cr.cs_no) A, camping_spot cs
-	where A.cs_no = cs.cs_no
-	and cs.cs_no = #{no}
-	<if test="theme1 != null">
-		and cs_theme like '%' || #{theme1} || '%'
-	</if>
-	<if test="theme2 != null">
-		and cs_theme like '%' || #{theme2} || '%'
-	</if>
-	<if test="theme3 != null">
-		and cs_theme like '%' || #{theme3} || '%'
-	</if>
-	<if test="theme4 != null">
-		and cs_theme like '%' || #{theme4} || '%'
-	</if>
-	<if test="theme5 != null">
-		and cs_theme like '%' || #{theme5} || '%'
-	</if>
-	<if test="theme6 != null">
-		and cs_theme like '%' || #{theme6} || '%'
-	</if>
-
-	<if test="facility1 != null">
-		and cs_fac like '%' || #{facility1} || '%'
-	</if>
-	<if test="facility2 != null">
-		and cs_fac like '%' || #{facility2} || '%'
-	</if>
-	<if test="facility3 != null">
-		and cs_fac like '%' || #{facility3} || '%'
-	</if>
-	<if test="facility4 != null">
-		and cs_fac like '%' || #{facility4} || '%'
-	</if>
-	<if test="facility5 != null">
-		and cs_fac like '%' || #{facility5} || '%'
-	</if>
-	<if test="facility6 != null">
-		and cs_fac like '%' || #{facility6} || '%'
-	</if>
-		and A.min >= #{lowPrice}
-		and A.min <![CDATA[<=]]> #{highPrice}
-  </select>
-
-  <select id="campingList" resultType="campingSearchResultVo">
-    select cs_no no from camping_spot 
-    <if test="keyword != null">
-    	where cs_name like '%' || #{keyword} || '%' 
-    	or cs_addr_head like '%' || #{keyword} || '%'
-    </if>
-    <if test="validDate1 != null">
-    	minus
-    	select a.cs_no from 
-		(select cs_no, count(cr_no) cnt from reserve_search
-		where cr_type = #{campingType} and 
-		rs_date = to_date(#{validDate1}, 'yyyy-mm-dd') 
-		group by cs_no) a,
-		(select cs_no, count(cr_no) cnt from camping_room where cr_type=#{campingType} group by cs_no) b
-		where a.cs_no = b.cs_no and
-		a.cnt = b.cnt
-    </if>
-    <if test="validDate2 != null">
-    	minus
-    	select a.cs_no from 
-		(select cs_no, count(cr_no) cnt from reserve_search
-		where cr_type = #{campingType} and 
-		rs_date = to_date(#{validDate2}, 'yyyy-mm-dd') 
-		group by cs_no) a,
-		(select cs_no, count(cr_no) cnt from camping_room where cr_type=#{campingType} group by cs_no) b
-		where a.cs_no = b.cs_no and
-		a.cnt = b.cnt
-    </if>
-    <if test="validDate3 != null">
-    	minus
-    	select a.cs_no from 
-		(select cs_no, count(cr_no) cnt from reserve_search
-		where cr_type = #{campingType} and 
-		rs_date = to_date(#{validDate3}, 'yyyy-mm-dd') 
-		group by cs_no) a,
-		(select cs_no, count(cr_no) cnt from camping_room where cr_type=#{campingType} group by cs_no) b
-		where a.cs_no = b.cs_no and
-		a.cnt = b.cnt
-    </if>
-    <if test="validDate4 != null">
-    	minus
-    	select a.cs_no from 
-		(select cs_no, count(cr_no) cnt from reserve_search
-		where cr_type = #{campingType} and 
-		rs_date = to_date(#{validDate4}, 'yyyy-mm-dd') 
-		group by cs_no) a,
-		(select cs_no, count(cr_no) cnt from camping_room where cr_type=#{campingType} group by cs_no) b
-		where a.cs_no = b.cs_no and
-		a.cnt = b.cnt
-    </if>
+  <!-- 영현) 캠핑장번호로 캠핑장정보를 가져온다. -->
+  <select id="getCampingInfo" resultType="campingSpotVo">
+  	select * from camping_spot where cs_no=#{cs_no}
   </select>
 </mapper>
