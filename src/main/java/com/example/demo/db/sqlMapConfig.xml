@@ -19,6 +19,15 @@
     <!-- 지연 -->
     <typeAlias type="com.example.demo.vo.BoardVo" alias="boardVo"/>
 	<typeAlias type="com.example.demo.vo.BoardReVo" alias="boardReVo"/>
+    <!-- 혜선-->
+	<typeAlias type="com.example.demo.vo.AdminLogVo" alias="adminlogvo"/>
+	<typeAlias type="com.example.demo.vo.AdminNoticeVo" alias="adminnoticevo"/>
+	<typeAlias type="com.example.demo.vo.MemberBusinessVo" alias="memberbusinessvo"/>
+	<typeAlias type="com.example.demo.vo.MemberCustomerVo" alias="membercustomervo"/>
+	<typeAlias type="com.example.demo.vo.DistrictChartVo" alias="districtchartvo"/>
+	<typeAlias type="com.example.demo.vo.CampingRankChartVo" alias="campingrankchartvo"/>
+	<typeAlias type="com.example.demo.vo.CampTypeChartVo" alias="camptypechartvo"/>
+	
   </typeAliases>
   <environments default="development">
     <environment id="development">
@@ -45,5 +54,9 @@
     <!-- 지연 -->  
     <mapper resource="com/example/demo/db/BoardMapper.xml"/>
     <mapper resource="com/example/demo/db/BoardReMapper.xml"/>
+    <!-- 혜선 -->  
+    <mapper resource="com/example/demo/db/AdminMemberMapper.xml"/>
+    <mapper resource="com/example/demo/db/AdminNoticeMapper.xml"/>
+    
   </mappers>
 </configuration>
