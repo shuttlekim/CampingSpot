@@ -68,7 +68,7 @@ $(function(){
 		var title = $("<span></span>").html(data.b_title);
 		var mc_id = $("<span></span>").html(data.mc_id);
 		var b_contents = $("<span></span>").html(data.b_contents);
-		var img = $("<img/>").attr("src","img/"+data.b_fname).attr("width",100).attr("onerror","this.style.display='none'");
+		var img = $("<img/>").attr("src","resource/board_img/"+data.b_fname).attr("width",100).attr("onerror","this.style.display='none'");
 		$("#b_title").append(title);
 		$("#mc_id").append(mc_id);
 		$("#b_contents").append(b_contents);

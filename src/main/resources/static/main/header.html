@@ -60,6 +60,9 @@
     #festMore{
     	cursor: pointer;
     }
+    .menu{
+    	cursor: pointer; 	
+	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://kit.fontawesome.com/3da0640e3c.js" crossorigin="anonymous"></script>
@@ -143,6 +146,16 @@
 			}
 		});
 		
+		//각 페이지로 이동
+		$("#boardNotice").click(function(){
+			location.href = "/board/boardNotice.html";
+		});
+		$("#boardReview").click(function(){
+			location.href = "/board/boardReview.html";
+		});
+		$("#boardFree").click(function(){
+			location.href = "/board/boardFree.html";
+		});
 		
 	})
 </script>
@@ -178,9 +191,9 @@
 			<div>
 				<h4>커뮤니티</h4>
 				<ul>
-					<li>공지사항</li>
-					<li>캠핑후기</li>
-					<li>자유게시판</li>
+					<li id="boardNotice" class="menu">공지사항</li>
+					<li id="boardReview" class="menu">캠핑후기</li>
+					<li id="boardFree" class="menu">자유게시판</li>
 				</ul>
 			</div>
 			<div>

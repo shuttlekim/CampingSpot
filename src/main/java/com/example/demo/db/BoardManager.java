@@ -36,7 +36,7 @@ public class BoardManager {
 	// 캠핑장후기 작성시 캠핑장 명 불러오기(하지연)
 	public static List<String> findCampingSpotName(String mc_id){
 		SqlSession session = factory.openSession();
-		List<String> list = session.selectList("other.findCSName", mc_id);
+		List<String> list = session.selectList("board.findCSName", mc_id);
 		session.close();
 		return list;
 	}
