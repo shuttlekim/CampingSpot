@@ -99,6 +99,7 @@ public class MemberController {
 	        
 	        //String path = "/resources/static/resource/profile"; 
 	        String path = "C:\\Users\\YOGO\\git\\CampingSpot\\src\\main\\resources\\static\\resource\\profile";
+	        //String path = System.getProperty("/src/main/resources/static/resource/profile");
 			MultipartFile uploadFile = m.getUploadFile();
 			String fname = "";
 			 if(uploadFile != null) {
@@ -201,7 +202,7 @@ public class MemberController {
         mv.setMc_pwd(newPassword);
         mv.setSalt(check.getSalt());  
         
-        String path = "C:\\study\\STS_Study\\campingspot_0514\\src\\main\\resources\\static\\resource";
+        String path = "C:\\Users\\YOGO\\git\\CampingSpot\\src\\main\\resources\\static\\resource\\profile";
 		String oldFname = mv.getMc_fname();
         MultipartFile uploadFile = mv.getUploadFile();
 		String fname = null;
