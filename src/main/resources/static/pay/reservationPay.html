@@ -55,7 +55,7 @@ $(function(){
 	// test1234가 로그인했다고 치고
 	var price = total;
 	// 총 숙박비 'total'
-	
+	$("#total_price").html(price);
 	
 	// 회원의 포인트 불러오기
 	$.ajax("/selPoint",{data:loginData, async:false, success:function(re){
@@ -69,6 +69,7 @@ $(function(){
 			//사용할 포인트 입력한 값
 			$("#usePoint").append(putPoint);
 			//입력한 값 '포인트사용'에 뿌려주기
+			$("#total_price").empty();
 			$("#total_price").append(price - putPoint);
 			//결제할 총 가격(가격-사용할포인트)	
 			

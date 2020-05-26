@@ -98,6 +98,7 @@ public class ReservationController {
 					validDate1 = checkin;
 					map_search.remove("validDate");
 					map_search.put("validDate", validDate1);
+					System.out.println(" 등록하기전에 마지막 map_search확인!:"+map_search);
 					int re1 = dao.insertReserveSearch(map_search);
 					if(re1 > 0) {
 						System.out.println("유효일 ("+validDate1+")등록완료");
@@ -110,7 +111,7 @@ public class ReservationController {
 					map_search.put("validDate", validDate2);
 					int re2 = dao.insertReserveSearch(map_search);
 					if(re2 > 0) {
-						System.out.println("유효일 ("+validDate1+")등록완료");
+						System.out.println("유효일 ("+validDate2+")등록완료");
 					}
 				}
 				if(calDateDays >= 3) {
@@ -120,7 +121,7 @@ public class ReservationController {
 					map_search.put("validDate", validDate3);
 					int re3 = dao.insertReserveSearch(map_search);
 					if(re3 > 0) {
-						System.out.println("유효일 ("+validDate1+")등록완료");
+						System.out.println("유효일 ("+validDate3+")등록완료");
 					}
 				}
 				if(calDateDays == 4) {
@@ -130,7 +131,7 @@ public class ReservationController {
 					map_search.put("validDate", validDate4);
 					int re4 = dao.insertReserveSearch(map_search);
 					if(re4 > 0) {
-						System.out.println("유효일 ("+validDate1+")등록완료");
+						System.out.println("유효일 ("+validDate4+")등록완료");
 					}
 				}
 				
