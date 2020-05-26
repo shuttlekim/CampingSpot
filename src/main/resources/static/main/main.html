@@ -120,7 +120,7 @@
 						var url = festivalList[idx].url;
 						var title = festivalList[idx].title;
 						
-						location.href="detailFestival.html?title"+title+"&url="+url;
+						location.href="detailFestival.html?title="+encodeURI(title)+"&url="+url;
 						
 					})
 					
