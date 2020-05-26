@@ -18,9 +18,9 @@ import com.example.demo.vo.BoardVo;
 import com.google.gson.Gson;
 
 @RestController
-public class BoardController {
+public class BoardController { 
 
-	@Autowired
+	@Autowired 
 	private BoardDao dao;
 
 	public BoardDao getDao() {
