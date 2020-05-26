@@ -32,12 +32,18 @@
   height: 600px;
   //background-color: #00D8FF;
 }
-
-.bottom{
-
+#btnDeleteMember{
+	cursor: pointer;
 }
-
-
+#btnDeleteBusiness{
+	cursor: pointer;
+}
+#btnUpdateMember{
+	cursor: pointer;
+}
+#btnUpdateBusiness{
+	cursor: pointer;
+}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -160,13 +166,13 @@ $(function(){
 	<br>
 		
 	<div id="memberPanel">
-	<button onclick="location.href='updateMember.html'">회원정보 수정</button>
+	<button onclick="location.href='updateMember.html'" id="btnUpdateMember">회원정보 수정</button>
 	<!--  <button onclick="location.href='/login/listMember.html'">회원정보 보기</button> -->
 	<button id="btnDeleteMember">회원탈퇴</button>
 	</div>
 	
 	<div id="businessPanel">
-	<button onclick="location.href='updateBusiness.html'">회원정보 수정</button>
+	<button onclick="location.href='updateBusiness.html'" id="btnUpdateBusiness">회원정보 수정</button>
 	<!--  <button onclick="location.href='/login/listBusiness.html'">회원정보 보기</button> -->
 	<button id="btnDeleteBusiness">회원탈퇴</button>
 	</div>
