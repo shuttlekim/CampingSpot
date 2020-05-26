@@ -69,6 +69,9 @@ $(function(){
    var checkout = data3[1];
    var checkin = data4[1];
    
+   $("#input_chkin").attr("value", checkin);
+   $("#input_chkout").attr("value", checkout);
+   
    
     // cs_no = cs_no.substring(cs_no.indexOf("=")+1);
     // var str = location.serach.split(,)
@@ -236,12 +239,12 @@ $(function(){
       }}) // campingInsertWish ajax 종료
     });
     
-   $("#btn_reserva").click(function(){
+   $("#btn_reservation").click(function(){
       location.href = "reserveCampingSpot.html"
     });
    
    $("#btn_back").click(function(){
-      location.href = "campingSearchList2.html"
+      window.history.back();
    })
     
 
@@ -258,7 +261,11 @@ $(function(){
 		
 		<div id="detail">
 			<div id="room_selector">
-				<form id="form_selector"></form>
+				<form id="form_selector">
+					체크인&nbsp&nbsp<input type="date" id="input_chkin" name="checkin" readonly="readonly"><br>
+					체크아웃&nbsp&nbsp<input type="date" id="input_chkout" name="checkout"  readonly="readonly"><br>
+					룸 선택&nbsp&nbsp
+				</form>
 			</div>
 			
 			<div id="div_btns">
@@ -267,7 +274,7 @@ $(function(){
 		        <a href=#review><button class="btn" name="btn_review">리뷰 보러가기</button></a>
 		    </div>
 		 
-		   <div id="campingSpot_detail"></div>
+		   	<div id="campingSpot_detail"></div>
 		</div>
 		
 		<hr>
