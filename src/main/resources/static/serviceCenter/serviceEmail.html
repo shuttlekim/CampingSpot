@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+<style type="text/css">
+
+
+.vl {
+  border-right: 2px solid black;
+  height: 700px;
+  position: absolute;
+  left: 0%;
+  margin-right:3px;
+  top: 0;
+  background-color: #c8cdcf;
+}
+
+.ul{
+margin-top: -10%;
+}
+
+.li{
+text-decoration: none;
+}
+
+#service{
+margin-left: 15%;
+margin-top: 5%;
+}
+
+#txtA{
+margin-left: 7.3%;
+margin-top: -20px;
+}
+
+#sb{
+margin-left: 25%;
+margin-top: -20px;
+}
+
+
+#title{
+margin-left: 1.5%;
+margin-top:-20%;
+}
+
+#em{
+margin-left: 0.4%;
+}
+
+body {
+	background-image: url("serviceCenter/img/email2.jpg");
+	background-repeat:no-repeat;
+	background-size: 110%;
+}
+
+.div1{
+margin-left: 30%;
+margin-top: 5%;
+}
+
+</style>
+</head>
+<body>
+
+<div class="vl">
+<br>
+<h2>고객센터</h2>&nbsp;&nbsp;&nbsp;<br><br><br><br><br><br><br><br><br><br>
+<ul class="ul">
+	<li><a href="mainFAQ.html" class="li">FAQ</a></li>
+	<li><a href="serviceEmail.html" class="li">문의하기</a></li>
+</ul>
+</div>
+
+<form action="serviceEmail.do"><!-- serviceEmail.do는 아직 만들지않음. -->
+
+	<i class="far fa-edit fa-3x" id="service">문의하기</i>
+	<div class="div1">
+	<p>
+		<strong>제 목:&nbsp;</strong>
+		<input type="text" name="title" placeholder="제목 입력" id="title">
+	</p>
+	<p>
+		<strong>이메일:&nbsp;</strong>
+		<input type="text" name="email" placeholder="답장 받으실 이메일 입력" id="em">
+	</p>
+	<p>
+		<strong>내 용:</strong><br>
+		<textarea rows="10" cols="30" placeholder="문의내용 작성" id="txtA"></textarea>
+	</p>
+	<p>
+		<input type="submit" value="문의하기" id="sb">
+	</p>
+	
+	</div>
+</form>
+
+
+</body>
+</html>
