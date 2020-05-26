@@ -19,13 +19,14 @@ $(function(){
 	$("#headers").load("../main/header.html");
 	$("#footers").load("../main/footer.html");
 	
-	// 쿼리스트링으로 넘어온 데이터를 분류
-	console.log(location.search);
-	data1 = decodeURI(location.search).split("&room=");
+	// session으로 넘어온 데이터를 분류
+	var data0 = sessionStorage.getItem("reservation_data");
+	console.log(data0);
+	data1 = data0.split("&room=");
 	data2 = data1[0].split("&total=");
 	data3 = data2[0].split("&checkout=");
 	data4 = data3[0].split("&checkin=");
-	data5 = data4[0].split("?cs_no=");
+	data5 = data4[0].split("cs_no=");
 	
 	var cr_no = data1[1];
 	var total = data2[1];
@@ -48,6 +49,9 @@ $(function(){
 	
 	//----------------------------------------------------------
 	var memberId = "test1234";
+	/*추후
+	var memberId = sessionStorage.getItem("memberId");
+	*/
 	var loginData = {"mc_id":memberId}
 	// test1234가 로그인했다고 치고
 	var price = total;

@@ -53,6 +53,7 @@ public class ReservationController {
 	  @RequestMapping(value="/getRoomInfo.do", produces="application/json;charset=utf8")
 	  public String getRoomInfo(int cr_no) {
 		  String str = "";
+		  System.out.println("======= getRoomInfo 컨트롤러 작동중 =========");
 		  
 		  str = new Gson().toJson(dao.getRoomInfo(cr_no));
 		  
