@@ -22,6 +22,7 @@ public class BoardController {
 
 	@Autowired
 	private BoardDao dao;
+	
 
 	public BoardDao getDao() {
 		return dao;
