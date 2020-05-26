@@ -14,6 +14,16 @@ import com.example.demo.vo.DetailCampingSearchResultVo;
 public class ReservationDao {
 	
 	// 영현
+	public int insertReserveSearch(HashMap map) {
+		return DBManager.insertReserveSearch(map);
+	}
+	
+	// 영현 
+	public int insertReservation(HashMap map) {
+		return DBManager.insertReservation(map);
+	}
+	
+	// 영현
 	public CampingRoomVo getRoomInfo(int cr_no) {
 		return DBManager.getRoomInfo(cr_no);
 	}
