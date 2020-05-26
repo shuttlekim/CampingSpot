@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style type="text/css">
+body {
+    margin-top: 2%;
+    padding-left: 50px;
+    padding-right: 50px;
+    
+}
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	// mc_id당 후기쓸 캠핑장이름 불러오기
+	// 나중에 로그인이랑 합치면 로그인 후 세선유지시키고 memberID를 가져온다
+	var memberID = "test1234";
+	// test1234가 로그인했다고 치고
+	$("#mc_id").val(memberID);
+	// 로그인한 사람이 이용한 캠핑장이름 불러온다
+	$.ajax("/findCampingSpotName.do",{data:{"mc_id":memberID},success:function(cs_name){
+		$.each(cs_name,function(idx, cs){
+			//alert(cs)
+			$("#findSCName").append("<option value='[캠핑장명: "+cs+"]'>"+cs+"</option>");
+		});
+	}});
+	
+	$("#btnAdd").click(function(){
+		var review =  new FormData(document.getElementById("f"));
+		// 리뷰 게시판에 게시물을 등록한다
+		$.ajax("/insertBoard.do",{
+			data:review,
+			processData:false,
+			contentType:false,
+			type:"POST",
+			success:function(data){
+			alert(data)
+			window.location.href = "boardReview.html";
+		}});
+	});
+	
+	$("#btnList").click(function(){
+		location.href = "boardReview.html";
+	});
+});
+</script>
+</head>
+<body>
+	<h2>리뷰 등록</h2>
+	<hr>
+	<button id="btnList">목록보기</button>
+	<form id="f" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="b_del" value="2">
+		<table id="tb">
+			<tr>
+				<td>제목: <td>
+				<td>
+					<select name="b_title" id="findSCName">
+						<option value="">캠핑장선택</option>
+					</select>
+				<input type="text" name="b_title" id="b_title">	
+				</td>
+			</tr>
+			<tr>
+				<td>작성자: <td>
+				<td><input type="text" name="mc_id" id="mc_id" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<td>내용: <td>
+				<td><textarea rows="10" cols="40" name="b_contents" id="b_contents"></textarea></td>
+			</tr>
+			<tr>
+				<td>사진: <td>
+				<td><input type="file" name="uploadFile" id="uploadFile"></td>
+			</tr>
+		</table>
+	</form>
+	<button id="btnAdd">등록</button>
+	<button id="btnReset">취소</button>
+</body>
+</html>

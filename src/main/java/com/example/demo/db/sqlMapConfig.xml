@@ -16,6 +16,9 @@
    	<!-- 요한 -->
    	<typeAlias type="com.example.demo.vo.MemberVo" alias="memberVo"/>
     <typeAlias type="com.example.demo.vo.BusinessVo" alias="businessVo"/>
+    <!-- 지연 -->
+    <typeAlias type="com.example.demo.vo.BoardVo" alias="boardVo"/>
+	<typeAlias type="com.example.demo.vo.BoardReVo" alias="boardReVo"/>
   </typeAliases>
   <environments default="development">
     <environment id="development">
@@ -38,6 +41,9 @@
     <mapper resource="com/example/demo/db/myPageMapper.xml"/>
     <!-- 요한 -->
     <mapper resource="com/example/demo/db/MemberMapper.xml"/> 
-    <mapper resource="com/example/demo/db/BusinessMapper.xml"/>     
+    <mapper resource="com/example/demo/db/BusinessMapper.xml"/>   
+    <!-- 지연 -->  
+    <mapper resource="com/example/demo/db/BoardMapper.xml"/>
+    <mapper resource="com/example/demo/db/BoardReMapper.xml"/>
   </mappers>
 </configuration>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style type="text/css">
+body {
+    margin-top: 2%;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+ul{
+	overflow: hidden;
+}
+li{
+	float: left;
+	list-style: none;
+	padding: 5px;
+	cursor: pointer;
+}
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	// 캠핑장리뷰 상세보기
+	
+	// mc_id당 후기쓸 캠핑장이름 불러오기
+	// 나중에 로그인이랑 합치면 로그인 후 세선유지시키고 memberID를 가져온다
+	var memberID = "test1234";
+	// test1234가 로그인했다고 치고
+	$("#re_mc_id").val(memberID);
+	
+	//넘어온 글 번호 받기
+	var arr;
+	var b_no = document.location.href.split("="); 
+	var data = {"b_no":b_no[1]};
+	$.ajax("/detailBoard.do",{data:data, success:function(data){
+		var title = $("<span></span>").html(data.b_title);
+		var mc_id = $("<span></span>").html(data.mc_id);
+		var b_contents = $("<span></span>").html(data.b_contents);
+		var img = $("<img/>").attr("src","img/"+data.b_fname).attr("width",100).attr("onerror","this.style.display='none'");
+		$("#b_title").append(title);
+		$("#mc_id").append(mc_id);
+		$("#b_contents").append(b_contents);
+		$("#b_fname").append(img);
+	}});
+	
+	//글 삭제하기
+	$("#btnDelete").click(function(){
+		//이미 로그인한 상태이기 때문에 컨펌창만 열어두고 삭제를 바로 하기
+		var con = confirm("정말로 삭제하시겠습니까?");
+		if(con == true){
+			$.ajax("/deleteBoard.do",{data:{"mc_id":memberID,"b_no":b_no[1]},success:function(data){
+				alert(data);
+				location.href = "boardReview.html";
+			}});
+		}else{
+			alert("삭제실패");
+		}
+	});
+	
+	//글 수정하기는 페이지로 이동
+	$("#btnUpdate").click(function(){
+		location.href = "boardUpdateReview.html?b_no="+b_no[1];
+	});
+	
+	//리뷰글목록으로 이동
+	$("#btnList").click(function(){
+		location.href = "boardReview.html"
+	});
+	
+	//댓글목록 불러오기
+	var arrRe;
+	var reData = {"b_no":b_no[1],"br_del":2}
+	
+	//댓글 페이징처리
+	var totalRecord=0;
+	var totalPage=1;
+	var pageSIZE=20;
+	
+	function printPage(){
+		//페이지번호 출력
+		for(var i=1;i<=totalPage;i++){
+			var li = $("<li></li>").html(i);
+			$(li).click(function(){
+				var pageNUM = Number( $(this).text() );
+				printList(pageNUM);
+			});
+			$(".paging_button").append(li);	
+		}
+	}
+	
+	//pageNUM받아서 댓글목록에 원하는만큼 뿌려주기
+	function printList(pageNUM){
+		$("#reList").empty();
+		var start = (pageNUM-1) * pageSIZE + 1;
+		var end = start + pageSIZE-1;
+		if(end > totalRecord)
+		{
+			end = totalRecord;
+		}
+		for(var i=start; i<= end; i++){
+			var re = arrRe[i-1];
+			var idx = i-1;
+			var reMc_id = $("<span></span>").html(re.mc_id);
+			var reBr_contents = $("<span></span>").html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/"+re.br_contents);
+			var reBr_regdate = $("<span></span>").html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/"+re.br_regdate+"&nbsp;&nbsp;");
+			var reBtn = $("<button></button>").html("삭제").attr({
+				"idx":idx,
+				"no":re.br_no
+			});
+			var p = $("<p></p>").append(reMc_id,reBr_contents,reBr_regdate,reBtn);
+			$("#reList").append(p);
+			
+			//댓글삭제
+			$(reBtn).on("click",function(){
+				var idx = $(this).attr("idx");
+				var no = $(this).attr("no");
+				var reDelete = {"mc_id":memberID,"br_no":no};
+				$.ajax("/boardReDelete.do",{data:reDelete,success:function(re){
+					alert(re)
+					location.href = "boardDetailReview.html?b_no="+b_no[1];
+				}});
+			});
+		};
+	};
+	
+	// 댓글 리스트 불러오기
+	$.ajax("/boardReList.do",{data:reData,success:function(reData){
+		arrRe = reData;
+		totalRecord = arrRe.length;
+		totalPage = Math.ceil(totalRecord/ pageSIZE);
+		printPage();
+		printList(1);
+	}});
+	
+	//댓글쓰기
+	$("#re_btnAdd").click(function(){
+		$("#br_del").val(2);
+		$("#b_no").val(b_no[1]);
+		var re_data = $("#re_f").serialize();
+		$.ajax("/boardReInsert.do",{data:re_data,success:function(r){
+			location.href = "boardDetailReview.html?b_no="+b_no[1];
+		}});
+	});
+});
+</script>
+</head>
+<body>
+	<h2>캠핑장리뷰 상세 보기</h2>
+	<button id="btnList">목록보기</button>
+	<hr>
+	<table class="table table-list-search" id="tb">
+		<tr>
+			<td></td>
+			<td><div id="b_fname"></div></td>
+		</tr>
+		<tr>
+			<td>글제목:</td>
+			<td><span id="b_title"></span></td>
+		</tr>
+		<tr>
+			<td>작성자:</td>
+			<td><span id="mc_id"></span></td>
+		</tr>
+		<tr>
+			<td>글내용:</td>
+			<td><span id="b_contents"></span></td>
+		</tr>
+	</table>
+	<hr>
+	<button id="btnUpdate">수정</button>
+	<button id="btnDelete">삭제</button>
+	<hr>
+	
+	<h5>댓글목록</h5>
+	<hr>
+	<div id="reList"></div>
+	<ul class="paging_button"></ul>
+	<hr>
+	<h5>댓글쓰기</h5>
+	<form id="re_f">
+		<table>
+			<tr>
+				<td><input type="text" name="mc_id" id="re_mc_id" readonly="readonly"></td>
+				<td><input type="text" name="br_contents" id="br_contents"></td>
+				<td><input type="hidden" name="b_no" id="b_no"></td>
+				<td><input type="hidden" name="br_del" id="br_del"></td>
+			</tr>
+		</table>
+	</form>
+	<button id="re_btnAdd">등록</button>
+</body>
+</html>

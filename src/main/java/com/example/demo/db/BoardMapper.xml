@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+  <select id="selectAll" resultType="boardVo">
+    select b_no, b_title, mc_id, b_regdate, b_hit, b_del from board where b_del = #{b_del} 
+    <if test="keyword != null and keyword != ''">
+	    and ${searchColumn} like '%' || #{keyword}  || '%'
+	</if>
+    order by b_regdate desc 
+  </select>
+ 
+  
+  <insert id="insert">
+	insert into board values(seq_board.nextval,#{b_title},#{mc_id},sysdate,0,#{b_contents},#{b_fname},#{b_del})
+  </insert>
+  
+  <update id="updateHit">
+  	update board set b_hit = b_hit + 1 where b_no = #{b_no}
+  </update>
+  
+  <select id="detail" resultType="boardVo">
+  	select * from board where b_no = #{b_no}
+  </select>
+
+  <delete id="delete">
+  	delete board where b_no = #{b_no} and mc_id = #{mc_id}
+  </delete>
+  
+  <update id="update">
+  	update board set b_title = #{b_title}, b_contents = #{b_contents}, b_fname = #{b_fname} where b_no = #{b_no}
+  </update>
+</mapper>

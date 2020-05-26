@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style type="text/css">
+body {
+    margin-top: 2%;
+    padding-left: 50px;
+    padding-right: 50px;
+    
+}
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var mc_id = "admin01";
+	// 로그인한 자의 id를 get세션으로 받아오면 됨
+	$("#mc_id").val(mc_id);
+	
+	$("#btnAdd").click(function(){
+		var notice =  new FormData(document.getElementById("f"));
+		$.ajax("/insertBoard.do",{
+			data:notice,
+			processData:false,
+			contentType:false,
+			type:"POST",
+			success:function(data){
+			alert(data)
+			window.location.href = "boardNotice.html";
+		}});
+		
+	});
+	$("#btnReset").click(function(){
+		$("#b_title").val("");
+		$("#mc_id").val("");
+		$("#b_contents").val("");
+		$("#b_fname").val("");
+	});
+	
+	$("#btnList").click(function(){
+		location.href = "boardNotice.html";
+	})
+});
+</script>
+</head>
+<body>
+	<h2>공지사항 등록</h2>
+	<hr>
+	<button id="btnList">목록보기</button>
+	<form method="post" id="f" enctype="multipart/form-data">
+	<input type="hidden" name="b_del" value="0">
+		<table id="tb">
+			<tr>
+				<td>제목: <td>
+				<td><input type="text" name="b_title" id="b_title"></td>
+			</tr>
+			<tr>
+				<td>작성자: <td>
+				<td><input type="text" name="mc_id" id="mc_id" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<td>내용: <td>
+				<td><textarea rows="10" cols="40" name="b_contents" id="b_contents"></textarea></td>
+			</tr>
+			<tr>
+				<td>사진: <td>
+				<td><input type="file" name="uploadFile" id="uploadFile"></td>
+			</tr>
+		</table>
+	</form>
+	<button id="btnAdd">등록</button>
+	<button id="btnReset">취소</button>
+</body>
+</html>

@@ -32,4 +32,9 @@ public class ReservationDao {
 	public DetailCampingSearchResultVo detailCampingSearchResult(HashMap map) {
 		return DBManager.detailCampingSearchResult(map);
 	}
+	
+	// 지연 :로그인한 회원의 포인트 가져오기
+	public int selPoint(String mc_id) {
+		return DBManager.selPoint(mc_id);
+	}
 }

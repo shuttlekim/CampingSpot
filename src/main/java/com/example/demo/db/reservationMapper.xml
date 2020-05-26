@@ -148,4 +148,9 @@
     	or cs_addr_head like '%' || #{keyword} || '%' )
     </if>
   </select>
+  
+  <!-- 지연 :로그인한 회원의 포인트 가져오기 -->
+  <select id="selPoint" resultType="java.lang.Integer">
+    select mc_point from member_customer where mc_id = #{mc_id}
+  </select>
 </mapper>

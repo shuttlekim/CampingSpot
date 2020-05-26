@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style type="text/css">
+body {
+    margin-top: 2%;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+ul{
+	overflow: hidden;
+}
+li{
+	float: left;
+	list-style: none;
+	padding: 5px;
+	cursor: pointer;
+}
+a{ 
+	text-decoration:none;
+	display: block; 
+	cursor: pointer;
+} 
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var arr;
+	//alert("ok")
+	//var memberID = "test1234";
+	var memberID = "admin01";
+	// 로그인한 자의 id를 세션으로 받아오면 됨
+	
+	var totalRecord=0;
+	var totalPage=1;
+	var pageSIZE=5;
+	
+	function printPage(){
+		//페이지번호 출력
+		for(var i=1;i<=totalPage;i++){
+			var li = $("<li></li>").html(i);
+			$(li).click(function(){
+				var pageNUM = Number( $(this).text() );
+				printList(pageNUM);
+			});
+			$(".paging_button").append(li);	
+		};
+	};
+	
+	function printList(pageNUM){
+		//$("#tb").empty();
+		$("#tb").html("<th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th>");
+		var start = (pageNUM-1) * pageSIZE + 1;
+		var end = start + pageSIZE-1;
+		if(end > totalRecord)
+		{
+			end = totalRecord;
+		}
+		for(var i=start; i<= end; i++){
+			var n = arr[i-1];
+			var tr = $("<tr></tr>");
+			var a = $("<a href='boardDetailNotice.html?b_no="+n.b_no+"'></a>").html(n.b_title);
+			var title = $("<td></td>").html(a);
+			var mc_id = $("<td></td>").html(n.mc_id);
+			var regdate = $("<td></td>").html(n.b_regdate);
+			var hit = $("<td></td>").html(n.b_hit);
+			$(tr).append(title,mc_id,regdate,hit);
+			$("#tb").append(tr);
+		}
+	};
+	
+	var b_del = {"b_del":0};
+	//공지사항페이지일때 b_del=0을 전달해줌
+	$.ajax("/listBoard.do",{data:b_del,success:function(data){
+		arr = data;
+		totalRecord = arr.length;
+		totalPage = Math.ceil(totalRecord/ pageSIZE);
+		$("#totalRecord").append(totalRecord);
+		
+		printPage();
+		printList(1);
+		
+	}});
+	
+	// 검색할때 키워드랑 컬럼명 전달해줘서 다시 리스트 불러오기
+	$("#btnSearch").click(function(){
+		searchColumn = $("#searchColumn").val();
+		keyword = $('#keyword').val(); 
+		var searchData = {"b_del":"0","searchColumn":searchColumn,"keyword":keyword}; 
+		$.ajax({url:"/listBoard.do",data:searchData,success:function(data){
+			arr = data;
+			totalRecord = arr.length;
+			totalPage = Math.ceil(totalRecord/ pageSIZE);
+			$("#totalRecord").append(totalRecord);
+				
+			printPage();
+			printList(1);	
+			$(".paging_button").empty();
+		}});
+	});
+	
+	$("#btnAdd").click(function(){
+		if(memberID == 'admin01'){
+		//일단 관리자가 1명이라서 이렇게 처리함...
+			location.href = "boardInsertNotice.html"
+		}else{
+			alert("관리자 로그인 해주세요.");
+		}
+	});
+	
+	$("#headers").load("/main/header.html");	
+
+	$("#footers").load("/main/footer.html");
+	
+});
+</script>
+</head>
+<body>
+	<div id="headers"></div>
+	
+	<h2>공지사항 목록</h2> 총 게시글: <span id="totalRecord"></span>
+	<hr>
+	<button id="btnAdd">글쓰기</button>
+	<!-- 관리자가 아니면 글을 쓸 수 없음-->
+	<form id="searchF">
+		<input type="hidden" name="b_del" value="2">
+		<select name="searchColumn" id="searchColumn">
+			<option value="">검색조건</option>
+			<option value="b_title">제목</option>
+			<option value="mc_id">이름</option>
+		</select>:<input type="text" name="keyword" id="keyword">
+	</form>
+	<button id="btnSearch">검색</button>
+	<hr>
+	
+	<table class="table table-list-search" id="tb">
+	</table>
+	<div class="container">
+		<ul class="paging_button"></ul>
+	</div>
+	<hr>
+	
+	<div id="footers"></div>
+</body>
+</html>

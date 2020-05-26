@@ -107,6 +107,15 @@ public class DBManager {
 	      return re;
 	}
 	
+	// 지연 :로그인한 회원의 포인트 가져오기
+	public static int selPoint(String mc_id) {
+		SqlSession session = factory.openSession();
+		int re = session.selectOne("rservation.selPoint", mc_id);
+		session.close();
+		//System.out.println("매니저동작함: 포인트는?" + re);
+		return re;
+	}
+	
 }
 
 
