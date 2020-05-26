@@ -22,6 +22,33 @@ public class ReservationController {
 		this.dao = dao;
 	}
 	
+	  //캠핑예약 등록
+	  @RequestMapping(value="/insertReservation.do", produces="application/json;charset=utf8")
+	  public String insertReservation(String mc_id, int cr_no, String checkout, String checkin, int price, String payment) {
+		  String str = "";
+		  System.out.println("======== 예약추가 컨트롤러 작동 ! ===========");
+		  System.out.println("회원정보: "+mc_id);
+		  System.out.println("캠핑룸번호: "+cr_no);
+		  System.out.println("체크인: "+checkin);
+		  System.out.println("체크아웃: "+checkout);
+		  System.out.println("가격: "+price);
+		  System.out.println("지불방법: "+payment);
+		  
+		  HashMap map = new HashMap();
+		  map.put("mc_id", mc_id);
+		  map.put("cr_no", cr_no);
+		  map.put("checkin", checkin);
+		  map.put("checkout", checkout);
+		  map.put("price", price);
+		  map.put("payment", payment);
+		  
+		  
+		  
+		  
+		  
+		  return str;
+	  }
+	
 	  //캠핑룸 번호로 캠핑룸정보 요청
 	  @RequestMapping(value="/getRoomInfo.do", produces="application/json;charset=utf8")
 	  public String getRoomInfo(int cr_no) {

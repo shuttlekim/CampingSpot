@@ -32,6 +32,22 @@ public class DBManager {
 		}
 	}
 	
+	// 영현) 예약 검색 등록
+	public static int insertReserveSearch(HashMap map) {
+		SqlSession session = factory.openSession(true);
+		int re = session.insert("reservation.insertReserveSearch", map);
+		session.close();
+		return re;
+	}
+	
+	// 영현) 예약 등록
+	public static int insertReservation(HashMap map) {
+		SqlSession session = factory.openSession(true);
+		int re = session.insert("reservation.insertReservation", map);
+		session.close();
+		return re;
+	}
+	
 	// 영현) 캠핑룸 번호로 캠핑룸정보 요청
 	public static CampingRoomVo getRoomInfo(int cr_no) {
 		SqlSession session = factory.openSession();
