@@ -56,8 +56,11 @@ $(function(){
 	
 	// mc_id당 후기쓸 캠핑장이름 불러오기
 	// 나중에 로그인이랑 합치면 로그인 후 세선유지시키고 memberID를 가져온다
-	var memberID = "test1234";
-	// test1234가 로그인했다고 치고
+	var memberID = sessionStorage.getItem("memberId");
+	if(sessionStorage.getItem("memberId") == null){
+		alert("로그인 페이지로 이동합니다.")
+		location.href = "../login/login.html";
+	}
 	$("#re_mc_id").val(memberID);
 	
 	//넘어온 글 번호 받기
@@ -183,7 +186,7 @@ $(function(){
 <body>
 	<div id="headers"></div>
 	<br><br>
-	<h2>캠핑장리뷰 상세 보기</h2>
+	<h2>캠핑후기 상세 보기</h2>
 	<br>
 	<div class="container">
 	<hr>
