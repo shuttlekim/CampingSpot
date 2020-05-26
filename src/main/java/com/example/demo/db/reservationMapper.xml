@@ -6,7 +6,7 @@
     
   <!-- 영현) 예약검색등록 -->
   <!-- <insert id="insertReserveSearch">
-  	insert into reserve_search values(reserve_search_seq, #{r_no), #{validDate}, #{cr_no}, #{cs_no}, #{cr_type})
+  	insert into reserve_search values(reserve_search_seq, #{r_no}, #{validDate}, #{cr_no}, #{cs_no}, #{cr_type})
   </insert> -->
   
   <!-- 영현) 예약등록 -->
