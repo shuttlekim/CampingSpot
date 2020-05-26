@@ -11,14 +11,7 @@ body {
     margin-top: 2%;
     padding-left: 50px;
     padding-right: 50px;
-}
-ul{
-	overflow: hidden;
-}
-li{
-	list-style: none;
-	padding: 5px;
-	cursor: pointer;
+    vertical-align: middle;
 }
 a{ 
 	text-decoration:none;
@@ -27,6 +20,10 @@ a{
 } 
 .paging_button{
 	text-align: center;
+	overflow: hidden;
+	list-style: none;
+	padding: 5px;
+	cursor: pointer;
 }
 #container{
 	width: 1000px;
@@ -45,7 +42,8 @@ h2{
 	left: 1130px;
 }
 .btn2{
-	
+	position: relative;
+}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
@@ -136,7 +134,7 @@ $(function(){
 <body>
 	<div id="headers"></div>
 	<br><br>
-	<h2>Ä·ÇÎÀå¸®ºä ¸ñ·Ï</h2> 
+	<h2>Ä·ÇÎÈÄ±â ¸ñ·Ï</h2> 
 	
 	<div id="container">
 	ÃÑ °Ô½Ã±Û: <span id="totalRecord"></span>

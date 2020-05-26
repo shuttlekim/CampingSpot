@@ -54,7 +54,11 @@ h2{
 $(function(){
 	// 공지사항 상세보기
 	
-	var memberID = "admin01";
+	var memberID = sessionStorage.getItem("memberId");
+	if(sessionStorage.getItem("memberId") == null){
+		alert("로그인 페이지로 이동합니다.")
+		location.href = "../login/login.html";
+	}
 	//로그인한자 세선유지해주기
 	
 	//넘어온 글 번호 받기
