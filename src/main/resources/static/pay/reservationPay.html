@@ -16,6 +16,12 @@ li{
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
+	
+	$("#headers").load("../main/header.html");
+	$("#footers").load("../main/footer.html");
+	
+	
+	//----------------------------------------------------------
 	var memberId = "test1234";
 	var loginData = {"mc_id":memberId}
 	// test1234가 로그인했다고 치고
@@ -68,26 +74,31 @@ $(function(){
 </script>
 </head>
 <body>
-	<h2>결제하기</h2>
-	<hr>
-	<span>보유포인트: <span id="point"></span>원</span><input type="number" id="putPoint"></input><button id="applyPoint">적용하기</button><br><br><hr>
-	<!-- 로그인한 아이디가 가지고 있는 포인트 id="totalPoint"에먼저 뿌려준다음 가격 입력하고 적용하기 누르면 총 가격-포인트=결제할금액 알려준다 -->
-	
-	<h4 id="total_price">결제할 금액:</h4>
-	<span id="price">총가격: </span><br>
-	<span id="uesPoint">포인트 사용: </span><br><hr>
-	
-	<ul>
-		<li>
-			<input type="radio" name="r_payment" value="무통장입금">
-			<label for="무통장입금">무통장입금</label><br>
-		</li>
-		<li>
-			<input type="radio" name="r_payment" value="카드결제">
-			<label for="카드결제">카드결제</label><br>
-		</li>
-	</ul>
-	<button id="finalPay">결제하기</button>
-	<!-- 결제하기 누르면 먼저 예약이가능한지 체크한 후에 reservation에 insert한다 -->
+	<div id="headers"></div>
+	<div class="body-wrap">
+		<hr>
+		<h2>결제하기</h2>
+		<hr>
+		<span>보유포인트: <span id="point"></span>원</span><input type="number" id="putPoint"></input><button id="applyPoint">적용하기</button><br><br><hr>
+		<!-- 로그인한 아이디가 가지고 있는 포인트 id="totalPoint"에먼저 뿌려준다음 가격 입력하고 적용하기 누르면 총 가격-포인트=결제할금액 알려준다 -->
+		
+		<h4 id="total_price">결제할 금액:</h4>
+		<span id="price">총가격: </span><br>
+		<span id="uesPoint">포인트 사용: </span><br><hr>
+		
+		<ul>
+			<li>
+				<input type="radio" name="r_payment" value="무통장입금">
+				<label for="무통장입금">무통장입금</label><br>
+			</li>
+			<li>
+				<input type="radio" name="r_payment" value="카드결제">
+				<label for="카드결제">카드결제</label><br>
+			</li>
+		</ul>
+		<button id="finalPay">결제하기</button>
+		<!-- 결제하기 누르면 먼저 예약이가능한지 체크한 후에 reservation에 insert한다 -->
+	</div>
+	<div id="footers"></div>
 </body>
 </html>
