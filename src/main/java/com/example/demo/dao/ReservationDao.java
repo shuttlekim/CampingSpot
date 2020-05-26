@@ -14,6 +14,11 @@ import com.example.demo.vo.DetailCampingSearchResultVo;
 public class ReservationDao {
 	
 	// 영현
+	public CampingRoomVo getRoomInfo(int cr_no) {
+		return DBManager.getRoomInfo(cr_no);
+	}
+	
+	// 영현
 	public List<CampingRoomVo> ingRoom(HashMap map){
 		return DBManager.ingRoom(map);
 	}

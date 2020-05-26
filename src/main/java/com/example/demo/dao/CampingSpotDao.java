@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.db.DBManager;
 import com.example.demo.vo.CampingReviewVo;
 import com.example.demo.vo.CampingSearchResultVo;
+import com.example.demo.vo.CampingSpotVo;
 import com.example.demo.vo.CampingWishVo;
 import com.example.demo.vo.DetailCampingSearchResultVo;
 
@@ -24,6 +25,10 @@ public class CampingSpotDao {
    
    public int insertWish(CampingWishVo w) {
       return DBManager.insertWish(w);
+   }
+   
+   public CampingSpotVo getCampingInfo(int cs_no) {
+	   return DBManager.getCampingInfo(cs_no);
    }
 
 }

@@ -21,6 +21,16 @@ public class ReservationController {
 	public void setDao(ReservationDao dao) {
 		this.dao = dao;
 	}
+	
+	  //캠핑룸 번호로 캠핑룸정보 요청
+	  @RequestMapping(value="/getRoomInfo.do", produces="application/json;charset=utf8")
+	  public String getRoomInfo(int cr_no) {
+		  String str = "";
+		  
+		  str = new Gson().toJson(dao.getRoomInfo(cr_no));
+		  
+		  return str;
+	  }
 
 	  //캠핑장 예약 상세페이지 요청
 	  @RequestMapping(value="/detailCampingSpot.do", produces = "application/json;charset=utf8")

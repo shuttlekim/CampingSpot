@@ -26,6 +26,16 @@ public class CampingSpotController {
    public void setDao(CampingSpotDao dao) {
 	   this.dao = dao;
    }
+   
+   // 캠핑장번호로 캠핑장정보 요청
+   @RequestMapping(value="/getCampingInfo.do", produces = "application/json;charset=UTF-8")
+   public String getCampingInfo(int cs_no) {
+	   System.out.println("====== getCampingInfo 컨트롤러 작동중 =======");
+	   String str = "";
+	   
+	   str = new Gson().toJson(dao.getCampingInfo(cs_no));
+	   return str;
+   }
 
    // 캠핑장 예약 상세페이지 리뷰목록 요청
    @RequestMapping(value="/campingReviewList.do", produces = "application/json;charset=utf8")

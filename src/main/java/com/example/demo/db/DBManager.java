@@ -31,6 +31,14 @@ public class DBManager {
 			// TODO: handle exception
 		}
 	}
+	
+	// 영현) 캠핑룸 번호로 캠핑룸정보 요청
+	public static CampingRoomVo getRoomInfo(int cr_no) {
+		SqlSession session = factory.openSession();
+		CampingRoomVo c = session.selectOne("reservation.getRoomInfo", cr_no);
+		session.close();
+		return c;
+	}
 	// 영현) 체크인 체크아웃 사이에 사용중인 룸을 조회
 	public static List<CampingRoomVo> ingRoom(HashMap map){
 		SqlSession session = factory.openSession();
@@ -80,16 +88,13 @@ public class DBManager {
 		return list;
 	}
 	
-	// 영현) 캠핑장번호로 캠핑스팟 테이블 정보 불러오기 
-	/*
-	public static CampingSpotVo detailCampingSpot(int cs_no){
+	// 영현) 캠핑장번호로 캠핑장정보 호출
+	public static CampingSpotVo getCampingInfo(int cs_no) {
 		SqlSession session = factory.openSession();
-		CampingSpotVo c = session.selectOne("campingSpot.detailCampingSpot", cs_no);
+		CampingSpotVo c = session.selectOne("campingSpot.getCampingInfo", cs_no);
 		session.close();
 		return c;
 	}
-	위에 detailCampingSearchResult 메소드로 대체됨, 혹시 추후 필요성여부에 의해 남김
-	*/
 	// 근희) 리뷰리스트 호출
 	public static List<CampingReviewVo> campingReviewList(int cs_no){
 	      SqlSession session = factory.openSession();

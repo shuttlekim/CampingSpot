@@ -7,6 +7,10 @@
   <select id="ingRoom" resultType="campingRoomVo">
   	select avg(cr_no) cr_no from reserve_search where rs_date >= to_date(#{checkin}, 'yyyy-mm-dd') and rs_date <![CDATA[<]]> to_date(#{checkout}, 'yyyy-mm-dd') and cs_no=#{cs_no} and cr_type=#{campingType} group by cr_no
   </select>
+  
+  <select id="getRoomInfo" resultType="campingRoomVo">
+  	select * from camping_room where cr_no=#{cr_no}
+  </select>
 
   <select id="selectorRoom" resultType="campingRoomVo">
   	select * from camping_room where cs_no=#{cs_no} and cr_type=#{campingType}
