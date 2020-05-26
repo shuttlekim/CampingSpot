@@ -98,7 +98,7 @@ public class MemberController {
 	        
 	        
 	        //String path = "/resources/static/resource/profile";
-	        String path = "C:\\Users\\YOGO\\git\\CampingSpot\\src\\main\\resources\\static\\resource\\profile";
+	        String path = "C:\\study\\STS_Study\\campingspot_0514\\src\\main\\resources\\static\\resource";
 			MultipartFile uploadFile = m.getUploadFile();
 			String fname = "";
 			 if(uploadFile != null) {
@@ -265,13 +265,13 @@ public class MemberController {
 	        dao.insertMember(n);
 	        System.out.println("insertMember 작동");
 	        String memberId = dao.sessionMember(n.getMc_id()).getMc_id();
-	        memberId = n.getMc_name();
+	        //memberId = n.getMc_name();
 	        System.out.println("memberId : " + memberId);
 	        str = memberId;	        
 	        System.out.println("회원 가입 후 str : " + str);
-	        System.out.println("MemberVo:"+smout);
-	        smout = dao.sessionMember(n.getMc_id());
-	        str = smout.getMc_name();
+	        //System.out.println("MemberVo:"+smout);
+	        //smout = dao.sessionMember(n.getMc_id());
+	        //str = smout.getMc_name();
 		}
 		
 		return str;

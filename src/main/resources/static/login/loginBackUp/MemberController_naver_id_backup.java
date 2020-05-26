@@ -98,7 +98,7 @@ public class MemberController {
 	        
 	        
 	        //String path = "/resources/static/resource/profile";
-	        String path = "C:\\Users\\YOGO\\git\\CampingSpot\\src\\main\\resources\\static\\resource\\profile";
+	        String path = "C:\\study\\STS_Study\\campingspot_0514\\src\\main\\resources\\static\\resource";
 			MultipartFile uploadFile = m.getUploadFile();
 			String fname = "";
 			 if(uploadFile != null) {
