@@ -49,10 +49,11 @@ h2{
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	// mc_id당 후기쓸 캠핑장이름 불러오기
-	// 나중에 로그인이랑 합치면 로그인 후 세선유지시키고 memberID를 가져온다
-	var memberID = "test1234";
-	// test1234가 로그인했다고 치고
+	var memberID = sessionStorage.getItem("memberId");
+	if(sessionStorage.getItem("memberId") == null){
+		alert("로그인 페이지로 이동합니다.")
+		location.href = "../login/login.html";
+	}
 	$("#mc_id").val(memberID);
 	// 로그인한 사람이 이용한 캠핑장이름 불러온다
 	$.ajax("/findCampingSpotName.do",{data:{"mc_id":memberID},success:function(cs_name){

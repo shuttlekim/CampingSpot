@@ -55,7 +55,11 @@ $(function(){
 	//alert(b_no[1])
 	var data = {"b_no":b_no[1]};
 	
-	var memberID = "tiger";
+	var memberID = sessionStorage.getItem("memberId");
+	if(sessionStorage.getItem("memberId") == null){
+		alert("로그인 페이지로 이동합니다.")
+		location.href = "../login/login.html";
+	}
 	
 	//alert(b_no); //글번호는 나옴
 	

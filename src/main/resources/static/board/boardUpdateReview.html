@@ -54,7 +54,11 @@ $(function(){
 	var b_no = document.location.href.split("="); 
 	var data = {"b_no":b_no[1]};
 	
-	var memberID = "test1234";
+	var memberID = sessionStorage.getItem("memberId");
+	if(sessionStorage.getItem("memberId") == null){
+		alert("로그인 페이지로 이동합니다.")
+		location.href = "../login/login.html";
+	}
 	$("#mc_id").val(memberID);
 	//alert(b_no); //글번호는 나옴
 	
