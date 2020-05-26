@@ -7,7 +7,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 @SpringBootApplication
 public class CampingSpotMainApplication {
-
+ 
 	@Bean
     public CommonsMultipartResolver multipartResolver() {
         return new CommonsMultipartResolver();

@@ -248,11 +248,12 @@ public class MemberController {
 		System.out.println("input_id:" + n.getMc_id() );
 		String str = "";
 		MemberVo smout = dao.sessionMember(n.getMc_id());
+		//MemberVo smout = dao.sessionMember(n.getMc_name());
 		System.out.println("MemberController 메시지 : 불러온 smout 의 상태 " + smout);
 			
 		if(smout != null) {
-			str = smout.getMc_id();
-			//str = smout.getMc_name();
+			//str = smout.getMc_id();
+			str = smout.getMc_name();
 			System.out.println("str : " + str);
 		}else {
 			str = null;
