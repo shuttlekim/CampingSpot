@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -43,10 +46,105 @@ public class ReservationController {
 		  map.put("price", price);
 		  map.put("payment", payment);
 		  
-		  //int result1 = dao.insertReservation(map);
+		  int result1 = dao.insertReservation(map);
+		  if(result1 > 0) {
+			  System.out.println("예약테이블에 등록:"+map);
+			  
+			  int r_no = dao.callReservationKey() - 1; // 시퀀스의 nextval 값이므로 무조건 -1 해준다.
+			  int cs_no = dao.getRoomInfo(cr_no).getCs_no();
+			  String cr_type = dao.getRoomInfo(cr_no).getCr_type();
+			  
+			  	// 예약검색테이블에 넣기위한 map
+			  	HashMap map_search = new HashMap();
+			  	map_search.put("r_no", r_no);
+			  	map_search.put("cr_no", cr_no);
+			  	map_search.put("cs_no", cs_no);
+			  	map_search.put("cr_type", cr_type);
+			  	
+			  	
+			  	// 유효일자를 구하기위한 코드
+			  	Date checkin_date = new Date();
+				Date checkout_date = new Date();
+				//체크인, 체크아웃 차이일수 : 숙박일수
+				long calDateDays = 0;
+				
+				SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+				try {
+				
+					checkin_date = transFormat.parse(checkin);
+					checkout_date = transFormat.parse(checkout);
+					
+					long calDate = checkout_date.getTime() - checkin_date.getTime();
+					calDateDays = calDate / (24*60*60*1000);
+		
+					System.out.println("차이 일수 :" +calDateDays);
+					
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+				
+				//유효날짜를 구한다.
+				System.out.println("-------유효 일수-------");
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(checkin_date);
+				
+				String validDate1 = null;
+				String validDate2 = null;
+				String validDate3 = null;
+				String validDate4 = null;
+				
+				//체크인정보가 null 이 아니고, ""(공백) 이 아니라면 유효일1에 정보를 넣는다.
+				if((checkin!=null)&&(!checkin.equals(""))) {
+					validDate1 = checkin;
+					map_search.remove("validDate");
+					map_search.put("validDate", validDate1);
+					int re1 = dao.insertReserveSearch(map_search);
+					if(re1 > 0) {
+						System.out.println("유효일 ("+validDate1+")등록완료");
+					}
+				}
+				if(calDateDays >= 2) {
+					cal.add(Calendar.DATE,	1);
+					validDate2 = transFormat.format(cal.getTime());
+					map_search.remove("validDate");
+					map_search.put("validDate", validDate2);
+					int re2 = dao.insertReserveSearch(map_search);
+					if(re2 > 0) {
+						System.out.println("유효일 ("+validDate1+")등록완료");
+					}
+				}
+				if(calDateDays >= 3) {
+					cal.add(Calendar.DATE,	1);
+					validDate3 = transFormat.format(cal.getTime());
+					map_search.remove("validDate");
+					map_search.put("validDate", validDate3);
+					int re3 = dao.insertReserveSearch(map_search);
+					if(re3 > 0) {
+						System.out.println("유효일 ("+validDate1+")등록완료");
+					}
+				}
+				if(calDateDays == 4) {
+					cal.add(Calendar.DATE,	1);
+					validDate4 = transFormat.format(cal.getTime());
+					map_search.remove("validDate");
+					map_search.put("validDate", validDate4);
+					int re4 = dao.insertReserveSearch(map_search);
+					if(re4 > 0) {
+						System.out.println("유효일 ("+validDate1+")등록완료");
+					}
+				}
+				
+				
+				System.out.println("유효일수 1:"+validDate1);
+				System.out.println("유효일수 2:"+validDate2);
+				System.out.println("유효일수 3:"+validDate3);
+				System.out.println("유효일수 4:"+validDate4);
+		  }else {
+			  System.out.println("예약테이블 등록실패");
+		  }
 		  
-		  // 예약검색테이블에 넣기위한 map
-		  HashMap map_search = new HashMap();
+		  
+		  
 		  
 		  
 		  
