@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+  <select id="selectAll" resultType="boardVo">
+    select b_no, b_title, mc_id, b_regdate, b_hit, b_del from board where b_del = #{b_del} 
+    <if test="keyword != null and keyword != ''">
+	    and ${searchColumn} like '%' || #{keyword}  || '%'
+	</if>
+    order by b_regdate desc 
+  </select>
+ 
+  
+  <insert id="insert">
+	insert into board values(seq_board.nextval,#{b_title},#{mc_id},sysdate,0,#{b_contents},#{b_fname},#{b_del})
+  </insert>
+  
+  <update id="updateHit">
+  	update board set b_hit = b_hit + 1 where b_no = #{b_no}
+  </update>
+  
+  <select id="detail" resultType="boardVo">
+  	select * from board where b_no = #{b_no}
+  </select>
+
+  <delete id="delete">
+  	delete board where b_no = #{b_no} and mc_id = #{mc_id}
+  </delete>
+  
+  <update id="update">
+  	update board set b_title = #{b_title}, b_contents = #{b_contents}, b_fname = #{b_fname} where b_no = #{b_no}
+  </update>
+  
+   <select id="finalcheck" resultType="java.lang.Integer">
+   <!-- 결과가 0이면 예약가능, 1이상이면 예약불가능 -->
+  	select count(*) from reserve_search
+  	where cs.cr_no = #{cr_no} 
+  	and rs_date between #{체크인날짜입력값} and #{체크아웃날짜입력값-1}
+  </select>
+  
+   <!-- <select id="find_cs_name" resultType="csRVo"> --> 
+  <select id="findCSName" resultType="java.lang.String">
+ 	<![CDATA[
+  	select distinct cs.cs_name from reservation res, camping_room cr, camping_spot cs
+	where cs.cs_no = cr.cs_no and cr.cr_no = res.cr_no 
+	and res.r_no in (select r_no from (select res.r_no, res.r_checkout from reservation res, camping_room cr, camping_spot cs
+	where cs.cs_no = cr.cs_no and cr.cr_no = res.cr_no
+	and res.mc_id = #{mc_id}) 
+	where to_char(r_checkout, 'YY/MM/DD') < to_char(sysdate, 'YY/MM/DD'))
+	]]>
+  </select>
+</mapper>

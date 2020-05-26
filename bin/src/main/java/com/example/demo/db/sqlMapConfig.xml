@@ -9,11 +9,25 @@
   	<typeAlias type="com.example.demo.vo.ReserveSearchVo" alias="reserveSearchVo" />
   	<typeAlias type="com.example.demo.vo.CampingSpotVo" alias="campingSpotVo" />
   	<typeAlias type="com.example.demo.vo.CampingSearchResultVo" alias="campingSearchResultVo" />
+  	<typeAlias type="com.example.demo.vo.DetailCampingSearchResultVo" alias="detailCampingSearchResultVo" />
+  	<typeAlias type="com.example.demo.vo.CampingRoomVo" alias="campingRoomVo" />
    	<!-- 근희 -->
    	<typeAlias type="com.example.demo.vo.CampingReviewVo" alias="campingreviewVo" />
    	<!-- 요한 -->
    	<typeAlias type="com.example.demo.vo.MemberVo" alias="memberVo"/>
     <typeAlias type="com.example.demo.vo.BusinessVo" alias="businessVo"/>
+    <!-- 지연 -->
+    <typeAlias type="com.example.demo.vo.BoardVo" alias="boardVo"/>
+	<typeAlias type="com.example.demo.vo.BoardReVo" alias="boardReVo"/>
+    <!-- 혜선-->
+	<typeAlias type="com.example.demo.vo.AdminLogVo" alias="adminlogvo"/>
+	<typeAlias type="com.example.demo.vo.AdminNoticeVo" alias="adminnoticevo"/>
+	<typeAlias type="com.example.demo.vo.MemberBusinessVo" alias="memberbusinessvo"/>
+	<typeAlias type="com.example.demo.vo.MemberCustomerVo" alias="membercustomervo"/>
+	<typeAlias type="com.example.demo.vo.DistrictChartVo" alias="districtchartvo"/>
+	<typeAlias type="com.example.demo.vo.CampingRankChartVo" alias="campingrankchartvo"/>
+	<typeAlias type="com.example.demo.vo.CampTypeChartVo" alias="camptypechartvo"/>
+	
   </typeAliases>
   <environments default="development">
     <environment id="development">
@@ -28,14 +42,21 @@
   </environments>
   <mappers>  
  	<!-- 영현 -->
-    <mapper resource="com/example/demo/db/reserve_searchMapper.xml"/>
-    <mapper resource="com/example/demo/db/camping_spotMapper.xml"/>
+    <mapper resource="com/example/demo/db/reservationMapper.xml"/>
+    <mapper resource="com/example/demo/db/camping_spotMapper.xml"/> 
     <!-- 근희 -->
     <mapper resource="com/example/demo/db/campingReviewMapper.xml"/>
     <!-- 현성 -->
     <mapper resource="com/example/demo/db/myPageMapper.xml"/>
     <!-- 요한 -->
     <mapper resource="com/example/demo/db/MemberMapper.xml"/> 
-    <mapper resource="com/example/demo/db/BusinessMapper.xml"/>     
+    <mapper resource="com/example/demo/db/BusinessMapper.xml"/>   
+    <!-- 지연 -->  
+    <mapper resource="com/example/demo/db/BoardMapper.xml"/>
+    <mapper resource="com/example/demo/db/BoardReMapper.xml"/>
+    <!-- 혜선 -->  
+    <mapper resource="com/example/demo/db/AdminMemberMapper.xml"/>
+    <mapper resource="com/example/demo/db/AdminNoticeMapper.xml"/>
+    
   </mappers>
 </configuration>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+    #afterLogin{
+   		display: none;
+   		float: left;                   
+    }
+
+    #btnLogin{
+    	display: block; 
+	  	float: left;
+    }
+    #btnsignIn{
+    	float: left;
+    }    
+    
+    #btnMyPage{
+		float: none;
+    }   
+ 
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	
+	//로그아웃버튼 동작
+	$("#btnLogOut").click(function(){	
+        sessionStorage.removeItem("memberId");
+        sessionStorage.removeItem("businessId");  
+        sessionStorage.removeItem("memberName");  
+        $("#btnLogin").css("display", "block");
+        $("#afterLogin").css("display", "none");
+        //$("#dock").empty();
+    });
+    
+	//메인-로그인버튼 동작-약관으로이동
+    $("#btnLogin").click(function(){
+    	window.location.href = "/login.html";    
+    });
+
+	
+	/////////////////////////////////////////////////////////////
+	//세션유지(일반회원)
+    if(sessionStorage.getItem("memberId") != null){
+   		//$("#btnLogin").html("로그아웃");
+   		 $("#afterLogin").css("display", "block");
+         $("#btnLogin").css("display", "none");         
+    }
+	//세션유지(사업자)
+    if(sessionStorage.getItem("businessId") != null){
+   		//$("#btnLogin").html("로그아웃");
+   		 $("#afterLogin").css("display", "block");
+         $("#btnLogin").css("display", "none");         
+    }
+	//세션유지(네이버)
+    if(sessionStorage.getItem("memberName") != null){
+   		//$("#btnLogin").html("로그아웃");
+   		 $("#afterLogin").css("display", "block");
+         $("#btnLogin").css("display", "none");         
+    }
+	/////////////////////////////////////////////////////////////
+	
+
+	//예약버튼 세션유지
+	$("#btnReservation").click(function(){
+		var memberId = sessionStorage.getItem("memberId");
+		var memberName = sessionStorage.getItem("memberName");
+		if(memberId == null && memberName == null){
+			alert("로그인이 필요합니다.\n로그인 화면으로 이동합니다.");
+			window.location.href = "/login.html"; 
+		}	
+		//alert(memberId);
+		$("#memberId").append(memberId);
+		$("#memberName").append(memberName);
+	});
+	
+	
+	//회원가입
+	$("#btnSignIn").click(function(){
+		window.location.href = "/signInMain.html";
+	});
+	
+	
+	//마이페이지 이동
+	$("#btnMyPage").click(function(){
+		var memberId = sessionStorage.getItem("memberId");
+		var businessId = sessionStorage.getItem("businessId");
+		var memberName = sessionStorage.getItem("memberName");
+		
+		if(memberId == null && businessId == null && memberName == null){
+			alert("로그인이 필요합니다.\n로그인 화면으로 이동합니다.");
+			window.location.href = "/login.html"; 
+		}	
+	
+		//alert(memberId);
+		
+		$("#memberId").append(memberId);
+		$("#businessId").append(businessId);
+		$("#memberName").append(memberName);
+	});
+	
+	        
+});
+</script>
+</head>
+<body>
+
+
+	<h2>CAMPINGSPOT BETA</h2>
+
+
+	<div id="beforeLogin">             
+        <button id="btnLogin">로그인</button>
+    </div>
+
+   <div id="afterLogin">              
+        <button id="btnLogOut">로그아웃</button>
+    </div>
+    
+    <div id="signIn">
+    	<button id="btnSignIn">회원가입</button>
+    </div>
+    
+<br>
+    
+    <div id="myPage">
+    	<button id="btnMyPage" onclick="location.href='myPage.html'">마이페이지</button>
+    </div>
+    
+<hr>
+
+
+<button id="btnReservation" onclick="location.href='reservation.html'">예약하기</button>
+
+</body>
+</html>
