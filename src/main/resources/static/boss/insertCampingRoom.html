@@ -59,11 +59,11 @@ li a:hover:not(.active) {
 		
 		
 		// 각 페이지별 이동
-//		$("#bossBpage").attr("href", "myBusinessPage.html?cs_no="+cs_no);
-		$("#bossBpage").attr("href", "myBusinessPage.html?mb_id="+mb_id);
+		$("#bossBpage").attr("href", "myBusinessPage.html?cs_no="+cs_no);
+//		$("#bossBpage").attr("href", "myBusinessPage.html?mb_id="+mb_id);
 		$("#bossRList").attr("href", "bossReservationList.html?cs_no="+cs_no);
-//		$("#bossInsertCS").attr("href", "insertCampingSpot.html?cs_no="+cs_no);
-		$("#bossInsertCS").attr("href", "insertCampingSpot.html?mb_id="+mb_id);
+		$("#bossInsertCS").attr("href", "insertCampingSpot.html?cs_no="+cs_no);
+//		$("#bossInsertCS").attr("href", "insertCampingSpot.html?mb_id="+mb_id);
 		$("#bossInsertCR").attr("href", "insertCampingRoom.html?cs_no="+cs_no);
 		$("#bossReviewList").attr("href", "bossReviewManage.html?cs_no="+cs_no);
 		$("#bossSales").attr("href", "salesManage.html?cs_no="+cs_no);
@@ -168,6 +168,11 @@ li a:hover:not(.active) {
 				
 			}})//end getAjax 수정
 			
+			// 취소버튼(캠핑룸등록 화면으로 나감)
+			$("#crResetOK").click(function(){
+				window.location.href = "insertCampingRoom.html?cs_no="+cs_no;
+			})
+						
 		});//end #crUpdate
 		
 		
@@ -181,9 +186,14 @@ li a:hover:not(.active) {
 			
 		})//end #crDelete
 		
+		// 취소버튼 (사업자 페이지 메인으로 나감)
+		$("#crReset").click(function(){
+			window.location.href = "myBusinessPage.html?cs_no="+cs_no;
+		})
+		
 		$("#headers").load("/main/header.html");	
 
-		$("#footers").load("/main/footer.html");
+		//$("#footers").load("/main/footer.html");
 });	
 </script>
 </head>
@@ -252,9 +262,9 @@ li a:hover:not(.active) {
 							<th>캠핑타입</th>
 							<th>
 								<select id="i_cr_type" name="cr_type">
-									<option value="글램핑">글램핑</option>
-									<option value="카라반">카라반</option>
-									<option value="오토캠핑">오토캠핑</option>
+									<option value="glamping">글램핑</option>
+									<option value="caravan">카라반</option>
+									<option value="auto">오토캠핑</option>
 								</select>
 							</th>
 						</tr>
@@ -318,7 +328,7 @@ li a:hover:not(.active) {
 			<br>
 			<button id="crUpdateOK">수정</button>
 			<button id="crDelete">삭제</button>
-			<button id="crReset">취소</button>
+			<button id="crResetOK">취소</button>
 			<br>
 			</div>
 	

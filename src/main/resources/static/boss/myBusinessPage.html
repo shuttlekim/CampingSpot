@@ -16,7 +16,7 @@ hr{
 	margin-top: 10px;
 }
 .main{
-	margin-left: 40px;
+	margin-left: 30px;
 	margin-top: 70px;
 	margin-bottom: 50px;
 }
@@ -63,73 +63,77 @@ h3{
 		var mb_id = sessionStorage.getItem("businessId");
 		//alert(mb_id);
 		
+		var cs_no;
+		
 		//cs_no 번호 가져오기
 		$.ajax("/getCsNo.do",{data:{"mb_id":mb_id}, async : false, success:function(r){
 				//alert(r)
 				 cs_no = r.cs_no
 		}})
 		
-		console.log(cs_no)
+		//console.log(cs_no)
 		
 		// 각 페이지별 이동
-//		$("#bossBpage").attr("href", "myBusinessPage.html?cs_no="+cs_no);
 		$("#bossBpage").attr("href", "myBusinessPage.html?mb_id="+mb_id);
-		$("#bossRList").attr("href", "bossReservationList.html?cs_no="+cs_no);
-//		$("#bossInsertCS").attr("href", "insertCampingSpot.html?cs_no="+cs_no);
 		$("#bossInsertCS").attr("href", "insertCampingSpot.html?mb_id="+mb_id);
 		$("#bossInsertCR").attr("href", "insertCampingRoom.html?cs_no="+cs_no);
+		$("#bossRList").attr("href", "bossReservationList.html?cs_no="+cs_no);
 		$("#bossReviewList").attr("href", "bossReviewManage.html?cs_no="+cs_no);
 		$("#bossSales").attr("href", "salesManage.html?cs_no="+cs_no);
 		
-		  // 메인 사진/캠핑장 정보 불러오기
-		  $.ajax("/bossGetCampingSpot.do",{data:{"cs_no":cs_no},success:function(r){
-			//alert(r.cs_camp_fname)
-			var cs_camp_fname = r.cs_camp_fname.split(",")
-			//alert(cs_camp_fname[0])
-			var imgCS =$("<img></img>").attr({"src":"/resources/camping_spot_img/"+cs_camp_fname[0],"width":400,"height":300});
-			$(".mainImg").append(imgCS);
+ 		if (cs_no == null){
+			window.location.href ="insertCampingSpot.html?mb_id="+mb_id;
+		} else{
+			// 메인 사진/캠핑장 정보 불러오기
+			  $.ajax("/bossGetCampingSpot.do",{data:{"cs_no":cs_no},success:function(r){
+				//alert(r.cs_camp_fname)
+				var cs_camp_fname = r.cs_camp_fname.split(",")
+				//alert(cs_camp_fname[0])
+				var imgCS =$("<img></img>").attr({"src":"/resources/camping_spot_img/"+cs_camp_fname[0],"width":400,"height":300});
+				$(".mainImg").append(imgCS);
+				
+				var cs_name = $("<h2></h2>").html(r.cs_name);
+				var cs_tel = $("<h4><h4>").html(r.cs_tel);
+				var addr = $("<h4></h4>").html(r.cs_addr_head +" "+ r.cs_addr_remain);
+				$(".main").append(cs_name,cs_tel[0],addr);
+									 
+			}}); // end ajax list	
 			
-			var cs_name = $("<h2></h2>").html(r.cs_name);
-			var cs_tel = $("<h4><h4>").html(r.cs_tel);
-			var addr = $("<h4></h4>").html(r.cs_addr_head +" "+ r.cs_addr_remain);
-			$(".main").append(cs_name,cs_tel[0],addr);
-								 
-		}}); // end ajax list	
-		
-  		// 최근 예약 목록 3개
-		$.ajax("/businessMyPageReservationList.do",{data:{"cs_no":cs_no},success:function(r){
-			//alert(r)
-			var h3 = $("<h3></h3>").html("최근 예약 내역");
-			$.each(r, function(idx, mp){
-				var tr = $("<tr></tr>");
-				var no = $("<td></td>").html(idx+1);
-				var cr_name = $("<td></td>").html(mp.cr_name);
-				var r_no = $("<td></td>").html(mp.r_no);
-				var mc_name = $("<td></td>").html(mp.mc_name);
-				var mc_tel = $("<td></td>").html(mp.mc_tel);
-				var r_date = $("<td></td>").html(mp.r_date);
-				
-				var r_revstatus = mp.r_revstatus;
-				if (r_revstatus == 1 ){
-					r_revstatus = $("<td></td>").html("예약완료");
-				} else {
-					r_revstatus = $("<td></td>").html("예약대기").css("color", "blue");
-				}
-				
-				var r_cancel = mp.r_cancel;
-				if(r_cancel == 0 ){
-					r_cancel = $("<td></td>").html("");
-				}else if(r_cancel == 1){
-					r_cancel = $("<td></td>").html("취소대기").css("color", "blue");
-				}else if(r_cancel == 2){
-					r_cancel = $("<td></td>").html("취소완료");
-				}
-				
-				$(tr).append( no,cr_name,r_no,mc_name,mc_tel,r_date,r_revstatus,r_cancel);
-				$("#mpList").append(tr);
-				
-			})//end each
-		}})//end ajax 최근 예약 
+	  		// 최근 예약 목록 3개
+			$.ajax("/businessMyPageReservationList.do",{data:{"cs_no":cs_no},success:function(r){
+				//alert(r)
+				var h3 = $("<h3></h3>").html("최근 예약 내역");
+				$.each(r, function(idx, mp){
+					var tr = $("<tr></tr>");
+					var no = $("<td></td>").html(idx+1);
+					var cr_name = $("<td></td>").html(mp.cr_name);
+					var r_no = $("<td></td>").html(mp.r_no);
+					var mc_name = $("<td></td>").html(mp.mc_name);
+					var mc_tel = $("<td></td>").html(mp.mc_tel);
+					var r_date = $("<td></td>").html(mp.r_date);
+					
+					var r_revstatus = mp.r_revstatus;
+					if (r_revstatus == 1 ){
+						r_revstatus = $("<td></td>").html("예약완료");
+					} else {
+						r_revstatus = $("<td></td>").html("예약대기").css("color", "blue");
+					}
+					
+					var r_cancel = mp.r_cancel;
+					if(r_cancel == 0 ){
+						r_cancel = $("<td></td>").html("");
+					}else if(r_cancel == 1){
+						r_cancel = $("<td></td>").html("취소대기").css("color", "blue");
+					}else if(r_cancel == 2){
+						r_cancel = $("<td></td>").html("취소완료");
+					}
+					
+					$(tr).append( no,cr_name,r_no,mc_name,mc_tel,r_date,r_revstatus,r_cancel);
+					$("#mpList").append(tr);
+					
+				})//end each
+			}})//end ajax 최근 예약 
+		}
 		
 		$("#headers").load("/main/header.html");	
 
@@ -176,7 +180,7 @@ h3{
 		</div>
 	
 	</div>
-	<div id="footers"></div>
+    <div id="footers"></div>
 
 </body>
 </html>

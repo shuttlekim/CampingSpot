@@ -47,30 +47,24 @@ li a:hover:not(.active) {
 <script type="text/javascript">
 	$(function(){
 		
-		//var mb_id = sessionStorage.getItem("businessId");
-		
-		var cs_no = Number(location.search.substring(location.search.indexOf("=")+1));
-		
-		
-		
+		var mb_id = sessionStorage.getItem("businessId");
+				
 		// 각 페이지별 이동
-//		$("#bossBpage").attr("href", "myBusinessPage.html?cs_no="+cs_no);
 		$("#bossBpage").attr("href", "myBusinessPage.html?mb_id="+mb_id);
-		$("#bossRList").attr("href", "bossReservationList.html?cs_no="+cs_no);
-//		$("#bossInsertCS").attr("href", "insertCampingSpot.html?cs_no="+cs_no);
 		$("#bossInsertCS").attr("href", "insertCampingSpot.html?mb_id="+mb_id);
-		$("#bossInsertCR").attr("href", "insertCampingRoom.html?cs_no="+cs_no);
-		$("#bossReviewList").attr("href", "bossReviewManage.html?cs_no="+cs_no);
-		$("#bossSales").attr("href", "salesManage.html?cs_no="+cs_no);
+ 		//$("#bossInsertCR").attr("href", "insertCampingRoom.html?cs_no="+cs_no);
+		//$("#bossRList").attr("href", "bossReservationList.html?cs_no="+cs_no);
+		//$("#bossReviewList").attr("href", "bossReviewManage.html?cs_no="+cs_no);
+		//$("#bossSales").attr("href", "salesManage.html?cs_no="+cs_no);
 		
-		function move(){
-			window.location.href="insertCampingRoom.html?cs_no="+cs_no;
-		}
+/* 		function move(){
+
+		} */
 		
 		// 캠핑장 등록하기
 		$("#csInsert").click(function(){
-			//var cs = $("#f").serializeArray();
 			
+			$("#mb_id").val(mb_id);
 			var cs = new FormData(document.getElementById("f"));
 			
 			//alert(cs)
@@ -81,17 +75,19 @@ li a:hover:not(.active) {
 					type:"POST",
 					success:function(r){
 						alert(r);
-						//listCampingSpot();
-						$("#f input").val("");
-						move();
+						$("#f input").val("");	
 			}});
 		});
 			
 		
-		// 캠핑룸등록 이동하기
+/* 		// 캠핑룸등록 이동하기
 		$("#btnCR").click(function(){
-			window.location.href="insertCampingRoom.html?cs_no="+r.cs_no;
-		});
+			var cs_no;
+			$.ajax("/getCsNo.do",{data:{"mb_id":mb_id}, async : false, success:function(r){
+					 cs_no = r.cs_no
+					 window.location.href="insertCampingRoom.html?cs_no="+cs_no;
+			}})
+		}); */
 			
 		// 취소버튼 클릭
 		$("#csReset").click(function(){
@@ -100,7 +96,7 @@ li a:hover:not(.active) {
 		
 		$("#headers").load("/main/header.html");	
 
-		$("#footers").load("/main/footer.html");
+		//$("#footers").load("/main/footer.html");
 				
 	});
 </script>
@@ -114,10 +110,10 @@ li a:hover:not(.active) {
 		<div class="div Categori">
 			<ul>
 			  <li><a class="active" id="bossBpage">캠핑장관리</a></li>
-			  <li><a id="bossRList">전체예약현황</a></li>
 			  <li><a id="bossInsertCS">캠핑장등록</a></li>
 			  <li><a id="bossInsertCR">캠핑룸등록</a></li>
-		  	  <li><a id="bossReviewList">리뷰관리</a></li>
+			  <li><a id="bossRList">전체예약현황</a></li>
+			  <li><a id="bossReviewList">리뷰관리</a></li>
 			  <li><a id="bossSales">매출관리</a></li>
 			</ul>
 		</div>
@@ -230,7 +226,7 @@ li a:hover:not(.active) {
 						<td><textarea name="cs_detail" id="cs_detail" rows="5" cols="30"></textarea></td>
 					</tr>	
 					<tr>
-						<th><input type="hidden" name="mb_id" value="test5678" ></th>
+						<th><input type="hidden" id="mb_id" name="mb_id"></th>
 					</tr>				
 				</table>
 			</form>		
@@ -240,6 +236,6 @@ li a:hover:not(.active) {
 		</div>
 	
 	</div>
-	<div id="footers"></div>
+	<!--  <div id="footers"></div>-->
 </body>
 </html>
