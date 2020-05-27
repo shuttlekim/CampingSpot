@@ -19,21 +19,15 @@
   vertical-align: middle;
 }
 .top{
-
+ background-color: white;
 }
 .middle{
   margin-top: 20px;
   width: 1000px;
-  height: 500px;
+  height: 700px;
   position: relative;
 }
-.middle-center{
-  outline: 1px solid #9F9F9F;
-  top: 0px;
-  width: 1000px;
-  height: 800px;
-  background-color: #00D8FF;
-}
+
 
 .bottom{
 
@@ -67,10 +61,10 @@ margin-left: 10%;
 
 .accordion {
 position:absolute;
-top:40%;
-left:50%;
+top: 26%;
+left: 57%;
 transform:translateX(-50%);
-width:700px;
+width:750px;
 }
 input[id*="answer"] {display:none;}
 input[id*="answer"] + label {display:block;
@@ -112,7 +106,7 @@ background-position:0 -30px;
 body {
 	background-image: url("/serviceCenter/img/FAQ10.png");
 	background-repeat:no-repeat;
-	background-position: -480px -450px;
+	background-position: -480px -30px;
 }
 
 </style>
@@ -135,25 +129,27 @@ $(function(){
 	</div>
 
 <div class="body-wrap">
-	<div class="div">
-	<i class="fas fa-comments-dollar fa-3x" class="PointFAQ">&nbsp;쿠폰/포인트FAQ</i>
-	</div>
-	
-	<div class="accordion">
-	<input type="radio" name="accordion" id="answer01">
-		<label for="answer01">쿠폰/포인트 사용법을 모르겠어요<em></em></label>
-		<div>
-			<p>• 쿠폰/포인트는 결제할 때 사용하실 수 있으며 포인트는 1000원 단위로 사용하실 수 있습니다.</p>
+<div class="middle">
+		<div class="div">
+		<i class="fas fa-comments-dollar fa-3x" class="PointFAQ">&nbsp;쿠폰/포인트FAQ</i>
 		</div>
-		<input type="radio" name="accordion" id="answer02">
-		<label for="answer02">포인트는 어떻게 모으는 건가요?<em></em></label>
-		<div>
-			<p>• 캠핑 예약 후 해당 캠핑장을 이용하시고 후기를 남겨주시면 포인트를 드립니다.</p>
-		</div>
-		<input type="radio" name="accordion" id="answer03">
-		<label for="answer03">쿠폰/포인트 FAQ를 찾아봤는데 원하는 답이 없네요.<br>이런 경우에는 어떻게 해야 하나요?<em></em></label>
-		<div>
-			<p>• 고객센터에서 문의하기를 누르시고 제목과 답장 받으실 이메일, 내용을 작성하시고 문의하기 버튼을 누르시면 됩니다.</p>
+		
+		<div class="accordion">
+		<input type="radio" name="accordion" id="answer01">
+			<label for="answer01">쿠폰/포인트 사용법을 모르겠어요<em></em></label>
+			<div>
+				<p>• 쿠폰/포인트는 결제할 때 사용하실 수 있으며 포인트는 1000원 단위로 사용하실 수 있습니다.</p>
+			</div>
+			<input type="radio" name="accordion" id="answer02">
+			<label for="answer02">포인트는 어떻게 모으는 건가요?<em></em></label>
+			<div>
+				<p>• 캠핑 예약 후 해당 캠핑장을 이용하시고 후기를 남겨주시면 포인트를 드립니다.</p>
+			</div>
+			<input type="radio" name="accordion" id="answer03">
+			<label for="answer03">쿠폰/포인트 FAQ를 찾아봤는데 원하는 답이 없네요.<br>이런 경우에는 어떻게 해야 하나요?<em></em></label>
+			<div>
+				<p>• 고객센터에서 문의하기를 누르시고 제목과 답장 받으실 이메일, 내용을 작성하시고 문의하기 버튼을 누르시면 됩니다.</p>
+			</div>
 		</div>
 	</div>
 </div>
