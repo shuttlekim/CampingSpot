@@ -187,20 +187,19 @@ $(function(){
 		<button id="btnLogin2" class="gradient-button gradient-button-2">LOGIN</button>
 		</div>      
 
-			<!-- 네이버 로그인 기능처리 -->
-			<script type="text/javascript">
-				var naverLogin = new naver.LoginWithNaverId(
-					{
-						clientId: "oRa7sGUWcEp5YZ_7DwtH",
-						callbackUrl: "http://192.168.0.36:8088/login/naver.html",
-						isPopup: false, /* 팝업을 통한 연동처리 여부 */
-						loginButton: {color: "white", type: 4, height: 40} /* 로그인 버튼의 타입을 지정 */
-					}
-				);
-
-				/* 설정정보를 초기화하고 연동을 준비 */
-				naverLogin.init();	
-			</script>  
+		<!-- 네이버 로그인 기능처리 -->
+		<script type="text/javascript">
+			var naverLogin = new naver.LoginWithNaverId(
+				{
+					clientId: "oRa7sGUWcEp5YZ_7DwtH",
+					callbackUrl: "http://192.168.0.36:8088/login/naver.html",
+					isPopup: false, /* 팝업을 통한 연동처리 여부 */
+					loginButton: {color: "white", type: 4, height: 40} /* 로그인 버튼의 타입을 지정 */
+				}
+			);
+			/* 설정정보를 초기화하고 연동을 준비 */
+			naverLogin.init();	
+		</script>  
 		</div>	    
 	</div>  
 </div><br>
