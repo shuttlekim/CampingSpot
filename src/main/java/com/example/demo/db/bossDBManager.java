@@ -30,6 +30,22 @@ public class bossDBManager {
 		}
 	}
 	
+	// 설아) (사업자) 캠핑장 정보 상세 
+	public static CampingSpotVo bossGetCampingSpot(int cs_no) {
+		SqlSession session = factory.openSession();
+		CampingSpotVo csVo = session.selectOne("campingSpot.bossGetCampingSpot", cs_no);
+		session.close();
+		return csVo;
+	}
+	
+	//설아) (사업자) cs_no번호만 가져오기
+	public static CampingSpotVo getCsNO(String mb_id) {
+		SqlSession session = factory.openSession();
+		CampingSpotVo csvo = session.selectOne("campingSpot.getCsNo", mb_id);
+		session.close();
+		return csvo;
+	}
+	
 	// 설아) (사업자) 사업자페이지 메인 예약목록
 	public static List<BossReservationVo> businessMyPageReservationList(int cs_no) {
 		List<BossReservationVo> mpList = null;

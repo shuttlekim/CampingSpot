@@ -18,6 +18,15 @@ import com.example.demo.vo.DetailCampingSearchResultVo;
 @Repository
 public class CampingSpotDao {
 	
+	// 설아) (사업자) 캠핑장 상세 dao
+	public CampingSpotVo bossGetCampingSpot(int cs_no) {
+		return bossDBManager.bossGetCampingSpot(cs_no);
+	}
+	
+	// 설아) (사업자) cs_no번호만 가져오기
+	public CampingSpotVo getCsNo(String mb_id) {
+		return bossDBManager.getCsNO(mb_id);
+	}
 	
 	// 설아) (사업자) 매출 현황 챠트
 	public List<BossListSalesVo> bossChart(int cs_no){

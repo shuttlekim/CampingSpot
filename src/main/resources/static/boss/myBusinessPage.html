@@ -12,13 +12,13 @@ hr{
 	display: inline-block;
 }
 .mainImg{
-	margin-left: 10px;
+	margin-left: 0px;
 	margin-top: 10px;
 }
 .main{
-	margin-left: 100px;
+	margin-left: 40px;
 	margin-top: 70px;
-	margin-bottom: 150px;
+	margin-bottom: 50px;
 }
 .line {
   border-left: 2px solid green;
@@ -53,7 +53,7 @@ li a:hover:not(.active) {
 	margin-left: 30px;
 }
 h3{
-	margin-top: 390px;
+	margin-top: 350px;
 }
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -63,7 +63,13 @@ h3{
 		var mb_id = sessionStorage.getItem("businessId");
 		//alert(mb_id);
 		
-		var cs_no = 100;
+		//cs_no 번호 가져오기
+		$.ajax("/getCsNo.do",{data:{"mb_id":mb_id}, async : false, success:function(r){
+				//alert(r)
+				 cs_no = r.cs_no
+		}})
+		
+		console.log(cs_no)
 		
 		// 각 페이지별 이동
 //		$("#bossBpage").attr("href", "myBusinessPage.html?cs_no="+cs_no);
@@ -80,7 +86,7 @@ h3{
 			//alert(r.cs_camp_fname)
 			var cs_camp_fname = r.cs_camp_fname.split(",")
 			//alert(cs_camp_fname[0])
-			var imgCS =$("<img></img>").attr({"src":"img/"+cs_camp_fname[0],"width":500,"height":300});
+			var imgCS =$("<img></img>").attr({"src":"/resources/camping_spot_img/"+cs_camp_fname[0],"width":400,"height":300});
 			$(".mainImg").append(imgCS);
 			
 			var cs_name = $("<h2></h2>").html(r.cs_name);
@@ -155,7 +161,7 @@ h3{
 		
 		<h3>최근 예약 내역</h3>
 		<div class="mptb">
-			<table id="mpList" border="1" width="80%">
+			<table id="mpList" border="1">
 				<tr>
 					<th>번호</th>
 					<th>예약번호</th>

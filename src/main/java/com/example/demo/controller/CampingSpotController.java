@@ -34,6 +34,25 @@ public class CampingSpotController {
 	   this.dao = dao;
    }
    
+	// 설아) (사업자) 캠핑장 상세보기
+	@RequestMapping(value = "/bossGetCampingSpot.do", produces = "application/json;charset=UTF-8")
+	public String bossGetCampingSpot(int cs_no) {
+		String str = "";
+		CampingSpotVo csVo = dao.bossGetCampingSpot(cs_no);
+		Gson gson = new Gson();
+		str = gson.toJson(csVo);
+		return str;
+	}
+  
+  // 설아) (사업자) cs_no 번호 가져오기
+  @RequestMapping(value = "/getCsNo.do", produces = "application/json;charset=UTF-8")
+  public String getCsNo(String mb_id) {
+	   String str = "";
+	   CampingSpotVo csvo = dao.getCsNo(mb_id);
+	   Gson gson = new Gson();
+	   str = gson.toJson(csvo);
+	   return str;
+  }
    
 	// 설아) (사업자) 매출 현황 챠트
 	@RequestMapping(value = "/bossChart.do", produces = "application/json;charset=UTF-8")
@@ -151,7 +170,7 @@ public class CampingSpotController {
 		String str = "캠핑장 등록을 성공하였습니다.";
 		
 		//1.사업자등록증 업로드
-		String path = "C:\\teamProject\\testCampingSpot\\src\\main\\resources\\static\\img";
+		String path = "C:\\Users\\User\\git\\CampingSpot\\src\\main\\resources\\static\\resources\\camping_spot_img";
 		
 		System.out.println("사업자등록증 경로:" + path);
 		MultipartFile uploadFile = csvo.getUploadFile();
@@ -173,7 +192,7 @@ public class CampingSpotController {
 		}
 		
 		//2.캠핑장이미지 업로드 			
-		String Cpath = "C:\\teamProject\\testCampingSpot\\src\\main\\resources\\static\\img";
+		String Cpath = "C:\\Users\\User\\git\\CampingSpot\\src\\main\\resources\\static\\resources\\camping_spot_img";
 		System.out.println("캠핑장이미지 경로: " +Cpath);
 
 		MultipartFile CampingUploadFile = csvo.getCampingUploadFile();
@@ -207,7 +226,7 @@ public class CampingSpotController {
 		System.out.println(arr);
 		
 		// 3.지도 이미지 업로드
-		String Mpath = "C:\\teamProject\\testCampingSpot\\src\\main\\resources\\static\\img";
+		String Mpath = "C:\\Users\\User\\git\\CampingSpot\\src\\main\\resources\\static\\resources\\camping_spot_img";
 		System.out.println("지도이미지 경로: " + Mpath);
 		
 		MultipartFile MapUploadFile = csvo.getMapUploadFile();
