@@ -15,6 +15,6 @@ public class CampingSpotMainApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CampingSpotMainApplication.class, args);
-		
+		 
 	}	
 }
