@@ -28,6 +28,7 @@
 	<typeAlias type="com.example.demo.vo.DistrictChartVo" alias="districtchartvo"/>
 	<typeAlias type="com.example.demo.vo.CampingRankChartVo" alias="campingrankchartvo"/>
 	<typeAlias type="com.example.demo.vo.CampTypeChartVo" alias="camptypechartvo"/>
+	
 	<!-- 설아 -->
 	<typeAlias type="com.example.demo.vo.BossReservationVo" alias="BossReservationVo"/>
   	<typeAlias type="com.example.demo.vo.CampingReviewReVo" alias="CampingReviewReVo"/>

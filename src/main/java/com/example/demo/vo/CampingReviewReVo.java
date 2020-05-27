@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 public class CampingReviewReVo {
 
+	
 	private int cre_re_no;
 	private int cre_no;
 	private String mb_id;

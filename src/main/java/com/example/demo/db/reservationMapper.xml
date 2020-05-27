@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reservation">
 
+
 	<!-- 설아) (사업자용) 사업자페이지 메인 예약 목록 -->
 	<select id="businessMyPageReservationList" resultType="BossReservationVo">
 		<![CDATA[select r_no, cr_no, cr_name, mc_name, mc_tel, r_date, r_price, r_revstatus, r_cancel 

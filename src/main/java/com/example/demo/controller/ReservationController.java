@@ -26,6 +26,7 @@ public class ReservationController {
 		this.dao = dao;
 	}
 
+	
 	// 설아) (사업자) 사업자페이지 메인 예약목록
 	@RequestMapping(value ="/businessMyPageReservationList.do", produces = "application/json;charset=UTF-8")
 	public String businessMyPageReservationList(int cs_no) {

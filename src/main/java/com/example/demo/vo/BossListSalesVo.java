@@ -12,6 +12,7 @@ import lombok.Data;
 
 public class BossListSalesVo {
 
+	
 	private int cs_no;
 	private int cr_no;
 	private String cr_name;

@@ -18,6 +18,7 @@ import com.example.demo.vo.CampingSpotVo;
 
 public class bossDBManager {
 	
+	
 	public static SqlSessionFactory factory;
 	static {
 		try {

@@ -18,6 +18,7 @@ import com.example.demo.vo.DetailCampingSearchResultVo;
 @Repository
 public class CampingSpotDao {
 	
+	
 	// 설아) (사업자) 매출 현황 챠트
 	public List<BossListSalesVo> bossChart(int cs_no){
 		return bossDBManager.bossChart(cs_no);

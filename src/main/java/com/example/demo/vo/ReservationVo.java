@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ReservationVo {
 	
+	
 	private int r_no;
 	private String r_checkin;
 	private String r_checkout;

@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="campingRoom">
 
+
 	<!-- 설아) (사업자) 매출 현황 챠트 -->
 	<select id="chart" resultType="BossListSalesVo">
 		select a.cr_no, cr_name, a.cnt from camping_room cr, (select cr_no, count(*) cnt from reservation group by cr_no) a 

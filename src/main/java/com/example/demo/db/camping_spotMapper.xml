@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="campingSpot">
 
+
 	<!-- 설아) (사업자) 캠핑장 등록 -->
 	<insert id="insertCampingSpot">
 		insert into camping_spot values (seq_camping_spot.nextval, #{cs_name}, #{cs_tel}, #{cs_addr_head}, #{cs_addr_remain}, #{cs_url},#{cs_account}, #{cs_licence_fname}, #{cs_camp_fname},#{cs_map_fname}, #{cs_lati}, #{cs_long}, #{cs_glamping_cnt},#{cs_caravan_cnt}, #{cs_autocamping_cnt}, #{cs_theme}, #{cs_fac}, #{cs_detail}, #{mb_id})

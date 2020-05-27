@@ -31,6 +31,7 @@ public class CampingSpotVo {
 	private String cs_detail;
 	private String mb_id;
 	
+	
 	private MultipartFile uploadFile;
 	private MultipartFile CampingUploadFile;
 	private MultipartFile MapUploadFile;

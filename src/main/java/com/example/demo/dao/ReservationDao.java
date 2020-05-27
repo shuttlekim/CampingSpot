@@ -15,6 +15,7 @@ import com.example.demo.vo.DetailCampingSearchResultVo;
 @Repository
 public class ReservationDao {
 	
+	
 	// 설아) (사업자) 사업자페이지 메인 예약목록
 	public List<BossReservationVo> businessMyPageReservationList(int cs_no){
 		return bossDBManager.businessMyPageReservationList(cs_no);

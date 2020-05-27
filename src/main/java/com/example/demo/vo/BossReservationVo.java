@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 
 public class BossReservationVo {
 
+	
 	private int r_no;
 	private String mc_name;
 	private String mc_tel;
