@@ -232,14 +232,14 @@ public class ReservationController {
 		   List<CampingRoomVo> ingList = dao.ingRoom(map);
 		   
 		   for(int i=0; i<list.size(); i++) {
+			   list.get(i).setEmpty(true);
 			   for(int j=0; j<ingList.size(); j++) {
-				  if(list.get(i).getCr_no() == ingList.get(j).getCr_no()) {
-					  list.get(i).setEmpty(false);
-					  break;
-				  }else {
-					  list.get(i).setEmpty(true);
-				  }
+				   if(list.get(i).getCr_no() == ingList.get(j).getCr_no()) {
+						  list.get(i).setEmpty(false);
+						  break;
+				   }
 			   }
+			   
 		   }
 		   
 		   Gson gson = new Gson();
