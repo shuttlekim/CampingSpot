@@ -44,11 +44,11 @@
 <script type="text/javascript">
 $(function(){	
 	
-	var check = 0;
+	var check = "";
 	
 	//가입하기 버튼 클릭시 동작
 	$("#btnJoinOk").click(function(){
-		if(char == 1){
+		if(check == 1){
 			var member =  new FormData(document.getElementById("join"));
 			$.ajax("/signIn.do", {data:member, processData:false, contentType:false, type:"POST", success:function(r){
 				alert("회원가입 성공 \n 로그인 페이지로 이동!");
@@ -86,8 +86,10 @@ $(function(){
 		$.ajax("/checkId.do", {data:data, success:function(mc_id){
 			if(mc_id == 1){
 				alert("사용중인 아이디입니다.");
+				check = 0;
 			}else{
 				alert("사용가능한 아이디입니다.");
+				check = 1;
 			}
 		}}); 
 	});
