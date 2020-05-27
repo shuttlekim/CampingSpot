@@ -86,6 +86,7 @@ $(function(){
 		$.ajax("/checkId.do", {data:data, success:function(mc_id){
 			if(mc_id == 1){
 				alert("사용중인 아이디입니다.");
+				check = 0;
 			}else{
 				alert("사용가능한 아이디입니다.");
 				check = 1;
