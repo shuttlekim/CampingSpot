@@ -136,11 +136,11 @@ $(function(){
     				"value": item.cr_no,
     				"price": item.cr_price
     			});
-    			/* var option2 = $("<option></option>").html("룸이름: "+item.cr_name+", 1박 가격: "+item.cr_price+", 품절").attr({
+    			var option2 = $("<option></option>").html("룸이름: "+item.cr_name+", 1박 가격: "+item.cr_price+", 품절").attr({
     				"value": item.cr_no,
     				"price": item.cr_price,
     				"disabled": true
-    			}) */
+    			})
     			if( item.empty ){
     				$(select).append(option1);
     			}else{

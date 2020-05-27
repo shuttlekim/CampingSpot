@@ -69,7 +69,7 @@ public class BoardController {
 		String str = "게시물 등록에 실패하였습니다.";
 		
 		// 사진파일 올리기
-		String path = "C:\\Users\\haji\\git\\CampingSpot\\src\\main\\resources\\static\\resources\\board_img";
+		String path = "C:/Users/haji/git/CampingSpot/src/main/resources/static/resources/board_img";
 		MultipartFile uploadFile = b.getUploadFile();
 		String fnames = "";
 		String fname = "";
@@ -137,7 +137,7 @@ public class BoardController {
 		map.put("b_no", b_no);
 		map.put("mc_id", mc_id);
 		int re = dao.delete(map);
-		String path = "C:\\Users\\haji\\git\\CampingSpot\\src\\main\\resources\\static\\resources\\board_img";
+		String path = "C:/Users/haji/git/CampingSpot/src/main/resources/static/resources/board_img";
 		/*
 		 * if(re > 0 && fname != null && !fname.equals("")) { File file = new File(path
 		 * + "/" + fname); file.delete(); }
@@ -158,7 +158,7 @@ public class BoardController {
 	@RequestMapping("/updateBoard.do")
 	public String updateBoard(BoardVo b, MultipartHttpServletRequest request) {
 		String str = "게시물 수정에 실패했습니다.";
-		String path = "C:\\Users\\haji\\git\\CampingSpot\\src\\main\\resources\\static\\resources\\board_img";
+		String path = "C:/Users/haji/git/CampingSpot/src/main/resources/static/resources/board_img";
 		String oldFname = b.getB_fname();
 		MultipartFile uploadFile = b.getUploadFile();
 		
