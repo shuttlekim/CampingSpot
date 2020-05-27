@@ -50,7 +50,7 @@ public class CampingSpotController {
       
       return str;
    }
-   
+   /* 밑에 다른 메소드로 수정합니다(영현)
    @RequestMapping("/campingInsertWish.do")
    public String insertWish(CampingWishVo w) {
       String str = "";
@@ -65,5 +65,35 @@ public class CampingSpotController {
       
       return str;
    }
+   */
+   
+   // 영현) 위시리스트 추가
+   @RequestMapping("/insertWishList.do")
+   public String insertWishList(String mc_id, int cs_no) {
+	   String str = "false";
+	   System.out.println("======== insertWishList 컨트롤러 작동 ! ========");
+	   System.out.println("사용자 id: "+ mc_id);
+	   System.out.println("캠핑장번호: "+ cs_no);
+	   
+	   HashMap map = new HashMap();
+	   map.put("mc_id", mc_id);
+	   map.put("cs_no", cs_no);
+	   
+	   //중복체크를위해 이미 결과값이 있다면 c 에 저장
+	   CampingWishVo c = dao.checkDouble(map);
+	   
+	   if (c == null) {
+		   int re = dao.insertWish(map);
+		   
+		   if(re > 0) {
+			   str = "success";
+		   }
+	   }else {
+		   str = "double";
+	   }
+	   
+	   return str;
+   }
+   
 
 }

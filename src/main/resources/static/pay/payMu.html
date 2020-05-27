@@ -36,12 +36,12 @@
 		
 		$("#btn_pay").click(function(){
 			var pay_data = {
-					"mc_id": mc_id,
-					"cr_no": cr_no,
-					"checkin": checkin,
-					"checkout": checkout,
-					"price": price,
-					"payment": payment
+				"mc_id": mc_id,
+				"cr_no": cr_no,
+				"checkin": checkin,
+				"checkout": checkout,
+				"price": price,
+				"payment": payment
 			}
 			$.ajax("/insertReservation.do", {data: pay_data, async:false, success:function(result){
 				

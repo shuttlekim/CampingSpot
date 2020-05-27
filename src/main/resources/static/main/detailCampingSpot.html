@@ -187,57 +187,26 @@ $(function(){
     //------------------------------------------------------------------
    
     $("#btn_insert").click(function(){
-       
-       $.ajax("/detailCampingSpot.do", {data:{"cs_no":cs_no},
+    	
+    	var mc_id = "test1234";
+    	//var mc_id = sessionStorage.getItem("memberId");
+    	//위 코드로 변경
+    	var wish_data = {
+    			"mc_id":mc_id,
+    			"cs_no":cs_no
+    	}
+    	
+        $.ajax("/insertWishList.do", {data:wish_data,
           async : false,
           success:function(data){
-          
-          var cw_no = "1";
-          // var cs_no = data.cs_no;
-          var mc_id = "test1234";
-          
-          var form = document.createElement("form");
-          form.setAttribute("charset", "UTF-8");
-          // form.setAttribute("method", "POST");
-          form.setAttribute("id", "wishForm")
-
-          var hiddenField = document.createElement("input");
-          hiddenField.setAttribute("type", "hidden");
-          hiddenField.setAttribute("name", "cw_no");
-          hiddenField.setAttribute("value", cw_no);
-          form.appendChild(hiddenField);
-
-          hiddenField = document.createElement("input");
-          hiddenField.setAttribute("type", "hidden");
-          hiddenField.setAttribute("name", "mc_id");
-          hiddenField.setAttribute("value", mc_id);
-          form.appendChild(hiddenField);
-          
-          hiddenField = document.createElement("input");
-          hiddenField.setAttribute("type", "hidden");
-          hiddenField.setAttribute("name", "cs_no");
-          hiddenField.setAttribute("value", cs_no);
-          form.appendChild(hiddenField);
-
-          document.body.appendChild(form);
-          form.submit();
-          console.log(form);
-          
-          wishData = $("#wishForm").serialize();
-          // return wishData;
-          alert("ajax : " + wishData);
-       }}) // detailCampingSpot ajax 종료
-       
-       alert("out : " + wishData);       
-       
-       $.ajax("/campingInsertWish.do", {data:wishData,
-          // processData:false,
-            // contentType:false,
-            // type:"post",
-          success: function(data){
-             alert(data);
-            alert("성공?")
-      }}) // campingInsertWish ajax 종료
+          	if( data == 'success'){
+          		alert("찜목록에 등록되었습니다.");
+          	}else if( data == 'double' ){
+          		alert("이미 찜목록에 등록되었습니다.");
+          	}else{
+          		alert("찜목록 등록에 실패하였습니다.");
+          	}
+        }})
     });
     
    $("#btn_reservation").click(function(){
