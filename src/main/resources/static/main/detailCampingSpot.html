@@ -124,11 +124,11 @@ $(function(){
     				"value": item.cr_no,
     				"price": item.cr_price
     			});
-    			var option2 = $("<option></option>").html("룸이름: "+item.cr_name+", 1박 가격: "+item.cr_price+", 품절").attr({
+    			/* var option2 = $("<option></option>").html("룸이름: "+item.cr_name+", 1박 가격: "+item.cr_price+", 품절").attr({
     				"value": item.cr_no,
     				"price": item.cr_price,
     				"disabled": true
-    			})
+    			}) */
     			if( item.empty ){
     				$(select).append(option1);
     			}else{
@@ -273,7 +273,7 @@ $(function(){
 				<form id="form_selector">
 					<input type="hidden" id="input_cs_no" name="cs_no">
 					체크인&nbsp&nbsp<input type="date" id="input_chkin" name="checkin" readonly="readonly"><br>
-					체크아웃&nbsp&nbsp<input type="date" id="input_chkout" name="checkout"  readonly="readonly"><br>
+					체크아웃&nbsp&nbsp<input type="date" id="input_chkout" name="checkout" readonly="readonly"><br>
 					총액 <input type="number" id="input_total" name="total" readonly="readonly"><br>
 					룸 선택&nbsp&nbsp
 				</form>
