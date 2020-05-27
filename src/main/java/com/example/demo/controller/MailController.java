@@ -164,7 +164,7 @@ public class MailController {
 			mailMessage.setTo("campingspot12345@gmail.com");
 			
 			javaMailSender.send(mailMessage);			
-			
+			 
 			
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
