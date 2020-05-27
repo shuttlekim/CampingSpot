@@ -47,6 +47,42 @@
 <script type="text/javascript">
 $(function(){	
 
+	
+	
+	
+	$("#btnSend").click(function(){
+		var input_title   = $("#title").val();
+		var input_email   = $("#email").val();
+		var input_content = $("#content").val();
+
+		
+		var insert_data = {
+				"title"    : input_title,
+				"email"    : input_email,
+				"content"  : input_content,
+				};
+		
+		$.ajax("/qnaEmail.do", {data:insert_data, async:false, success:function(r){
+				
+
+			if(r != null){
+				var result = confirm("메일전송 성공 \n 메인으로 이동할까요?");
+				
+				if(result == true){				
+				    alert("메인으로 이~~~~동");
+					window.location.href = "/main/main.html";
+				}else{
+				    alert("^_____^");
+				} 
+			}else{
+				alert("메일전송 실패!!!");
+			}
+	
+		}}); 
+	
+	});	
+
+	
 	$("#header").load("/main/header.html");	
 
 	$("#footers").load("/main/footer.html");
@@ -57,15 +93,13 @@ $(function(){
 <body>
 
 	<!-- TOP  -->
-	<div class="top" id="header">
-	   <span>TOP (1000 x 80) <br/> #FF5E00;</span>
-	</div>
+	<div class="top" id="header"></div>
 
 	<div class="container">
 	<!-- MIDDLE -->
 	  <div class="middle">
 	    <div class="middle-center">
-			<form action="serviceEmail.do"><!-- serviceEmail.do는 아직 만들지않음. -->
+<form id="f">
 	
 	<br><br>
 	<i class="far fa-edit fa-3x" id="service">문의하기</i>
@@ -76,18 +110,19 @@ $(function(){
 	</p>
 	<p>
 		<strong>이메일:&nbsp;</strong>
-		<input type="text" name="email" placeholder="답장 받으실 E-MAIL" id="em" style="width:300px">
+		<input type="text" name="email" placeholder="답장 받으실 E-MAIL" id="email" style="width:300px">
 	</p><br>
 	<p>
 		<strong>내 용:</strong><br>
-		<textarea rows="20" cols="80" placeholder="문의내용 작성해 주세요." id="txtA" font-size=14px></textarea>
+		<textarea rows="20" cols="80" placeholder="문의내용 작성해 주세요." id="content" font-size=18px></textarea>
 	</p>
 	<p>
-		<button>문의하기</button>
+		<button id="btnSend">문의하기</button>
 	</p>
 	
 	</div>
 </form>
+
 
 		</div>
 	  </div>  
@@ -95,8 +130,10 @@ $(function(){
 
 <br>
 
+
+
 	<!-- BOTTOM -->
-  <div id="footers" class="bottom"> <span>BOTTOM (1000 x 100) <br/> #5D5D5D;</span> </div>
+  <div id="footers" class="bottom"></div>
 
 
 </body>
