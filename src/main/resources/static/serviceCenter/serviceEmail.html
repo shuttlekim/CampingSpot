@@ -2,10 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <style type="text/css">
-
 
 .container{
   width: 1000px;
@@ -20,7 +17,7 @@
   vertical-align: middle;
 }
 .top{
- background-color: white;
+
 }
 .middle{
   margin-top: 20px;
@@ -31,106 +28,114 @@
 .middle-center{
   outline: 1px solid #9F9F9F;
   top: 0px;
-  width: 1000px;
+  width: 800px;
   height: 800px;
-  background-color: #00D8FF;
+  background-color: #E6E6E6;
+  margin-left: 110px;
 }
 
-.bottom{
-
+.div1{ 
+    width:300px;
+    height:300px;
+    position:absolute;
+    left:35%;
+    top:40%;
+    margin-left:-150px;
+    margin-top:-150px;
 }
-
-
-
-.ul{
-margin-top: -10%;
-}
-
-.li{
-text-decoration: none;
-}
-
-#service{
-margin-left: 15%;
-margin-top: 5%;
-}
-
-#txtA{
-margin-left: 7.3%;
-margin-top: -20px;
-}
-
-#sb{
-margin-left: 25%;
-margin-top: -20px;
-}
-
-
-#title{
-margin-left: 1.5%;
-margin-top:-20%;
-}
-
-#em{
-margin-left: 0.4%;
-}
-
-.div1{
-margin-left: 30%;
-margin-top: 5%;
-}
-
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $(function(){	
 
+	
+	
+	
+	$("#btnSend").click(function(){
+		var input_title   = $("#title").val();
+		var input_email   = $("#email").val();
+		var input_content = $("#content").val();
+
+		
+		var insert_data = {
+				"title"    : input_title,
+				"email"    : input_email,
+				"content"  : input_content,
+				};
+		
+		$.ajax("/qnaEmail.do", {data:insert_data, async:false, success:function(r){
+				
+
+			if(r != null){
+				var result = confirm("메일전송 성공 \n 메인으로 이동할까요?");
+				
+				if(result == true){				
+				    alert("메인으로 이~~~~동");
+					window.location.href = "/main/main.html";
+				}else{
+				    alert("^_____^");
+				} 
+			}else{
+				alert("메일전송 실패!!!");
+			}
+	
+		}}); 
+	
+	});	
+
+	
 	$("#header").load("/main/header.html");	
 
 	$("#footers").load("/main/footer.html");
 		
 });
 </script>
-
 </head>
 <body>
 
 	<!-- TOP  -->
-	<div class="top" id="header">
-	   <span>TOP (1000 x 80) <br/> #FF5E00;</span>
+	<div class="top" id="header"></div>
+
+	<div class="container">
+	<!-- MIDDLE -->
+	  <div class="middle">
+	    <div class="middle-center">
+<form id="f">
+	
+	<br><br>
+	<i class="far fa-edit fa-3x" id="service">문의하기</i>
+	<div class="div1">
+	<p>
+		<strong>제&nbsp;&nbsp;&nbsp;목:&nbsp;</strong>
+		<input type="text" name="title" placeholder="제목을 입력해 주세요" id="title" style="width:300px">
+	</p>
+	<p>
+		<strong>이메일:&nbsp;</strong>
+		<input type="text" name="email" placeholder="답장 받으실 E-MAIL" id="email" style="width:300px">
+	</p><br>
+	<p>
+		<strong>내 용:</strong><br>
+		<textarea rows="20" cols="80" placeholder="문의내용 작성해 주세요." id="content" font-size=18px></textarea>
+	</p>
+	<p>
+		<button id="btnSend" style="width:200px;height:40px;font-size:20px;margin-left: 25px;">문의하기</button>
+	</p>
+	
+	</div>
+</form>
+
+
+		</div>
+	  </div>  
 	</div>
 
+<br>
 
 
-<div class="body-wrap">
-
-	<form action="serviceEmail.do"><!-- serviceEmail.do는 아직 만들지않음. -->
-	
-		<i class="far fa-edit fa-3x" id="service">문의하기</i>
-		<div class="div1">
-		<p>
-			<strong>제 목:&nbsp;</strong>
-			<input type="text" name="title" placeholder="제목 입력" id="title">
-		</p>
-		<p>
-			<strong>이메일:&nbsp;</strong>
-			<input type="text" name="email" placeholder="답장 받으실 이메일 입력" id="em">
-		</p>
-		<p>
-			<strong>내 용:</strong><br>
-			<textarea rows="10" cols="30" placeholder="문의내용 작성" id="txtA"></textarea>
-		</p>
-		<p>
-			<input type="submit" value="문의하기" id="sb">
-		</p>
-		
-		</div>
-	</form>
-
-</div>
 
 	<!-- BOTTOM -->
-  <div id="footers" class="bottom"> <span>BOTTOM (1000 x 100) <br/> #5D5D5D;</span> </div>
+  <div id="footers" class="bottom"></div>
+
 
 </body>
 </html>
