@@ -6,6 +6,41 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <style type="text/css">
 
+.container{
+  width: 1000px;
+  margin: 0 auto;
+}
+.container div{
+  text-align: center;
+  display: table;
+}
+.container div span{
+  display: table-cell;
+  vertical-align: middle;
+}
+.top{
+
+}
+.middle{
+  margin-top: 20px;
+  width: 1000px;
+  height: 500px;
+  position: relative;
+}
+.middle-center{
+  outline: 1px solid #9F9F9F;
+  top: 0px;
+  width: 1000px;
+  height: 800px;
+  background-color: #00D8FF;
+}
+
+.bottom{
+
+}
+
+
+
 #MainFAQ{
 margin-top: 20%;
 margin-left: 30%;
@@ -82,33 +117,54 @@ body {
 }
 
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function(){	
+
+	$("#header").load("/main/header.html");	
+
+	$("#footers").load("/main/footer.html");
+		
+});
+</script>
 </head>
 <body>
-<div class="div">
-<i class="far fa-calendar-alt fa-3x" class="ReservationFAQ">&nbsp;예약FAQ</i>
+
+	<!-- TOP  -->
+	<div class="top" id="header">
+	   <span>TOP (1000 x 80) <br/> #FF5E00;</span>
+	</div>
+
+<div class="body-wrap">
+	<div class="div">
+	<i class="far fa-calendar-alt fa-3x" class="ReservationFAQ">&nbsp;예약FAQ</i>
+	</div>
+	
+	
+	<div class="accordion">
+	<input type="radio" name="accordion" id="answer01">
+		<label for="answer01">예약이 안 돼요<em></em></label>
+		<div>
+			<p>• 이용하시고자 하는 날짜의 캠핑장이 매진이 된 경우가 있습니다.<br>새로 고침하시고 다시 확인해 주세요.</p>
+		</div>
+		<input type="radio" name="accordion" id="answer02">
+		<label for="answer02">예약 후, 예약 내역에서 조회되지 않는데 어떻게 해야 하나요?<em></em></label>
+		<div>
+			<p>
+	• (예약확인문자를 받았을 시)정상 예약되었으나, 일시적인 문제로 예약내역에서 조회되지 않는 경우입니다.<br>
+	• (예약확인문자를 못받았을 시)통신사 혹은 시스템의 문제로 예약문자 수신이 어려운 경우입니다.
+			</p>
+		</div>
+		<input type="radio" name="accordion" id="answer03">
+		<label for="answer03">예약 FAQ를 찾아봤는데 원하는 답이 없네요.<br>이런 경우에는 어떻게 해야 하나요?<em></em></label>
+		<div>
+			<p>• 고객센터에서 문의하기를 누르시고 제목과 답장 받으실 이메일, 내용을 작성하시고 문의하기 버튼을 누르시면 됩니다.</p>
+		</div>
+	</div>
 </div>
 
-
-<div class="accordion">
-<input type="radio" name="accordion" id="answer01">
-	<label for="answer01">예약이 안 돼요<em></em></label>
-	<div>
-		<p>• 이용하시고자 하는 날짜의 캠핑장이 매진이 된 경우가 있습니다.<br>새로 고침하시고 다시 확인해 주세요.</p>
-	</div>
-	<input type="radio" name="accordion" id="answer02">
-	<label for="answer02">예약 후, 예약 내역에서 조회되지 않는데 어떻게 해야 하나요?<em></em></label>
-	<div>
-		<p>
-• (예약확인문자를 받았을 시)정상 예약되었으나, 일시적인 문제로 예약내역에서 조회되지 않는 경우입니다.<br>
-• (예약확인문자를 못받았을 시)통신사 혹은 시스템의 문제로 예약문자 수신이 어려운 경우입니다.
-		</p>
-	</div>
-	<input type="radio" name="accordion" id="answer03">
-	<label for="answer03">예약 FAQ를 찾아봤는데 원하는 답이 없네요.<br>이런 경우에는 어떻게 해야 하나요?<em></em></label>
-	<div>
-		<p>• 고객센터에서 문의하기를 누르시고 제목과 답장 받으실 이메일, 내용을 작성하시고 문의하기 버튼을 누르시면 됩니다.</p>
-	</div>
-</div>
+	<!-- BOTTOM -->
+  <div id="footers" class="bottom"> <span>BOTTOM (1000 x 100) <br/> #5D5D5D;</span> </div>
 
 </body>
 </html>

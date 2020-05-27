@@ -6,6 +6,41 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <style type="text/css">
 
+.container{
+  width: 1000px;
+  margin: 0 auto;
+}
+.container div{
+  text-align: center;
+  display: table;
+}
+.container div span{
+  display: table-cell;
+  vertical-align: middle;
+}
+.top{
+
+}
+.middle{
+  margin-top: 20px;
+  width: 1000px;
+  height: 500px;
+  position: relative;
+}
+.middle-center{
+  outline: 1px solid #9F9F9F;
+  top: 0px;
+  width: 1000px;
+  height: 800px;
+  background-color: #00D8FF;
+}
+
+.bottom{
+
+}
+
+
+
 .ul{
 margin-top: -10%;
 }
@@ -71,33 +106,55 @@ body {
 }
 
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function(){	
+
+	$("#header").load("/main/header.html");	
+
+	$("#footers").load("/main/footer.html");
+		
+});
+</script>
+
+
 </head>
 <body>
 
-<div class="div">
-<i class="fas fa-headset fa-3x" class="AccountFAQ">&nbsp;계정 FAQ</i>
+	<!-- TOP  -->
+	<div class="top" id="header">
+	   <span>TOP (1000 x 80) <br/> #FF5E00;</span>
+	</div>
+
+<div class="body-wrap">
+
+	<div class="div">
+	<i class="fas fa-headset fa-3x" class="AccountFAQ">&nbsp;계정 FAQ</i>
+	</div>
+	
+	<div class="accordion">
+	<input type="radio" name="accordion" id="answer01">
+		<label for="answer01">회원정보 수정하고 싶은데 어떻게 하나요?<em></em></label>
+		<div>
+			<p>• 오른쪽 상단 회원정보에 들어가셔서 수정을 누르시면 됩니다.</p>
+		</div>
+		<input type="radio" name="accordion" id="answer02">
+		<label for="answer02">로그인이 안 돼요<em></em></label>
+		<div>
+			<p>• 아이디나 비밀번호가 일치하지 않을 수 있으니 아이디 찾기, 비밀번호 찾기 기능을 이용해 주세요.</p>
+		</div>
+		<input type="radio" name="accordion" id="answer03">
+		<label for="answer03">계정 FAQ를 찾아봤는데 원하는 답이 없네요.<br>이런 경우에는 어떻게 해야 하나요?<em></em></label>
+		<div>
+			<p>• 고객센터에서 문의하기를 누르시고 제목과 답장 받으실 이메일, 내용을 작성하시고 문의하기 버튼을 누르시면 됩니다.</p>
+		</div>
+	</div>
+
 </div>
 
 
-
-<div class="accordion">
-<input type="radio" name="accordion" id="answer01">
-	<label for="answer01">회원정보 수정하고 싶은데 어떻게 하나요?<em></em></label>
-	<div>
-		<p>• 오른쪽 상단 회원정보에 들어가셔서 수정을 누르시면 됩니다.</p>
-	</div>
-	<input type="radio" name="accordion" id="answer02">
-	<label for="answer02">로그인이 안 돼요<em></em></label>
-	<div>
-		<p>• 아이디나 비밀번호가 일치하지 않을 수 있으니 아이디 찾기, 비밀번호 찾기 기능을 이용해 주세요.</p>
-	</div>
-	<input type="radio" name="accordion" id="answer03">
-	<label for="answer03">계정 FAQ를 찾아봤는데 원하는 답이 없네요.<br>이런 경우에는 어떻게 해야 하나요?<em></em></label>
-	<div>
-		<p>• 고객센터에서 문의하기를 누르시고 제목과 답장 받으실 이메일, 내용을 작성하시고 문의하기 버튼을 누르시면 됩니다.</p>
-	</div>
-</div>
-
+	<!-- BOTTOM -->
+  <div id="footers" class="bottom"> <span>BOTTOM (1000 x 100) <br/> #5D5D5D;</span> </div>
 
 </body>
 </html>

@@ -6,6 +6,40 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <style type="text/css">
 
+.container{
+  width: 1000px;
+  margin: 0 auto;
+}
+.container div{
+  text-align: center;
+  display: table;
+}
+.container div span{
+  display: table-cell;
+  vertical-align: middle;
+}
+.top{
+
+}
+.middle{
+  margin-top: 20px;
+  width: 1000px;
+  height: 500px;
+  position: relative;
+}
+.middle-center{
+  outline: 1px solid #9F9F9F;
+  top: 0px;
+  width: 1000px;
+  height: 800px;
+  background-color: #00D8FF;
+}
+
+.bottom{
+
+}
+
+
 #MainFAQ{
 margin-top: 20%;
 margin-left: 30%;
@@ -81,30 +115,50 @@ body {
 }
 
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function(){	
+
+	$("#header").load("/main/header.html");	
+
+	$("#footers").load("/main/footer.html");
+		
+});
+</script>
 </head>
 <body>
+	<!-- TOP  -->
+	<div class="top" id="header">
+	   <span>TOP (1000 x 80) <br/> #FF5E00;</span>
+	</div>
 
-<div class="div">
-<i class="far fa-credit-card fa-3x" class="PaymentFAQ">&nbsp;결제FAQ</i>
+<div class="body-wrap">
+
+	<div class="div">
+	<i class="far fa-credit-card fa-3x" class="PaymentFAQ">&nbsp;결제FAQ</i>
+	</div>
+	
+	<div class="accordion">
+	<input type="radio" name="accordion" id="answer01">
+		<label for="answer01">캠핑장 결제되었는지 확인하고 싶어요.<em></em></label>
+		<div>
+			<p>• 마이페이지에서 확인하실 수 있습니다.</p>
+		</div>
+		<input type="radio" name="accordion" id="answer02">
+		<label for="answer02">결제창으로 안 넘어가 저요<em></em></label>
+		<div>
+			<p>• 이용하시고 싶으신 날짜를 예약하실 수 없을 경우가 있으므로 새로 고침을 하시고 다시 이용해 주시기 바랍니다.</p>
+		</div>
+		<input type="radio" name="accordion" id="answer03">
+		<label for="answer03">결제 FAQ를 찾아봤는데 원하는 답이 없네요.<br>이런 경우에는 어떻게 해야 하나요?<em></em></label>
+		<div>
+			<p>• 고객센터에서 문의하기를 누르시고 제목과 답장 받으실 이메일, 내용을 작성하시고 문의하기 버튼을 누르시면 됩니다.</p>
+		</div>
+	</div>
 </div>
 
-<div class="accordion">
-<input type="radio" name="accordion" id="answer01">
-	<label for="answer01">캠핑장 결제되었는지 확인하고 싶어요.<em></em></label>
-	<div>
-		<p>• 마이페이지에서 확인하실 수 있습니다.</p>
-	</div>
-	<input type="radio" name="accordion" id="answer02">
-	<label for="answer02">결제창으로 안 넘어가 저요<em></em></label>
-	<div>
-		<p>• 이용하시고 싶으신 날짜를 예약하실 수 없을 경우가 있으므로 새로 고침을 하시고 다시 이용해 주시기 바랍니다.</p>
-	</div>
-	<input type="radio" name="accordion" id="answer03">
-	<label for="answer03">결제 FAQ를 찾아봤는데 원하는 답이 없네요.<br>이런 경우에는 어떻게 해야 하나요?<em></em></label>
-	<div>
-		<p>• 고객센터에서 문의하기를 누르시고 제목과 답장 받으실 이메일, 내용을 작성하시고 문의하기 버튼을 누르시면 됩니다.</p>
-	</div>
-</div>
+	<!-- BOTTOM -->
+  <div id="footers" class="bottom"> <span>BOTTOM (1000 x 100) <br/> #5D5D5D;</span> </div>
 
 </body>
 </html>

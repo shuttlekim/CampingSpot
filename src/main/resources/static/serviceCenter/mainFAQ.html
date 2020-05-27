@@ -2,9 +2,40 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <style type="text/css">
+
+.container{
+  width: 1000px;
+  margin: 0 auto;
+}
+.container div{
+  text-align: center;
+  display: table;
+}
+.container div span{
+  display: table-cell;
+  vertical-align: middle;
+}
+.top{
+
+}
+.middle{
+  margin-top: 20px;
+  width: 1000px;
+  height: 500px;
+  position: relative;
+}
+.middle-center{
+  outline: 1px solid #9F9F9F;
+  top: 0px;
+  width: 1000px;
+  height: 800px;
+  background-color: #00D8FF;
+}
+
+.bottom{
+
+}
 
 .ul{
 margin-top: -10%;
@@ -73,11 +104,29 @@ body {
  margin-top: 60px;
  font-size: 80px;
 }
-
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function(){	
+
+	$("#header").load("/main/header.html");	
+
+	$("#footers").load("/main/footer.html");
+		
+});
+</script>
 </head>
 <body>
-<h1 id="titleFAQ">FAQ</h1>
+
+	<!-- TOP  -->
+	<div class="top" id="header">
+	   <span>TOP (1000 x 80) <br/> #FF5E00;</span>
+	</div>
+
+	<div class="body-wrap">
+	
+	<i class="fas fa-angle-right fa-6x"></i>
+		<h1 id="titleFAQ">FAQ</h1>
 <div class="but">
 <a href="reservationFAQ.html"><i class="far fa-calendar-alt fa-4x" class="ReservationFAQ"><br><font size="4px" id="font1">예약FAQ</font></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="paymentFAQ.html"><i class="far fa-credit-card fa-4x" class="PaymentFAQ"><br><font size="4px" id="font2">결제FAQ</font></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -85,5 +134,17 @@ body {
 <a href="changeFAQ.html"><i class="fas fa-exchange-alt fa-4x" class="ChangeFAQ"><br><font size="4px" id="font4">변경/환불FAQ</font></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="accountFAQ.html"><i class="fas fa-headset fa-4x" class="AccountFAQ"><br><font size="4px" id="font5">계정FAQ</font></i></a>
 </div>
+
+
+
+	</div>
+
+
+
+
+	<!-- BOTTOM -->
+  <div id="footers" class="bottom"> <span>BOTTOM (1000 x 100) <br/> #5D5D5D;</span> </div>
+
+
 </body>
 </html>
