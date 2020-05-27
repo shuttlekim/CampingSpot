@@ -165,13 +165,11 @@ public class MailController {
 			
 			javaMailSender.send(mailMessage);			
 			 
-			
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 		}			
 		
 		return r;
 	}
-	
 	
 }
