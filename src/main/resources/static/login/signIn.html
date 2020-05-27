@@ -44,13 +44,20 @@
 <script type="text/javascript">
 $(function(){	
 	
+	var check = 0;
+	
 	//가입하기 버튼 클릭시 동작
 	$("#btnJoinOk").click(function(){
-		var member =  new FormData(document.getElementById("join"));
-		$.ajax("/signIn.do", {data:member, processData:false, contentType:false, type:"POST", success:function(r){
-			alert("회원가입 성공 \n 로그인 페이지로 이동!");
-			window.location.href = "/login/login.html";
-		}}); 
+		if(char == 1){
+			var member =  new FormData(document.getElementById("join"));
+			$.ajax("/signIn.do", {data:member, processData:false, contentType:false, type:"POST", success:function(r){
+				alert("회원가입 성공 \n 로그인 페이지로 이동!");
+				window.location.href = "/login/login.html";
+			}}); 
+		}else{
+			alert("ID중복검사를 해주세요!");
+		}
+
 	});
 		
 	//비밀번호 확인
@@ -84,6 +91,8 @@ $(function(){
 			}
 		}}); 
 	});
+	
+	
 	
 	$("#header").load("/main/header.html");	
 
