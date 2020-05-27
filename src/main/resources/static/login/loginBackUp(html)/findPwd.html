@@ -45,6 +45,9 @@ $(function(){
 	//메일보내기 버튼 클릭시 동작
 	$("#btnSendMail").click(function(){
 		
+		//alert(input_email);			
+		//var data = $("#s").serialize();
+		
 		var input_id = $("#mc_id").val();
 		var input_email = $("#mc_email").val();
 		
@@ -53,10 +56,15 @@ $(function(){
 				"mc_email": input_email
 				};
 		
+		//console.log(data);
+	
 		$.ajax("/email.do", {data:data, success:function(re){
 			alert("메일전송 성공 \n메일이 도착하지 않으셨다면 가입한 아이디/이메일 주소가 아닙니다.");
 			window.location.href = "/main/main.html";					
 		}});
+		
+		
+		
 	});
 
 	
@@ -84,7 +92,7 @@ $(function(){
 				<input type="text" id="mc_id" name="mc_id" placeholder="아이디" required="required"><br><br>
 				<input type="text" id="mc_email" name="mc_email" placeholder="이메일" required="required"><br>
 			</form><br>
-				<button id="btnSendMail">메일보내기</button>
+	<button id="btnSendMail">메일보내기</button>
 	    </div>
 	  </div>  
 	</div>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>NaverLoginSDK</title>
+</head>
+
+<body>
+
+	<!-- callback 처리중입니다. 이 페이지에서는 callback을 처리하고 바로 main으로 redirect하기때문에 이 메시지가 보이면 안됩니다. -->
+
+	<!-- (1) LoginWithNaverId Javscript SDK -->
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+
+	<!-- (2) LoginWithNaverId Javscript 설정 정보 및 초기화 -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript">
+	//$(function(){	
+		
+
+		var naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId: "{oRa7sGUWcEp5YZ_7DwtH}",
+				callbackUrl: "{http://192.168.0.36:8088/login/naver.html}",
+				isPopup: false,
+				callbackHandle: true
+				/* callback 페이지가 분리되었을 경우에 callback 페이지에서는 callback처리를 해줄수 있도록 설정합니다. */
+			}
+		);
+
+		/* (3) 네아로 로그인 정보를 초기화하기 위하여 init을 호출 */
+		naverLogin.init();
+
+		/* (4) Callback의 처리. 정상적으로 Callback 처리가 완료될 경우 main page로 redirect(또는 Popup close) */
+		window.addEventListener('load', function () {
+			naverLogin.getLoginStatus(function (status) {
+				if (status) {					
+			
+					var uniqId = naverLogin.user.getId();
+					var email = naverLogin.user.getEmail();
+			        var name = naverLogin.user.getNickName();
+			        var profileImage = naverLogin.user.getProfileImage();  						
+					
+					var memberName = sessionStorage.getItem("memberName");									
+					var memberId = sessionStorage.getItem("memberId");									
+					//alert("현재 세션에 저장된 ID : " + memberName);
+				
+					var insert_data = {
+								"mc_id"    : uniqId,
+								"mc_email" : email,
+								"mc_name"  : name,
+								"mc_fname" : profileImage,	
+								"mc_auth"  : 4
+								};
+					
+					var mc_id = uniqId;
+					
+					//alert("이거 동작은 하냐?");
+					
+					$.ajax("/naver.do", {data:insert_data, async:false, success:function(result){			
+						
+						//alert("naver.do 에서 받아온 ID : " + result);
+						
+						//memberId = result;
+						memberName = result;
+						if(result == ""){
+							memberName = "ok";
+							alert("memberName : " + memberName);
+						}else{
+							sessionStorage.setItem("memberName", result);
+							//sessionStorage.setItem("memberName", result);
+						}
+						
+						if(memberName == "ok"){
+							
+							alert("회원가입진행");
+							
+							console.log(insert_data);							
+					
+							alert("네이버 아이디로 회원가입 성공");
+							sessionStorage.setItem("memberName", memberName);										
+							//sessionStorage.setItem("memberId", memberId);										
+						}else{
+							//sessionStorage.setItem("memberId", memberId);
+							sessionStorage.setItem("memberName", memberName);							
+						}
+					}});	
+														
+
+					window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/main/main.html");
+				} else {
+					console.log("callback 처리에 실패하였습니다.");
+				}
+			});
+		});
+		
+	//});
+	</script>
+</body>
+
+</html>

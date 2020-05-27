@@ -57,6 +57,7 @@ public class MemberDBManager {
 		SqlSession session = factory.openSession();
 		MemberVo m = session.selectOne("member.getMember", mc_id);
 		session.close();
+		//System.out.println("DBManaer 메시지 : " + m);
 		return m;
 	}
 	
@@ -68,6 +69,7 @@ public class MemberDBManager {
 		if( c != null ) {
 			r = 1;
 		}
+		//System.out.println("DBManaer 메시지 : " + r);
 		return r;
 	}
 	
@@ -77,6 +79,7 @@ public class MemberDBManager {
 		System.out.println("mc_id:" + mc_id);
 		int re = 0;
 		re = session.update("member.updateRecdate", mc_id);
+		//update("member.updateRecdate", m);
 		System.out.println("MemberDBManager 접속일 업데이트 re : " + re);
 		session.close();
 		return re;
@@ -99,6 +102,7 @@ public class MemberDBManager {
 	public static int updatePwd(String mc_id, String mc_email) {
 		int re = -1;
 		SqlSession session = factory.openSession(true);
+		//System.out.println("mc_id:" + mc_id);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("mc_id", mc_id);
 		map.put("mc_email", mc_email);
@@ -118,18 +122,19 @@ public class MemberDBManager {
 		return re;
 	}
 	
-	//세션맴버
-	public static MemberVo sessionMember(String mc_id) {	
+	//세션맴버(수정을 위한 mc_id 로 모든회원정보 vo에 담아 가져와서)
+	//select * from member_customer where mc_id=#{mc_id} ---> 이걸 
+	public static MemberVo sessionMember(String mc_id) {	//in (mc_id)
 		SqlSession session = factory.openSession();
-		MemberVo smout = session.selectOne("member.sessionMember", mc_id);	 
+		MemberVo smout = session.selectOne("member.sessionMember", mc_id);	//out 
 		session.close();
 		System.out.println("MemberDBManager 메시지 sessionMember : " + smout);
 		return smout;
 	}
 	
-	public static MemberVo sessionMember2(String mc_id) {	
+	public static MemberVo sessionMember2(String mc_id) {	//in (mc_id)
 		SqlSession session = factory.openSession();
-		MemberVo smout = session.selectOne("member.sessionMember", mc_id);	
+		MemberVo smout = session.selectOne("member.sessionMember", mc_id);	//out 
 		session.close();
 		System.out.println("MemberDBManager 메시지 sessionMember2 : " + smout);
 		return smout;

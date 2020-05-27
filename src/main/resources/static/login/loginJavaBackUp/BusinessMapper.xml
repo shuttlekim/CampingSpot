@@ -71,6 +71,7 @@
   	)
   </insert>
   
+  
   <!-- 암호화 처리를 위한 getMember -->
   <select id="getBusiness" resultType="businessVo">
   	select * from member_business where mb_id=#{mb_id}
