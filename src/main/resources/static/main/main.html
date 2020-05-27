@@ -93,6 +93,9 @@
 		console.log(thisMonth);
 		var festivalList;
 		
+		//메인페이지로 넘어오면 결제정보는 사라집니다.
+		sessionStorage.removeItem("reservation_data");
+		
 		//진행중인 전국 축제 3개 호출하는 함수
 		var listThumb = function(){
 			$.ajax("/festivalThumb.do", {success:function(festival){
