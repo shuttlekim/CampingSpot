@@ -39,6 +39,14 @@ public class DBManager {
 		}
 	}
 	
+	// 영현) 예약번호 불러오기
+	public static int callReservationKey() {
+		SqlSession session = factory.openSession();
+		int re = session.selectOne("reservation.callReservationKey");
+		session.close();
+		return re;
+	}
+	
 	// 영현) 예약 검색 등록
 	public static int insertReserveSearch(HashMap map) {
 		SqlSession session = factory.openSession(true);

@@ -68,7 +68,6 @@ public class MemberController {
 		return str;
 	}
 	
-	
 	//회원목록
 	@RequestMapping(value = "/listMember.do", produces = "application/json;charset=UTF-8")
 	public String listMember() {
@@ -79,7 +78,6 @@ public class MemberController {
 		System.out.println("MemberController 메시지 : 회원목록" + str);
 		return str;
 	}
-	
 	
 	//회원가입
 	@RequestMapping("/signIn.do")
@@ -126,8 +124,7 @@ public class MemberController {
         System.out.println("MemberController 메시지 : 회원등록" + str);
 		return str;
 	}	
-	
-	
+
 	//회원 아이디 중복체크
 	@RequestMapping("/checkId.do")
 	public int checkId(String mc_id) {
@@ -145,23 +142,6 @@ public class MemberController {
 		int re = dao.deleteMember(mc_id);
 		return re;
 	}
-	
-	//회원수정 - 세션정보들 불러오기 mc_id에 vo 담아서 (백업본)
-//	@RequestMapping("/sessionMember.do")
-//	public String sessionMember(String mc_id) {		//dao에서 받아옴
-//		System.out.println("------sessionMember 작동------");
-//		String str = "";
-//		MemberVo smout = dao.sessionMember(mc_id);
-//		System.out.println("MemberController 메시지 : smout 의 상태 " + smout);
-//		if(smout != null) {
-//		str = smout.getMc_id();
-//		System.out.println("str : " + str);
-//		}else {
-//			str = null;
-//			System.out.println("str : " + str);
-//		}
-//		return str;
-//	}	
 	
 	//회원수정 - 세션정보들 불러오기 mc_id에 vo 담아서
 	@RequestMapping("/sessionMember.do")
@@ -190,7 +170,6 @@ public class MemberController {
         System.out.println("MemberController 메시지 : sessionMember2 동작 " + smout);
         return smout;
     }    
-	
 	
 	//회원수정
 	@RequestMapping("/updateMember.do")
@@ -239,7 +218,6 @@ public class MemberController {
 		return str;		
 	}
 	
-	
 	//네아로(네이버 아이디 로그인) 세션 및 가입 처리
 	@RequestMapping("/naver.do")
 	public String naver(MemberVo n) {
@@ -274,10 +252,8 @@ public class MemberController {
 	        System.out.println("MemberVo:"+smout);
 	        smout = dao.sessionMember(n.getMc_id());
 	        str = smout.getMc_name();
-		}
-		
-		return str;
-		
+		}		
+		return str;		
 	}	
 
 	

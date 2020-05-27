@@ -5,7 +5,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Random;
  
 //SHA-256 암호화
-
 public class SHA256Util {
  
     public static String getEncrypt(String source, String salt) {

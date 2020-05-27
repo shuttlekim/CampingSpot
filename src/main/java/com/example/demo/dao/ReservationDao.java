@@ -14,6 +14,11 @@ import com.example.demo.vo.DetailCampingSearchResultVo;
 public class ReservationDao {
 	
 	// 영현
+	public int callReservationKey() {
+		return DBManager.callReservationKey();
+	}
+	
+	// 영현
 	public int insertReserveSearch(HashMap map) {
 		return DBManager.insertReserveSearch(map);
 	}

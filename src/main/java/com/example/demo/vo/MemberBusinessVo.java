@@ -1,10 +1,8 @@
 package com.example.demo.vo;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 @Data
 @AllArgsConstructor
@@ -24,5 +22,4 @@ public class MemberBusinessVo {
 	private String mb_recdate;
 	private int mb_auth;
 	
-
 }

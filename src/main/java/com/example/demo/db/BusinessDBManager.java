@@ -58,7 +58,6 @@ public class BusinessDBManager {
 		SqlSession session = factory.openSession();
 		BusinessVo m = session.selectOne("business.getBusiness", mb_id);
 		session.close();
-		//System.out.println("DBManaer 메시지 : " + m);
 		return m;
 	}
 	
@@ -70,7 +69,6 @@ public class BusinessDBManager {
 		if( c != null ) {
 			r = 1;
 		}
-		//System.out.println("DBManaer 메시지 : " + r);
 		return r;
 	}
 	
@@ -124,10 +122,9 @@ public class BusinessDBManager {
 	}
 	
 	//세션 사업자(수정을 위한 mc_id 로 모든회원정보 vo에 담아 가져와서)
-	//select * from member_customer where mc_id=#{mc_id} ---> 이걸 
-	public static BusinessVo sessionMember(String mb_id) {	//in (mc_id)
+	public static BusinessVo sessionMember(String mb_id) {	
 		SqlSession session = factory.openSession();
-		BusinessVo smout = session.selectOne("business.sessionBusiness", mb_id);	//out 
+		BusinessVo smout = session.selectOne("business.sessionBusiness", mb_id);	
 		session.close();
 		System.out.println("BusinessDBManaer 메시지 sessionBusiness : " + smout);
 		return smout;

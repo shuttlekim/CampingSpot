@@ -6,15 +6,33 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <style type="text/css">
 
-.vl {
-  border-right: 2px solid black;
-  height: 700px;
-  position: absolute;
-  left: 0%;
-  margin-right:3px;
-  top: 0;
-  background-color: #c8cdcf;
+.container{
+  width: 1000px;
+  margin: 0 auto;
 }
+.container div{
+  text-align: center;
+  display: table;
+} 
+.container div span{
+  display: table-cell;
+  vertical-align: middle;
+}
+.top{
+ background-color: white;
+}
+.middle{
+  margin-top: 20px;
+  width: 1000px;
+  height: 700px;
+  position: relative;
+}
+
+.bottom{
+
+}
+
+
 
 #MainFAQ{
 margin-top: 20%;
@@ -43,10 +61,10 @@ margin-left: 10%;
 
 .accordion {
 position:absolute;
-top:40%;
-left:50%;
+top: 26%;
+left: 57%;
 transform:translateX(-50%);
-width:700px;
+width:750px;
 }
 input[id*="answer"] {display:none;}
 input[id*="answer"] + label {display:block;
@@ -66,7 +84,7 @@ width:30px;
 height:30px;
 margin-top:-15px;
 display:inline-block;
-background:url('serviceCenter/img/arrow.png') 0 0 no-repeat;
+background:url('/serviceCenter/img/arrow.png') 0 0 no-repeat;
 }
 input[id*="answer"] + label + div {
 max-height:0;
@@ -85,50 +103,65 @@ input[id*="answer"]:checked + label em {
 background-position:0 -30px;
 }
 
+/*
 body {
-	background-image: url("serviceCenter/img/FAQ10.png");
+	background-image: url("/serviceCenter/img/FAQ10.png");
 	background-repeat:no-repeat;
-	background-position: -400px -450px;
+	background-position: -480px -30px;
 }
+*/
 
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function(){	
+
+	$("#header").load("/main/header.html");	
+
+	$("#footers").load("/main/footer.html");
+		
+});
+</script>
 </head>
 <body>
 
-<div class="vl">
-<br>
-<h2>고객센터</h2>&nbsp;&nbsp;&nbsp;<br><br><br><br><br><br><br><br><br><br>
-<ul class="ul">
-	<li><a href="mainFAQ.html" class="li">FAQ</a></li>
-	<li><a href="serviceEmail.html" class="li">문의하기</a></li>
-</ul>
+	<!-- TOP  -->
+	<div class="top" id="header">
+	   <span>TOP (1000 x 80) <br/> #FF5E00;</span>
+	</div>
+
+<div class="body-wrap">
+	<div class="middle">
+	<div class="div">
+	<i class="far fa-calendar-alt fa-3x" class="ReservationFAQ">&nbsp;예약FAQ</i>
+	</div>
+	
+	
+	<div class="accordion">
+	<input type="radio" name="accordion" id="answer01">
+		<label for="answer01">예약이 안 돼요<em></em></label>
+		<div>
+			<p>• 이용하시고자 하는 날짜의 캠핑장이 매진이 된 경우가 있습니다.<br>새로 고침하시고 다시 확인해 주세요.</p>
+		</div>
+		<input type="radio" name="accordion" id="answer02">
+		<label for="answer02">예약 후, 예약 내역에서 조회되지 않는데 어떻게 해야 하나요?<em></em></label>
+		<div>
+			<p>
+	• (예약확인문자를 받았을 시)정상 예약되었으나, 일시적인 문제로 예약내역에서 조회되지 않는 경우입니다.<br>
+	• (예약확인문자를 못받았을 시)통신사 혹은 시스템의 문제로 예약문자 수신이 어려운 경우입니다.
+			</p>
+		</div>
+		<input type="radio" name="accordion" id="answer03">
+		<label for="answer03">예약 FAQ를 찾아봤는데 원하는 답이 없네요.<br>이런 경우에는 어떻게 해야 하나요?<em></em></label>
+		<div>
+			<p>• 고객센터에서 문의하기를 누르시고 제목과 답장 받으실 이메일, 내용을 작성하시고 문의하기 버튼을 누르시면 됩니다.</p>
+		</div>
+	</div>
+	</div>
 </div>
 
-<div class="div">
-<i class="far fa-calendar-alt fa-3x" class="ReservationFAQ">&nbsp;예약FAQ</i>
-</div>
-
-
-<div class="accordion">
-<input type="radio" name="accordion" id="answer01">
-	<label for="answer01">예약이 안 돼요<em></em></label>
-	<div>
-		<p>• 이용하시고자 하는 날짜의 캠핑장이 매진이 된 경우가 있습니다.<br>새로 고침하시고 다시 확인해 주세요.</p>
-	</div>
-	<input type="radio" name="accordion" id="answer02">
-	<label for="answer02">예약 후, 예약 내역에서 조회되지 않는데 어떻게 해야 하나요?<em></em></label>
-	<div>
-		<p>
-• (예약확인문자를 받았을 시)정상 예약되었으나, 일시적인 문제로 예약내역에서 조회되지 않는 경우입니다.<br>
-• (예약확인문자를 못받았을 시)통신사 혹은 시스템의 문제로 예약문자 수신이 어려운 경우입니다.
-		</p>
-	</div>
-	<input type="radio" name="accordion" id="answer03">
-	<label for="answer03">예약 FAQ를 찾아봤는데 원하는 답이 없네요.<br>이런 경우에는 어떻게 해야 하나요?<em></em></label>
-	<div>
-		<p>• 고객센터에서 문의하기를 누르시고 제목과 답장 받으실 이메일, 내용을 작성하시고 문의하기 버튼을 누르시면 됩니다.</p>
-	</div>
-</div>
+	<!-- BOTTOM -->
+  <div id="footers" class="bottom"> <span>BOTTOM (1000 x 100) <br/> #5D5D5D;</span> </div>
 
 </body>
 </html>

@@ -1,10 +1,8 @@
 package com.example.demo.vo;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 @Data
 @AllArgsConstructor
@@ -25,5 +23,4 @@ public class MemberCustomerVo {
 	private int mc_point;
 	private int mc_auth;
 	
-
 }

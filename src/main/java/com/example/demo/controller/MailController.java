@@ -37,8 +37,6 @@ public class MailController {
 		this.javaMailSender = mailSender;
 	}
 
-	
-	
 	//회원 비밀번호 찾기
 	@RequestMapping("/email.do")
 	@ResponseBody
@@ -146,5 +144,30 @@ public class MailController {
 		
 		return r;
 	}	
+	
+	//고객센터 문의메일
+	@RequestMapping("/qnaEmail.do")
+	@ResponseBody
+	public String qnaMail(String title, String email, String content) {
+		String r = ""; 
+
+		try {		
+			SimpleMailMessage mailMessage = new SimpleMailMessage();
+			mailMessage.setSubject(title);
+			mailMessage.setFrom(email);
+			mailMessage.setText("[" + email + "]" + "로 부터 온 메일 입니다.\n\n 메일내용 : \n\n" + content);
+			System.out.println("메일제목" + title);
+			System.out.println("메일주소" + email);
+			System.out.println("메일내용" + content);
+			mailMessage.setTo("campingspot12345@gmail.com");
+			
+			javaMailSender.send(mailMessage);			
+			 
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}				
+		return r;
+	}
+	
 	
 }

@@ -67,7 +67,6 @@ public class BusinessController {
 		return str;
 	}
 	
-	
 	//사업자 목록 조회
 	@RequestMapping(value = "/listBusiness.do", produces = "application/json;charset=UTF-8")
 	public String listBusiness() {
@@ -78,7 +77,6 @@ public class BusinessController {
 		System.out.println("BusinessController 메시지 : 사업자목록" + str);
 		return str;
 	}
-	
 	
 	//사업자 회원가입
 	@RequestMapping("/signIn2.do")
@@ -111,7 +109,6 @@ public class BusinessController {
 		return str;
 	}	
 	
-	
 	//사업자 아이디 중복체크
 	@RequestMapping("/checkId2.do")
 	public int checkId(String mb_id) {
@@ -120,7 +117,6 @@ public class BusinessController {
 		System.out.println("BusinessController 메시지 : 중복체크" + re);
 		return re;
 	}
-	
 	
 	//사업자 회원탈퇴
 	@RequestMapping("/deleteBusiness.do")
@@ -131,7 +127,6 @@ public class BusinessController {
 		return re;
 	}
 	
-	
 	//사업자 세션정보들 불러오기 MC_ID에 VO 담아서
 	@RequestMapping("/sessionBusiness.do")
 	public BusinessVo sessionBusiness(String mb_id) {		
@@ -139,7 +134,6 @@ public class BusinessController {
 		System.out.println("BusinessController 메시지 : sessionBusiness 동작 " + smout);
 		return smout;
 	}	
-	
 	
 	//사업자 정보 수정
 	@RequestMapping("/updateBusiness.do")
