@@ -21,4 +21,7 @@ public class CampingReviewVo {
    private int cs_no;
    private String cre_re_contents;
    
+	// 댓글 확인을 위해 추가한 변수
+	private int re_check;
+   
 }
