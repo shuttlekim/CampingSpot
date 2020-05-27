@@ -80,6 +80,18 @@ $(function(){
    $("#input_chkin").attr("value", checkin);
    $("#input_chkout").attr("value", checkout);
    
+   // 예약날짜별 기상정보를 출력하는 함수
+   var getWeather = function(checkin, checkout){
+	   var weather_data = {
+			   "checkin": checkin,
+			   "checkout": checkout
+	   }
+	   $.ajax("/getWeather.do", {data:weather_data, success:function(data){
+		   
+	   }})
+   }
+   
+   //--------------------------------------------------------------------
    
     var getDetail = function(cs_no, campingType, checkout, checkin){
     	var input_data = {
@@ -124,11 +136,11 @@ $(function(){
     				"value": item.cr_no,
     				"price": item.cr_price
     			});
-    			/* var option2 = $("<option></option>").html("룸이름: "+item.cr_name+", 1박 가격: "+item.cr_price+", 품절").attr({
+    			var option2 = $("<option></option>").html("룸이름: "+item.cr_name+", 1박 가격: "+item.cr_price+", 품절").attr({
     				"value": item.cr_no,
     				"price": item.cr_price,
     				"disabled": true
-    			}) */
+    			})
     			if( item.empty ){
     				$(select).append(option1);
     			}else{
@@ -253,7 +265,7 @@ $(function(){
 		        <button class="btn" id="btn_insert">찜하기</button>
 		        <button class="btn" id="btn_review">리뷰 보러가기</button>
 		    </div>
-		 
+		 	<div id="detail_weather"></div>
 		   	<div id="campingSpot_detail"></div>
 		</div>
 		

@@ -3,31 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
-
 	.container{
-	  width: 1000px;
-	  margin: 0 auto;
+	  	width: 1000px;
+	  	margin: 0 auto;
 	}	
 	.container div{
-	  text-align: center;
-	  display: table;
+	  	text-align: center;
+	  	display: table;
 	}	
 	.container div span{
-	  display: table-cell;
-	  vertical-align: middle;
+	  	display: table-cell;
+	  	vertical-align: middle;
 	}	
 	.middle{
-	  margin-top: 20px;
-	  width: 1000px;
-	  height: 500px;
-	  position: relative;
+	  	margin-top: 20px;
+	  	width: 1000px;
+	  	height: 500px;
+	  	position: relative;
 	}	
 	.middle-center{
-	  //outline: 1px solid #9F9F9F;
-	  top: 0px;
-	  width: 1000px;
-	  height: 650px;
-	  //background-color: #00D8FF;
+	  	//outline: 1px solid #9F9F9F;
+	  	top: 0px;
+	  	width: 1000px;
+	  	height: 650px;
+	  	//background-color: #00D8FF;
 	}
     #afterLogin{
         visibility: hidden;
@@ -67,7 +66,6 @@
     	top: 350px;
     	left: 85px;     	
     }    	
-    	
 	.gradient-button {
 	    margin: 10px;
 	    font-family: "Arial Black", Gadget, sans-serif;
@@ -94,7 +92,6 @@
 	.gradient-button-2 {background-image: linear-gradient(to right, #2BC0E4 0%, #EAECC6 51%, #2BC0E4 100%)}
 	.gradient-button-2:hover { background-position: right center; }
 
-
 	input[type="text"],input[type="password"],input[type="number"],select{
 		height:30px;
 		line-height: 30px;
@@ -104,7 +101,6 @@
 		border-radius : 7px;
 		background-color:#fff;
 	}
-
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
@@ -112,8 +108,7 @@
 $(function(){	
 
 	//일반회원 로그인 버튼
-	$("#btnLogin").click(function(){		
-		 
+	$("#btnLogin").click(function(){
 		var member = $("#loginForm").serialize();
 		$.ajax("/login.do", {data:member, type:"POST", success:function(memberId){
 			if(memberId != "no"){					
@@ -128,7 +123,6 @@ $(function(){
 	
 	//사업자 로그인 버튼
 	$("#btnLogin2").click(function(){		
-		 
 		var business = $("#loginForm2").serialize();
 		$.ajax("/login2.do", {data:business, type:"POST", success:function(businessId){		
 			if(businessId != "no"){	
@@ -141,6 +135,7 @@ $(function(){
 		}});
 	});
 		
+	
 	$("#btnFindPwd").click(function(){
 		window.location.href = "/login/findPwd.html";
 	});
@@ -159,63 +154,58 @@ $(function(){
 <body>
 <!-- TOP  -->
 <div class="top" id="header"></div>
+
 <div class="container">
 <!-- MIDDLE -->
-  <div class="middle">
-    <div class="middle-center">
-    
-    	<!-- 회원 로그인 -->
-    	<div id="beforeLogin" class="middle-left">
+	<div class="middle">
+   		<div class="middle-center">
+   
+   		<!-- 회원 로그인 -->
+   		<div id="beforeLogin" class="middle-left">
 		<h1 align="center">일반 회원</h2>		
 		<form id="loginForm" >
 			<input type="text" name="mc_id" placeholder="CAMPINGSPOT ID" id="mc_id" style="width:200px;height:30px;font-size:15px;"><br>
-			<input type="password" name="mc_pwd" placeholder="PASSWORD" style="width:200px;height:30px;font-size:15px;"><br>
-			<br>
+			<input type="password" name="mc_pwd" placeholder="PASSWORD" style="width:200px;height:30px;font-size:15px;"><br><br>
 			<a href="/login/terms.html" style="text-decoration: none;">일반 회원가입 하러가기</a><br>
 			<a href="/login/findPwd.html" style="text-decoration: none;">비밀번호 찾기</a><br><br>
 		</form>
-
 		<button id="btnLogin" class="gradient-button gradient-button-2">LOGIN</button><br><br>
-		<!-- 네이버아이디로로그인 버튼 노출 영역 -->
-		<div id="naverIdLogin"></div>
-		<!-- //네이버아이디로로그인 버튼 노출 영역 -->
-</div>
+			<!-- 네이버아이디로로그인 버튼 노출 영역 -->
+			<div id="naverIdLogin"></div>
+			<!-- //네이버아이디로로그인 버튼 노출 영역 -->
+		</div>
 
-<!-- 사업자 로그인  -->
-<div id="beforeLogin2" class="middle-right">
-	<h1 align="center">사업자 회원</h2>
+		<!-- 사업자 로그인  -->
+		<div id="beforeLogin2" class="middle-right">
+		<h1 align="center">사업자 회원</h2>
 		<form id="loginForm2" >
 			<input type="text" name="mb_id" placeholder="CAMPINGSPOT ID" id="mb_id" style="width:200px;height:30px;font-size:15px;"><br>
-			<input type="password" name="mb_pwd" placeholder="PASSWORD" style="width:200px;height:30px;font-size:15px;"><br>
-			<br>
+			<input type="password" name="mb_pwd" placeholder="PASSWORD" style="width:200px;height:30px;font-size:15px;"><br><br>
 			<a href="/login/terms2.html" style="text-decoration: none;">사업자 회원가입 하러가기</a><br>
 			<a href="/login/findPwd2.html" style="text-decoration: none;">비밀번호 찾기</a><br><br>
 		</form>
 		<button id="btnLogin2" class="gradient-button gradient-button-2">LOGIN</button>
-		
-		
-</div>      
+		</div>      
 
-<!-- 네이버 로그인 기능처리 -->
-<script type="text/javascript">
-var naverLogin = new naver.LoginWithNaverId(
-	{
-		clientId: "oRa7sGUWcEp5YZ_7DwtH",
-		callbackUrl: "http://192.168.0.36:8088/login/naver.html",
-		isPopup: false, /* 팝업을 통한 연동처리 여부 */
-		loginButton: {color: "white", type: 4, height: 40} /* 로그인 버튼의 타입을 지정 */
-	}
-);
+		<!-- 네이버 로그인 기능처리 -->
+		<script type="text/javascript">
+			var naverLogin = new naver.LoginWithNaverId(
+				{
+					clientId: "oRa7sGUWcEp5YZ_7DwtH",
+					callbackUrl: "http://192.168.0.36:8088/login/naver.html",
+					isPopup: false, /* 팝업을 통한 연동처리 여부 */
+					loginButton: {color: "white", type: 4, height: 40} /* 로그인 버튼의 타입을 지정 */
+				}
+			);
+			/* 설정정보를 초기화하고 연동을 준비 */
+			naverLogin.init();	
+		</script>  
+		</div>	    
+	</div>  
+</div><br>
 
-/* 설정정보를 초기화하고 연동을 준비 */
-naverLogin.init();	
-</script>  
-	    
-</div>	    
-</div>  
-</div>
-<br>
-	<!-- BOTTOM -->
-  <div id="footers" class="bottom"></div>
+<!-- BOTTOM -->
+<div id="footers" class="bottom"></div>
+
 </body>
 </html>
