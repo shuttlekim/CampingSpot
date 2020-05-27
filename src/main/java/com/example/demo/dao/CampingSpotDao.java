@@ -23,8 +23,14 @@ public class CampingSpotDao {
       return DBManager.campingReviewList(cs_no);
    }
    
-   public int insertWish(CampingWishVo w) {
-      return DBManager.insertWish(w);
+   // 영현) 위시리스트 중복체크 요청
+   public CampingWishVo checkDouble(HashMap map) {
+	   return DBManager.checkDouble(map);
+   }
+   
+   // 근희) 위시리스트 추가 - 수정(영현)
+   public int insertWish(HashMap map) {
+      return DBManager.insertWish(map);
    }
    
    public CampingSpotVo getCampingInfo(int cs_no) {

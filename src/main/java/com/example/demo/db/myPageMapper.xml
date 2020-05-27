@@ -5,7 +5,11 @@
 <mapper namespace="myPage">
 
 	<insert id="insertWish">
-		insert into camping_wish values(#{cw_no}, #{mc_id}, #{cs_no})
+		insert into camping_wish values(wish_seq.nextval, #{mc_id}, #{cs_no})
 	</insert>
+	
+	<select id="checkDouble" resultType="campingWishVo">
+		select * from camping_wish where mc_id=#{mc_id} and cs_no=#{cs_no}
+	</select>
 	
 </mapper>

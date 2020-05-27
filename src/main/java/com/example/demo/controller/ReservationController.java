@@ -249,6 +249,7 @@ public class ReservationController {
 		   return str;
 	   }
 	   
+	   
 	   // 지연 :로그인한 회원의 포인트 가져오기
 	   @RequestMapping("/selPoint")
 		public int selPoint(String mc_id) {

@@ -115,7 +115,7 @@ $(function(){
 	$("#btnLogin").click(function(){		
 		 
 		var member = $("#loginForm").serialize();
-		$.ajax("/login.do", {data:member, type:"get", success:function(memberId){
+		$.ajax("/login.do", {data:member, type:"POST", success:function(memberId){
 			if(memberId != "no"){					
 				sessionStorage.setItem("memberId", memberId);	
 				alert("로그인 성공하였습니다.");
@@ -130,7 +130,7 @@ $(function(){
 	$("#btnLogin2").click(function(){		
 		 
 		var business = $("#loginForm2").serialize();
-		$.ajax("/login2.do", {data:business, type:"get", success:function(businessId){		
+		$.ajax("/login2.do", {data:business, type:"POST", success:function(businessId){		
 			if(businessId != "no"){	
 				sessionStorage.setItem("businessId", businessId);
 				alert("로그인 성공하였습니다.");
