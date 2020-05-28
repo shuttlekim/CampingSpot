@@ -40,6 +40,15 @@
 	#btnUpdateBusiness{
 		cursor: pointer;
 	}
+	.profile-userpic img {
+	  	float: none;
+	 	margin: 0 auto;
+	  	width: 50%;
+	  	height: 50%;
+	  	-webkit-border-radius: 50% !important;
+	  	-moz-border-radius: 50% !important;
+	  	border-radius: 50% !important;
+	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -109,6 +118,135 @@ $(function(){
          $("#hiNaver").css("display", "block");
     }
 	
+	
+	
+	
+	var arr;
+	
+	var mc_id = sessionStorage.getItem("memberId");
+	
+	$("#header").load("/main/header.html");	
+
+	$("#footers").load("/main/footer.html");
+		
+	$.ajax("/profile.do",{data:{"mc_id":mc_id}, success:function(data){
+		arr = data;
+		$.each(arr, function(idx,p){
+			var mc_fname = $("<img class='img-responsive'></img>").attr({"src":"/resources/profile/"+p.mc_fname});
+			$(".profile-userpic").append(mc_fname);
+			$(".profile-usertitle-name").html(p.mc_name+ " 님");
+			$(".profile-userbuttons").html("내 포인트 : " +p.mc_point);
+			$("#h4").html(p.mc_name + "님의 예약내역");
+		});
+	}});
+	
+		function myReservationList(){
+			$.ajax("/myReservationList.do",{data:{"mc_id":mc_id}, success:function(data){
+				arr = data;
+				console.log(data);
+				$.each(arr, function(idx,c){
+					var a = $("<a href='#' class='inner'></a><br>")
+					var str = c.cs_camp_fname;
+					var camp_fname = str.split(",");
+					var cs_camp_fname = $("<img></img>").attr({"src":"/mypage/img/"+camp_fname[0]});
+					var div_li_img = $("<div class='li-img'></div>");
+					var reservation_div = $("<div id='res' class='li-text'></div>").attr("idx", idx);
+					var button_div = $("<div id='btn' class='li-text'></div>").attr("idx", idx);
+					var cs_name = $("<h4 class='li-head'></h4>").html(c.cs_name);
+					var checkin = $("<p class='li-summary'></p>").html(c.r_checkin + "체크인입니다!!"); 
+					var checkindetail = $("<p class='li-summary2'></p><br>").html(c.r_checkin + "~" +c.r_checkout);
+					var button1 = $("<button type='button' id='bt1' class='bt1 margin_right btn  btn-success btn-sm'></button>").attr("idx", idx).html("예약정보확인");
+					var button2 = $("<button type='button' id='bt2' class='bt2 margin_right btn  btn-danger btn-sm'></button>").attr("idx", idx).html("예약취소");
+					var review_button = $("<button type='button' id='bt3' class='bt3 margin_right btn  btn-warning btn-sm'></button>").attr("idx", idx).html("리뷰쓰기");
+					var message = $("<p id='msg'></p>").html("예약 취소 대기중입니다....").css("display", "none");
+					
+					$(button1).click(function(){
+						var idx = $(this).attr("idx");
+							window.location.href= "/myReservationDetail.html?mc_id="+arr[idx].mc_id+"&r_no="+arr[idx].r_no;
+					});
+					
+					$(button2).click(function(){
+						
+					    var confirm_test = confirm("예약을 취소하시겠습니까??");
+						 
+					    if ( confirm_test == true ) {
+					    	var idx = $(this).attr("idx");
+							var data = {r_cancel : arr[idx].r_cancel}
+					    	$.ajax("/cancelReservation", {data : data, success : function(r) {
+								console.log("동작하나요?");
+							$("#btn").css("display" ,"none");
+							$("#msg").css("display" ,"block");
+							
+					    	}}); 
+					    	
+					    } else if ( confirm_test == false ) {
+					    	 alert("취소를 누르셨습니다.");
+					    }
+					    
+						
+					});
+					
+						$(review_button).click(function(){
+							var idx = $(this).attr("idx");
+							var arrstr = arr[idx].r_checkin.split("-");
+							var checkin = new Date(arrstr[0],arrstr[1],arrstr[2]);
+							var today = new Date();
+							if(today < checkin){
+								alert("리뷰를 쓸수 있어요.");
+								window.location.href="/reviewMyReservation.html?mc_id="+arr[idx].mc_id+"&cs_no="+arr[idx].cs_no;	
+							}else{
+								alert("리뷰를 쓸수 없어요.");
+							}
+							
+						});
+						
+					
+
+					$("#a1").click(function(){
+						var idx = $(this).attr("idx");
+						window.location.href="myPage.html";
+					});
+					
+					$("#a2").click(function(c){
+						window.location.href="myPageReviewList.html?mc_id="+data[0].mc_id;
+					});
+					
+					$("#a3").click(function(c){
+						window.location.href="myPageWishList.html?mc_id="+data[0].mc_id;
+					});
+					
+					
+					if(c.r_cancel == 0){
+						
+						$(div_li_img).append(cs_camp_fname);
+						$(button_div).append(button1 , button2, review_button);
+						$(reservation_div).append(div_li_img , cs_name, checkin, checkindetail, button_div);
+						$(a).append(reservation_div);
+						$("#li").append(a, message);
+						$("#btn").css("display" ,"block");
+						$("#msg").css("display" , "none");
+						
+					}else if(c.r_cancel == 1){
+						
+						$(div_li_img).append(cs_camp_fname);
+						$(button_div).append(button1 , button2, review_button);
+						$(reservation_div).append(div_li_img , cs_name, checkin, checkindetail, button_div);
+						$(a).append(reservation_div);
+						$("#li").append(a, message);
+						$("#btn").css("display" ,"none");
+						$("#msg").css("display" , "block");
+						
+					}		
+				});
+			}});
+		}
+		 myReservationList();
+	
+	
+	
+	
+	
+	
 	$("#header").load("/main/header.html");	
 
 	$("#footers").load("/main/footer.html");
@@ -124,6 +262,91 @@ $(function(){
 <div class="container">
 	<!-- MIDDLE -->
 	<div class="body_wrap">
+
+
+
+   <div class="row profile">
+		<div class="col-md-3">
+			<div class="profile-sidebar">
+				<!-- SIDEBAR USERPIC -->
+				<div class="profile-userpic">
+				
+				</div>
+				<!-- END SIDEBAR USERPIC -->
+				<!-- SIDEBAR USER TITLE -->
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+					
+					</div>
+					<div class="profile-usertitle-job">
+						<a href="updateMember.html" >회원정보수정</a>
+					</div>
+				</div>
+				<!-- END SIDEBAR USER TITLE -->
+				<!-- SIDEBAR BUTTONS -->
+				<div class="profile-userbuttons">
+					
+				</div>
+				<!-- END SIDEBAR BUTTONS -->
+				<!-- SIDEBAR MENU -->
+				<div class="profile-usermenu">
+					<ul class="nav">
+						<li id="li1" class="active">
+							<a id="a1">
+							<i class="glyphicon glyphicon-home"></i>
+							예약내역 </a>
+						</li>
+						<li id="li2">
+							<a id="a2">
+							<i class='glyphicon glyphicon-user'></i>
+							캠핑후기</a>
+						</li>
+						<li id="li3">
+							<a id="a3">
+							<i class="glyphicon glyphicon-ok"></i>
+							위시리스트 </a>
+						</li>
+					</ul>
+				</div>
+				<!-- END MENU -->
+			</div>
+		</div>
+		<div class="col-md-9">
+            <div class="profile-content">
+			 
+			 <div id="pattern" class="pattern">
+    <ul class="list img-list">
+    <h4 id="h4"></h4>
+     <hr>
+        <li id="li">
+        
+        </li>
+    </ul>
+</div>
+<!--End Pattern HTML-->			  
+            </div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	
