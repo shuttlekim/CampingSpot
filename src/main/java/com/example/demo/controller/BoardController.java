@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,25 +71,14 @@ public class BoardController {
 		String str = "게시물 등록에 실패하였습니다.";
 		
 		// 사진파일 올리기
-		String path = "C:/Users/haji/git/CampingSpot/src/main/resources/static/resources/board_img";
+		//String path = "C:/Users/haji/git/CampingSpot/src/main/resources/static/resources/board_img";
 		MultipartFile uploadFile = b.getUploadFile();
 		String fnames = "";
 		String fname = "";
 		
+		String path = request.getRealPath("/resources/board_img");
+		//System.out.println("업로드경로:" + path);
 		List<MultipartFile> list = request.getFiles("uploadFile");
-		
-//		 if(uploadFile != null) {
-//			fname = uploadFile.getOriginalFilename();
-//			try {
-//				byte []data = uploadFile.getBytes();
-//				FileOutputStream fos = new FileOutputStream(path +"\\"+fname);
-//				fos.write(data);
-//				fos.close();
-//			}catch (Exception e) {
-//				// TODO: handle exception
-//				System.out.println(e.getMessage());
-//			}
-//		 }
 		 
 		for(int i = 0 ; i < list.size() ; i++) {
 			MultipartFile mul = list.get(i);
@@ -116,7 +107,7 @@ public class BoardController {
 		}
 		return str;
 	}
-	//각 보드 상세보기
+	//각 보드 wh
 	@RequestMapping("/detailBoard.do")
 	public BoardVo detailBoard(int b_no) {
 		dao.updateHit(b_no);
@@ -126,7 +117,7 @@ public class BoardController {
 	}
 	//각 보드 삭제하기
 	@RequestMapping("/deleteBoard.do")
-	public String deleteBoard(int b_no, String mc_id) {
+	public String deleteBoard(int b_no, String mc_id, HttpServletRequest request) {
 		String str = "게시물 삭제에 실패했습니다.";
 		String fname = dao.detail(b_no).getB_fname();
 		//System.out.println(fname); cloth1.jpg,cloth2.jpg 이런식으로 옴
@@ -137,17 +128,13 @@ public class BoardController {
 		map.put("b_no", b_no);
 		map.put("mc_id", mc_id);
 		int re = dao.delete(map);
-		String path = "C:/Users/haji/git/CampingSpot/src/main/resources/static/resources/board_img";
-		/*
-		 * if(re > 0 && fname != null && !fname.equals("")) { File file = new File(path
-		 * + "/" + fname); file.delete(); }
-		 */
+		//String path = "C:/Users/haji/git/CampingSpot/src/main/resources/static/resources/board_img";
+		String path = request.getRealPath("/resources/board_img");
 		
 		for(int i = 0 ; i < fnames.length ; i++) {
 			File file = new File(path + "/" + fnames[i]);
 			file.delete();
 		}
-		
 		
 		if(re >= 1) {
 			str = "게시물 삭제 성공했습니다.";
@@ -158,7 +145,8 @@ public class BoardController {
 	@RequestMapping("/updateBoard.do")
 	public String updateBoard(BoardVo b, MultipartHttpServletRequest request) {
 		String str = "게시물 수정에 실패했습니다.";
-		String path = "C:/Users/haji/git/CampingSpot/src/main/resources/static/resources/board_img";
+		//String path = "C:/Users/haji/git/CampingSpot/src/main/resources/static/resources/board_img";
+		String path = request.getRealPath("/resources/board_img");
 		String oldFname = b.getB_fname();
 		MultipartFile uploadFile = b.getUploadFile();
 		

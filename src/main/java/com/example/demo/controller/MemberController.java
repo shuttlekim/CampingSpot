@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -256,5 +257,27 @@ public class MemberController {
 		return str;		
 	}	
 
+	//mc_id를 전달받아 그 아이디의 모든정보를 불러온다
+	@RequestMapping("/getMmeber.do")
+	public MemberVo getMember(String mc_id) {
+		MemberVo m = dao.getMember(mc_id);
+		return m;
+	}
 	
+	//포인트 사용시 사용한만큼 '-'해주기
+	@RequestMapping("/updatePoint.do")
+	public String updatePoint(int mc_point, String mc_id) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("mc_point", mc_point);
+		map.put("mc_id", mc_id);
+		System.out.println("==========포인트사용컨트롤러==========");
+		System.out.println("사용한포인트: "+mc_point);
+		System.out.println("사용한ID: "+mc_id);
+		String str = "포인트수정 실패";
+		int re = dao.updatePoint(map);
+		if(re > 0) {
+			str = "포인트수정 성공";
+		}
+		return str;
+	}
 }
