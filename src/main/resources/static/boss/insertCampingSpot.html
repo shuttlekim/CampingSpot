@@ -38,7 +38,6 @@ li a.active {
 }
 
 li a:hover:not(.active) {
-/*  background-color: #555;*/
   background-color: pink;
   color: white;
 }
@@ -50,13 +49,15 @@ li a:hover:not(.active) {
 		var mb_id = sessionStorage.getItem("businessId");
 				
 		var cs_no;
-		
-		//cs_no 번호 가져오기
-		$.ajax("/getCsNo.do",{data:{"mb_id":mb_id}, async : false, success:function(r){
-				//alert(r)
-				 cs_no = r.cs_no
-		}})
-		
+		function findCsno(){
+			//cs_no 번호 가져오기
+			$.ajax("/getCsNo.do",{data:{"mb_id":mb_id}, async : false, success:function(r){
+					//alert(r)
+					 cs_no = r.cs_no
+			}})
+		}
+
+		findCsno();
 		//console.log(cs_no)
 		
 		// 각 페이지별 이동
@@ -81,6 +82,8 @@ li a:hover:not(.active) {
 					type:"POST",
 					success:function(r){
 						alert(r);
+						findCsno();
+						window.location.href = "insertCampingSpot.html?cs_no="+cs_no;
 						$("#f input").val("");	
 			}});
 		});

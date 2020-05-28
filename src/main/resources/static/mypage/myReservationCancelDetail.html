@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+
+/***
+User Profile Sidebar by @keenthemes
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+***/
+
+* { 
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+    box-sizing: border-box; 
+}
+html, body, div, object, iframe, fieldset { 
+    margin: 0; 
+    padding: 0; 
+    border: 0;
+} 
+ol, ul { 
+    list-style: none;
+    margin: 0;
+    padding: 0;
+} 
+table { 
+    border-collapse: collapse; 
+    border-spacing: 0; 
+}
+header, footer, nav, section, article, hgroup, figure {
+    display: block; 
+}
+legend {
+    display: none;
+}
+/************End Reset**************/
+
+/************Global**************/
+body {
+    background: #fff;
+    color: #000;
+    font: 100%/1.4 "HelveticaNeue", "Helvetica", "Arial", sans-serif;
+    padding: 0;
+    -webkit-text-size-adjust: none;
+}
+a {
+    color: #808080;
+    text-decoration: none;
+}
+a:hover, a:focus {
+    color: #e51837;
+}
+p {
+    margin: 0 0 1em;
+}
+img, object, video {
+    max-width: 100%;
+    border: 0;
+}
+a img {
+    border: 0;
+    outline: 0;
+}
+h1 {
+    font-size: 3em;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.2em;
+}
+h2 {
+    font-size: 2em;
+    line-height: 1.1;
+    margin-bottom: 0.2em;
+}
+h3 {
+    font-weight: normal;
+    line-height: 1.1;
+    padding-bottom: 0.4em;
+    border-bottom: 1px solid #ccc;
+}
+h1 a, h2 a, h3 a {
+    display: block;
+    color: #000;
+}
+h1 a:hover, h2 a:hover, h3 a:hover {
+    color: #e51837;
+}
+blockquote {
+    border-left: 0.5em solid #ddd;
+    padding-left: 1em;
+    margin-left: 1em;
+}
+small {
+    color: #e51837;
+}
+
+input, textarea {
+    border: 1px solid #000;
+}
+
+input[type=search] {
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+::-webkit-input-placeholder {
+    color: #808080;
+}
+:-moz-placeholder {  
+    color: #808080;
+}
+/************End Global**************/
+
+
+
+/* CSS Animations */
+@-webkit-keyframes fadeout {
+  0%   { background: #fff; }
+  10%   { background: #eee; }
+  100% { background: #fff; }
+}
+@-moz-keyframes fadeout {
+  0%   { background: #fff; }
+  10%   { background: #eee; }
+  100% { background: #fff; }
+}
+@-o-keyframes fadeout {
+  0%   { background: #fff; }
+  10%   { background: #eee; }
+  100% { background: #fff; }
+}
+@keyframes fadeout {
+  0%   { background: #fff; }
+  10%   { background: #eee; }
+  100% { background: #fff; }
+}
+
+.list li {
+    border-bottom: 1px solid #b5b4b4;
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.inner {
+    display: table-row;
+    overflow: hidden;
+}
+
+.li-img {
+    display: table-cell;
+    vertical-align: middle;
+    width: 30%;
+    padding-right: 1em;
+}
+
+.li-img img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.li-text {
+    display: table-cell;
+    vertical-align: middle;
+    width: 70%;
+    padding-right: 1em;
+}
+
+.li-head {
+    margin: 0;
+}
+
+.li-summary {
+    display: none;
+    margin: 0;
+}
+
+.li-action {
+    margin: 0;
+}
+
+@media screen and (min-width: 40em) {
+    .list li {
+        background: none;
+    }
+    .li-summary {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 60em) {
+    .list li {
+        float: left;
+        width: 50%;
+    }
+    .inner {
+        padding-right: 1em;
+    }
+}
+
+body {
+  background: #F1F3FA;
+}
+
+/* Profile container */
+.profile {
+  margin: 20px 0;
+}
+
+/* Profile sidebar */
+.profile-sidebar {
+  padding: 20px 0 10px 0;
+  background: #fff;
+}
+
+.profile-userpic img {
+  float: none;
+  margin: 0 auto;
+  width: 50%;
+  height: 50%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+
+.profile-usertitle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-usertitle-name {
+  color: #5a7391;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.profile-usertitle-job {
+  text-transform: uppercase;
+  color: #5b9bd1;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.profile-userbuttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile-userbuttons .btn {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 15px;
+  margin-right: 5px;
+}
+
+.profile-userbuttons .btn:last-child {
+  margin-right: 0px;
+}
+    
+.profile-usermenu {
+  margin-top: 30px;
+}
+
+.profile-usermenu ul li {
+  border-bottom: 1px solid #f0f4f7;
+}
+
+.profile-usermenu ul li:last-child {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li a {
+  color: #93a3b5;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.profile-usermenu ul li a i {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.profile-usermenu ul li a:hover {
+  background-color: #fafcfd;
+  color: #5b9bd1;
+}
+
+.profile-usermenu ul li.active {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li.active a {
+  color: #5b9bd1;
+  background-color: #f6f9fb;
+  border-left: 2px solid #5b9bd1;
+  margin-left: -2px;
+}
+
+/* Profile Content */
+.profile-content {
+  padding: 20px;
+  background: #fff;
+  min-height: 460px;
+}
+
+
+/*예약정보확인 css */
+
+ #jb-container {
+    margin: 10px auto;
+    padding: 20px;
+    border: 0px solid #bcbcbc;
+  }
+  #jb-header {
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 4px solid #bcbcbc;
+  }
+  #jb-content {
+    padding: 80px;
+    margin-bottom: 20px;
+    border: 4px solid #bcbcbc;
+  }
+  #jb-sidebar {
+    padding: 30px;
+    margin-bottom: 25px;
+    border: 4px solid #bcbcbc;
+  }
+  #jb-footer {
+    padding: 20px;
+    border: 4px solid #bcbcbc;
+  }
+  @media ( min-width: 481px ) {
+    #jb-container {
+      width: 940px;
+    }
+    #jb-content {
+      width: 580px;
+      float: left;
+    }
+    #jb-sidebar {
+      width: 260px;
+      float: right;
+    }
+    #jb-footer {
+      clear: both;
+    }
+  }
+
+</style>
+<script type="text/javascript" src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var arr;
+
+	
+	var str = location.search.split("&");
+	//mc_id=test1234&r_no=24
+
+
+	mc_id = str[0].substring(str[0].indexOf("=")+1);
+
+	
+	r_no = str[1].substring(str[1].indexOf("=")+1);
+	
+	
+	
+	$.getJSON("/Profile.do" , function(data){
+		arr = data;
+		$.each(arr, function(idx,p){
+			var mc_fname = $("<img class='img-responsive'></img>").attr({"src":"img/"+p.mc_fname});
+			$(".profile-userpic").append(mc_fname);
+			$(".profile-usertitle-name").html(p.mc_name+ " 님");
+			$(".profile-userbuttons").html("내 포인트 : "+p.mc_point)
+		});
+	});
+	
+	var data = {mc_id : mc_id ,	r_no : r_no};
+	$.ajax("/requestCancel.do", {data : data, success : function(r) {
+		arr = r;
+		$.each(arr, function(idx, c){
+			var ul = $("<ul></ul>");
+			var cs_name = $("<li></li>").html("캠핑장이름 : " + c.cs_name);
+			var cs_addr_remain = $("<li></li>").html("캠핑장 주소 : " + c.cs_addr_remain);
+			var mc_tel = $("<li></li>").html("고객전화번호 : " + c.mc_tel);
+			var cr_type = $("<li></li>").html("캠핑장 타입 : " + c.cr_type);
+			var r_checkin = $("<li></li>").html("체크인 날짜 : " + c.r_checkin);
+			var r_checkout = $("<li></li>").html("체크아웃 날짜 : " + c.r_checkout);
+			var mc_name = $("<li></li>").html("이 캠핑장은 " + c.mc_name + "님 이름으로 예약 되어 있습니다.");			
+			$(ul).append(cs_name, cs_addr_remain, mc_tel , cr_type ,r_checkin, r_checkout, mc_name);
+			$("#jb-sidebar").append(ul);
+		});
+	}});
+});
+</script>
+</head>
+<body>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!--
+User Profile Sidebar by @keenthemes
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+-->
+
+<div class="container">
+    <div class="row profile">
+		<div class="col-md-3">
+			<div class="profile-sidebar">
+				<!-- SIDEBAR USERPIC -->
+				<div class="profile-userpic">
+					
+				</div>
+				<!-- END SIDEBAR USERPIC -->
+				<!-- SIDEBAR USER TITLE -->
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+					
+					</div>
+					<div class="profile-usertitle-job">
+						<a href="updateMember.html" >회원정보수정</a>
+					</div>
+				</div>
+				<!-- END SIDEBAR USER TITLE -->
+				<!-- SIDEBAR BUTTONS -->
+				<div class="profile-userbuttons">
+					
+				</div>
+				<!-- END SIDEBAR BUTTONS -->
+				<!-- SIDEBAR MENU -->
+				<div class="profile-usermenu">
+					<ul class="nav">
+						<li class="active">
+							<a href="myPage.html">
+							<i class="glyphicon glyphicon-home"></i>
+							예약내역 </a>
+							
+						</li>
+						<li>
+							<a href="myPageReviewList.html">
+							<i class="glyphicon glyphicon-user"></i>
+							캠핑후기 </a>
+						</li>
+						<li>
+							<a href="myPageWishList.html">
+							<i class="glyphicon glyphicon-ok"></i>
+							위시리스트 </a>
+						</li>
+					</ul>
+				</div>
+				<!-- END MENU -->
+			</div>
+		</div>
+		<div class="col-md-9">
+		<div id="jb-container">
+        <h1>※ 고객님의 예약 취소가 확인 되었습니다.</h1>
+      	<br>
+      <div id="jb-content">
+        <h4>특별 요금(환불불가)</h4>
+        <p style="color : red">이 특별 할인 요금은 환불되지 않습니다 따라서 이 예약을 변경하거나 취소하시는 경우 지불하신 금액은 환불되지 않습니다.</p>
+      	<p>다른 문의 사항이 있으시면 이메일 또는 전화번호로 연락해 주시기 바랍니다.</p>
+      	<p style="color: blue">자세한 사항은 캠핑스팟 고객센터를 이용해주시기 바랍니다.</p>
+      	<p>항상 감사드립니다. 더 나은 캠핑스팟이 되겠습니다.</p>
+      </div>
+      <div id="jb-sidebar">
+        <h4>고객예약취소정보</h4>
+        <br>
+      </div>
+   
+		<button type="button" id="bt" class="btn btn-success btn-block">메인으로 이동</button>
+   
+	</div>
+	</div>
+</div>
+<br>
+<br>
+</body>
+</html>
