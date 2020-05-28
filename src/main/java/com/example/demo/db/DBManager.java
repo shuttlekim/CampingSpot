@@ -156,23 +156,23 @@ public class DBManager {
 	public static List<CsRVo> myReservationList() {
 		List<CsRVo> list = null;
 		SqlSession session = factory.openSession();
-		list = session.selectList("mypage.myReservationList");
+		list = session.selectList("myPage.myReservationList");
 		session.close();
 		return list;
 	}
 	// 현성 : 예약내역 출력 - 사용후
-	public static List<CsRVo> Resrvation_after() {
+	public static List<CsRVo> resrvation_after() {
 		List<CsRVo> list = null;
 		SqlSession session = factory.openSession();
-		list = session.selectList("mypage.Reservation_after");
+		list = session.selectList("myPage.reservation_after");
 		session.close();
 		return list;
 	}
 	// 현성 : 프로필 출력
-	public static List<ProfileVo> Profile() {
+	public static List<ProfileVo> profile() {
 		List<ProfileVo> list = null;
 		SqlSession session = factory.openSession();
-		list = session.selectList("mypage.Profile");
+		list = session.selectList("myPage.profile");
 		session.close();
 		return list;
 	}
@@ -180,7 +180,7 @@ public class DBManager {
 	public static List<CsDVo> myReservationDetail(CsDVo cd) {
 		List<CsDVo> list = null;
 		SqlSession session = factory.openSession();
-		list = session.selectList("mypage.myReservationDetail", cd);
+		list = session.selectList("myPage.myReservationDetail", cd);
 		session.close();
 		return list;
 	}
@@ -188,7 +188,7 @@ public class DBManager {
 	public static List<CsCVo> requestCancel(CsCVo csc) {
 		List<CsCVo> list = null;
 		SqlSession session = factory.openSession();
-		list = session.selectList("mypage.requestCancel", csc);
+		list = session.selectList("myPage.requestCancel", csc);
 		session.close();
 		return list;
 	}
@@ -197,7 +197,7 @@ public class DBManager {
 	public static List<WishVo> myWishList(WishVo wish){
 		List<WishVo> list = null;
 		SqlSession session = factory.openSession();
-		list = session.selectList("mypage.myWishList" , wish);
+		list = session.selectList("myPage.myWishList" , wish);
 		session.close();
 		return list;
 	}
@@ -206,7 +206,7 @@ public class DBManager {
 	public static List<CrLVo> myReviewList(CrLVo crl){
 		List<CrLVo> list = null;
 		SqlSession session = factory.openSession();
-		list = session.selectList("mypage.myReviewList", crl);
+		list = session.selectList("myPage.myReviewList", crl);
 		session.close();
 		return list;
 	}
@@ -215,7 +215,7 @@ public class DBManager {
 	public static int deleteMyReview(int cre_no) {
 		int re = -1;
 		SqlSession session = factory.openSession(true);
-		re = session.delete("mypage.deleteMyReview", cre_no);
+		re = session.delete("myPage.deleteMyReview", cre_no);
 		session.close();
 		return re;
 	}
@@ -224,7 +224,7 @@ public class DBManager {
 	public static int deleteMyWish(int cw_no) {
 		int re = -1;
 		SqlSession session = factory.openSession(true);
-		re = session.delete("mypage.deleteMyWish", cw_no);
+		re = session.delete("myPage.deleteMyWish", cw_no);
 		session.close();
 		return re;
 	}
@@ -233,7 +233,7 @@ public class DBManager {
 	public static int cancelReservation(String mc_id) {
 		int re = -1;
 		SqlSession session = factory.openSession(true);
-		re = session.update("mypage.cancelReservation", mc_id);
+		re = session.update("myPage.cancelReservation", mc_id);
 		session.close();
 		return re;
 	}
@@ -242,7 +242,7 @@ public class DBManager {
 	public static int camping_review_insert(CrVo c) {
 		int re = -1;
 		SqlSession session = factory.openSession(true);
-		re = session.insert("mypage.camping_review_insert", c);
+		re = session.insert("myPage.camping_review_insert", c);
 		session.close();
 		return re;
 	}

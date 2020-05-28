@@ -27,6 +27,14 @@
 	<typeAlias type="com.example.demo.vo.DistrictChartVo" alias="districtchartvo"/>
 	<typeAlias type="com.example.demo.vo.CampingRankChartVo" alias="campingrankchartvo"/>
 	<typeAlias type="com.example.demo.vo.CampTypeChartVo" alias="camptypechartvo"/>
+	<!-- 현성 -->
+	<typeAlias type="com.example.demo.vo.CsRVo" alias="CsRVo"/>
+ 	<typeAlias type="com.example.demo.vo.ProfileVo" alias="ProfileVo"/>
+ 	<typeAlias type="com.example.demo.vo.WishVo" alias="WishVo"/>
+ 	<typeAlias type="com.example.demo.vo.CrLVo" alias="CrLVo"/>
+ 	<typeAlias type="com.example.demo.vo.CrVo" alias="CrVo"/>
+  	<typeAlias type="com.example.demo.vo.CsCVo" alias="CsCVo"/>
+   	<typeAlias type="com.example.demo.vo.CsDVo" alias="CsDVo"/>
 	
   </typeAliases>
   <environments default="development">
