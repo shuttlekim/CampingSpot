@@ -44,7 +44,7 @@
 <script type="text/javascript">
 $(function(){	
 
-	var check = "";
+	var check = -1;
 	
 	//가입하기 버튼 클릭시 동작
 	$("#btnJoinOk").click(function(){
@@ -82,8 +82,8 @@ $(function(){
 	$("#idCheck").click(function(){
 		var input_id = $("#mb_id").val();
 		var data = {"mb_id":input_id};
-		$.ajax("/checkId2.do", {data:data, success:function(mb_id){
-			if(mb_id == 1){
+		$.ajax("/checkId2.do", {data:data, type:"POST", success:function(re){
+			if(re == 1){
 				alert("사용중인 아이디입니다.");
 				check = 0;
 			}else{

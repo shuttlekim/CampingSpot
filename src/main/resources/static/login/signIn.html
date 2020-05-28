@@ -44,7 +44,7 @@
 <script type="text/javascript">
 $(function(){	
 	
-	var check = "";
+	var check = 0;
 	
 	//가입하기 버튼 클릭시 동작
 	$("#btnJoinOk").click(function(){
@@ -58,7 +58,7 @@ $(function(){
 			alert("ID중복검사를 해주세요!");
 		}
 
-	});
+	}); 
 		
 	//비밀번호 확인
 	$("#alert-success").hide(); 
@@ -147,10 +147,10 @@ $(function(){
 						<td><input type="text"  placeholder="다음 중 회원님의 취향은?" required="required" disabled="disabled" style="background-color: #e2e2e2;"></td>
 					</tr>
 					<tr>				
-						<td><label style="margin-left: 150px;">산</label><input type="checkbox" name="mc_taste" id="mc_taste" value="산">
-		                 	<label>강</label><input type="checkbox" name="mc_taste" id="mc_taste" value="강">
-		                 	<label>바다</label><input type="checkbox" name="mc_taste" id="mc_taste" value="바다">
-		                 	<label>계곡</label><input type="checkbox" name="mc_taste" id="mc_taste" value="계곡"></td>
+						<td><label style="margin-left: 150px;">산</label><input type="checkbox" name="mc_taste" value="산">
+		                 	<label>강</label><input type="checkbox" name="mc_taste" value="강">
+		                 	<label>바다</label><input type="checkbox" name="mc_taste" value="바다">
+		                 	<label>계곡</label><input type="checkbox" name="mc_taste" value="계곡"></td>
 					</tr>	
 					<tr>
 						<td><input type="text" disabled="disabled" placeholder="프로필 사진" style="background-color: #e2e2e2;"></td>			
