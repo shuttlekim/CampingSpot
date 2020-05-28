@@ -94,13 +94,13 @@ public class DBManager {
 		return dcsrv;
 	}
 	
-	// 영현) 캠핑장 데이터 업데이트
-	public static int updateCampingSpot(int cs_no) {
-		SqlSession session = factory.openSession(true);
-		int re = session.update("campingSpot.updateCampingSpot", cs_no);
-		session.close();
-		return re;
-	}
+//	// 영현) 캠핑장 데이터 업데이트
+//	public static int updateCampingSpot(int cs_no) {
+//		SqlSession session = factory.openSession(true);
+//		int re = session.update("campingSpot.updateCampingSpot", cs_no);
+//		session.close();
+//		return re;
+//	}
 	
 	// 영현) 캠핑장 검색 리스트 호출
 	public static CampingSearchResultVo getCampingSpot(HashMap map) {
