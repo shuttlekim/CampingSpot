@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -84,11 +86,11 @@ public class MemberController {
 	}
 	
 	//회원가입
-	//@RequestMapping("/signIn.do")
-	@RequestMapping(value = "/signIn.do", method = {RequestMethod.GET, RequestMethod.POST})
-	@ResponseStatus(value=HttpStatus.OK)
-	@ResponseBody
-	public String insertMember(MemberVo m) {
+	@RequestMapping("/signIn.do")
+	//@RequestMapping(value = "/signIn.do", method = {RequestMethod.GET, RequestMethod.POST})
+	//@ResponseStatus(value=HttpStatus.OK)
+	//@ResponseBody
+	public String insertMember(MemberVo m, HttpServletRequest request) {
 		System.out.println("================sign.do 작동 시작 =======================");
 		System.out.println("MemberVo:"+m);
 		String str = "";
@@ -102,8 +104,8 @@ public class MemberController {
 	        m.setSalt(salt);	        
 	        
 	        //String path = "/resources/static/resource/profile"; 
-	        String path = "C:\\Users\\YOGO\\git\\CampingSpot\\src\\main\\resources\\static\\resources\\profile";
-	        //String path = request.getSession().getServletContext().getRealPath("resources\\\\static\\\\resources\\\\profile");
+	        //String path = "C:\\Users\\YOGO\\git\\CampingSpot\\src\\main\\resources\\static\\resources\\profile";
+	        String path = request.getRealPath("\\resources\\static\\resources\\profile");
 	        //String path = System.getProperty("/resource/profile");
 			MultipartFile uploadFile = m.getUploadFile();
 			String fname = "";
@@ -133,8 +135,8 @@ public class MemberController {
 	}	
 
 	//회원 아이디 중복체크
-	//@RequestMapping("/checkId.do")
-	@RequestMapping(value = "/checkId.do", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping("/checkId.do")
+	//@RequestMapping(value = "/checkId.do", method = {RequestMethod.GET, RequestMethod.POST})
 	//@ResponseStatus(value=HttpStatus.OK)
 	//@ResponseBody
 	public int checkId(String mc_id) {
