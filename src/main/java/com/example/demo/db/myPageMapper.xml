@@ -9,6 +9,7 @@
 	</insert>
 	<!-- 현성 -->
 
+
 	<!-- 예약내역 -사용전 -->
 <select id="myReservationList" resultType="CsRVo">
 select cs.cs_camp_fname, cs.cs_no, cs.cs_name , TO_CHAR(res.r_checkin,'YYYY-MM-DD') r_checkin ,TO_CHAR(res.r_checkout,'YYYY-MM-DD') r_checkout , res.mc_id, res.r_no, res.r_cancel from reservation res, camping_room cr, camping_spot cs, camping_review cre
