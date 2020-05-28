@@ -28,9 +28,9 @@ public class MypageController {
 	
 
 	@RequestMapping(value = "/myReservationList.do", produces = "application/json;charset=UTF-8")
-	public String myReservationList() {
+	public String myReservationList(String mc_id) {
 		String str = "";
-		List<CsRVo> list1 = dao.myReservationList();
+		List<CsRVo> list1 = dao.myReservationList(mc_id);
 		System.out.println("list의 첫번째 요소입니다. : "+ list1.get(0).getR_checkin());
 		Gson gson = new Gson();
 		str = gson.toJson(list1);

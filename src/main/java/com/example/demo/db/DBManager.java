@@ -164,10 +164,10 @@ public class DBManager {
 	}
 	
 	// 현성 : 예약내역 출력
-	public static List<CsRVo> myReservationList() {
+	public static List<CsRVo> myReservationList(String mc_id) {
 		List<CsRVo> list = null;
 		SqlSession session = factory.openSession();
-		list = session.selectList("myPage.myReservationList");
+		list = session.selectList("myPage.myReservationList", mc_id);
 		session.close();
 		return list;
 	}
@@ -195,6 +195,7 @@ public class DBManager {
 		session.close();
 		return list;
 	}
+	
 	// 현성 : 예약취소정보 출력
 	public static List<CsCVo> requestCancel(CsCVo csc) {
 		List<CsCVo> list = null;

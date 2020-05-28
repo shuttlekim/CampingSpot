@@ -16,8 +16,8 @@ import com.example.demo.vo.WishVo;
 @Repository
 public class MypageDao {
 
-	public List<CsRVo> myReservationList() {
-		return DBManager.myReservationList();
+	public List<CsRVo> myReservationList(String mc_id) {
+		return DBManager.myReservationList(mc_id);
 	}
 
 	public List<CsRVo> reservation_after() {
@@ -38,7 +38,6 @@ public class MypageDao {
 
 	public List<WishVo> myWishList(WishVo wish) {
 		return DBManager.myWishList(wish);
-		
 	}
 
 	public List<CrLVo> myReviewList(CrLVo crl) {
