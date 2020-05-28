@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
+ <style type="text/css">
 hr{
   border-top: 1px solid green;
 }
-.div{
+/* .div{
 	float: left;
-}
+} */
 .cs{
 	margin-top: 10px;
 	margin-left: 30px;
 }
-.line {
+/* .line {
   border-left: 2px solid green;
   height: 700px;
-}
+} */
 ul {
   list-style-type: none;
   margin: 0;
@@ -49,17 +49,23 @@ li a:hover:not(.active) {
 		
 		var mb_id = sessionStorage.getItem("businessId");
 				
+		var cs_no;
+		
+		//cs_no 번호 가져오기
+		$.ajax("/getCsNo.do",{data:{"mb_id":mb_id}, async : false, success:function(r){
+				//alert(r)
+				 cs_no = r.cs_no
+		}})
+		
+		//console.log(cs_no)
+		
 		// 각 페이지별 이동
 		$("#bossBpage").attr("href", "myBusinessPage.html?mb_id="+mb_id);
-		$("#bossInsertCS").attr("href", "insertCampingSpot.html?mb_id="+mb_id);
- 		//$("#bossInsertCR").attr("href", "insertCampingRoom.html?cs_no="+cs_no);
-		//$("#bossRList").attr("href", "bossReservationList.html?cs_no="+cs_no);
-		//$("#bossReviewList").attr("href", "bossReviewManage.html?cs_no="+cs_no);
-		//$("#bossSales").attr("href", "salesManage.html?cs_no="+cs_no);
-		
-/* 		function move(){
-
-		} */
+		$("#bossInsertCS").attr("href", "insertCampingSpot.html?cs_no="+cs_no);
+		$("#bossInsertCR").attr("href", "insertCampingRoom.html?cs_no="+cs_no);
+		$("#bossRList").attr("href", "bossReservationList.html?cs_no="+cs_no);
+		$("#bossReviewList").attr("href", "bossReviewManage.html?cs_no="+cs_no);
+		$("#bossSales").attr("href", "salesManage.html?cs_no="+cs_no);
 		
 		// 캠핑장 등록하기
 		$("#csInsert").click(function(){
@@ -79,15 +85,10 @@ li a:hover:not(.active) {
 			}});
 		});
 			
-		
-/* 		// 캠핑룸등록 이동하기
+		 // 캠핑룸등록 이동하기
 		$("#btnCR").click(function(){
-			var cs_no;
-			$.ajax("/getCsNo.do",{data:{"mb_id":mb_id}, async : false, success:function(r){
-					 cs_no = r.cs_no
-					 window.location.href="insertCampingRoom.html?cs_no="+cs_no;
-			}})
-		}); */
+			window.location.href="insertCampingRoom.html?cs_no="+cs_no;
+		});
 			
 		// 취소버튼 클릭
 		$("#csReset").click(function(){
@@ -96,15 +97,15 @@ li a:hover:not(.active) {
 		
 		$("#headers").load("/main/header.html");	
 
-		//$("#footers").load("/main/footer.html");
+		$("#footers").load("/main/footer.html");
 				
 	});
 </script>
 </head>
 <body>
-	<div id="headers"></div>
-	<div class="body-wrap">
-	
+	  <div id="headers"></div>
+	  <div class="body-wrap">
+
 		<h1>사업자페이지</h1>		
 		<hr>
 		<div class="div Categori">
@@ -235,7 +236,7 @@ li a:hover:not(.active) {
 			<button id="btnCR">캠핑룸등록</button>			
 		</div>
 	
-	</div>
-	<!--  <div id="footers"></div>-->
+	 </div>
+	<div id="footers"></div>
 </body>
 </html>

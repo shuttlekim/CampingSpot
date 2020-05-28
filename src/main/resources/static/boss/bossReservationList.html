@@ -7,14 +7,14 @@
 hr{
   border-top: 1px solid green;
 }
-.div{
+/* .div{
 	float: left;
 }
 
 .line {
   border-left: 2px solid green;
   height: 700px;
-}
+} */
 ul {
   list-style-type: none;
   margin: 0;
@@ -56,11 +56,9 @@ li a:hover:not(.active) {
 		//alert(cs_no)
 		
 		// 각 페이지별 이동
-//		$("#bossBpage").attr("href", "myBusinessPage.html?cs_no="+cs_no);
-		$("#bossBpage").attr("href", "myBusinessPage.html?mb_id="+mb_id);
+		$("#bossBpage").attr("href", "myBusinessPage.html?cs_no="+cs_no);
 		$("#bossRList").attr("href", "bossReservationList.html?cs_no="+cs_no);
-//		$("#bossInsertCS").attr("href", "insertCampingSpot.html?cs_no="+cs_no);
-		$("#bossInsertCS").attr("href", "insertCampingSpot.html?mb_id="+mb_id);
+		$("#bossInsertCS").attr("href", "insertCampingSpot.html?cs_no="+cs_no);
 		$("#bossInsertCR").attr("href", "insertCampingRoom.html?cs_no="+cs_no);
 		$("#bossReviewList").attr("href", "bossReviewManage.html?cs_no="+cs_no);
 		$("#bossSales").attr("href", "salesManage.html?cs_no="+cs_no);
@@ -166,6 +164,92 @@ li a:hover:not(.active) {
 		$("#footers").load("/main/footer.html");
 		
 	});//end function
+	
+	$(document).ready(function() {
+	    var date = new Date();
+	    var currentYear = date.getFullYear();
+	    var currentMonth = date.getMonth()+1;
+	    var currentDay = date.getDate();
+	    var events_array = new Array();
+	    /*for(var i=0; i<15; i++){
+	      dateArr[i] = "\'"+currentYear+'-'+currentMonth+'-'+currentDay+"\'"
+	      currentDay++;
+	      //alert(currentDay);
+	    }*/
+	    //alert("\'"+currentYear+'-'+currentMonth+'-'+currentDay+"\'");
+	 
+	    var room = new Array('AAA','BBB','CCC');
+	    var lastDay = (new Date( currentYear, currentMonth, 0)).getDate();
+	    for(var j=1; j<=60; j++){ //60일 생성
+	      //alert(start);
+	 
+	      if( currentDay < 10 ) //10일 이하라면 앞에 0을 붙여준다.
+	        var currentDay = '0' + currentDay;
+	 
+	      start =  currentYear+'-'+currentMonth+'-'+currentDay;
+//	      if(currentYear==2018 && currentMonth==02){
+	      if(currentYear==2020 && currentMonth==05){
+	        //alert(start);
+	      }
+//	      for (var i=0; i<=2; i++) //리스트 생성
+	      for (var i=0; i<=5; i++) //리스트 생성
+	      {
+	        events_array.push({
+	        title : room[i],
+	        start : start,
+	 
+	        })
+	      }
+	      currentDay++;
+	      //alert(start+'-'+lastDay);
+	      if(currentDay>lastDay){//일 초기화
+	        currentDay=1;
+	        currentMonth++;
+	        if(currentMonth>=13){ // 12월보다 큰경우 1월 만들기
+	          currentMonth=1;
+	          currentYear++;
+	          //alert(currentYear+'-'+currentMonth);
+	        }
+	        if(currentMonth<10) // //10월 이하라면 앞에 0을 붙여준다.
+	          var currentMonth = '0' + currentMonth;
+	        var lastDay = (new Date( currentYear, currentMonth, 0)).getDate(); //매월 마지막날 구하기
+	      }
+	    }
+	 
+//	    events_array[1] = "2"
+	//document.write(events_array);
+	  calendar(events_array);
+	  });
+	 
+	  function calendar(events_array){
+	    //alert(events_array);
+	//alert(dateArr[0]);
+	    $("#calendar").fullCalendar({
+	/* 헤더
+	header: {
+	  left: 'month,agendaWeek,agendaDay',
+	  center: 'title',
+	  right: 'prev,today,next '
+	},
+	*/
+	            //defaultDate : "2018-02-01" //달력 처음 보일 날짜
+	            lang : "ko"
+	    , displayEventTime: false
+	            , editable : false //스케줄 드래그
+	            , eventLimit : true //이벤트 보여줄 갯수
+	            , events : events_array
+	    /*
+	    , eventAfterRender: function(event, element, view) { //리스트 사이즈 조정
+	      $(element).css('width','50px');
+	              }
+	    */
+	    , eventRender : function(event, element) {
+	                var icon  = '<div class="squre" style="width:15px; height:15px; background:blue;"></div>'
+	                $(element).find('.fc-content').append(icon);
+	            }
+	        }); //fullCalendar
+	  } //function calendar
+
 </script>
 </head>
 <body>
@@ -176,12 +260,12 @@ li a:hover:not(.active) {
 		<hr>
 		<div class="div Categori">
 			<ul>
-				 <li><a class="active" id="bossBpage">캠핑장관리</a></li>
-				 <li><a id="bossRList">전체예약현황</a></li>
-				 <li><a id="bossInsertCS">캠핑장등록</a></li>
-				 <li><a id="bossInsertCR">캠핑룸등록</a></li>
-			  	 <li><a id="bossReviewList">리뷰관리</a></li>
-				 <li><a id="bossSales">매출관리</a></li>
+			  <li><a class="active" id="bossBpage">캠핑장관리</a></li>
+			  <li><a id="bossInsertCS">캠핑장등록</a></li>
+			  <li><a id="bossInsertCR">캠핑룸등록</a></li>
+			  <li><a id="bossRList">전체예약현황</a></li>
+			  <li><a id="bossReviewList">리뷰관리</a></li>
+			  <li><a id="bossSales">매출관리</a></li>
 			</ul>
 		</div>
 		<div class="div line"></div>

@@ -10,14 +10,14 @@
 hr{
   border-top: 1px solid green;
 }
-.div{
+/* .div{
 	float: left;
-}
-.line {
+} */
+/* .line {
   border-left: 2px solid green;
   height: 700px;
   margin-right: 30px;
-}
+} */
 ul {
   list-style-type: none;
   margin: 0;
@@ -60,10 +60,8 @@ li a:hover:not(.active) {
 		
 		// 각 페이지별 이동
 		$("#bossBpage").attr("href", "myBusinessPage.html?cs_no="+cs_no);
-//		$("#bossBpage").attr("href", "myBusinessPage.html?mb_id="+mb_id);
 		$("#bossRList").attr("href", "bossReservationList.html?cs_no="+cs_no);
 		$("#bossInsertCS").attr("href", "insertCampingSpot.html?cs_no="+cs_no);
-//		$("#bossInsertCS").attr("href", "insertCampingSpot.html?mb_id="+mb_id);
 		$("#bossInsertCR").attr("href", "insertCampingRoom.html?cs_no="+cs_no);
 		$("#bossReviewList").attr("href", "bossReviewManage.html?cs_no="+cs_no);
 		$("#bossSales").attr("href", "salesManage.html?cs_no="+cs_no);
@@ -182,6 +180,7 @@ li a:hover:not(.active) {
 			$.ajax("/deleteCampingRoom.do",{data:{"cr_no":cr_no}, success:function(r){
 				alert(r);
 				listCampingRoom();
+				$(".updateForm input").val("");
 			}});//end delete ajax
 			
 		})//end #crDelete
@@ -193,13 +192,13 @@ li a:hover:not(.active) {
 		
 		$("#headers").load("/main/header.html");	
 
-		//$("#footers").load("/main/footer.html");
+		$("#footers").load("/main/footer.html");
 });	
 </script>
 </head>
 <body>
-	<div id="headers"></div>
-	<div class="body-wrap">
+	 <div id="headers"></div>
+	 <div class="body-wrap">
 			
 			<h1>사업자페이지</h1>	
 			<hr>
