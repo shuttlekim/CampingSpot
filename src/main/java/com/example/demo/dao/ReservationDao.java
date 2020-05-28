@@ -37,8 +37,8 @@ public class ReservationDao {
 	}
 	
 	// 영현
-	public int callReservationKey() {
-		return DBManager.callReservationKey();
+	public int callReservationKey(HashMap map) {
+		return DBManager.callReservationKey(map);
 	}
 	
 	// 영현
