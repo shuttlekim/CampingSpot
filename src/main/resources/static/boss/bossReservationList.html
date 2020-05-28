@@ -47,13 +47,16 @@ li a:hover:not(.active) {
 	margin-top : 30px;
 	margin-left: 200px;
 } */
+
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.0/moment.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		
 		var cs_no = Number(location.search.substring(location.search.indexOf("=")+1));
 		//alert(cs_no)
+		
 		
 		// 각 페이지별 이동
 		$("#bossBpage").attr("href", "myBusinessPage.html?cs_no="+cs_no);
@@ -75,8 +78,8 @@ li a:hover:not(.active) {
 				var mc_name = $("<td></td>").html(br.mc_name);
 				var mc_tel = $("<td></td>").html(br.mc_tel);
 				var cr_name = $("<td></td>").html(br.cr_name);
-				var r_date = $("<td></td>").html(br.r_date);
-				var r_checkin = $("<td></td>").html(br.r_checkin);
+				var r_date = $("<td></td").html(moment(br.r_date).format("YYYY-MM-DD"));
+				var r_checkin = $("<td></td>").html(moment(br.r_checkin).format("YYYY-MM-DD"));
 				var r_price = $("<td></td>").html(br.r_price);
 				
 				// 예약승인버튼

@@ -57,6 +57,7 @@ h3{
 }
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.0/moment.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		
@@ -102,6 +103,12 @@ h3{
 	  		// 최근 예약 목록 3개
 			$.ajax("/businessMyPageReservationList.do",{data:{"cs_no":cs_no},success:function(r){
 				//alert(r)
+				/*
+				var rdate = moment(); //Get the current date
+				alert(date);
+				alert(date.format("YYYY-MM-DD HH:mm"));
+				date.format("YYYY-MM-DD"); //2014-07-10
+				*/
 				var h3 = $("<h3></h3>").html("최근 예약 내역");
 				$.each(r, function(idx, mp){
 					var tr = $("<tr></tr>");
@@ -110,8 +117,7 @@ h3{
 					var r_no = $("<td></td>").html(mp.r_no);
 					var mc_name = $("<td></td>").html(mp.mc_name);
 					var mc_tel = $("<td></td>").html(mp.mc_tel);
-					var r_date = $("<td></td>").html(mp.r_date);
-					
+					var r_date = $("<td></td>").html(moment(mp.r_date).format("YYYY-MM-DD"));
 					var r_revstatus = mp.r_revstatus;
 					if (r_revstatus == 1 ){
 						r_revstatus = $("<td></td>").html("예약완료");

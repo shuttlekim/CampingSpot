@@ -63,6 +63,7 @@ li a:hover:not(.active) {
 </style>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.0/moment.min.js"></script>
 <script type="text/javascript">
 	
 	var chartData;
@@ -101,9 +102,9 @@ li a:hover:not(.active) {
 					var no = $("<td></td>").html(idx+1);
 					var cr_name = $("<td></td>").html(s.cr_name);
 					var r_no = $("<td></td>").html(s.r_no);
-					var r_checkin = $("<td></td>").html(s.r_checkin);
-					var r_checkout = $("<td></td>").html(s.r_checkout);
-					var days = $("<td></td>").html(s.days);
+					var r_checkin = $("<td></td>").html(moment(s.r_checkin).format("YYYY-MM-DD"));
+					var r_checkout = $("<td></td>").html(moment(s.r_checkout).format("YYYY-MM-DD"));
+					var days = $("<td></td>").html(s.days+"일");
 					var r_price = $("<td></td>").html(s.r_price);
 					var comm = $("<td></td>").html(s.comm);
 					var margin = $("<td></td>").html(s.margin);
