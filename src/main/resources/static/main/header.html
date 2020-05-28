@@ -99,6 +99,10 @@
 		$("#main_mypage").click(function(){
 			window.location.href = "/login/myPage.html";
 		});	
+		//사업자페이지 버튼
+		$("#main_mypage").click(function(){
+			window.location.href = "/login/myPage.html";
+		});		
 		//관리자페이지 버튼
 		$("#main_admin").click(function(){
 			window.location.href = "/admin/adminTest.html";
@@ -145,7 +149,7 @@
 	   		//$("#btnLogin").html("로그아웃");
 	   		 $("#main_logout").css("display", "block");
 	         $("#main_login").css("display", "none"); 
-	         $("#main_mypage").css("display", "block");
+	         $("#main_mypage").css("display", "none");
 	         $("#main_signup").css("display", "none"); 
 	    }
 		//세션유지(네이버)
@@ -195,7 +199,7 @@
 		</div>
 		<div id="main_status">
 			<span id="main_login">로그인</span><span id="main_logout">로그아웃</span>&nbsp;&nbsp;|&nbsp;&nbsp;
-			<span id="main_signup">회원가입</span><span id="main_mypage" style="width: auto;">마이페이지</span><span id="main_admin">관리자페이지</span>&nbsp&nbsp|&nbsp&nbsp
+			<span id="main_signup">회원가입</span><span id="main_mypage" style="width: auto;">마이페이지</span><span id="MyBusinessPage">사업자페이지</span><span id="main_admin">관리자페이지</span>&nbsp&nbsp|&nbsp&nbsp
 			<span id="main_sitemap">사이트맵</span>
 		</div>
 	</div>

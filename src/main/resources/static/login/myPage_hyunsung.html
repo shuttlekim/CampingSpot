@@ -335,7 +335,8 @@ $(function(){
 	$.ajax("/profile.do",{data:{"mc_id":mc_id}, success:function(data){
 		arr = data;
 		$.each(arr, function(idx,p){
-			var mc_fname = $("<img class='img-responsive'></img>").attr({"src":"/mypage/img/"+p.mc_fname});
+			//var mc_fname = $("<img class='img-responsive'></img>").attr({"src":"/mypage/img/"+p.mc_fname});
+			var mc_fname = $("<img class='img-responsive'></img>").attr({"src":"/resources/profile/"+p.mc_fname});
 			$(".profile-userpic").append(mc_fname);
 			$(".profile-usertitle-name").html(p.mc_name+ " ´Ô");
 			$(".profile-userbuttons").html("³» Æ÷ÀÎÆ® : " +p.mc_point);
