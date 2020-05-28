@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,8 +27,7 @@ public class BusinessController {
 	
 
 	//사업자 로그인
-	//@RequestMapping("/login2.do")
-	@RequestMapping(value = "/signIn2.do", method = RequestMethod.POST)
+	@RequestMapping("/login2.do")
 	public String login(String mb_id, String mb_pwd) {
 		
 		BusinessVo m = dao.getBusiness(mb_id);	

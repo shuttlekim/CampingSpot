@@ -5,8 +5,11 @@ import java.io.FileOutputStream;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -82,7 +85,9 @@ public class MemberController {
 	
 	//회원가입
 	//@RequestMapping("/signIn.do")
-	@RequestMapping(value = "/signIn.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/signIn.do", method = {RequestMethod.GET, RequestMethod.POST})
+	@ResponseStatus(value=HttpStatus.OK)
+	@ResponseBody
 	public String insertMember(MemberVo m) {
 		System.out.println("================sign.do 작동 시작 =======================");
 		System.out.println("MemberVo:"+m);
@@ -128,7 +133,10 @@ public class MemberController {
 	}	
 
 	//회원 아이디 중복체크
-	@RequestMapping("/checkId.do")
+	//@RequestMapping("/checkId.do")
+	@RequestMapping(value = "/checkId.do", method = {RequestMethod.GET, RequestMethod.POST})
+	//@ResponseStatus(value=HttpStatus.OK)
+	//@ResponseBody
 	public int checkId(String mc_id) {
 		System.out.println("입력아이디: " + mc_id);
 		int re = dao.checkId(mc_id);
