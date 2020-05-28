@@ -47,12 +47,22 @@ $(function(){
 	$("#chkPrice").html(total);
 	
 	//----------------------------------------------------------
-	var memberId = "test1234";
+	/* var memberId = "test1234";
 	/*추후
 	var memberId = sessionStorage.getItem("memberId");
 	*/
 	var loginData = {"mc_id":memberId}
-	// test1234가 로그인했다고 치고
+	// test1234가 로그인했다고 치고 */
+	
+	
+	/* var memberId = sessionStorage.getItem("memberId");
+	if(memberId == null){
+		alert("로그인 페이지로 이동합니다.")
+		location.href = "../login/login.html";
+	} */
+	var memberId = "test1234";
+	var loginData = {"mc_id":memberId}
+	
 	var price = total;
 	// 총 숙박비 'total'
 	$("#total_price").html(price);
@@ -65,6 +75,10 @@ $(function(){
 		
 		//point에 붙여주기
 		$("#applyPoint").click(function(){
+			$("#total_price").empty();
+			$("#price").empty();
+			$("#usePoint").empty();
+			//'적용하기를 또 누른다면 입력창 비워주기'
 			var putPoint = $("#putPoint").val();
 			//사용할 포인트 입력한 값
 			$("#usePoint").append(putPoint);

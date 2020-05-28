@@ -11,11 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.dao.BoardDao;
 import com.example.demo.vo.BoardVo;
 import com.google.gson.Gson;
+import com.sun.mail.handlers.multipart_mixed;
 
 @RestController
 public class BoardController { 
@@ -63,26 +65,50 @@ public class BoardController {
 	}
 	//각 보드 글쓰기
 	@RequestMapping("/insertBoard.do")
-	public String insertBoard(BoardVo b) {
+	public String insertBoard(BoardVo b, MultipartHttpServletRequest request) {
 		String str = "게시물 등록에 실패하였습니다.";
 		
 		// 사진파일 올리기
-		String path = "C:\\Users\\haji\\git\\CampingSpot\\src\\main\\resources\\static\\resource\\board_img";
+		String path = "C:\\\\Users\\\\YOGO\\\\git\\\\CampingSpot\\\\src\\\\main\\\\resources\\\\static\\\\resources\\\\board_img";
 		MultipartFile uploadFile = b.getUploadFile();
+		String fnames = "";
 		String fname = "";
-		 if(uploadFile != null) {
-			fname = uploadFile.getOriginalFilename();
+		
+		List<MultipartFile> list = request.getFiles("uploadFile");
+		
+//		 if(uploadFile != null) {
+//			fname = uploadFile.getOriginalFilename();
+//			try {
+//				byte []data = uploadFile.getBytes();
+//				FileOutputStream fos = new FileOutputStream(path +"\\"+fname);
+//				fos.write(data);
+//				fos.close();
+//			}catch (Exception e) {
+//				// TODO: handle exception
+//				System.out.println(e.getMessage());
+//			}
+//		 }
+		 
+		for(int i = 0 ; i < list.size() ; i++) {
+			MultipartFile mul = list.get(i);
+			fname = mul.getOriginalFilename();
+			fnames += fname;
+				
+			File outFile = new File(path + "/" + fname);
 			try {
-				byte []data = uploadFile.getBytes();
-				FileOutputStream fos = new FileOutputStream(path +"\\"+fname);
-				fos.write(data);
-				fos.close();
+				mul.transferTo(outFile);
 			}catch (Exception e) {
 				// TODO: handle exception
 				System.out.println(e.getMessage());
 			}
-		 }
-		b.setB_fname(fname);
+			if(i < list.size()-1) {
+				fnames += ",";
+			}
+		}
+		b.setB_fname(fnames);
+		
+		String arr[] = b.getB_fname().split(",");
+		//System.out.println(arr);
 		
 		int re = dao.insert(b);
 		if(re >= 1) {
@@ -103,15 +129,26 @@ public class BoardController {
 	public String deleteBoard(int b_no, String mc_id) {
 		String str = "게시물 삭제에 실패했습니다.";
 		String fname = dao.detail(b_no).getB_fname();
+		//System.out.println(fname); cloth1.jpg,cloth2.jpg 이런식으로 옴
+		
+		String fnames[] = fname.split(",");
+		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("b_no", b_no);
 		map.put("mc_id", mc_id);
 		int re = dao.delete(map);
-		if(re > 0 && fname != null && !fname.equals("")) {
-			String path = "C:\\Users\\haji\\git\\CampingSpot\\src\\main\\resources\\static\\resource\\board_img";
-			File file = new File(path + "/" + fname);
+		String path = "C:/Users/haji/git/CampingSpot/src/main/resources/static/resources/board_img";
+		/*
+		 * if(re > 0 && fname != null && !fname.equals("")) { File file = new File(path
+		 * + "/" + fname); file.delete(); }
+		 */
+		
+		for(int i = 0 ; i < fnames.length ; i++) {
+			File file = new File(path + "/" + fnames[i]);
 			file.delete();
 		}
+		
+		
 		if(re >= 1) {
 			str = "게시물 삭제 성공했습니다.";
 		}
@@ -119,27 +156,39 @@ public class BoardController {
 	}
 	//각 보드 수정하기
 	@RequestMapping("/updateBoard.do")
-	public String updateBoard(BoardVo b, int b_no) {
+	public String updateBoard(BoardVo b, MultipartHttpServletRequest request) {
 		String str = "게시물 수정에 실패했습니다.";
-		String path = "C:\\Users\\haji\\git\\CampingSpot\\src\\main\\resources\\static\\resource\\board_img";
+		String path = "C:/Users/haji/git/CampingSpot/src/main/resources/static/resources/board_img";
 		String oldFname = b.getB_fname();
 		MultipartFile uploadFile = b.getUploadFile();
-		String fname = null;
+		
+		String fnames = "";
+		String fname = "";
+		List<MultipartFile> list = request.getFiles("uploadFile");
+		
 		if(uploadFile != null) {
 		//수정할 파일이 있다면
 			fname = uploadFile.getOriginalFilename();
 			if(fname != null && !fname.equals("")) {
 			//수정할 파일이 올라왔다면
-				b.setB_fname(fname);
-				try {
-					byte []data = uploadFile.getBytes();
-					FileOutputStream fos = new FileOutputStream(path + "/" +fname);
-					fos.write(data);
-					fos.close();
-				}catch (Exception e) {
-					// TODO: handle exception
-					System.out.println(e.getMessage());
+				
+				for(int i = 0 ; i < list.size() ; i++) {
+					MultipartFile mul = list.get(i);
+					fname = mul.getOriginalFilename();
+					fnames += fname;
+						
+					File outFile = new File(path + "/" + fname);
+					try {
+						mul.transferTo(outFile);
+					}catch (Exception e) {
+						// TODO: handle exception
+						System.out.println(e.getMessage());
+					}
+					if(i < list.size()-1) {
+						fnames += ",";
+					}
 				}
+				b.setB_fname(fnames);
 			}
 		}
 		int re = dao.update(b);
@@ -148,8 +197,12 @@ public class BoardController {
 		if(re > 0 
 				&& fname != null && !fname.equals("")
 				&& oldFname != null && !oldFname.equals("")) {
-			File file = new File(path + "/" + oldFname);
-			file.delete();
+			
+			String oldFnames[] = oldFname.split(",");
+			for(int i = 0 ; i < oldFnames.length ; i++) {
+				File file = new File(path + "/" + oldFnames[i]);
+				file.delete();
+			}
 		}
 		if(re >=1) {
 			str = "게시물 수정 성공했습니다.";

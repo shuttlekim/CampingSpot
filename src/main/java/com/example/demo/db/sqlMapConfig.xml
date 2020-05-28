@@ -11,6 +11,7 @@
   	<typeAlias type="com.example.demo.vo.CampingSearchResultVo" alias="campingSearchResultVo" />
   	<typeAlias type="com.example.demo.vo.DetailCampingSearchResultVo" alias="detailCampingSearchResultVo" />
   	<typeAlias type="com.example.demo.vo.CampingRoomVo" alias="campingRoomVo" />
+  	<typeAlias type="com.example.demo.vo.CampingWishVo" alias="campingWishVo" />
    	<!-- 근희 -->
    	<typeAlias type="com.example.demo.vo.CampingReviewVo" alias="campingreviewVo" />
    	<!-- 요한 -->
@@ -35,6 +36,11 @@
  	<typeAlias type="com.example.demo.vo.CrVo" alias="CrVo"/>
   	<typeAlias type="com.example.demo.vo.CsCVo" alias="CsCVo"/>
    	<typeAlias type="com.example.demo.vo.CsDVo" alias="CsDVo"/>
+	
+	<!-- 설아 -->
+	<typeAlias type="com.example.demo.vo.BossReservationVo" alias="BossReservationVo"/>
+  	<typeAlias type="com.example.demo.vo.CampingReviewReVo" alias="CampingReviewReVo"/>
+  	<typeAlias type="com.example.demo.vo.BossListSalesVo" alias="BossListSalesVo"/>
 	
   </typeAliases>
   <environments default="development">
@@ -65,6 +71,8 @@
     <!-- 혜선 -->  
     <mapper resource="com/example/demo/db/AdminMemberMapper.xml"/>
     <mapper resource="com/example/demo/db/AdminNoticeMapper.xml"/>
-    
+	<!-- 설아 -->
+	<mapper resource="com/example/demo/db/CampingRoomMapper.xml"/>
+	<mapper resource="com/example/demo/db/CampingReviewReMapper.xml"/>
   </mappers>
 </configuration>

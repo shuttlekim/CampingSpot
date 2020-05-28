@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+hr{
+  border-top: 1px solid green;
+}
+/* .div{
+	float: left;
+	display: inline-block;
+} */
+.mainImg{
+	margin-left: 0px;
+	margin-top: 10px;
+}
+.main{
+	margin-left: 30px;
+	margin-top: 70px;
+	margin-bottom: 50px;
+}
+/* .line {
+  border-left: 2px solid green;
+  height: 700px;
+  margin-right: 50px;
+} */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+li a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+li a:hover:not(.active) {
+/*  background-color: #555;*/
+  background-color: pink;
+  color: white;
+}
+.mptb{
+	margin-left: 30px;
+}
+h3{
+	margin-top: 350px;
+}
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		var mb_id = sessionStorage.getItem("businessId");
+		//alert(mb_id);
+		
+		var cs_no;
+		
+		//cs_no 번호 가져오기
+		$.ajax("/getCsNo.do",{data:{"mb_id":mb_id}, async : false, success:function(r){
+				//alert(r)
+				 cs_no = r.cs_no
+		}})
+		
+		//console.log(cs_no)
+		
+		// 각 페이지별 이동
+		$("#bossBpage").attr("href", "myBusinessPage.html?mb_id="+mb_id);
+		$("#bossInsertCS").attr("href", "insertCampingSpot.html?cs_no="+cs_no);
+		$("#bossInsertCR").attr("href", "insertCampingRoom.html?cs_no="+cs_no);
+		$("#bossRList").attr("href", "bossReservationList.html?cs_no="+cs_no);
+		$("#bossReviewList").attr("href", "bossReviewManage.html?cs_no="+cs_no);
+		$("#bossSales").attr("href", "salesManage.html?cs_no="+cs_no);
+		
+ 		if (cs_no == null){
+			window.location.href ="insertCampingSpot.html?mb_id="+mb_id;
+		} else{
+			// 메인 사진/캠핑장 정보 불러오기
+			  $.ajax("/bossGetCampingSpot.do",{data:{"cs_no":cs_no},success:function(r){
+				//alert(r.cs_camp_fname)
+				var cs_camp_fname = r.cs_camp_fname.split(",")
+				//alert(cs_camp_fname[0])
+				var imgCS =$("<img></img>").attr({"src":"/resources/camping_spot_img/"+cs_camp_fname[0],"width":400,"height":300});
+				$(".mainImg").append(imgCS);
+				
+				var cs_name = $("<h2></h2>").html(r.cs_name);
+				var cs_tel = $("<h4><h4>").html(r.cs_tel);
+				var addr = $("<h4></h4>").html(r.cs_addr_head +" "+ r.cs_addr_remain);
+				$(".main").append(cs_name,cs_tel[0],addr);
+									 
+			}}); // end ajax list	
+			
+	  		// 최근 예약 목록 3개
+			$.ajax("/businessMyPageReservationList.do",{data:{"cs_no":cs_no},success:function(r){
+				//alert(r)
+				var h3 = $("<h3></h3>").html("최근 예약 내역");
+				$.each(r, function(idx, mp){
+					var tr = $("<tr></tr>");
+					var no = $("<td></td>").html(idx+1);
+					var cr_name = $("<td></td>").html(mp.cr_name);
+					var r_no = $("<td></td>").html(mp.r_no);
+					var mc_name = $("<td></td>").html(mp.mc_name);
+					var mc_tel = $("<td></td>").html(mp.mc_tel);
+					var r_date = $("<td></td>").html(mp.r_date);
+					
+					var r_revstatus = mp.r_revstatus;
+					if (r_revstatus == 1 ){
+						r_revstatus = $("<td></td>").html("예약완료");
+					} else {
+						r_revstatus = $("<td></td>").html("예약대기").css("color", "blue");
+					}
+					
+					var r_cancel = mp.r_cancel;
+					if(r_cancel == 0 ){
+						r_cancel = $("<td></td>").html("");
+					}else if(r_cancel == 1){
+						r_cancel = $("<td></td>").html("취소대기").css("color", "blue");
+					}else if(r_cancel == 2){
+						r_cancel = $("<td></td>").html("취소완료");
+					}
+					
+					$(tr).append( no,cr_name,r_no,mc_name,mc_tel,r_date,r_revstatus,r_cancel);
+					$("#mpList").append(tr);
+					
+				})//end each
+			}})//end ajax 최근 예약 
+		}
+		
+		$("#headers").load("/main/header.html");	
+
+		$("#footers").load("/main/footer.html");
+		
+	})//end function
+</script>
+</head>
+<body>
+	<div id="headers"></div>
+	<div class="body-wrap">
+	
+		<h1>사업자페이지</h1>
+		<hr>
+		<div class="div Categori">
+			<ul>
+			  <li><a class="active" id="bossBpage">캠핑장관리</a></li>
+			  <li><a id="bossInsertCS">캠핑장등록</a></li>
+			  <li><a id="bossInsertCR">캠핑룸등록</a></li>
+			  <li><a id="bossRList">전체예약현황</a></li>
+			  <li><a id="bossReviewList">리뷰관리</a></li>
+			  <li><a id="bossSales">매출관리</a></li>
+			</ul>
+		</div>
+		<div class="div line"></div>
+		
+		<div class="div mainImg"></div>
+		<div class="div main"></div>
+		
+		<h3>최근 예약 내역</h3>
+		<div class="mptb">
+			<table id="mpList" border="1">
+				<tr>
+					<th>번호</th>
+					<th>예약번호</th>
+					<th>캠핑룸명</th>
+					<th>예약자명</th>
+					<th>연락처</th>
+					<th>예약일</th>
+					<th>예약상태</th>
+					<th>취소상태</th>
+				</tr>
+			</table>
+		</div>
+	
+	</div>
+    <div id="footers"></div>
+
+</body>
+</html>

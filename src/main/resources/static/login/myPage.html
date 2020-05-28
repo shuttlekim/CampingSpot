@@ -3,47 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
-
-.container{
-  width: 1000px;
-  margin: 0 auto;
-}
-.container div{
-  text-align: center;
-  display: table;
-}
-.container div span{
-  //display: table-cell;
-  //vertical-align: middle;
-}
-.top{
-
-}
-.middle{
-  margin-top: 20px;
-  width: 1000px;
-  height: 500px;
-  position: relative;
-}
-.middle-center{
-  outline: 1px solid #9F9F9F;
-  top: 0px;
-  width: 1000px;
-  height: 600px;
-  //background-color: #00D8FF;
-}
-#btnDeleteMember{
-	cursor: pointer;
-}
-#btnDeleteBusiness{
-	cursor: pointer;
-}
-#btnUpdateMember{
-	cursor: pointer;
-}
-#btnUpdateBusiness{
-	cursor: pointer;
-}
+	.container{
+	  	width: 1000px;
+	  	margin: 0 auto;
+	}
+	.container div{
+	  	text-align: center;
+	  	display: table;
+	}
+	.container div span{
+	  	//display: table-cell;
+	  	//vertical-align: middle;
+	}
+	.middle{
+	  	margin-top: 20px;
+	  	width: 1000px;
+	  	height: 500px;
+	  	position: relative;
+	}
+	.middle-center{
+	  	outline: 1px solid #9F9F9F;
+	  	top: 0px;
+	  	width: 1000px;
+	  	height: 600px;
+	  	//background-color: #00D8FF;
+	}
+	#btnDeleteMember{
+		cursor: pointer;
+	}
+	#btnDeleteBusiness{
+		cursor: pointer;
+	}
+	#btnUpdateMember{
+		cursor: pointer; 
+	} 
+	#btnUpdateBusiness{
+		cursor: pointer;
+	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -54,22 +50,16 @@ $(function(){
 	var mc_id2 = sessionStorage.getItem("memberName");
 	var mc_auth = sessionStorage.getItem("auth");
 		
-	//console.log("memberId");
-	//console.log(mc_id);
-
 	$("#mc_id").html(mc_id);
 	$("#mb_id").html(mb_id);
 	$('#mc_id2').html(mc_id2);	
 	
 	$("#btnDeleteMember").click(function(){			
-		//data:mc_id 	// json 형태로		
 		
 		var result = confirm("정말 탈퇴하실건가요? ㅠㅠ");
 	
 		if(result == true){
-			$.ajax("/deleteMember.do", {data:{"mc_id":mc_id}, success:function(r){
-				//alert("삭제성공");	
-			}});
+			$.ajax("/deleteMember.do", {data:{"mc_id":mc_id}, success:function(r){}});
 		    alert("잘가요...");
 		    sessionStorage.clear();
 			window.location.href = "/main/main.html";
@@ -77,17 +67,13 @@ $(function(){
 		    alert("^_____^");
 		}
 	});
-	
-	
+
 	$("#btnDeleteBusiness").click(function(){			
-		//data:mc_id 	// json 형태로		
-		
+	
 		var result = confirm("정말 탈퇴하실건가요? ㅠㅠ");
 	
 		if(result == true){
-			$.ajax("/deleteBusiness.do", {data:{"mb_id":mb_id}, success:function(r){
-				//alert("삭제성공");	
-			}});
+			$.ajax("/deleteBusiness.do", {data:{"mb_id":mb_id}, success:function(r){}});
 		    alert("잘가요...");
 		    sessionStorage.clear();
 			window.location.href = "/main/main.html";
@@ -96,9 +82,7 @@ $(function(){
 		} 
 	});
 
-	
 	if(sessionStorage.getItem("businessId") != null){
-   		//$("#btnLogin").html("로그아웃");
    		 $("#memberPanel").css("display", "none");
    		 $("#hiMember").css("display", "none");
          $("#businessPanel").css("display", "block");     
@@ -108,7 +92,6 @@ $(function(){
     }
 	
 	if(sessionStorage.getItem("memberId") != null){
-   		//$("#btnLogin").html("로그아웃");
    		 $("#memberPanel").css("display", "block");
    		 $("#hiMember").css("display", "block");
          $("#businessPanel").css("display", "none");     
@@ -118,7 +101,6 @@ $(function(){
     }
 	
 	if(sessionStorage.getItem("memberName") != null){
-   		//$("#btnLogin").html("로그아웃");
    		 $("#memberPanel").css("display", "none");
    		 $("#hiMember").css("display", "none");
          $("#businessPanel").css("display", "none");     
@@ -126,7 +108,6 @@ $(function(){
          $("#naverPanel").css("display", "block");
          $("#hiNaver").css("display", "block");
     }
-	
 	
 	$("#header").load("/main/header.html");	
 
@@ -137,59 +118,49 @@ $(function(){
 </head>
 <body>
 
-	<!-- TOP  -->
-	<div class="top" id="header">
-	   <span></span>
-	</div>
+<!-- TOP  -->
+<div class="top" id="header"></div>
 
-	<div class="container">
+<div class="container">
 	<!-- MIDDLE -->
-	  <div class="middle">
-	    <div class="middle-center">
-	    	<h2>마이페이지</h2>
+	<div class="middle">
+   		<div class="middle-center">
+   		<h2>마이페이지</h2>
+			<div id="hiMember">
+			[<span id="mc_id"></span>] 님의 마이페이지 입니다.
+			</div>
+			
+			<div id="hiBusiness">
+			[<span id="mb_id"></span>] 님의 마이페이지 입니다.
+			</div>
+
+			<div id="hiNaver">
+			[<span id="mc_id2"></span>] 님의 마이페이지 입니다.
+			</div>
+			
+		<hr width="400px;"><br>
 	
-	<!-- <div id="hiMember" style="border: solid; position:relative;"> -->
-	<div id="hiMember">
-		[<span id="mc_id"></span>] 님의 마이페이지 입니다.
-	</div>
-	
-	<div id="hiBusiness">
-		[<span id="mb_id"></span>] 님의 마이페이지 입니다.
-	</div>
-	
-	<div id="hiNaver">
-		[<span id="mc_id2"></span>] 님의 마이페이지 입니다.
-	</div>
-	
-	
-	<hr width="400px;">
-	<br>
+		<div id="memberPanel">
+		<button onclick="location.href='updateMember.html'" id="btnUpdateMember">회원정보 수정</button>
+		<!--  <button onclick="location.href='/login/listMember.html'">회원정보 보기</button> -->
+		<button id="btnDeleteMember">회원탈퇴</button>
+		</div>
+
+		<div id="businessPanel">
+		<button onclick="location.href='updateBusiness.html'" id="btnUpdateBusiness">회원정보 수정</button>
+		<!--  <button onclick="location.href='/login/listBusiness.html'">회원정보 보기</button> -->
+		<button id="btnDeleteBusiness">회원탈퇴</button>
+		<button onclick="location.href='../boss/myBusinessPage.html'" id="btnMyBusinessPage">사업자페이지</button>
+		</div>
 		
-	<div id="memberPanel">
-	<button onclick="location.href='updateMember.html'" id="btnUpdateMember">회원정보 수정</button>
-	<!--  <button onclick="location.href='/login/listMember.html'">회원정보 보기</button> -->
-	<button id="btnDeleteMember">회원탈퇴</button>
-	</div>
-	
-	<div id="businessPanel">
-	<button onclick="location.href='updateBusiness.html'" id="btnUpdateBusiness">회원정보 수정</button>
-	<!--  <button onclick="location.href='/login/listBusiness.html'">회원정보 보기</button> -->
-	<button id="btnDeleteBusiness">회원탈퇴</button>
-	</div>
-	
-	<div id="naverPanel">
-	<!--  <button onclick="location.href='/login/listMember.html'">회원정보 보기</button> -->
-	</div>
-	
-	    </div>
-	  </div>  
-	</div>
+		<div id="naverPanel"></div>
 
-<br>
+		</div>
+	</div>  
+</div><br>
 
-	<!-- BOTTOM -->
-  <div id="footers" class="bottom"></div>
-
+<!-- BOTTOM -->
+<div id="footers" class="bottom"></div>
 
 </body>
 </html>

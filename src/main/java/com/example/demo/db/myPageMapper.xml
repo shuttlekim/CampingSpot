@@ -5,10 +5,11 @@
 <mapper namespace="myPage">
 
 	<insert id="insertWish">
-		insert into camping_wish values(#{cw_no}, #{mc_id}, #{cs_no})
+		insert into camping_wish values(wish_seq.nextval, #{mc_id}, #{cs_no})
 	</insert>
 	<!-- 현성 -->
 	
+<<<<<<< HEAD
 	<!-- 예약내역 -사용전 -->
 <select id="myReservationList" resultType="CsRVo">
 select cs.cs_camp_fname, cs.cs_no, cs.cs_name , TO_CHAR(res.r_checkin,'YYYY-MM-DD') r_checkin ,TO_CHAR(res.r_checkout,'YYYY-MM-DD') r_checkout , res.mc_id, res.r_no, res.r_cancel from reservation res, camping_room cr, camping_spot cs, camping_review cre
@@ -106,4 +107,10 @@ delete from camping_wish where cw_no = #{cw_no}
 update reservation set r_cancel = 1 where r_no = #{r_no}
 </update>
 
+=======
+	<select id="checkDouble" resultType="campingWishVo">
+		select * from camping_wish where mc_id=#{mc_id} and cs_no=#{cs_no}
+	</select>
+	
+>>>>>>> branch 'master' of https://github.com/shuttlekim/CampingSpot.git
 </mapper>

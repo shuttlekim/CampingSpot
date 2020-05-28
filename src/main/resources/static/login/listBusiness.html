@@ -11,6 +11,7 @@ $(function(){
 	
 	//모든 맴버 확인
 	$.getJSON("/listBusiness.do", function(data){
+		
 		arr = data;	
 		
 		$.each(arr, function(idx, e){
@@ -30,27 +31,25 @@ $(function(){
 		});		
 	});
 	
-	
 
 });
 </script>
 </head>
 <body>
-	<h2>사업자회원목록</h2>
-	<hr>
+<h2>사업자회원목록</h2>
+<hr>
 		
-	<table id="tb" border="1">
-		<tr>
-			<th>회원아디</th>
-			<th>회원메일</th>
-			<th>회원이름</th>
-			<th>회원별명</th>
-			<th>전화번호</th>
-			<th>사등번호</th>
-			<th>가입일자</th>
-			<th>최근접속</th>
-		</tr>
-	</table>
-	
+<table id="tb" border="1">
+	<tr>
+		<th>회원아디</th>
+		<th>회원메일</th>
+		<th>회원이름</th>
+		<th>회원별명</th>
+		<th>전화번호</th>
+		<th>사등번호</th>
+		<th>가입일자</th>
+		<th>최근접속</th>
+	</tr>
+</table>	
 </body>
 </html>

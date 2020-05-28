@@ -170,9 +170,25 @@ $(function(){
     	}})  // reviewList ajex 종료
     	    
     }
+ 	
+    
     getDetail(cs_no, campingType, checkout, checkin);
     selectRoom(cs_no, campingType, checkout, checkin);
    	callReview(cs_no);
+   	
+ 	// 예약날짜별 기상정보를 출력하는 함수, getDetail()함수에서 지역정보를 가져오므로 호출부 뒷부분에 위치
+    var getWeather = function(cs_no, checkin, checkout){
+ 	   var weather_data = {
+ 			   "cs_no": cs_no,
+ 			   "checkin": checkin,
+ 			   "checkout": checkout
+ 	   }
+ 	   $.ajax("/getWeather.do", {data:weather_data, async:false, success:function(data){
+ 		   
+ 	   }})
+    }
+    //--------------------------------------------------------------------
+    getWeather(cs_no, checkin, checkout);
    	
    	
    	// 룸을 선택할때 해당 숙박비용을 구해서 input 에 지정해준다.
@@ -187,57 +203,26 @@ $(function(){
     //------------------------------------------------------------------
    
     $("#btn_insert").click(function(){
-       
-       $.ajax("/detailCampingSpot.do", {data:{"cs_no":cs_no},
+    	
+    	var mc_id = "test1234";
+    	//var mc_id = sessionStorage.getItem("memberId");
+    	//위 코드로 변경
+    	var wish_data = {
+    			"mc_id":mc_id,
+    			"cs_no":cs_no
+    	}
+    	
+        $.ajax("/insertWishList.do", {data:wish_data,
           async : false,
           success:function(data){
-          
-          var cw_no = "1";
-          // var cs_no = data.cs_no;
-          var mc_id = "test1234";
-          
-          var form = document.createElement("form");
-          form.setAttribute("charset", "UTF-8");
-          // form.setAttribute("method", "POST");
-          form.setAttribute("id", "wishForm")
-
-          var hiddenField = document.createElement("input");
-          hiddenField.setAttribute("type", "hidden");
-          hiddenField.setAttribute("name", "cw_no");
-          hiddenField.setAttribute("value", cw_no);
-          form.appendChild(hiddenField);
-
-          hiddenField = document.createElement("input");
-          hiddenField.setAttribute("type", "hidden");
-          hiddenField.setAttribute("name", "mc_id");
-          hiddenField.setAttribute("value", mc_id);
-          form.appendChild(hiddenField);
-          
-          hiddenField = document.createElement("input");
-          hiddenField.setAttribute("type", "hidden");
-          hiddenField.setAttribute("name", "cs_no");
-          hiddenField.setAttribute("value", cs_no);
-          form.appendChild(hiddenField);
-
-          document.body.appendChild(form);
-          form.submit();
-          console.log(form);
-          
-          wishData = $("#wishForm").serialize();
-          // return wishData;
-          alert("ajax : " + wishData);
-       }}) // detailCampingSpot ajax 종료
-       
-       alert("out : " + wishData);       
-       
-       $.ajax("/campingInsertWish.do", {data:wishData,
-          // processData:false,
-            // contentType:false,
-            // type:"post",
-          success: function(data){
-             alert(data);
-            alert("성공?")
-      }}) // campingInsertWish ajax 종료
+          	if( data == 'success'){
+          		alert("찜목록에 등록되었습니다.");
+          	}else if( data == 'double' ){
+          		alert("이미 찜목록에 등록되었습니다.");
+          	}else{
+          		alert("찜목록 등록에 실패하였습니다.");
+          	}
+        }})
     });
     
    $("#btn_reservation").click(function(){
@@ -273,9 +258,9 @@ $(function(){
 				<form id="form_selector">
 					<input type="hidden" id="input_cs_no" name="cs_no">
 					체크인&nbsp&nbsp<input type="date" id="input_chkin" name="checkin" readonly="readonly"><br>
-					체크아웃&nbsp&nbsp<input type="date" id="input_chkout" name="checkout"  readonly="readonly"><br>
+					체크아웃&nbsp&nbsp<input type="date" id="input_chkout" name="checkout" readonly="readonly"><br>
 					총액 <input type="number" id="input_total" name="total" readonly="readonly"><br>
-					룸 선택&nbsp&nbsp
+					룸 선택&nbsp&nbsp 
 				</form>
 			</div>
 			
@@ -284,7 +269,7 @@ $(function(){
 		        <button class="btn" id="btn_insert">찜하기</button>
 		        <button class="btn" id="btn_review">리뷰 보러가기</button>
 		    </div>
-		 
+		 	<div id="detail_weather"></div>
 		   	<div id="campingSpot_detail"></div>
 		</div>
 		

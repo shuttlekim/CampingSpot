@@ -134,10 +134,18 @@ public class DBManager {
 	      return list;
 	}
 	
-	// 근희) 위시리스트 추가
-	public static int insertWish(CampingWishVo w) {
+	// 영현) 위시리스트 중복체크를 위한 요청
+	public static CampingWishVo checkDouble(HashMap map) {
+		SqlSession session = factory.openSession();
+		CampingWishVo c = session.selectOne("myPage.checkDouble", map);
+		session.close();
+		return c;
+	}
+	
+	// 근희) 위시리스트 추가 - 수정(영현)
+	public static int insertWish(HashMap map) {
 	      SqlSession session = factory.openSession();
-	      int re = session.insert("myPage.insertWish", w);
+	      int re = session.insert("myPage.insertWish", map);
 	      session.commit();
 	      session.close();
 	      return re;

@@ -37,7 +37,7 @@ $(function(){
 			"payment": payment
 	}
 	$.ajax("/insertReservation.do", {data: pay_data, async:false, success:function(result){
-		
+		sessionStorage.removeItem("reservation_data");
 	}})
 })
 </script>
