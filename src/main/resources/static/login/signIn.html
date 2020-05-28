@@ -83,7 +83,7 @@ $(function(){
 	$("#idCheck").click(function(){
 		var input_id = $("#mc_id").val();
 		var data = {"mc_id":input_id};
-		$.ajax("/checkId.do", {data:data, success:function(mc_id){
+		$.ajax("/checkId.do", {data:data, type:"POST", success:function(mc_id){
 			if(mc_id == 1){
 				alert("사용중인 아이디입니다.");
 				check = 0;
