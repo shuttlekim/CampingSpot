@@ -162,6 +162,7 @@ public class bossDBManager {
 		List<CampingReviewVo> creList = null;
 		SqlSession session = factory.openSession();
 		creList = session.selectList("CampingReviewRe.bossCampingReviewList",cs_no);
+		System.out.println("리뷰관리목록:" + creList);
 		session.close();
 		return creList;
 	}

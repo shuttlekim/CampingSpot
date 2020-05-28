@@ -174,7 +174,8 @@ public class CampingSpotController {
 		String str = "캠핑장 등록을 성공하였습니다.";
 		
 		//1.사업자등록증 업로드
-		String path = "C:\\Users\\User\\git\\CampingSpot\\src\\main\\resources\\static\\resources\\camping_spot_img";
+		//String path = "C:\\Users\\User\\git\\CampingSpot\\src\\main\\resources\\static\\resources\\camping_spot_img";
+		String path = request.getRealPath("/resources/camping_spot_img");
 		
 		System.out.println("사업자등록증 경로:" + path);
 		MultipartFile uploadFile = csvo.getUploadFile();
@@ -196,7 +197,8 @@ public class CampingSpotController {
 		}
 		
 		//2.캠핑장이미지 업로드 			
-		String Cpath = "C:\\Users\\User\\git\\CampingSpot\\src\\main\\resources\\static\\resources\\camping_spot_img";
+//		String Cpath = "C:\\Users\\User\\git\\CampingSpot\\src\\main\\resources\\static\\resources\\camping_spot_img";
+		String Cpath = request.getRealPath("/resources/camping_spot_img");
 		System.out.println("캠핑장이미지 경로: " +Cpath);
 
 		MultipartFile CampingUploadFile = csvo.getCampingUploadFile();
@@ -230,7 +232,8 @@ public class CampingSpotController {
 		System.out.println(arr);
 		
 		// 3.지도 이미지 업로드
-		String Mpath = "C:\\Users\\User\\git\\CampingSpot\\src\\main\\resources\\static\\resources\\camping_spot_img";
+//		String Mpath = "C:\\Users\\User\\git\\CampingSpot\\src\\main\\resources\\static\\resources\\camping_spot_img";
+		String Mpath = request.getRealPath("/resources/camping_spot_img");
 		System.out.println("지도이미지 경로: " + Mpath);
 		
 		MultipartFile MapUploadFile = csvo.getMapUploadFile();

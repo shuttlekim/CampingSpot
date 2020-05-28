@@ -66,7 +66,7 @@ public class CampingReviewReController {
 		
 		// 댓글 확인 
 		for(int i=0; i<creList.size(); i++) {
-			//System.out.println(creList.get(i).getRe_check());
+			System.out.println(creList.get(i).getRe_check());
 			CampingReviewVo creVo = creList.get(i);
 			int cre_no = creVo.getCre_no();
 			CampingReviewReVo crrVo = crrDao.checkReviewRe(cre_no);
@@ -78,7 +78,7 @@ public class CampingReviewReController {
 		
 		Gson gson = new Gson();
 		str = gson.toJson(creList);
-		//System.out.println(creList);
+		System.out.println(creList);
 		return str;
 	}
 }
