@@ -115,11 +115,11 @@ $(function(){
 		<h1>CAMPINGSPOT 회원가입</h1>
 		<hr width="300px">
 		<div>
-			<form id="join" method="post" enctype="multipart/form-data">
+			<form id="join" type="poxsenctype="multipart/form-data">
 				<table style="text-align: center;"><br><br>
 					<tr>		
 						<td><input type="text" name="mc_id" id="mc_id" placeholder="회원 아이디 (15자 이내)" required="required" maxlength="15"></td>
-						
+						<td><button id="idCheck">중복검사</button></td>
 					</tr>				
 					<tr>
 						<td><input type="password" name="mc_pwd" id="mc_pwd" placeholder="비밀번호 (8자이내)" required="required" maxlength="8"></td>
@@ -147,10 +147,10 @@ $(function(){
 						<td><input type="text"  placeholder="다음 중 회원님의 취향은?" required="required" disabled="disabled" style="background-color: #e2e2e2;"></td>
 					</tr>
 					<tr>				
-						<td><label style="margin-left: 150px;">산</label><input type="checkbox" name="mc_taste" value="산">
-		                 	<label>강</label><input type="checkbox" name="mc_taste" value="강">
-		                 	<label>바다</label><input type="checkbox" name="mc_taste" value="바다">
-		                 	<label>계곡</label><input type="checkbox" name="mc_taste" value="계곡"></td>
+						<td><label style="margin-left: 150px;">산</label><input type="checkbox" name="mc_taste" id="mc_taste" value="산">
+		                 	<label>강</label><input type="checkbox" name="mc_taste" id="mc_taste" value="강">
+		                 	<label>바다</label><input type="checkbox" name="mc_taste" id="mc_taste" value="바다">
+		                 	<label>계곡</label><input type="checkbox" name="mc_taste" id="mc_taste" value="계곡"></td>
 					</tr>	
 					<tr>
 						<td><input type="text" disabled="disabled" placeholder="프로필 사진" style="background-color: #e2e2e2;"></td>			
