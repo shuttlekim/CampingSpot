@@ -87,9 +87,6 @@ public class MemberController {
 	
 	//회원가입
 	@RequestMapping("/signIn.do")
-	//@RequestMapping(value = "/signIn.do", method = {RequestMethod.GET, RequestMethod.POST})
-	//@ResponseStatus(value=HttpStatus.OK)
-	//@ResponseBody
 	public String insertMember(MemberVo m, HttpServletRequest request) {
 		System.out.println("================sign.do 작동 시작 =======================");
 		System.out.println("MemberVo:"+m);
@@ -106,7 +103,6 @@ public class MemberController {
 	        //String path = "/resources/static/resource/profile"; 
 	        //String path = "C:\\Users\\YOGO\\git\\CampingSpot\\src\\main\\resources\\static\\resources\\profile";
 	        String path = request.getRealPath("\\resources\\static\\resources\\profile");
-	        //String path = System.getProperty("/resource/profile");
 			MultipartFile uploadFile = m.getUploadFile();
 			String fname = "";
 			 if(uploadFile != null) {
@@ -136,9 +132,7 @@ public class MemberController {
 
 	//회원 아이디 중복체크
 	@RequestMapping("/checkId.do")
-	//@RequestMapping(value = "/checkId.do", method = {RequestMethod.GET, RequestMethod.POST})
-	//@ResponseStatus(value=HttpStatus.OK)
-	//@ResponseBody
+
 	public int checkId(String mc_id) {
 		System.out.println("입력아이디: " + mc_id);
 		int re = dao.checkId(mc_id);
@@ -155,9 +149,9 @@ public class MemberController {
 		return re;
 	}
 	
-	//회원수정 - 세션정보들 불러오기 mc_id에 vo 담아서
+	//회원수정 
 	@RequestMapping("/sessionMember.do")
-	public String sessionMember(String mc_id) {		//dao에서 받아옴
+	public String sessionMember(String mc_id) {		
 		System.out.println("------sessionMember 작동------");
 		String str = "";
 		MemberVo smout = dao.sessionMember(mc_id);
@@ -165,7 +159,6 @@ public class MemberController {
 		if(smout != null) {
 		str = smout.getMc_id();
 		System.out.println("str : " + str);
-		//System.out.println("smout: " + smout);
 		}else {
 			str = null;
 			System.out.println("str : " + str);
@@ -173,11 +166,9 @@ public class MemberController {
 		return str;
 	}	
 	
-	
-	//위에꺼 네이버 로그인테스트 하느라 저거였고 원본은 지금 이거
 	//회원정보 세션
     @RequestMapping("/sessionMember2.do")
-    public MemberVo sessionMember2(String mc_id) {        //dao에서 받아옴
+    public MemberVo sessionMember2(String mc_id) {     
         MemberVo smout = dao.sessionMember(mc_id);
         System.out.println("MemberController 메시지 : sessionMember2 동작 " + smout);
         return smout;
