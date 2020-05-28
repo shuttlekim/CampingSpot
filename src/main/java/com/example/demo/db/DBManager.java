@@ -143,6 +143,7 @@ public class DBManager {
 		session.close();
 		return c;
 	}
+
 	
 	// 근희) 위시리스트 추가 - 수정(영현)
 	public static int insertWish(HashMap map) {
