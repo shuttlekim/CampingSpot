@@ -44,7 +44,7 @@
 <script type="text/javascript">
 $(function(){	
 
-	var check = "";
+	var check = -1;
 	
 	//가입하기 버튼 클릭시 동작
 	$("#btnJoinOk").click(function(){
@@ -82,8 +82,8 @@ $(function(){
 	$("#idCheck").click(function(){
 		var input_id = $("#mb_id").val();
 		var data = {"mb_id":input_id};
-		$.ajax("/checkId2.do", {data:data, success:function(mb_id){
-			if(mb_id == 1){
+		$.ajax("/checkId2.do", {data:data, type:"POST", success:function(re){
+			if(re == 1){
 				alert("사용중인 아이디입니다.");
 				check = 0;
 			}else{
@@ -91,7 +91,7 @@ $(function(){
 				check = 1;
 			}
 		}}); 
-	});
+	}); 
 	
 	$("#header").load("/main/header.html");	
 
@@ -117,7 +117,7 @@ $(function(){
 				<table><br><br>
 					<tr>
 						<td><input type="text" name="mb_id" id="mb_id" placeholder="회원 아이디 (15자 이내)" required="required" maxlength="15"></td>
-						<td><button id="idCheck">중복검사</button></td>
+						<td><button id="idCheck" type="button">중복검사</button></td>
 					</tr>				
 					<tr>
 						<td><input type="password" name="mb_pwd" id="mb_pwd" placeholder="비밀번호 (8자이내)" required="required" maxlength="8"></td>

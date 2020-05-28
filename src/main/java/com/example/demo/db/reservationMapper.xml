@@ -41,9 +41,9 @@
   	insert into reservation values(reservation_seq.nextval, to_date(#{checkin},'yyyy-mm-dd'), to_date(#{checkout},'yyyy-mm-dd'), sysdate, #{price}, #{payment}, 0, 0, #{cr_no}, #{mc_id})
   </insert>
   
-  <!-- 영현) 등록한 (예약번호+1)를 가져온다. 반드시 -1 해서 사용!! -->
+  <!-- 영현) 예약번호 요청 -->
   <select id="callReservationKey" resultType="int">
-    select reservation_seq.nextval from dual
+    select r_no from reservation where cr_no=#{cr_no} and r_checkin=to_date(#{checkin}, 'yyyy-mm-dd')
   </select>
   
   <select id="ingRoom" resultType="campingRoomVo">
@@ -174,7 +174,7 @@
   <select id="campingList" resultType="campingSearchResultVo">
     select distinct cs.cs_no no from camping_spot cs,
     (select cr_no, cs_no from camping_room 
-    <if test="cr_type != null">
+    <if test="campingType != null">
     where cr_type = #{campingType}
     </if>
 	<if test="validDate1 != null">

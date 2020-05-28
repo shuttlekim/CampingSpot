@@ -40,9 +40,9 @@ public class DBManager {
 	}
 	
 	// 영현) 예약번호 불러오기
-	public static int callReservationKey() {
+	public static int callReservationKey(HashMap map) {
 		SqlSession session = factory.openSession();
-		int re = session.selectOne("reservation.callReservationKey");
+		int re = session.selectOne("reservation.callReservationKey", map);
 		session.close();
 		return re;
 	}
@@ -113,6 +113,8 @@ public class DBManager {
 	// 영현) 캠핑장 날짜외 정보에 따른 리스트 호출
 	public static List<CampingSearchResultVo> search_list(HashMap map){
 		SqlSession session = factory.openSession();
+		System.out.println("========================================");
+		System.out.println("조건식의값: "+map);
 		List<CampingSearchResultVo> list = session.selectList("reservation.campingList", map);
 		System.out.println("search_List 매니저 메소드 동작:"+list);
 		session.close();
@@ -141,6 +143,7 @@ public class DBManager {
 		session.close();
 		return c;
 	}
+
 	
 	// 근희) 위시리스트 추가 - 수정(영현)
 	public static int insertWish(HashMap map) {
