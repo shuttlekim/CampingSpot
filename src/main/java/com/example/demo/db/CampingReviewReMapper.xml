@@ -4,6 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="CampingReviewRe">
   
+   <!-- 설아) (사업자) 캠핑리뷰 댓글 확인 -->
+  <select id="countRepleAtReview" resultType="CampingReviewReVo">
+  	select cre_re_no from camping_review_re where cre_no =#{cre_no}
+  </select>
   
   <!-- 설아) (사업자용) 리뷰 관리 목록 -->
   <select id="bossCampingReviewList" resultType="campingreviewVo">

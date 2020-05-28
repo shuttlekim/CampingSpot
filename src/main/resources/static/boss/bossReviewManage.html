@@ -7,14 +7,14 @@
 hr{
   border-top: 1px solid green;
 }
-/* .div{
+div{
 	float: left;
 }
 .line {
   border-left: 2px solid green;
   height: 700px;
   margin-right: 30px;
-} */
+}
 ul {
   list-style-type: none;
   margin: 0;
@@ -50,13 +50,13 @@ li a:hover:not(.active) {
 				
 		var cs_no = Number(location.search.substring(location.search.indexOf("=")+1));
 		//alert(cs_no)
-		
+		console.log(cs_no)
 		
 		// 각 페이지별 이동
 		$("#bossBpage").attr("href", "myBusinessPage.html?cs_no="+cs_no);
-		$("#bossRList").attr("href", "bossReservationList.html?cs_no="+cs_no);
 		$("#bossInsertCS").attr("href", "insertCampingSpot.html?cs_no="+cs_no);
 		$("#bossInsertCR").attr("href", "insertCampingRoom.html?cs_no="+cs_no);
+		$("#bossRList").attr("href", "bossReservationList.html?cs_no="+cs_no);
 		$("#bossReviewList").attr("href", "bossReviewManage.html?cs_no="+cs_no);
 		$("#bossSales").attr("href", "salesManage.html?cs_no="+cs_no);
 		$("#insertCreRe").css("display", "none");
@@ -65,7 +65,8 @@ li a:hover:not(.active) {
 			
 		$.ajax("/bossCampingReviewList.do",{data:{"cs_no":cs_no}, success:function(data){
 
-			//alert(data)
+			alert(data)
+			console.log(data)
 			$.each(data, function(idx,cre){
 				var tr = $("<tr></tr>");
 				var no = $("<td></td>").html(idx+1);
@@ -150,10 +151,6 @@ li a:hover:not(.active) {
 			window.location.href ="bossReviewManage.html?cs_no="+cs_no;
 		}
 		
-		function deleteCRR(){
-
-		}
-			
 		$("#headers").load("/main/header.html");	
 
 		$("#footers").load("/main/footer.html");
@@ -169,11 +166,11 @@ li a:hover:not(.active) {
 		<hr>
 		<div class="div Categori">
 			<ul>
-			  <li><a class="active" id="bossBpage">캠핑장관리</a></li>
+			  <li><a  id="bossBpage">캠핑장관리</a></li>
 			  <li><a id="bossInsertCS">캠핑장등록</a></li>
 			  <li><a id="bossInsertCR">캠핑룸등록</a></li>
 			  <li><a id="bossRList">전체예약현황</a></li>
-			  <li><a id="bossReviewList">리뷰관리</a></li>
+			  <li><a class="active" id="bossReviewList">리뷰관리</a></li>
 			  <li><a id="bossSales">매출관리</a></li>
 			</ul>
 		</div>

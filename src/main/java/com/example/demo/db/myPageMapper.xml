@@ -12,9 +12,12 @@
 	<!-- 예약내역 -사용전 -->
 <select id="myReservationList" resultType="CsRVo">
 
-select cs.cs_camp_fname, cs.cs_no, cs.cs_name , TO_CHAR(res.r_checkin,'YYYY-MM-DD') r_checkin ,TO_CHAR(res.r_checkout,'YYYY-MM-DD') r_checkout , res.mc_id, res.r_no, res.r_cancel from reservation res, camping_room cr, camping_spot cs, camping_review cre
-where cs.cs_no = cre.cs_no and cs.cs_no = cr.cs_no and cr.cr_no = res.cr_no and res.mc_id = #{mc_id} order by res.r_no 
-
+	select b.cs_no, cs_name, cs_camp_fname, b.r_no, b.mc_id, b.r_cancel, b.r_checkin, b.r_checkout
+	from camping_spot cs, (select cs_no, a.r_no, a.mc_id, a.r_cancel, a.r_checkin, a.r_checkout 
+	from camping_room cr, (select cr_no, r_no, mc_id, r_cancel, TO_CHAR(r_checkin,'YYYY-MM-DD') r_checkin, 
+	TO_CHAR(r_checkout,'YYYY-MM-DD') r_checkout from reservation where mc_id = #{mc_id})a 
+	where cr.cr_no = a.cr_no) b
+	where cs.cs_no = b.cs_no
 	
 <!--select cs.cs_camp_fname, cs.cs_no, cs.cs_name , TO_CHAR(res.r_checkin,'YYYY-MM-DD') r_checkin ,TO_CHAR(res.r_checkout,'YYYY-MM-DD') r_checkout , res.mc_id, res.r_no, res.r_cancel from reservation res, camping_room cr, camping_spot cs, camping_review cre
 where cs.cs_no = cre.cs_no and cs.cs_no = cr.cs_no and cr.cr_no = res.cr_no and res.mc_id = 'test1234' order by res.r_no   -->

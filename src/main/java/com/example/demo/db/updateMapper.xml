@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="updateTable">
+
+	<!-- <update id="updateCampingSpotKor">
+		update camping_spot set cs_name='', cs_addr_head=', cs_addr_remain=, cs_account=, cs_theme=, cs_fac=, cs_detail where cs_no=100
+	</update> -->
+	<update id="updateCampingSpotFname">
+		update camping_spot set cs_camp_fname=, cs_theme=, cs_fac= where cs_no=100
+	</update>
+	
+</mapper>

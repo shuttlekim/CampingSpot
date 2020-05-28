@@ -39,6 +39,7 @@ public class CampingReviewReDao {
 	
 	// 설아) (사업자) 리뷰 관리 목록
 	public List<CampingReviewVo> bossCampingReviewList(int cs_no){
+		System.out.println("리뷰관리 목록 dao 동작");
 		return bossDBManager.bossCampingReviewList(cs_no);
 	}
 

@@ -94,10 +94,18 @@ public class DBManager {
 		return dcsrv;
 	}
 	
-	// 영현) 캠핑장 데이터 업데이트
-	public static int updateCampingSpot(int cs_no) {
+//	// 영현) 캠핑장 데이터 한글화
+//	public static int updateCampingSpot(int cs_no) {
+//		SqlSession session = factory.openSession(true);
+//		int re = session.update("updateTable.updateCampingSpotKor", cs_no);
+//		session.close();
+//		return re;
+//	}
+	
+	// 영현) 캠핑장 파일이름 업데이트
+	public static int updateCampingSpotFname(int cs_no) {
 		SqlSession session = factory.openSession(true);
-		int re = session.update("campingSpot.updateCampingSpot", cs_no);
+		int re = session.update("updateTable.updateCampingSpotFname", cs_no);
 		session.close();
 		return re;
 	}
