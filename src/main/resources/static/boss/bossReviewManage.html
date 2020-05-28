@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+hr{
+  border-top: 1px solid green;
+}
+.div{
+	float: left;
+}
+.line {
+  border-left: 2px solid green;
+  height: 700px;
+  margin-right: 30px;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+li a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+li a:hover:not(.active) {
+/*  background-color: #555;*/
+  background-color: pink;
+  color: white;
+}
+.active{
+		background: lavender;
+}
+
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+				
+		var cs_no = Number(location.search.substring(location.search.indexOf("=")+1));
+		//alert(cs_no)
+		
+		
+		// 각 페이지별 이동
+//		$("#bossBpage").attr("href", "myBusinessPage.html?cs_no="+cs_no);
+		$("#bossBpage").attr("href", "myBusinessPage.html?mb_id="+mb_id);
+		$("#bossRList").attr("href", "bossReservationList.html?cs_no="+cs_no);
+//		$("#bossInsertCS").attr("href", "insertCampingSpot.html?cs_no="+cs_no);
+		$("#bossInsertCS").attr("href", "insertCampingSpot.html?mb_id="+mb_id);
+		$("#bossInsertCR").attr("href", "insertCampingRoom.html?cs_no="+cs_no);
+		$("#bossReviewList").attr("href", "bossReviewManage.html?cs_no="+cs_no);
+		$("#bossSales").attr("href", "salesManage.html?cs_no="+cs_no);
+		
+		$("#insertCreRe").css("display", "none");
+		
+		$("#btnDeleteCrr").hide();
+			
+		$.ajax("/bossCampingReviewList.do",{data:{"cs_no":cs_no}, success:function(data){
+
+			//alert(data)
+			$.each(data, function(idx,cre){
+				var tr = $("<tr></tr>");
+				var no = $("<td></td>").html(idx+1);
+ 				var mc_id = $("<td></td>").html(cre.mc_id);
+				var cre_contents = $("<td></td>").html(cre.cre_content);
+				var cre_rate = $("<td></td>").html(cre.cre_rate);
+				var cre_date = $("<td></td>").html(cre.cre_date);
+				
+				// 댓글 대기 or 완료		
+				var re_check = $("<td></td>");
+				var a = $("<a></a>").html();
+				if(cre.re_check > 0){
+					a = $("<a></a>").html("댓글완료");
+					
+				} else {
+					a = $("<a></a>").html("댓글대기").css("color", "blue");
+				}
+				
+				$(re_check).append(a);
+				
+				var cre_no = cre.cre_no;
+								
+				$(tr).append(no, mc_id, cre_contents, cre_rate, cre_date, re_check);
+					
+				// 리뷰글 클릭한 내용 가져오기
+				$(tr).attr("idx", idx);
+				$(tr).click(function(){
+					
+					$("#insertCreRe").show();
+					
+					$("tr").removeClass("active");
+					$(this).addClass("active");
+					var idx = $(this).attr("idx");
+					
+					$("#cre_no").val(cre_no);
+					$("#cre_content").val(data[idx].cre_content);
+					$("#mc_id").val(data[idx].mc_id);
+					$("#cre_date").val(data[idx].cre_date);
+							
+					// 2) 리뷰글 댓글 입력하기
+					$("#btnInsertCrr").click(function(){
+						$("#cre_no").val(cre_no);
+						var ref = $("#reF").serialize();
+						$.ajax("/bossInsertCampinReviewRe.do",{data:ref, success:function(r){
+							alert(r);
+							move();
+						}})//end ajax
+				
+					});//end btnInsertCrr
+					
+					$.ajax("/getCampingReviewRe.do",{data:{"cre_no":cre_no}, success:function(r){
+						//alert(r)
+						
+						if(r != null){
+							var contents = $("#cre_re_contents").val(r.cre_re_contents);
+							$("#btnDeleteCrr").show();
+							// 댓글 삭제
+							$("#btnDeleteCrr").click(function(){
+								$.ajax("/bossDeleteCampingReviewRe.do",{data:{"cre_re_no":r.cre_re_no}, success:function(r){
+									alert(r)
+									 move()
+								}})//end ajax
+							})//end delete
+
+						}else{
+							var contents = $("#cre_re_contents").val("")
+							$("#btnDeleteCrr").hide();
+						}
+					}})//end ajax
+					
+				  })//end clickTR
+				  
+				  
+					
+				$("#bossCreTB").append(tr);  
+							
+			});//end each
+			
+		}})//end 리뷰관리 목록
+		
+		function move(){
+			window.location.href ="bossReviewManage.html?cs_no="+cs_no;
+		}
+		
+		function deleteCRR(){
+
+		}
+			
+		$("#headers").load("/main/header.html");	
+
+		$("#footers").load("/main/footer.html");
+		
+	}); //end function
+</script>
+</head>
+<body>
+	<div id="headers"></div>
+	<div class="body-wrap">
+	
+		<h1>사업자페이지</h1>
+		<hr>
+		<div class="div Categori">
+			<ul>
+				 <li><a class="active" id="bossBpage">캠핑장관리</a></li>
+				 <li><a id="bossRList">전체예약현황</a></li>
+				 <li><a id="bossInsertCS">캠핑장등록</a></li>
+				 <li><a id="bossInsertCR">캠핑룸등록</a></li>
+			  	 <li><a id="bossReviewList">리뷰관리</a></li>
+				 <li><a id="bossSales">매출관리</a></li>
+			</ul>
+		</div>
+		<div class="div line"></div>
+		
+		<div id="bossReviewList">
+			<h2>캠핑장 리뷰 관리</h2>
+			<table id="bossCreTB" border="1">
+				<tr>
+					<th>번호</th>
+					<th>아이디</th>
+					<th>리뷰글내용</th>
+					<th>별점</th>
+					<th>리뷰등록일</th>
+					<th>댓글현황</th>
+				</tr>
+			</table>
+		</div>
+		<br>
+		<div id="insertCreRe">
+			
+			리뷰글 내용 : <br>
+					<textarea rows="5" cols="70" id="cre_content" name="cre_content"></textarea>
+					<br>
+			작성자 : <input type="text" id="mc_id" name="mc_id">
+			등록일 : <input type="text" id="cre_date" name="cre_date"><br>
+			<br>
+			<form id="reF">
+			리뷰 댓글 : <br>
+					<textarea rows="5" cols="70" id="cre_re_contents" name="cre_re_contents"></textarea>
+					<input type="hidden" id="mb_id" name="mb_id" value="test5678">
+					<input type="hidden" id="cre_no" name="cre_no">
+			</form>
+			<button id="btnInsertCrr">댓글등록</button>
+			<button id="btnDeleteCrr">댓글삭제</button>
+		</div>
+	
+	</div>
+	<div id="footers"></div>
+</body>
+</html>

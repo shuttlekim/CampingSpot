@@ -24,7 +24,7 @@
 .middle{
   margin-top: 20px;
   width: 1000px;
-  height: 700px;
+  height: 1000px;
   position: relative;
 }
 
@@ -61,7 +61,7 @@ margin-left: 10%;
 
 .accordion {
 position:absolute;
-top: 26%;
+top: 17%;
 left: 57%;
 transform:translateX(-50%);
 width:750px;
@@ -84,14 +84,14 @@ width:30px;
 height:30px;
 margin-top:-15px;
 display:inline-block;
-background:url('/serviceCenter/img/arrow.png') 0 0 no-repeat;
+background:url('/resources/serviceCenter_img/arrow.png') 0 0 no-repeat;
 }
 input[id*="answer"] + label + div {
 max-height:0;
 transition: all .35s;
 overflow:hidden;
 background:#ebf8ff;
-font-size:11px;
+font-size:14px;
 }
 input[id*="answer"] + label + div p {
 display:inline-block;padding:20px;
@@ -102,14 +102,6 @@ max-height:100px;
 input[id*="answer"]:checked + label em {
 background-position:0 -30px;
 }
-
-/*
-body {
-	background-image: url("/serviceCenter/img/FAQ10.png");
-	background-repeat:no-repeat;
-	background-position: -480px -30px;
-}
-*/
 
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -152,6 +144,43 @@ $(function(){
 			<div>
 				<p>• 고객센터에서 문의하기를 누르시고 제목과 답장 받으실 이메일, 내용을 작성하시고 문의하기 버튼을 누르시면 됩니다.</p>
 			</div>
+			
+			<input type="radio" name="accordion" id="answer04">
+			<label for="answer04">4. 가나다 ^^<em></em></label>
+				<div>
+					<p>• 오른쪽 상단 회원정보에 들어가셔서 수정을 누르시면 됩니다.</p>
+				</div>
+			<input type="radio" name="accordion" id="answer05">
+			<label for="answer05">5. 에이비씨<em></em></label>
+				<div>
+					<p>• 아이디나 비밀번호가 일치하지 않을 수 있으니 아이디 찾기, 비밀번호 찾기 기능을 이용해 주세요.</p>
+				</div>
+			<input type="radio" name="accordion" id="answer06">
+			<label for="answer06">6. Go Home<em></em></label>
+				<div>
+					<p>• 고객센터에서 문의하기를 눌러주세요.<br> • 제목과 답장 받으실 이메일, 내용을 작성하시고 문의하기 버튼을 누르시면 됩니다.</p>
+				</div>
+						<input type="radio" name="accordion" id="answer07">
+			<label for="answer07">7. Nice<em></em></label>
+				<div>
+					<p>• 오른쪽 상단 회원정보에 들어가셔서 수정을 누르시면 됩니다.</p>
+				</div>
+			<input type="radio" name="accordion" id="answer08">
+			<label for="answer08">8. 5시 45분<em></em></label>
+				<div>
+					<p>• 아이디나 비밀번호가 일치하지 않을 수 있으니 아이디 찾기, 비밀번호 찾기 기능을 이용해 주세요.</p>
+				</div>
+			<input type="radio" name="accordion" id="answer09">
+			<label for="answer09">9. ㅋㅋㅋㅋㅋ<em></em></label>
+				<div>
+					<p>• 고객센터에서 문의하기를 눌러주세요.<br> • 제목과 답장 받으실 이메일, 내용을 작성하시고 문의하기 버튼을 누르시면 됩니다.</p>
+				</div>
+						<input type="radio" name="accordion" id="answer10">
+			<label for="answer10">10. 10묹<em></em></label>
+				<div>
+					<p>• 고객센터에서 문의하기를 눌러주세요.<br> • 제목과 답장 받으실 이메일, 내용을 작성하시고 문의하기 버튼을 누르시면 됩니다.</p>
+				</div>
+			
 		</div>
 	</div>
 </div>

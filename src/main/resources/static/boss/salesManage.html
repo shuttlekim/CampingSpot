@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<title>Insert title here</title>
+<style>
+hr{
+  border-top: 1px solid green;
+}
+.div{
+	float: left;
+	display: inline-block;
+}
+.mainImg{
+	margin-left: 50px;
+	margin-top: 10px;
+}
+.main{
+	margin-left: 100px;
+	margin-top: 70px;
+}
+.line {
+  border-left: 2px solid green;
+  height: 700px;
+  margin-right: 30px;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+li a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+li a:hover:not(.active) {
+/*  background-color: #555;*/
+  background-color: pink;
+  color: white;
+}
+
+.tot{
+	margin-top : 0px;
+	padding-top : 0px;
+	margin-left: 100px;
+}
+
+#columnchart_values{
+	position: relative;
+	top: 150px;
+}
+</style>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	
+	var chartData;
+	
+	$(function(){	
+		
+		var cs_no = Number(location.search.substring(location.search.indexOf("=")+1));
+		var month;
+				
+		
+		
+		// 각 페이지별 이동
+		$("#bossBpage").attr("href", "myBusinessPage.html?cs_no="+cs_no);
+		$("#bossRList").attr("href", "bossReservationList.html?cs_no="+cs_no);
+		$("#bossInsertCS").attr("href", "insertCampingSpot.html?cs_no="+cs_no);
+		$("#bossInsertCR").attr("href", "insertCampingRoom.html?cs_no="+cs_no);
+		$("#bossReviewList").attr("href", "bossReviewManage.html?cs_no="+cs_no);
+		$("#bossSales").attr("href", "salesManage.html?cs_no="+cs_no);
+		
+		$("#sumTb").hide();
+		$("#total").hide();
+				
+		// 매출목록 함수
+		function sales(){
+			
+			$("#sumTb").hide();
+			$("#total").hide();
+			
+			$("#tbS").empty();
+			$("#tbS").html("<th>번호</th><th>캠핑룸명</th><th>예약번호</th><th>체크인일</th><th>체크아웃일</th><th>총숙박일</th><th>결제요금</th><th>수수료</th><th>순이익</th><th>취소금액</th>");		
+				
+			$("#cs_no").val(cs_no);
+			month = $("#month option:selected").val();
+			$.ajax("/bossListSales.do",{data:{"cs_no":cs_no, "month":month}, success:function(r){
+				$.each(r, function(idx, s){
+					var tr = $("<tr></tr>").addClass("trS");
+					var no = $("<td></td>").html(idx+1);
+					var cr_name = $("<td></td>").html(s.cr_name);
+					var r_no = $("<td></td>").html(s.r_no);
+					var r_checkin = $("<td></td>").html(s.r_checkin);
+					var r_checkout = $("<td></td>").html(s.r_checkout);
+					var days = $("<td></td>").html(s.days);
+					var r_price = $("<td></td>").html(s.r_price);
+					var comm = $("<td></td>").html(s.comm);
+					var margin = $("<td></td>").html(s.margin);
+					var r_cancel = $("<td></td>").html(s.r_cancel);
+					$(tr).append(no,cr_name,r_no,r_checkin,r_checkout,days,r_price,comm,margin,r_cancel);
+					$("#tbS").append(tr);
+				});//end each
+			}})//end ajax
+		}//end 함수
+				
+		sales();
+		
+		$("#month").change(sales); 
+
+		// 캠핑룸별 총합계
+		$("#btnCrTot").click(function(){
+			$("#sumTb").show();
+			$("#total").hide();
+			$("#sumTb").empty();
+			$("#sumTb").html("<th>캠핑룸명</th><th>결제금액 총합</th><th>수수료 총합</th><th>순이익 총합</th>");
+			$.ajax("/bossListTotalCampingRoom.do",{data:{"cs_no":cs_no, "month":month}, success:function(r){
+				$.each(r, function(idx, s){
+					var tr = $("<tr></tr>");
+					var cr_name = $("<td></td>").html(s.cr_name);
+					var totPrice = $("<td></td>").html(s.totPrice);
+					var totComm = $("<td></td>").html(s.totComm);
+					var totMargin = $("<td></td>").html(s.totMargin);
+					
+					$(tr).append(cr_name,totPrice,totComm,totMargin);
+					$("#sumTb").append(tr);
+				})//end each
+			}})//end ajax				
+		})//end btnCrTot
+		
+		// 이번달 총합계
+		$("#btnTot").click(function(){
+			$("#total").show();
+			$.ajax("/bossListTotalMonth.do",{data:{"cs_no":cs_no, "month":month}, success:function(r){
+				//alert(r)
+				$("#totR").val(r.totR)
+				$("#totCM").val(r.totCM)
+				$("#totM").val(r.totM)
+				$("#totCC").val(r.totCC)
+			}})//end ajax
+						
+		})//end btnTot
+		
+		// 구글챠트
+		chartData = [["Element","이용자수",{role:"style"}]];
+
+		 $.ajax("/bossChart.do",{data:{"cs_no":cs_no, "month":month}, success:function(r){
+			$.each(r,function(idx,s){
+				console.log(s.cnt)
+				chartData.push([s.cr_name,s.cnt,"pink"]);
+			});
+		 }});
+		 
+		$("#headers").load("/main/header.html");	
+
+		$("#footers").load("/main/footer.html");
+						 
+	})//end function
+	
+	google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable(chartData);
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "캠핑룸별 이용자 수",
+        width: 400,
+        height: 300,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+ 	}
+	
+</script>
+</head>
+<body>
+	<div id="headers"></div>
+	<div class="body-wrap">
+	
+		<h1>사업자페이지</h1>
+		<hr>
+		<div class="div Categori">
+			<ul>
+			  <li><a class="active" id="bossBpage">캠핑장관리</a></li>
+			  <li><a id="bossRList">전체예약현황</a></li>
+			  <li><a id="bossInsertCS">캠핑장등록</a></li>
+			  <li><a id="bossInsertCR">캠핑룸등록</a></li>
+			  <li><a id="bossReviewList">리뷰관리</a></li>
+			  <li><a id="bossSales">매출관리</a></li>
+			</ul>
+		</div>
+		<div class="div line"></div>
+		
+		<div class="div s">
+			<h2>월별 매출 현황</h2>
+			  <form id="salesF">
+				<select id="month" name="month">
+					<option value="1">1월</option>
+					<option value="2">2월</option>
+					<option value="3">3월</option>
+					<option value="4">4월</option>
+					<option value="5">5월</option>
+					<option value="6">6월</option>
+					<option value="7">7월</option>
+					<option value="8">8월</option>
+					<option value="9">9월</option>
+					<option value="10">10월</option>
+					<option value="11">11월</option>
+					<option value="12">12월</option>
+				</select>
+					<input type="hidden" id="cs_no" name="cs_no">
+			  </form>
+			<br>
+			<table id="tbS" border="1">
+				<tr>
+					<th>번호</th>
+					<th>캠핑룸명</th>
+					<th>예약번호</th>
+					<th>체크인일</th>
+					<th>체크아웃일</th>
+					<th>총숙박일</th>
+					<th>결제요금</th>
+					<th>수수료</th>
+					<th>순이익</th>
+					<th>취소금액</th>
+				</tr>
+			</table>
+			<br>
+			<button id="btnCrTot">캠핑룸별 총합계</button>
+			<button id="btnTot">이번달 총합계</button>
+			<hr>  
+			<div class="div totCR">
+				<table id="sumTb" border="1">
+					<tr>
+						<th>캠핑룸명</th>
+						<th>결제금액 총합</th>
+						<th>수수료 총합</th>
+						<th>순이익 총합</th>
+					</tr>
+				</table>
+			</div>
+			<div class="div tot">
+				<table id="total">
+					<tr>
+						<th>결제금액 총합</th>
+						<th><input type="text" id="totR"></th>
+					</tr>
+					<tr>
+						<th>수수료 총합</th>
+						<th><input type="text" id="totCM"></th>
+					</tr>
+					<tr>
+						<th>순이익 총합</th>
+						<th><input type="text" id="totM"></th>
+					</tr>
+					<tr>
+						<th>취소금액 총합</th>
+						<th><input type="text" id="totCC"></th>
+					</tr>			
+				</table>
+			</div>
+			<div id="columnchart_values" style="width: 900px; height: 300px;"></div>		
+		</div>
+	
+	</div>
+	<div id="footers"></div>
+</body>
+</html>

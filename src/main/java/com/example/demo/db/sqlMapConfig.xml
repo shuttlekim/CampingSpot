@@ -29,6 +29,11 @@
 	<typeAlias type="com.example.demo.vo.CampingRankChartVo" alias="campingrankchartvo"/>
 	<typeAlias type="com.example.demo.vo.CampTypeChartVo" alias="camptypechartvo"/>
 	
+	<!-- 설아 -->
+	<typeAlias type="com.example.demo.vo.BossReservationVo" alias="BossReservationVo"/>
+  	<typeAlias type="com.example.demo.vo.CampingReviewReVo" alias="CampingReviewReVo"/>
+  	<typeAlias type="com.example.demo.vo.BossListSalesVo" alias="BossListSalesVo"/>
+	
   </typeAliases>
   <environments default="development">
     <environment id="development">
@@ -58,6 +63,8 @@
     <!-- 혜선 -->  
     <mapper resource="com/example/demo/db/AdminMemberMapper.xml"/>
     <mapper resource="com/example/demo/db/AdminNoticeMapper.xml"/>
-    
+	<!-- 설아 -->
+	<mapper resource="com/example/demo/db/CampingRoomMapper.xml"/>
+	<mapper resource="com/example/demo/db/CampingReviewReMapper.xml"/>
   </mappers>
 </configuration>

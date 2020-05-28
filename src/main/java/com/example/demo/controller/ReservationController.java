@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dao.ReservationDao;
+import com.example.demo.vo.BossReservationVo;
 import com.example.demo.vo.CampingRoomVo;
 import com.example.demo.vo.DetailCampingSearchResultVo;
 import com.google.gson.Gson;
@@ -23,6 +24,45 @@ public class ReservationController {
 	
 	public void setDao(ReservationDao dao) {
 		this.dao = dao;
+	}
+
+	
+	// 설아) (사업자) 사업자페이지 메인 예약목록
+	@RequestMapping(value ="/businessMyPageReservationList.do", produces = "application/json;charset=UTF-8")
+	public String businessMyPageReservationList(int cs_no) {
+		String str = "";
+		List<BossReservationVo> mpList = dao.businessMyPageReservationList(cs_no);
+		Gson gson = new Gson();
+		str = gson.toJson(mpList);
+		return str;
+	}
+	
+	// 설아) (사업자) 취소 승인 업데이트
+	@RequestMapping("/updateCancelStatus.do")
+	public String updateCancelStatus(int r_no) {
+		String str ="취소 승인되었습니다.";
+		int re = dao.updateCancelStatus(r_no);
+		System.out.println("취소승인:"+re);
+		return str;
+	}
+	
+	// 설아) (사업자) 예약 승인 업데이트
+	@RequestMapping("/updateReserveStatus.do")
+	public String updateReserveStatus(int r_no) {
+		String str ="예약 승인되었습니다.";
+		int re = dao.updateReserveStatus(r_no);
+		System.out.println("예약승인:"+re);
+		return str;
+	}
+	
+	// 설아) (사업자) 예약 관리 현황 목록보기
+	@RequestMapping(value ="/bossReservationList.do", produces = "application/json;charset=UTF-8" )
+	public String bossReservationList(int cs_no) {
+		String str = "";
+		List<BossReservationVo> bossRList = dao.bossReservationList(cs_no);
+		Gson gson = new Gson();
+		str = gson.toJson(bossRList);
+		return str;
 	}
 	
 	  //캠핑예약 등록
