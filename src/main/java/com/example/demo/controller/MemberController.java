@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -80,7 +81,8 @@ public class MemberController {
 	}
 	
 	//회원가입
-	@RequestMapping("/signIn.do")
+	//@RequestMapping("/signIn.do")
+	@RequestMapping(value = "/signIn.do", method = RequestMethod.POST)
 	public String insertMember(MemberVo m) {
 		System.out.println("================sign.do 작동 시작 =======================");
 		System.out.println("MemberVo:"+m);
@@ -92,8 +94,7 @@ public class MemberController {
 			String salt = SHA256Util.generateSalt();
 	        String newPassword = SHA256Util.getEncrypt(m.getMc_pwd(), salt);
 	        m.setMc_pwd(newPassword);
-	        m.setSalt(salt);
-	        
+	        m.setSalt(salt);	        
 	        
 	        //String path = "/resources/static/resource/profile"; 
 	        String path = "C:\\Users\\YOGO\\git\\CampingSpot\\src\\main\\resources\\static\\resources\\profile";
