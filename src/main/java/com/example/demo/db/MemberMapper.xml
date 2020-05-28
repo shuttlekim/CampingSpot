@@ -122,5 +122,10 @@
    <update id="updateMember2">
    	update member_customer set mc_pwd=#{mc_pwd}, mc_email=#{mc_email}, mc_name=#{mc_name}, mc_nickname=#{mc_nickname}, mc_tel=#{mc_tel}, mc_taste=#{mc_taste} where mc_id = #{mc_id}   
    </update>
-  
+   
+  <!-- 포인트 사용시 포인트 수정 -->
+  <update id="updatePoint">
+  	update member_customer set mc_point = #{mc_point} where mc_id = #{mc_id}
+  </update>
+   
 </mapper>

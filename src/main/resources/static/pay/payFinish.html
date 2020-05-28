@@ -10,7 +10,7 @@ $(function(){
 	$("#footers").load("../main/footer.html");
 	
 	var data0 = sessionStorage.getItem("reservation_data");
-	console.log(data0);
+	//console.log(data0);
 	data1 = data0.split("&room=");
 	data2 = data1[0].split("&total=");
 	data3 = data2[0].split("&checkout=");
@@ -22,11 +22,19 @@ $(function(){
 	var checkout = data3[1];
 	var checkin = data4[1];
 	var cs_no = data5[1];
-	var payment = "계좌이체";
-	var mc_id = "test1234";
+	var payment = "카드결제";
+	
+	var mc_id = sessionStorage.getItem("memberId");
 	/* 추후
 	var mc_id = sessionStorage.getItem("memberId");
 	*/
+	
+	//새로 update해주어야할 포인트
+	var point = document.location.href.split("="); 
+	var updatePoint = Number(point[1]);
+	//var updatePoint = point[1];
+	alert(updatePoint)
+	//사용한포인트 가져옴
 	
 	var pay_data = {
 			"mc_id": mc_id,
@@ -39,6 +47,12 @@ $(function(){
 	$.ajax("/insertReservation.do", {data: pay_data, async:false, success:function(result){
 		sessionStorage.removeItem("reservation_data");
 	}})
+	
+	//사용한 포인트만큼 차감
+	var pointData = {"mc_point":updatePoint,"mc_id":mc_id}
+	$.ajax("/updatePoint.do",{data:pointData,success:function(r){
+		alert(r)
+	}})
 })
 </script>
 </head>
@@ -46,6 +60,7 @@ $(function(){
 	<div id="headers"></div>
 	<div class="body-wrap">
 		<h2>결제완료</h2>
+		<span>사업자의 승인을 통해 예약이 완료 됩니다.</span><br>
 	</div>
 	<div id="footers"></div>
 </body>

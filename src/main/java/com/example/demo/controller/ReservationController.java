@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dao.ReservationDao;
+import com.example.demo.vo.BossReservationVo;
 import com.example.demo.vo.CampingRoomVo;
 import com.example.demo.vo.DetailCampingSearchResultVo;
 import com.google.gson.Gson;
@@ -23,6 +24,45 @@ public class ReservationController {
 	
 	public void setDao(ReservationDao dao) {
 		this.dao = dao;
+	}
+
+	
+	// 설아) (사업자) 사업자페이지 메인 예약목록
+	@RequestMapping(value ="/businessMyPageReservationList.do", produces = "application/json;charset=UTF-8")
+	public String businessMyPageReservationList(int cs_no) {
+		String str = "";
+		List<BossReservationVo> mpList = dao.businessMyPageReservationList(cs_no);
+		Gson gson = new Gson();
+		str = gson.toJson(mpList);
+		return str;
+	}
+	
+	// 설아) (사업자) 취소 승인 업데이트
+	@RequestMapping("/updateCancelStatus.do")
+	public String updateCancelStatus(int r_no) {
+		String str ="취소 승인되었습니다.";
+		int re = dao.updateCancelStatus(r_no);
+		System.out.println("취소승인:"+re);
+		return str;
+	}
+	
+	// 설아) (사업자) 예약 승인 업데이트
+	@RequestMapping("/updateReserveStatus.do")
+	public String updateReserveStatus(int r_no) {
+		String str ="예약 승인되었습니다.";
+		int re = dao.updateReserveStatus(r_no);
+		System.out.println("예약승인:"+re);
+		return str;
+	}
+	
+	// 설아) (사업자) 예약 관리 현황 목록보기
+	@RequestMapping(value ="/bossReservationList.do", produces = "application/json;charset=UTF-8" )
+	public String bossReservationList(int cs_no) {
+		String str = "";
+		List<BossReservationVo> bossRList = dao.bossReservationList(cs_no);
+		Gson gson = new Gson();
+		str = gson.toJson(bossRList);
+		return str;
 	}
 	
 	  //캠핑예약 등록
@@ -46,11 +86,18 @@ public class ReservationController {
 		  map.put("price", price);
 		  map.put("payment", payment);
 		  
+		  // 예약번호를 찾기위한 r_map
+		  HashMap r_map = new HashMap();
+		  r_map.put("cr_no", cr_no);
+		  r_map.put("checkin", checkin);
+		  
 		  int result1 = dao.insertReservation(map);
 		  if(result1 > 0) {
 			  System.out.println("예약테이블에 등록:"+map);
 			  
-			  int r_no = dao.callReservationKey() - 1; // 시퀀스의 nextval 값이므로 무조건 -1 해준다.
+			  //int r_no = dao.callReservationKey() - 1; // 시퀀스의 nextval 값이므로 무조건 -1 해준다. //에러발생가능!
+			  //+++++++++++++++++++++++++++++++++++++++++++
+			  int r_no = dao.callReservationKey(r_map); // 체크인날짜와 해당 룸번호로 예약번호를 구한다.
 			  int cs_no = dao.getRoomInfo(cr_no).getCs_no();
 			  String cr_type = dao.getRoomInfo(cr_no).getCr_type();
 			  
@@ -143,13 +190,6 @@ public class ReservationController {
 		  }else {
 			  System.out.println("예약테이블 등록실패");
 		  }
-		  
-		  
-		  
-		  
-		  
-		  
-		  
 		  
 		  return str;
 	  }

@@ -4,10 +4,21 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="campingSpot">
 
-  <update id="updateCampingSpot">
-  	update camping_spot set cs_name='비토섬오토캠핑장', cs_addr_head='경상남도', cs_addr_remain='사천시 서포면 비토리 255-20 비토섬오토캠핑장', cs_account='농협, 317-0012-6548-11, 신우에이엠씨', cs_theme='산, 강, 호수', cs_fac='와이파이, 샤워실, 운동시설, 바베큐', cs_detail='차가져와유!' where cs_no=100
-  </update>
-  
+	<!--  설아)  (사업자) 캠핑장 상세정보 -->
+	<select id="bossGetCampingSpot" resultType="campingSpotVo">
+		select * from camping_spot where cs_no = #{cs_no}
+	</select>
+
+	<!-- 설아) (사업자) cs_no 번호 가져오기 -->
+	<select id="getCsNo" resultType="campingSpotVo">
+		select cs_no from camping_spot where mb_id = #{mb_id}
+	</select>
+
+	<!-- 설아) (사업자) 캠핑장 등록 -->
+	<insert id="insertCampingSpot">
+		insert into camping_spot values (seq_camping_spot.nextval, #{cs_name}, #{cs_tel}, #{cs_addr_head}, #{cs_addr_remain}, #{cs_url},#{cs_account}, #{cs_licence_fname}, #{cs_camp_fname},#{cs_map_fname}, #{cs_lati}, #{cs_long}, #{cs_glamping_cnt},#{cs_caravan_cnt}, #{cs_autocamping_cnt}, #{cs_theme}, #{cs_fac}, #{cs_detail}, #{mb_id})
+	</insert>
+
   <!-- 영현) 캠핑장번호로 캠핑장정보를 가져온다. -->
   <select id="getCampingInfo" resultType="campingSpotVo">
   	select * from camping_spot where cs_no=#{cs_no}

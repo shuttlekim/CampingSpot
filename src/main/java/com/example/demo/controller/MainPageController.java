@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,7 +15,9 @@ import com.google.gson.Gson;
 public class MainPageController {
 
 	@RequestMapping("/main_search_camping")
-	public String searchCamping(String keyword) {
+	public String searchCamping(HttpServletRequest request, String keyword) {
+		
+		
 		String str = "";
 		
 		System.out.println(keyword);

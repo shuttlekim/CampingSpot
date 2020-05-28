@@ -155,4 +155,12 @@ public class MemberDBManager {
 	    return re;		
 	}
 	
+	//포인트사용한 만큼 '-'해주기
+	public static int updatePoint(HashMap<String, Object> map) {
+		SqlSession session = factory.openSession();
+		int re = session.update("member.updatePoint", map);
+		session.commit();
+		session.close();
+		return re;
+	}
 }

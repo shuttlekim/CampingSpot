@@ -72,6 +72,7 @@ public class BoardController {
 		
 		// 사진파일 올리기
 		//String path = "C:/Users/haji/git/CampingSpot/src/main/resources/static/resources/board_img";
+
 		MultipartFile uploadFile = b.getUploadFile();
 		String fnames = "";
 		String fname = "";

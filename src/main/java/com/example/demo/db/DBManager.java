@@ -14,7 +14,14 @@ import com.example.demo.vo.CampingRoomVo;
 import com.example.demo.vo.CampingSearchResultVo;
 import com.example.demo.vo.CampingSpotVo;
 import com.example.demo.vo.CampingWishVo;
+import com.example.demo.vo.CrLVo;
+import com.example.demo.vo.CrVo;
+import com.example.demo.vo.CsCVo;
+import com.example.demo.vo.CsDVo;
+import com.example.demo.vo.CsRVo;
 import com.example.demo.vo.DetailCampingSearchResultVo;
+import com.example.demo.vo.ProfileVo;
+import com.example.demo.vo.WishVo;
 
 
 public class DBManager {
@@ -33,9 +40,9 @@ public class DBManager {
 	}
 	
 	// 영현) 예약번호 불러오기
-	public static int callReservationKey() {
+	public static int callReservationKey(HashMap map) {
 		SqlSession session = factory.openSession();
-		int re = session.selectOne("reservation.callReservationKey");
+		int re = session.selectOne("reservation.callReservationKey", map);
 		session.close();
 		return re;
 	}
@@ -87,10 +94,18 @@ public class DBManager {
 		return dcsrv;
 	}
 	
-	// 영현) 캠핑장 데이터 업데이트
-	public static int updateCampingSpot(int cs_no) {
+//	// 영현) 캠핑장 데이터 한글화
+//	public static int updateCampingSpot(int cs_no) {
+//		SqlSession session = factory.openSession(true);
+//		int re = session.update("updateTable.updateCampingSpotKor", cs_no);
+//		session.close();
+//		return re;
+//	}
+	
+	// 영현) 캠핑장 파일이름 업데이트
+	public static int updateCampingSpotFname(int cs_no) {
 		SqlSession session = factory.openSession(true);
-		int re = session.update("campingSpot.updateCampingSpot", cs_no);
+		int re = session.update("updateTable.updateCampingSpotFname", cs_no);
 		session.close();
 		return re;
 	}
@@ -106,6 +121,8 @@ public class DBManager {
 	// 영현) 캠핑장 날짜외 정보에 따른 리스트 호출
 	public static List<CampingSearchResultVo> search_list(HashMap map){
 		SqlSession session = factory.openSession();
+		System.out.println("========================================");
+		System.out.println("조건식의값: "+map);
 		List<CampingSearchResultVo> list = session.selectList("reservation.campingList", map);
 		System.out.println("search_List 매니저 메소드 동작:"+list);
 		session.close();
@@ -134,6 +151,7 @@ public class DBManager {
 		session.close();
 		return c;
 	}
+
 	
 	// 근희) 위시리스트 추가 - 수정(영현)
 	public static int insertWish(HashMap map) {
@@ -150,6 +168,102 @@ public class DBManager {
 		int re = session.selectOne("reservation.selPoint", mc_id);
 		session.close();
 		//System.out.println("매니저동작함: 포인트는?" + re);
+		return re;
+	}
+	
+	// 현성 : 예약내역 출력
+	public static List<CsRVo> myReservationList(String mc_id) {
+		List<CsRVo> list = null;
+		SqlSession session = factory.openSession();
+		list = session.selectList("myPage.myReservationList", mc_id);
+		session.close();
+		return list;
+	}
+	// 현성 : 예약내역 출력 - 사용후
+	public static List<CsRVo> resrvation_after() {
+		List<CsRVo> list = null;
+		SqlSession session = factory.openSession();
+		list = session.selectList("myPage.reservation_after");
+		session.close();
+		return list;
+	}
+	// 현성 : 프로필 출력
+	public static List<ProfileVo> profile() {
+		List<ProfileVo> list = null;
+		SqlSession session = factory.openSession();
+		list = session.selectList("myPage.profile");
+		session.close();
+		return list;
+	}
+	// 현성 : 예약정보확인 출력
+	public static List<CsDVo> myReservationDetail(CsDVo cd) {
+		List<CsDVo> list = null;
+		SqlSession session = factory.openSession();
+		list = session.selectList("myPage.myReservationDetail", cd);
+		session.close();
+		return list;
+	}
+	
+	// 현성 : 예약취소정보 출력
+	public static List<CsCVo> requestCancel(CsCVo csc) {
+		List<CsCVo> list = null;
+		SqlSession session = factory.openSession();
+		list = session.selectList("myPage.requestCancel", csc);
+		session.close();
+		return list;
+	}
+	
+	// 현성 : 위시리스트 출력
+	public static List<WishVo> myWishList(WishVo wish){
+		List<WishVo> list = null;
+		SqlSession session = factory.openSession();
+		list = session.selectList("myPage.myWishList" , wish);
+		session.close();
+		return list;
+	}
+	
+	// 현성 : 캠핑 후기 출력
+	public static List<CrLVo> myReviewList(CrLVo crl){
+		List<CrLVo> list = null;
+		SqlSession session = factory.openSession();
+		list = session.selectList("myPage.myReviewList", crl);
+		session.close();
+		return list;
+	}
+	
+	// 현성 : 캠핑후기 삭제 delete
+	public static int deleteMyReview(int cre_no) {
+		int re = -1;
+		SqlSession session = factory.openSession(true);
+		re = session.delete("myPage.deleteMyReview", cre_no);
+		session.close();
+		return re;
+	}
+	
+	// 현성 : 위시리스트 삭제 delete
+	public static int deleteMyWish(int cw_no) {
+		int re = -1;
+		SqlSession session = factory.openSession(true);
+		re = session.delete("myPage.deleteMyWish", cw_no);
+		session.close();
+		return re;
+	}
+	
+	// 현성 : 예약취소요청 update
+	public static int cancelReservation(String mc_id) {
+		int re = -1;
+		SqlSession session = factory.openSession(true);
+		re = session.update("myPage.cancelReservation", mc_id);
+		session.close();
+		return re;
+	}
+	
+	// 현성 : 리뷰입력 insert
+	public static int camping_review_insert(CrVo c) {
+		int re = -1;
+		SqlSession session = factory.openSession(true);
+		re = session.insert("myPage.camping_review_insert", c);
+		session.close();
 		return re;
 	}
 	

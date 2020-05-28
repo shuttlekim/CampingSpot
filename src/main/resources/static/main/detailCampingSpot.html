@@ -80,18 +80,6 @@ $(function(){
    $("#input_chkin").attr("value", checkin);
    $("#input_chkout").attr("value", checkout);
    
-   // 예약날짜별 기상정보를 출력하는 함수
-   var getWeather = function(checkin, checkout){
-	   var weather_data = {
-			   "checkin": checkin,
-			   "checkout": checkout
-	   }
-	   $.ajax("/getWeather.do", {data:weather_data, success:function(data){
-		   
-	   }})
-   }
-   
-   //--------------------------------------------------------------------
    
     var getDetail = function(cs_no, campingType, checkout, checkin){
     	var input_data = {
@@ -182,10 +170,11 @@ $(function(){
     	}})  // reviewList ajex 종료
     	    
     }
+ 	
+    
     getDetail(cs_no, campingType, checkout, checkin);
     selectRoom(cs_no, campingType, checkout, checkin);
    	callReview(cs_no);
-   	
    	
    	// 룸을 선택할때 해당 숙박비용을 구해서 input 에 지정해준다.
    	var total = $("#select_room option:selected()").attr("price") * days;

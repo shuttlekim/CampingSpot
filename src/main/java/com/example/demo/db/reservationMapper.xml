@@ -3,6 +3,33 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reservation">
+
+
+	<!-- 설아) (사업자용) 사업자페이지 메인 예약 목록 -->
+	<select id="businessMyPageReservationList" resultType="BossReservationVo">
+		<![CDATA[select r_no, cr_no, cr_name, mc_name, mc_tel, r_date, r_price, r_revstatus, r_cancel 
+		from member_customer mc,(select r_no, cr_no, cr_name, mc_id,  r_date, r_price, r_revstatus, r_cancel from 
+		(select r_no, cs_no, r.cr_no, cr_name, mc_id,  r_date, r_price, r_revstatus, r_cancel  from reservation r, camping_room cr 
+		where r.cr_no = cr.cr_no and cs_no=#{cs_no} order by r_date desc) where rownum <= 3) a 
+		where mc.mc_id = a.mc_id order by r_date desc]]>
+	</select>
+	
+	<!-- 설아) 사업자 예약승인 -->
+	<update id="updateRstatus">
+		update reservation set r_revstatus = 1 where r_no = #{r_no}
+	</update>
+	
+	<!-- 설아) 사업자 취소승인 -->
+	<update id="updateCstatus">
+		update reservation set r_cancel = 2 where r_no = #{r_no}
+	</update>
+	
+	<!-- 설아) (사업자용) 전체 예약관리 목록 -->
+	<select id="bossReservationList" resultType="BossReservationVo">
+		select cr.cr_name, r_no, mc_name, mc_tel, r_date, r_checkin, r_price, r_revstatus, r_cancel
+		from camping_room cr, reservation r, member_customer mc where cr.cr_no = r.cr_no and r.mc_id = mc.mc_id 
+		and cs_no=#{cs_no} order by r_no
+	</select>
     
   <!-- 영현) 예약검색등록 -->
   <insert id="insertReserveSearch">
@@ -14,9 +41,9 @@
   	insert into reservation values(reservation_seq.nextval, to_date(#{checkin},'yyyy-mm-dd'), to_date(#{checkout},'yyyy-mm-dd'), sysdate, #{price}, #{payment}, 0, 0, #{cr_no}, #{mc_id})
   </insert>
   
-  <!-- 영현) 등록한 (예약번호+1)를 가져온다. 반드시 -1 해서 사용!! -->
+  <!-- 영현) 예약번호 요청 -->
   <select id="callReservationKey" resultType="int">
-    select reservation_seq.nextval from dual
+    select r_no from reservation where cr_no=#{cr_no} and r_checkin=to_date(#{checkin}, 'yyyy-mm-dd')
   </select>
   
   <select id="ingRoom" resultType="campingRoomVo">
@@ -38,7 +65,11 @@
 
   <select id="getCampingSpot" resultType="campingSearchResultVo">
   	select cs_name name, A.cs_no no, A.price price, A.avg rate, cs_addr_head addr_head, cs_addr_remain addr_remain, cs_detail detail, cs_tel tel, cs_theme theme, cs_fac fac, cs_camp_fname camp_fname
-	from (select cr.cs_no cs_no, min(cr_price) price, avg(cre_rate) avg from camping_room cr, camping_review cre where cr.cs_no = cre.cs_no and cr_type=#{campingType} group by cr.cs_no) A, camping_spot cs
+	from (select cr.cs_no cs_no, min(cr_price) price, avg(cre_rate) avg from camping_room cr, camping_review cre where cr.cs_no = cre.cs_no 
+	<if test="campingType != null">
+	and cr_type=#{campingType} 
+	</if>
+	group by cr.cs_no) A, camping_spot cs
 	where A.cs_no = cs.cs_no
 	and cs.cs_no = #{no}
 	<if test="theme1 != null">
@@ -142,8 +173,10 @@
   </select> -->
   <select id="campingList" resultType="campingSearchResultVo">
     select distinct cs.cs_no no from camping_spot cs,
-    (select cr_no, cs_no from camping_room where cr_type = #{campingType}
-	
+    (select cr_no, cs_no from camping_room 
+    <if test="campingType != null">
+    where cr_type = #{campingType}
+    </if>
 	<if test="validDate1 != null">
 	minus
 	select cr_no, cs_no from reserve_search where rs_date = to_date(#{validDate1},'yyyy-mm-dd')

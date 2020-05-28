@@ -58,4 +58,7 @@ public class MemberDao {
 		return MemberDBManager.updateMember2(um);
 	}
 	
+	public int updatePoint(HashMap<String, Object> map) {
+		return MemberDBManager.updatePoint(map);
+	}
 }

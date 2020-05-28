@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+a{ 
+	text-decoration:none;
+	display: block; 
+	cursor: pointer;
+} 
+.paging_button{
+	text-align: center;
+	overflow: hidden;
+	list-style: none;
+	padding: 5px;
+	cursor: pointer;
+}
+#re_f{
+	margin-left: 80px;
+}
+#reList{
+	margin-left: 80px;
+}
+h2{
+	text-align: center;
+}
+#btnList{
+	text-align: right;
+}
+.btn{
+	position: relative;
+	left: 780px;
+}
+.btn2{
+	position: static;
+	margin-left: 80px;
+}
+#tb {
+  //font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-left: 150px;
+}
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	// 공지사항 상세보기
+	
+	var memberID = sessionStorage.getItem("memberId");
+	if(sessionStorage.getItem("memberId") == null){
+		alert("로그인 페이지로 이동합니다.")
+		location.href = "../login/login.html";
+	}
+	//로그인한자 세선유지해주기
+	
+	//넘어온 글 번호 받기
+	var arr;
+	//var b_no = location.search.substring(location.search.indexOf("=")+1);
+	var b_no = document.location.href.split("="); 
+	//console.log(para[1]);
+ 	//alert(b_no[1])
+	var data = {"b_no":b_no[1]};
+ 	//alert(b_no[1])
+	$.ajax("/detailBoard.do",{data:data, success:function(data){
+		var fname = data.b_fname.split(",");
+		var title = $("<span></span>").html(data.b_title);
+		var mc_id = $("<span></span>").html(data.mc_id);
+		var b_contents = $("<span></span>").html(data.b_contents);
+		for(var i = 0 ; i < fname.length ; i++){
+			var img = $("<img/>").attr("src","/resources/board_img/"+fname[i]).attr("width",300).attr("onerror","this.style.display='none'");
+			var br = $("<br>");
+			$("#b_fname").append(img,br);
+		}
+		$("#b_title").append(title);
+		$("#mc_id").append(mc_id);
+		$("#b_contents").append(b_contents);
+	}});
+	
+	//글 삭제하기
+	$("#btnDelete").click(function(){
+		//이미 로그인한 상태이기 때문에 컨펌창만 열어두고 삭제를 바로 하기
+		//alert(b_no[1])
+		var con = confirm("정말로 삭제하시겠습니까?");
+		if(con == true){
+			$.ajax("/deleteBoard.do",{data:{"mc_id":memberID,"b_no":b_no[1]},success:function(data){
+				alert(data);
+				location.href = "boardNotice.html";
+			}});
+		}else{
+			alert("삭제실패");
+		}
+		
+	});
+	
+	//글 수정하기는 페이지로 이동
+	//수정할때 관리자만 수정할 수 있게 만들자
+	$("#btnUpdate").click(function(){
+		if(memberID == 'admin01'){
+			//일단 관리자가 1명이라서 이렇게 처리함...
+				location.href = location.href = "boardUpdateNotice.html?b_no="+b_no[1];
+			}else{
+				alert("관리자 로그인 해주세요.");
+			}
+	});
+	
+	$("#btnList").click(function(){
+		location.href = "boardNotice.html"
+	});
+	
+	$("#headers").load("/main/header.html");	
+
+	$("#footers").load("/main/footer.html");
+	
+});
+</script>
+</head>
+<body>
+	<div id="headers"></div>
+	<div class="body-wrap">
+		<h2>공지사항 상세 보기</h2>
+		<br>
+		<table class="table table-list-search" id="tb">
+			<tr>
+				<td></td>
+				<td><div id="b_fname"></div></td>
+			</tr>
+			<tr>
+				<td>글제목</td>
+				<td><span id="b_title"></span></td>
+			</tr>
+			<tr>
+				<td>작성자</td>
+				<td><span id="mc_id"></span></td>
+			</tr>
+			<tr>
+				<td>글내용</td>
+				<td><span id="b_contents"></span></td>
+			</tr>
+		</table>
+		<hr>
+		<button id="btnList" type="button" class="btn2">목록보기</button>
+		<button id="btnUpdate" type="button" class="btn">수정</button>
+		<button id="btnDelete" type="button" class="btn">삭제</button>
+	</div>
+	<div id="footers"></div>
+</body>
+</html>

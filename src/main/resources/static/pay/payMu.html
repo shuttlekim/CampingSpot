@@ -10,6 +10,7 @@
 		$("#footers").load("../main/footer.html");
 		
 		var data0 = sessionStorage.getItem("reservation_data");
+		//포인트 적용후 금액이 필요함
 		console.log(data0);
 		data1 = data0.split("&room=");
 		data2 = data1[0].split("&total=");
@@ -23,7 +24,7 @@
 		var checkin = data4[1];
 		var cs_no = data5[1];
 		var payment = "계좌이체";
-		var mc_id = "test1234";
+		var mc_id = sessionStorage.getItem("memberId");
 		/* 추후
 		var mc_id = sessionStorage.getItem("memberId");
 		*/
@@ -33,6 +34,13 @@
 		}})
 		
 		$("#pay_price").html(price+"원");
+		
+		//새로 update해주어야할 포인트
+		var point = document.location.href.split("="); 
+		var updatePoint = Number(point[1]);
+		//var updatePoint = point[1];
+		alert(updatePoint)
+		//사용한포인트 가져옴
 		
 		$("#btn_pay").click(function(){
 			var pay_data = {
@@ -44,7 +52,16 @@
 				"payment": payment
 			}
 			$.ajax("/insertReservation.do", {data: pay_data, async:false, success:function(result){
+				//성공시 작동하는거아닌감?
 				sessionStorage.removeItem("reservation_data");
+				alert("메인창으로 이동합니다.(나중에 마이페이지로 이동할까???)")
+				location.href = "/main/main.html";
+			}})
+			
+			//사용한 포인트만큼 차감
+			var pointData = {"mc_point":updatePoint,"mc_id":mc_id}
+			$.ajax("/updatePoint.do",{data:pointData,success:function(r){
+				alert(r)
 			}})
 		})
 	})

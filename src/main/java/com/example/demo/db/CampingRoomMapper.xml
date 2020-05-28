@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="campingRoom">
+
+
+	<!-- 설아) (사업자) 매출 현황 챠트 -->
+	<select id="chart" resultType="BossListSalesVo">
+		select a.cr_no, cr_name, a.cnt from camping_room cr, (select cr_no, count(*) cnt from reservation group by cr_no) a 
+		where cr.cr_no = a.cr_no and cs_no=#{cs_no}
+	</select>
+
+	<!-- 설아) (사업자) 월별 매출 총합계 -->
+	<select id="totalMonth" resultType="BossListSalesVo">
+		select sum(c.totPrice) totR, sum(c.totComm) totCM, sum(c.totMargin) totM, sum(cancelPrice) totCC from
+		(select a.cr_no, cr_name, a.totPrice, a.totComm, a.totMargin from camping_room cr, (select cr_no, sum(r_price) totPrice, sum(comm) totComm, sum(margin) totMargin 
+		from (select cr_no, r_price, comm, (r_price - comm) margin from 
+		(select cr_no, r_price, (r_price * 0.1) comm from reservation where to_number(to_char(r_checkin, 'mm')) = #{month} and r_cancel=0)) group by cr_no)a 
+		where cr.cr_no = a.cr_no and cs_no=#{cs_no}) c,((select b.cr_no, b.cancelPrice from camping_room cr, 
+		(select cr_no, r_price as cancelPrice from reservation where to_number(to_char(r_checkin, 'mm')) = #{month} and r_cancel > 0) b
+		where cr.cr_no = b.cr_no and cs_no=#{cs_no})) d where c.cr_no = d.cr_no
+	</select>
+
+	<!-- 설아) (사업자) 캠핑룸별 매출 합계 -->
+	<select id="totalByCR" resultType="BossListSalesVo">
+		select a.cr_no, cr_name, a.totPrice, a.totComm, a.totMargin from camping_room cr, 
+		(select cr_no, sum(r_price) totPrice, sum(comm) totComm, sum(margin) totMargin from 
+		(select cr_no, r_price, comm, (r_price - comm) margin from 
+		(select cr_no, r_price, (r_price * 0.1) comm from reservation where to_number(to_char(r_checkin, 'mm')) = #{month} and r_cancel=0)) 
+		group by cr_no)a where cr.cr_no = a.cr_no and cs_no=#{cs_no}
+	</select>
+
+	<!-- 설아) (사업자) 매출현황 목록보기 -->
+	<select id="bossListSales" resultType="BossListSalesVo">
+		select cr_name, a.r_no, a.r_checkin, a.r_checkout, a.days, a.r_price, a.r_price, a.comm, a.margin, a.r_cancel
+		from camping_room cr, (select cr_no, r_no, r_checkin, r_checkout, (r_checkout - r_checkin) days,r_price, comm, (r_price - comm) margin, 
+		r_cancel  from (select cr_no,r_no, r_checkin,r_checkout, (r_checkout - r_checkin) days, r_price, (r_price * 0.1) comm, 
+		r_cancel  from reservation where to_number(to_char(r_checkin, 'mm')) = #{month}) order by cr_no) a 
+		where cr.cr_no = a.cr_no and cs_no = #{cs_no}
+	</select>
+
+	<!-- 설아) (사업자) 캠핑룸 목록보기 -->
+	<select id="listCampingRoom" resultType="campingRoomVo">
+		select cr_no, cr_name, cr_max, cr_checkin, cr_checkout, cr_price, cr_peak_price, cr_type 
+		from camping_room where cs_no = #{cs_no} order by cr_no
+	</select>
+	
+	<!-- 설아) (사업자) 캠핑룸 등록하기 -->
+	<insert id="insertCampingRoom">
+		insert into camping_room values(seq_camping_room.nextval,#{cr_name},#{cr_max},#{cr_checkin},
+		#{cr_checkout},#{cr_price},#{cr_peak_price},#{cr_type},#{cs_no})
+	</insert>
+	
+	<!-- 설아) (사업자) 캠핑룸 수정하기 -->
+	<update id="updateCampingRoom">
+		update camping_room set cr_name = #{cr_name},cr_max= #{cr_max},cr_checkin=#{cr_checkin},
+		cr_checkout= #{cr_checkout},cr_price=#{cr_price},cr_peak_price=#{cr_peak_price},cr_type=#{cr_type} 
+		where cr_no=#{cr_no} and cs_no = #{cs_no}
+	</update>
+	
+	<!-- 설아) (사업자) 캠핑룸 삭제하기 -->
+	<delete id="deleteCampingRoom">
+		delete camping_room where cr_no = #{cr_no}
+	</delete>
+	
+</mapper>
