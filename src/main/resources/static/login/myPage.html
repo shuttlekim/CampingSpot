@@ -148,13 +148,16 @@ input[type=search] {
 .li-img {
     display: table-cell;
     vertical-align: middle;
-    width: 30%;
+    width: 40%; 
+    //width: 1000px; 
     padding-right: 1em;
+    //border: double;
 }
 
 .li-img img {
     display: block;
-    width: 100%;
+    //width: 100%;
+    width: 800px;
     height: auto;
 }
 
@@ -211,12 +214,18 @@ body {
   padding: 20px 0 10px 0;
   background: #fff;
 }
+.profile-userpic{
+	width: 180px;
+	height: 180px;
+	//border: double;
+	margin-left: 40px;
+}
 
 .profile-userpic img { 
   float: none;
   margin: 0 auto;
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
   -webkit-border-radius: 50% !important;
   -moz-border-radius: 50% !important;
   border-radius: 30% !important;
@@ -343,6 +352,10 @@ body {
 	#btnUpdateBusiness{
 		cursor: pointer;
 	}
+	#h4{
+		font-size: 25px;
+		//border: double;
+	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -373,7 +386,7 @@ $(function(){
 			$(".profile-userpic").append(mc_fname);
 			$(".profile-usertitle-name").html(p.mc_name+ " 님");
 			$(".profile-userbuttons").html("내 포인트 : " +p.mc_point);
-			$("#h4").html(p.mc_name + "님의 예약내역");
+			$("#h4").html("☞ [" + p.mc_name + "] 님의 예약내역");
 		});
 	}}); 
 	
@@ -570,12 +583,15 @@ $(function(){
 	
 <div class="container">
     <div class="row profile">
-		<div class="col-md-3">
+		<div class="col-md-3" style="border:ridge; ;height: 600px">
 			<div class="profile-sidebar">
 				<!-- SIDEBAR USERPIC -->
-				<div class="profile-userpic">
+
+			
+					<div class="profile-userpic">
 				
-				</div>
+					</div>
+				
 				<!-- END SIDEBAR USERPIC -->
 				<!-- SIDEBAR USER TITLE -->
 				<div class="profile-usertitle">
