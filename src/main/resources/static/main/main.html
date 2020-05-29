@@ -114,11 +114,11 @@
 			$.ajax("/festivalThumb.do", {success:function(festival){
 				festivalList = festival;
 				$.each(festivalList, function(i, item){
-					var img = $("<img/>").attr({
+					/* var img = $("<img/>").attr({
 						"src":item.fname,
 						"width":350,
 						"height":200
-					})
+					}) */
 					var img = $("<div class='backCover' style='background:url("+item.fname+");'>");
 					var title = $("<div></div>").html(item.title)
 					var period = $("<div></div>").html(item.period)

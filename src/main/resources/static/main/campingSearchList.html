@@ -17,11 +17,10 @@
 		padding-left: 20px;
 	}
 	#filter{
-		min-width: 20vw;
-		min-height: 70vh;
+		max-width: 270px;
 		width: auto;
 		height: auto;
-		background: #cfd8dc;
+		background: #f4f4f4;
 		margin: 10px 0 10px 0;
 	}
 	#themeFilter{
@@ -61,7 +60,7 @@
 		min-height: 90vh;
 		width: auto;
 		height: auto;
-		background: #eceff1;
+		/* background: #f7f7f7; */
 		margin: 10px 0 10px 10px;
 	}
 </style>
@@ -114,39 +113,140 @@
  	 			$("#searchList").empty();
  	 			arr = result
  	 			$.each(arr, function(idx, item){
- 	 				var title = $("<div></div>").html("이름: "+item.name);
- 	 				var price = $("<div></div>").html("가격: "+item.price);
- 	 				var rate = $("<div></div>").html("평점: "+item.rate);
+ 	 				var title = $("<div class='search_list_title'></div>").html(item.name);
+ 	 				var price = $("<div class='search_list_price'></div>").html("₩ "+item.price);
+ 	 				var rate = $("<div> class='search_list_rate'></div>").html("평점: "+item.rate);
  	 				var addr = $("<div></div>").html("주소: "+item.addr_head+" "+item.addr_remain);
- 	 				var detail = $("<div></div>").html("상세: "+item.detail);
- 	 				var tel = $("<div></div>").html("연락처: "+item.tel);
- 	 				var theme = $("<div></div>").html("테마: "+item.theme);
- 	 				var fac = $("<div></div>").html("시설: "+item.fac);
  	 				
- 	 				var camp_img = item.camp_fname.split(",");
+ 	 				var detail = $("<div class='search_list_detail'></div>").html(item.detail);
+ 	 				
+ 	 				var tel = $("<div></div>").html("전화: "+item.tel);
+ 	 				
+ 	 				var icon_div = $("<div class='search_list_icon'></div>")
+ 	 				var theme_div = $("<div class='search_list_theme'></div>")
+ 	 				var fac_div = $("<div class='search_list_fac'></div>")
  	 				
  	 				var big_thumb;
- 	 				var img_div = $("<div></div>");
+ 	 				var right_side = $("<div class='search_list_rightside'></div>");
+ 	 				var thumb_div = $("<div class='search_thumb_img'></div>");
+ 	 				var content_div = $("<div class='search_list_content'></div>");
+ 	 				var img_div = $("<div class='search_list_img'></div>");
  	 				
+ 	 				$(right_side).append(rate, price);
+ 	 				$(icon_div).append(theme_div, fac_div);
+ 	 				$(content_div).append(title, right_side, addr, tel, detail, icon_div, img_div);
+ 	 				
+ 	 				var theme_icon = item.theme.split(",");
+ 	 				$.each(theme_icon, function(idx, ticon){
+ 	 					switch(ticon){
+ 	 					case '산': 
+ 	 						$(theme_div).append( $("<img>").attr({
+ 	 	 						"src":"../resources/camping_spot_icon/mountain.png",
+ 	 	 						"class":"list_icon"
+ 	 	 							}) );break;
+	 	 				case '강': 
+		 						$(theme_div).append( $("<img>").attr({
+		 	 						"src":"../resources/camping_spot_icon/river.png",
+		 	 						"class":"list_icon"
+		 	 							}) );break;
+		 					
+	 	 				case '섬': 
+		 						$(theme_div).append( $("<img>").attr({
+		 	 						"src":"../resources/camping_spot_icon/island.png",
+		 	 						"class":"list_icon"
+		 	 							}) );break;
+		 					
+		 	 			case '바다': 
+								$(theme_div).append( $("<img>").attr({
+			 						"src":"../resources/camping_spot_icon/sea.png",
+			 						"class":"list_icon"
+			 							}) );break;
+							
+			 	 		case '계곡': 
+								$(theme_div).append( $("<img>").attr({
+									"src":"../resources/camping_spot_icon/valley.png",
+									"class":"list_icon"
+										}) );break;
+							
+			 	 		case '호수': 
+								$(theme_div).append( $("<img>").attr({
+									"src":"../resources/camping_spot_icon/lake.png",
+									"class":"list_icon"
+										}) );break;
+ 	 					}
+ 	 				})
+ 	 				
+ 	 				var fac_icon = item.fac.split(",");
+ 	 				$.each(fac_icon, function(idx, ficon){
+ 	 					switch(ficon){
+ 	 					case '와이파이': 
+ 	 						$(fac_div).append( $("<img>").attr({
+ 	 	 						"src":"../resources/camping_spot_icon/wifi.png",
+ 	 	 						"class":"list_icon"
+ 	 	 							}) );break;
+	 	 				case '놀이터': 
+		 						$(fac_div).append( $("<img>").attr({
+		 	 						"src":"../resources/camping_spot_icon/fun.png",
+		 	 						"class":"list_icon"
+		 	 							}) );break;
+		 					
+	 	 				case '운동시설': 
+		 						$(fac_div).append( $("<img>").attr({
+		 	 						"src":"../resources/camping_spot_icon/fitness.png",
+		 	 						"class":"list_icon"
+		 	 							}) );break;
+		 					
+		 	 			case '바베큐': 
+								$(fac_div).append( $("<img>").attr({
+			 						"src":"../resources/camping_spot_icon/bbq.png",
+			 						"class":"list_icon"
+			 							}) );break;
+							
+			 	 		case '난로대여': 
+								$(fac_div).append( $("<img>").attr({
+									"src":"../resources/camping_spot_icon/heater.png",
+									"class":"list_icon"
+										}) );break;
+							
+			 	 		case '매점': 
+								$(fac_div).append( $("<img>").attr({
+									"src":"../resources/camping_spot_icon/store.png",
+									"class":"list_icon"
+										}) );break;
+						case '에어컨': 
+							$(fac_div).append( $("<img>").attr({
+								"src":"../resources/camping_spot_icon/aircon.png",
+								"class":"list_icon"
+									}) );break;
+ 	 					}
+ 	 				})
+ 	 				
+ 	 				var camp_img = item.camp_fname.split(",");
  	 				$.each(camp_img, function(idx, img){
  	 					if(idx == 0){
  	 						big_thumb = $("<img>").attr({
  	 							"src":"../resources/camping_spot_img/"+camp_img[idx],
- 	 							"width":"200px;"
+ 	 							"height":"220px;",
+ 	 							"width":"270px;"
  	 						});
+ 	 						thumb_div.append(big_thumb);
  	 					}
- 	 					$(img_div).append( $("<img>").attr({
- 	 						"src":"../resources/camping_spot_img/"+camp_img[idx],
- 	 						"width":"50px;"
- 	 							}) )
+ 	 					if(idx < 3){
+ 	 						$(img_div).append( $("<img>").attr({
+ 	 	 						"src":"../resources/camping_spot_img/"+camp_img[idx],
+ 	 	 						"width":"70px;",
+ 	 	 						"height":"60px;"
+ 	 	 							}) )
+ 	 					}
  	 				})
  	 				
  	 				var camp_fname=$("<div></div>").html(item.camp_fname);
  	 				
- 	 				var div = $("<div></div>").append(big_thumb, title, price, rate, addr, detail, tel, theme, fac, img_div).attr("idx",idx);
+ 	 				var div = $("<div></div>").append(thumb_div, content_div).attr("idx",idx);
  	 				$(div).css({
- 	 					"padding": "20px",
- 	 					"border": "1px solid #000",
+ 	 					"padding": "0 0 20px 20px",
+ 	 					"display": "flex",
+ 	 					/* "border-bottom": "1px solid #000", */
  	 					"margin-bottom": "10px"
  	 				})
  	 				
@@ -353,8 +453,7 @@
 </head>
 <body>
 	<div id="headers"></div> 
-	<div class="body">
-		<hr>
+	<div class="body-wrap">
 		<div class="main_search">
 			<div class="main_search_inner">
 				<form id="main_search_form">
@@ -375,7 +474,6 @@
 				<button id="main_btn_search">검색</button>
 			</div>
 		</div>
-		<hr>
 		<div class="filterAndList">
 			<div id="filter">
 				<div id="themeFilter">
