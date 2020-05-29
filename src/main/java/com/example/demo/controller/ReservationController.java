@@ -210,6 +210,15 @@ public class ReservationController {
 	  public String detailCampingSpot(int cs_no, String campingType, String checkout, String checkin) {
 		  String str = "";
 		  System.out.println("=========detailCampingSpot 컨트롤러 실행!===========");
+		  if(campingType.equals("undefined")) {
+			  campingType = null;
+		  }
+		  if(checkin.equals("undefined")) {
+			  checkin = null;
+		  }
+		  if(checkout.equals("undefined")) {
+			  checkout = null;
+		  }
 		  System.out.println("체크인날짜: "+checkin);
 		  System.out.println("체크아웃날짜: "+checkout);
 		  System.out.println("캠핑장번호: "+cs_no);

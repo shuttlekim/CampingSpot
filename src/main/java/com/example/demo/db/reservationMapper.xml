@@ -100,7 +100,6 @@
 	<if test="theme6 != null">
 		and cs_theme like '%' || #{theme6} || '%'
 	</if>
-
 	<if test="facility1 != null">
 		and cs_fac like '%' || #{facility1} || '%'
 	</if>
