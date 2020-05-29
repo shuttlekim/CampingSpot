@@ -28,7 +28,7 @@
 	<select id="bossReservationList" resultType="BossReservationVo">
 		select cr.cr_name, r_no, mc_name, mc_tel, r_date, r_checkin, r_price, r_revstatus, r_cancel
 		from camping_room cr, reservation r, member_customer mc where cr.cr_no = r.cr_no and r.mc_id = mc.mc_id 
-		and cs_no=#{cs_no} order by r_no
+		and cs_no=#{cs_no} order by r_date desc
 	</select>
     
   <!-- 영현) 예약검색등록 -->
