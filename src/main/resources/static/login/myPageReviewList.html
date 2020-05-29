@@ -216,14 +216,14 @@ body {
   background: #fff;
 }
 
-.profile-userpic img {
+.profile-userpic img { 
   float: none;
   margin: 0 auto;
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
   -webkit-border-radius: 50% !important;
   -moz-border-radius: 50% !important;
-  border-radius: 50% !important;
+  border-radius: 30% !important;
 }
 
 .profile-usertitle {
@@ -339,6 +339,10 @@ body {
 	#btnUpdateBusiness{
 		cursor: pointer;
 	}
+	#h4{
+		font-size: 25px;
+		//border: double;
+	}
 </style>
 <script type="text/javascript" src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -358,16 +362,38 @@ $(function(){
 
 	$("#footers").load("/main/footer.html");
 		
+	$("#a1").click(function(){
+		var idx = $(this).attr("idx");
+		window.location.href="/login/myPage.html";
+	});
+	
+	$("#a2").click(function(c){
+		window.location.href="/login/myPageReviewList.html";
+	});
+	
+	$("#a3").click(function(c){
+		window.location.href="/login/myPageWishList.html";
+	});
+	
+	
+	
 	$.ajax("/profile.do",{data:{"mc_id":mc_id}, success:function(data){
 		arr = data;
 		$.each(arr, function(idx,p){
 			var mc_fname = $("<img class='img-responsive'></img>").attr({"src":"/resources/profile/"+p.mc_fname});
+			
+			if(p.mc_fname == null){
+				var mc_fname = $("<img class='img-responsive'></img>").attr({"src":"/resources/profile/nullProfile.jpg"});
+			}else{	
+				
+			}	
 			$(".profile-userpic").append(mc_fname);
 			$(".profile-usertitle-name").html(p.mc_name+ " ´Ô");
 			$(".profile-userbuttons").html("³» Æ÷ÀÎÆ® : " +p.mc_point);
-			$("#h4").html(p.mc_name + "´ÔÀÇ ¿¹¾à³»¿ª");
+			$("#h4").html("¢Ñ [" + p.mc_name + "] ´ÔÀÇ Ä·ÇÎÈÄ±â");
 		});
 	}});
+	
 	
 		function myReviewList(){
 			
@@ -395,23 +421,7 @@ $(function(){
 							alert("¿Ï·á");
 						}});
 					});
-					
-					
-					
-					$("#a1").click(function(){
-						var idx = $(this).attr("idx");
-						window.location.href="/login/myPage.html";
-					});
-					
-					$("#a2").click(function(c){
-						window.location.href="/login/myPageReviewList.html";
-					});
-					
-					$("#a3").click(function(c){
-						window.location.href="/login/myPageWishList.html";
-					});
-					
-					
+						
 					
 					$(div_li_img).append(cs_camp_fname);
 					$(ReviewList_div).append(div_li_img, cs_name, cre_date, cre_content, cre_re_contents, button);
@@ -509,7 +519,7 @@ Licensed under MIT
 <div class="container">
     <div class="row profile">
 		<div class="col-md-3">
-			<div class="profile-sidebar">
+			<div class="profile-sidebar" style="border:ridge; height: 600px">
 				<!-- SIDEBAR USERPIC -->
 				<div class="profile-userpic">
 				

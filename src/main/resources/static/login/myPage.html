@@ -371,6 +371,22 @@ $(function(){
 
 	$("#footers").load("/main/footer.html");
 	
+	$("#a1").click(function(){
+		var idx = $(this).attr("idx");
+		window.location.href="/login/myPage.html";
+	});
+	
+	$("#a2").click(function(c){
+		window.location.href="/login/myPageReviewList.html";
+	});
+	
+	$("#a3").click(function(c){
+		window.location.href="/login/myPageWishList.html";
+	});
+	
+	
+	
+	
 	$.ajax("/profile.do",{data:{"mc_id":mc_id}, success:function(data){
 		arr = data;
 		$.each(arr, function(idx,p){
@@ -390,6 +406,11 @@ $(function(){
 		});
 	}}); 
 	
+	
+	$("#a1").click(function(){
+		var idx = $(this).attr("idx");
+		window.location.href="/login/myPage.html";
+	});
 	
 	function myReservationList(){
 		$.ajax("/myReservationList.do",{data:{"mc_id":mc_id}, success:function(data){
@@ -451,23 +472,7 @@ $(function(){
 						}
 						
 					});
-					
-					
-				
-
-				$("#a1").click(function(){
-					var idx = $(this).attr("idx");
-					window.location.href="/login/myPage.html";
-				});
-				
-				$("#a2").click(function(c){
-					window.location.href="/login/myPageReviewList.html";
-				});
-				
-				$("#a3").click(function(c){
-					window.location.href="/login/myPageWishList.html";
-				});
-				
+									
 				
 				if(c.r_cancel == 0){
 					
@@ -583,7 +588,7 @@ $(function(){
 	
 <div class="container">
     <div class="row profile">
-		<div class="col-md-3" style="border:ridge; ;height: 600px">
+		<div class="col-md-3" style="border:ridge; height: 600px">
 			<div class="profile-sidebar">
 				<!-- SIDEBAR USERPIC -->
 
