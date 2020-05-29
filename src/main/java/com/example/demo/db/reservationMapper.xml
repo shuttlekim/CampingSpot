@@ -59,6 +59,7 @@
   	group by cr_no
   </select>
   
+  
   <select id="getRoomInfo" resultType="campingRoomVo">
   	select * from camping_room where cr_no=#{cr_no}
   </select>
