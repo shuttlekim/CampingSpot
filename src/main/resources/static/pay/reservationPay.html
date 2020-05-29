@@ -64,6 +64,12 @@ $(function(){
 	var price = total;
 	// 총 숙박비 'total'
 	$("#total_price").html(price);
+	var c = document.location.href.split("=");
+	var re = c[1];
+	if(re == 1){
+	//만약 카드결제에 실패해서 돌아온다면 total_price에 price붙여주기
+		$("#total_price").html(price);
+	}
 	
 	// 회원의 포인트 불러오기
 	$.ajax("/selPoint",{data:loginData, async:false, success:function(re){
