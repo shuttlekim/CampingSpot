@@ -4,14 +4,61 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.active{
-		background: pink;
-	}
+
+.container{
+  width: 1000px;
+  margin: 0 auto;
+}
+.container div{
+  text-align: center;
+  display: table;
+}
+.container div span{
+  display: table-cell;
+  vertical-align: middle;
+}
+.top{
+
+}
+.middle{
+  margin-top: 20px;
+  width: 1000px;
+  height: 500px;
+  position: relative;
+}
+.middle-center{
+  outline: 1px solid #9F9F9F;
+  top: 0px;
+  width: 1000px;
+  height: 800px;
+  background-color: #00D8FF;
+}
+
+.bottom{
+
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 11pt;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {background-color:#f5f5f5;}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$("#left").load("menubar.html");
+		$("#header").load("/main/header.html");	
+		$("#footers").load("/main/footer.html");
+		
+		$("#left").load("/admin/menubar.html");
 		
 // 		function popup(){
 // 		var winPop = "toolbar=no,width=700,height500,top=150,left=150,directories=no,menubar=no,scrollbars=yes";
@@ -25,17 +72,14 @@
 				var tr = $("<tr></tr>").attr("idx",idx);
 				var td1 = $("<td/>").html(an.an_no);
 				var td2 = $("<td/>").html(an.an_title);
-				var td3 = $("<td/>").html(an.an_content);
-				var td4 = $("<td/>").html(an.an_regdate);
-				var td5 = $("<td/>").html(an.mc_id);
-				var td6 = $("<td/>").html(an.ispost);
-				$(tr).append(td1,td2,td3,td4,td5,td6);
+				var td3 = $("<td/>").html(an.an_regdate);
+				var td4 = $("<td/>").html(an.mc_id);
+				var td5 = $("<td/>").html(an.ispost);
+				$(tr).append(td1,td2,td3,td4,td5);
 				$("#an_tb").append(tr);
 // 				$(tr).attr("idx",idx);
 				$(tr).click(function(){
 // 					$("#an_tb").empty();
-					$("tr").removeClass("active");
-					$(this).addClass("active");
 					
 					var idx = $(this).attr("idx");
 					var an_no = data[idx].an_no;
@@ -53,52 +97,52 @@
 
 
 
-		function getCookie( cookieName )
-		 {
-		  var search = cookieName + "=";
-		  var cookie = document.cookie;
+// 		function getCookie( cookieName )
+// 		 {
+// 		  var search = cookieName + "=";
+// 		  var cookie = document.cookie;
 		
-		  // 현재 쿠키가 존재할 경우
-		  if( cookie.length > 0 )
-		  {
-		   // 해당 쿠키명이 존재하는지 검색한 후 존재하면 위치를 리턴.
-		   startIndex = cookie.indexOf( cookieName );
+// 		  // 현재 쿠키가 존재할 경우
+// 		  if( cookie.length > 0 )
+// 		  {
+// 		   // 해당 쿠키명이 존재하는지 검색한 후 존재하면 위치를 리턴.
+// 		   startIndex = cookie.indexOf( cookieName );
 		
-		   // 만약 존재한다면
-		   if( startIndex != -1 )
-		   {
-		    // 값을 얻어내기 위해 시작 인덱스 조절
-		    startIndex += cookieName.length;
+// 		   // 만약 존재한다면
+// 		   if( startIndex != -1 )
+// 		   {
+// 		    // 값을 얻어내기 위해 시작 인덱스 조절
+// 		    startIndex += cookieName.length;
 		
-		    // 값을 얻어내기 위해 종료 인덱스 추출
-		    endIndex = cookie.indexOf( ";", startIndex );
+// 		    // 값을 얻어내기 위해 종료 인덱스 추출
+// 		    endIndex = cookie.indexOf( ";", startIndex );
 		
-		    // 만약 종료 인덱스를 못찾게 되면 쿠키 전체길이로 설정
-		    if( endIndex == -1) endIndex = cookie.length;
+// 		    // 만약 종료 인덱스를 못찾게 되면 쿠키 전체길이로 설정
+// 		    if( endIndex == -1) endIndex = cookie.length;
 		
-		    // 쿠키값을 추출하여 리턴
-		    return unescape( cookie.substring( startIndex + 1, endIndex ) );
-		   }
-		   else
-		   {
-		    // 쿠키 내에 해당 쿠키가 존재하지 않을 경우
-		    return false;
-		   }
-		  }
-		  else
-		  {
-		   // 쿠키 자체가 없을 경우
-		   return false;
-		  }
-		 }
+// 		    // 쿠키값을 추출하여 리턴
+// 		    return unescape( cookie.substring( startIndex + 1, endIndex ) );
+// 		   }
+// 		   else
+// 		   {
+// 		    // 쿠키 내에 해당 쿠키가 존재하지 않을 경우
+// 		    return false;
+// 		   }
+// 		  }
+// 		  else
+// 		  {
+// 		   // 쿠키 자체가 없을 경우
+// 		   return false;
+// 		  }
+// 		 }
 
 
-		 function setCookie( cookieName, cookieValue, expireDate )
-		 {
-		  var today = new Date();
-		  today.setDate( today.getDate() + parseInt( expireDate ) );
-		  document.cookie = cookieName + "=" + escape( cookieValue ) + "; path=/; expires=" + today.toGMTString() + ";";
-		 }
+// 		 function setCookie( cookieName, cookieValue, expireDate )
+// 		 {
+// 		  var today = new Date();
+// 		  today.setDate( today.getDate() + parseInt( expireDate ) );
+// 		  document.cookie = cookieName + "=" + escape( cookieValue ) + "; path=/; expires=" + today.toGMTString() + ";";
+// 		 }
 		
 		 
 // 		 function getMyCookie()
@@ -198,25 +242,40 @@
 </script>
 </head>
 <body>
-<div id="left">
-</div>
-<div id="contents" style="margin-left:25%;padding:1px 16px;height:1000px;">
-<h2>공지사항관리</h2>
-<br>
-<button id="btnAdd" >등록</button>
-<br>
-<hr>
-<br>
-<table id="an_tb" border="1" >
-	<tr>
-		<th>No.</th>
-		<th>제목</th>
-		<th>내용</th>
-		<th>등록일</th>
-		<th>작성자</th>
-		<th>팝업여부</th>
-	</tr>
-</table>
-</div>
+<!-- TOP  -->
+	<div class="top" id="header">
+	   <span>TOP (1000 x 80) <br/> #FF5E00;</span>
+	</div>
+	<div class="container">
+	<!-- MIDDLE -->
+	  <div class="middle">
+<!-- 	    <div class="middle-center"> <span>LEFT (600 x 500) <br/> #00D8FF;</span> </div> -->
+			<div id="left"></div>
+			<div id="contents" style="margin-left:25%;padding:1px 16px;height:1000px;">
+			<h2>공지사항관리</h2>
+			<br>
+			<div align="left">
+			<button id="btnAdd" >등록</button>
+			</div>
+			<hr>
+			<br>
+			<table id="an_tb" border="1" style="text-align: center;">
+				<tr>
+					<th>No.</th>
+					<th>제목</th>
+					<th>등록일</th>
+					<th>작성자</th>
+					<th>팝업여부</th>
+				</tr>
+			</table>
+			</div>
+			
+	  </div>  
+	</div>
+			
+			<br>
+	<!-- BOTTOM -->
+  <div id="footers" class="bottom"> <span>BOTTOM (1000 x 100) <br/> #5D5D5D;</span> </div>
+
 </body>
 </html>

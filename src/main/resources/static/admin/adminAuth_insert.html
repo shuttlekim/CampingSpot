@@ -4,9 +4,51 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.active{
-		background: pink;
-	}
+button {
+    background: #2a2a2a;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    border: none;
+    font-size: 14px;
+    border-radius: 7px;
+}
+
+#btnSearch{
+	background: #2a2a2a;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    border: none;
+    font-size: 14px;
+    border-radius: 7px;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {background-color:#f5f5f5;}
+
+select {
+width: 100px;
+padding: .5em .5em; 
+font-family: inherit; 
+background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;
+border: 1px solid #999; 
+border-radius: 0px; 
+-webkit-appearance: none;  
+-moz-appearance: none; 
+appearance: none;
+}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -26,14 +68,12 @@
 				$("#auth_tb").append(tr);
 				
 				$(tr).click(function(){
-					$("tr").removeClass("active");
-					$(this).addClass("active");
 					
 					var idx = $(this).attr("idx");
 					var mc_id = data[idx].mc_id;
 // 					var an_no = data[idx].an_no;
 // 					window.location.href="detail_an.html?an_no="+an_no;
-					window.open('/admin/adminAuth_authDetail.html?mc_id='+mc_id, 'popup', 'width=700, height=500, scrollbars= 0, toolbar=0, menubar=no');
+					window.open('/admin/adminAuth_authDetail.html?mc_id='+mc_id, 'popup', 'width=500, height=500, scrollbars= 0, toolbar=0, menubar=no');
 
 					
 				});
@@ -79,7 +119,7 @@
 					$(tr).click(function(){
 						var idx = $(this).attr("idx");
 						var mc_id = data[idx].mc_id;
-						window.open('/admin/adminAuth_authDetail.html?mc_id='+mc_id, 'popup', 'width=700, height=500, scrollbars= 0, toolbar=0, menubar=no');
+						window.open('/admin/adminAuth_authDetail.html?mc_id='+mc_id, 'popup', 'width=500, height=500, scrollbars= 0, toolbar=0, menubar=no');
 
 						
 					});
@@ -100,10 +140,6 @@
 // 		});
 		
 		
-			
-		$("btnInsertReset").click(function(){
-			$("#insertForm input").val("");
-		});
 		
 		
 	});
@@ -120,7 +156,7 @@
 			<option value="mc_name">회원명</option>
 			<option value="mc_email">이메일</option>
 		</select>  
-		<input type="text" name="keyword">
+		<input type="text" name="keyword" style="height: 27px;">
 		<input id="btnSearch" type="button" value="검색">
 		<br>
 	</form>
@@ -140,8 +176,7 @@
 	</tbody>
 </table>
 	<br>
-	<button id="btnInsert" type="button" >등록</button>
-	<button id="btnInsertReset" type="button" >지우기</button>
+<!-- 	<button id="btnInsert" type="button" >등록</button> -->
 	<button id="btnInsertBack" type="button" onclick="window.close()">목록으로</button>
 	</div>
 

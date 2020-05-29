@@ -3,6 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+button {
+    background: #2a2a2a;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    border: none;
+    font-size: 14px;
+    border-radius: 7px;
+}
+
+input {
+  width: 250px;
+  height: 36px;
+}
+
+#div{
+	text-align: center;
+}
+table {
+	font-size: 12px;
+}
+
+</style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -17,10 +42,6 @@
 		});
 		
 		
-			
-		$("btnInsertReset").click(function(){
-			$("#insertForm input").val("");
-		});
 		
 		document.getElementById('mc_regdate').valueAsDate = new Date();
 		document.getElementById('mc_recdate').valueAsDate = new Date();
@@ -30,11 +51,11 @@
 
 </head>
 <body>
-	<h2>개인회원 등록하기</h2>
+	<h2 align="center">개인회원 등록하기</h2>
 	<div id="div">
 	<form id="insertForm">
-		<input type="hidden" name="mc_salt" id="mc_salt" value="mc_pwd">
-	<table id="am_tb">
+		<input type="hidden" name="salt" id="salt" value="mc_pwd">
+	<table id="am_tb" align="center">
 		<tr>
 			<td>회원ID</td>
 			<td><input type="text" name="mc_id" id="mc_id"></td>
@@ -75,7 +96,6 @@
 	</form>
 	<br>
 	<button id="btnInsertOk" type="button" >등록</button>
-	<button id="btnInsertReset" type="button" >지우기</button>
 	<button id="btnInsertBack" type="button" onclick="window.close()">목록으로</button>
 	</div>
 

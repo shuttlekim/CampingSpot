@@ -3,6 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+button {
+    background: #2a2a2a;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    border: none;
+    font-size: 14px;
+    border-radius: 7px;
+}
+
+input {
+  width: 250px;
+  height: 40px;
+}
+
+#div{
+	text-align: center;
+}
+
+</style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -68,10 +90,11 @@
 
 </head>
 <body>
-	<h2>관리자 상세보기</h2>
+	<h2 align="center">관리자 상세보기</h2>
+	<br>
 	<div id="div">
 	<form id="updateForm">
-	<table id="au_tb">
+	<table id="au_tb" align="center">
 		<tr>
 			<td>회원ID</td>
 			<td><input type="text" name="mc_id" id="mc_id" readonly="readonly"></td>
@@ -110,9 +133,11 @@
 		</tr>
 	</table>
 	</form>
+	<br>
+	<br>
 	<button type="button" onclick="" id="btnUpdate">수정</button>
-	<button type="button" onclick="window.close()" id="btnBack">목록으로</button>
 	<button type="button"  id="btnDelete">관리자 삭제</button>
+	<button type="button" onclick="window.close()" id="btnBack">목록으로</button>
 
 	</div>
 	

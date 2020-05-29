@@ -4,14 +4,60 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.active{
-		background: pink;
-	}
+.container{
+  width: 1000px;
+  margin: 0 auto;
+}
+.container div{
+  text-align: center;
+  display: table;
+}
+.container div span{
+  display: table-cell;
+  vertical-align: middle;
+}
+.top{
+
+}
+.middle{
+  margin-top: 20px;
+  width: 1000px;
+  height: 500px;
+  position: relative;
+}
+.middle-center{
+  outline: 1px solid #9F9F9F;
+  top: 0px;
+  width: 1000px;
+  height: 800px;
+  background-color: #00D8FF;
+}
+
+.bottom{
+
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 11pt;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {background-color:#f5f5f5;}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$("#left").load("menubar.html");
+		$("#header").load("/main/header.html");	
+		$("#footers").load("/main/footer.html");
+		
+		$("#left").load("/admin/menubar.html");
 		
 		function adminLogList(){
 		$.getJSON("/adminLogList.do", function(data){
@@ -46,25 +92,48 @@
 </script>
 </head>
 <body>
-<div id="left"></div>
-<div id="contents" style="margin-left:25%;padding:1px 16px;height:1000px;">
+<!-- TOP  -->
+	<div class="top" id="header">
+	   <span>TOP (1000 x 80) <br/> #FF5E00;</span>
+	</div>
 
-<h2>이력내역</h2>
-<br>
-<hr>
-<br>
-<table id="am_tb" border="1" width=70%>
-	<thead>
-	<tr>
-		<th>로그No.</th>
-		<th>로그발생일</th>
-		<th>결제상태</th>
-		<th>아이피</th>
-		<th>예약번호</th>
-	</tr>
-	</thead>
-	<tbody id="tbody"></tbody>
-</table>
-</div>
+	<div class="container">
+	<!-- MIDDLE -->
+	  <div class="middle">
+<!-- 	    <div class="middle-center"> <span>LEFT (600 x 500) <br/> #00D8FF;</span> </div> -->
+	    	<div id="left"></div>
+			<div id="contents" style="margin-left:25%;padding:1px 16px;height:1000px;">
+			
+			<h2>이력내역</h2>
+			<br>
+			<hr>
+			<br>
+			<table id="am_tb" border="1" width=70%>
+				<thead>
+				<tr>
+					<th>로그No.</th>
+					<th>로그발생일</th>
+					<th>결제상태</th>
+					<th>아이피</th>
+					<th>예약번호</th>
+				</tr>
+				</thead>
+				<tbody id="tbody"></tbody>
+			</table>
+			</div>
+	  </div>  
+	</div>
+			
+			<br>
+
+	<!-- BOTTOM -->
+  <div id="footers" class="bottom"> <span>BOTTOM (1000 x 100) <br/> #5D5D5D;</span> </div>
+
+
+
+
+
+
+
 </body>
 </html>

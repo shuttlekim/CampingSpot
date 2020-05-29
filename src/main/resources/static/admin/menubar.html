@@ -5,8 +5,11 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <style type="text/css">
-.menu a{cursor:pointer;}
-.menu .hide{display:none;}
+.menu .hide{
+	display:none;
+	inline-size: -webkit-fill-available;
+	font-size: 12px;
+	}
 
 
 body {
@@ -17,9 +20,9 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  width: 25%;
+  width: 20%;
   background-color: #f1f1f1;
-  position: fixed;
+  position: absolute;
   height: 100%;
   overflow: auto;
 }
@@ -39,6 +42,12 @@ li a.active {
 li a:hover:not(.active) {
   background-color: #555;
   color: white;
+}
+.hide.li a{
+	display: block;
+	z-index:1;
+	color: red;
+
 }
 </style>
  <link rel="import" href="menubar.html">
@@ -65,14 +74,14 @@ $(function(){
 <body>
 <div>
 		<ul>
-			<li class="menu" ><a href="/admin/adminAuth.html">권한관리</a></li>
+			<li class="menu" ><a href="/admin/adminTest.html">권한관리</a></li>
 			<li class="menu"><a href="/admin/adminLog.html">로그관리</a></li>
 			<li class="menu"><a href="/admin/adminNotice.html">공지사항관리</a></li>
 			<li class="menu"><a href="/admin/adminStatistic.html">통계관리</a></li>
 			<li class="menu"><a>회원관리</a>
 				<ul class="hide">
-					<li><a href="/admin/adminMember.html">개인회원</a></li>
-					<li><a href="/admin/adminMemberBusiness.html">사업자회원</a></li>
+					<li class="li"><a href="/admin/adminMember.html">개인회원</a></li>
+					<li class="li"><a href="/admin/adminMemberBusiness.html">사업자회원</a></li>
 				</ul>
 			</li>
 		</ul>

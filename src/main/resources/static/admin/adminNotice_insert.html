@@ -3,6 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+input {
+	width: 200px;
+	height: 30px;
+}
+
+button {
+    background: #2a2a2a;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    border: none;
+    font-size: 14px;
+    border-radius: 7px;
+}
+
+select {
+padding: .5em .5em; 
+font-family: inherit; 
+background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;
+border: 1px solid #999; 
+border-radius: 0px; 
+-webkit-appearance: none;  
+-moz-appearance: none; 
+appearance: none;
+}
+table{
+margin-left: auto;
+margin-right: auto;
+}
+textarea{
+resize:none;
+}
+.text{
+	width:500px;
+}
+
+</style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -27,23 +66,25 @@
 		document.getElementById('an_regdate').valueAsDate = new Date();
 	});
 	
+	
+	//제목이랑 내용부분 칸 맞추기
 </script>
 
 </head>
 <body>
-	<h2>공지사항 등록하기</h2>
+	<h2 align="center">공지사항 등록하기</h2>
 	<div id="div">
 	<form id="insertForm">
 			<input type="hidden" name="an_no" id="an_no" readonly="readonly" value="0">
 			<input type="hidden" name="mc_id" id="mc_id" readonly="readonly" value="admin01">
-	<table id="an_tb">
+	<table id="an_tb" style="align:center;" >
 		<tr>
 			<td>제목</td>
-			<td><input type="text" name="an_title" id="an_title"></td>
+			<td><input type="text" name="an_title" id="an_title" style="width:100%;" class="text"></td>
 		</tr>
 		<tr>
 			<td>내용</td>
-			<td><textarea type="text" name="an_content" id="an_content" rows="8" cols="60"></textarea>
+			<td><textarea type="text" name="an_content" id="an_content" rows="12" cols="80%" class="text" style="width: 100%;"></textarea>
 		</tr>
 		<tr>
 			<td>작성일</td>
@@ -51,7 +92,7 @@
 		</tr>
 		<tr>
 			<td>팝업여부<td>
-			<select id="ispost" name="ispost" >
+			<select id="ispost" name="ispost" style="width:100px;font-size:12px;">
 				<option value="Y">Y</option>
 				<option value="N">N</option>
 			</select>
@@ -62,11 +103,11 @@
 		</tr>
 		<tr>
 			<td>팝업종료일</td>
-			<td><input type="date" name="enddate" id="enddate"></td>
+			<td><input type="date" name="enddate" id="enddate" ></td>
 		</tr>
 		<tr>
 			<td>팝업공지대상<td>
-			<select id="mc_auth" name="mc_auth" >
+			<select id="mc_auth" name="mc_auth" style="width:100px;font-size:12px;" >
 				<option value="1">전체</option>
 				<option value="2">사업자회원</option>
 				<option value="3">개인회원</option>
@@ -74,8 +115,11 @@
 		</tr>
 	</table>
 	</form>
-	<button id="btnInsertOk" type="button" >등록</button>
-	<button id="btnInsertBack" type="button" onclick="window.close()">목록으로</button>
+		<div id="btn" style="text-align: center;">
+		<br>
+		<button id="btnInsertOk" type="button" >등록</button>
+		<button id="btnInsertBack" type="button" onclick="window.close()">목록으로</button>
+		</div>
 	</div>
 
 	
