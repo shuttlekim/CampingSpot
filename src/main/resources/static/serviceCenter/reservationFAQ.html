@@ -67,10 +67,12 @@ transform:translateX(-50%);
 width:750px;
 }
 input[id*="answer"] {display:none;}
-input[id*="answer"] + label {display:block;
+input[id*="answer"] + label {
+display:block;
 padding:20px;
 border:1px solid #A2A2A2;
-border-bottom:0;color:#fff;
+border-bottom:0;
+color:#fff;
 font-weight:900;
 background:	#626262;
 cursor:pointer;
@@ -94,7 +96,8 @@ background:#E1E1E1;
 font-size:16px;
 }
 input[id*="answer"] + label + div p {
-display:inline-block;padding:20px;
+display:inline-block;
+padding:20px;
 }
 input[id*="answer"]:checked + label + div {
 max-height:100px;
@@ -148,7 +151,7 @@ $(function(){
 		<input type="radio" name="accordion" id="answer04">
 			<label for="answer04">4. 예약은 언제부터 가능한가요?<em></em></label>
 				<div>
-					<p>• 해당 캠핑장에서 공지를 올리야 알 수 있습니다.</p>
+					<p>• 해당 캠핑장에서 공지를 올려야 알 수 있습니다.</p>
 				</div>
 			<input type="radio" name="accordion" id="answer05">
 			<label for="answer05">5. 오고가는 교통편 예약도 가능할까요?<em></em></label>
