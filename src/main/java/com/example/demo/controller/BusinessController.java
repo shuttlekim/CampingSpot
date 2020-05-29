@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -80,14 +82,15 @@ public class BusinessController {
 	
 	//사업자 회원가입
 	@RequestMapping("/signIn2.do")
-	public String insertBusiness(BusinessVo m) {
+	public String insertBusiness(BusinessVo m, HttpServletRequest request) {
 		String str = "";
 		String salt = SHA256Util.generateSalt();
         String newPassword = SHA256Util.getEncrypt(m.getMb_pwd(), salt);
         m.setMb_pwd(newPassword);
         m.setSalt(salt);
                 
-        String path = "C:\\\\Users\\\\YOGO\\\\git\\\\CampingSpot\\\\src\\\\main\\\\resources\\\\static\\\\resources\\\\profile";
+        //String path = "C:\\\\Users\\\\YOGO\\\\git\\\\CampingSpot\\\\src\\\\main\\\\resources\\\\static\\\\resources\\\\profile";
+        String path = request.getRealPath("\\resources\\profile");
 		MultipartFile uploadFile = m.getUploadFile();
 		String fname = "";
 		 if(uploadFile != null) {
@@ -137,7 +140,7 @@ public class BusinessController {
 	
 	//사업자 정보 수정
 	@RequestMapping("/updateBusiness.do")
-	public String updateBusiness(BusinessVo mv) {
+	public String updateBusiness(BusinessVo mv, HttpServletRequest request) {
 		String str = "";
 		
 		BusinessVo check = dao.getBusiness(mv.getMb_id());		
@@ -145,7 +148,8 @@ public class BusinessController {
         mv.setMb_pwd(newPassword);
         mv.setSalt(check.getSalt());  
         
-        String path = "C:\\\\Users\\\\YOGO\\\\git\\\\CampingSpot\\\\src\\\\main\\\\resources\\\\static\\\\resources\\\\profile";
+        //String path = "C:\\\\Users\\\\YOGO\\\\git\\\\CampingSpot\\\\src\\\\main\\\\resources\\\\static\\\\resources\\\\profile";
+        String path = request.getRealPath("\\resources\\profile");
 		String oldFname = mv.getMb_fname();
         MultipartFile uploadFile = mv.getUploadFile();
 		String fname = null;

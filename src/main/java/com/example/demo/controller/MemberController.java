@@ -102,8 +102,8 @@ public class MemberController {
 	        m.setSalt(salt);	        
 	        
 	        //String path = "/resources/static/resource/profile"; 
-	        String path = "C:\\Users\\YOGO\\git\\CampingSpot\\src\\main\\resources\\static\\resources\\profile";
-	        //String path = request.getRealPath("\\resources\\static\\resources\\profile");
+	        //tring path = "C:\\Users\\YOGO\\git\\CampingSpot\\src\\main\\resources\\static\\resources\\profile";
+	        String path = request.getRealPath("\\resources\\profile");
 			MultipartFile uploadFile = m.getUploadFile();
 			String fname = "";
 			 if(uploadFile != null) {
@@ -177,7 +177,7 @@ public class MemberController {
 	
 	//회원수정
 	@RequestMapping("/updateMember.do")
-	public String updateMember(MemberVo mv) {
+	public String updateMember(MemberVo mv, HttpServletRequest request) {
 		String str = "";
 		
 		MemberVo check = dao.getMember(mv.getMc_id());		
@@ -185,7 +185,8 @@ public class MemberController {
         mv.setMc_pwd(newPassword);
         mv.setSalt(check.getSalt());  
         
-        String path = "C:\\Users\\YOGO\\git\\CampingSpot\\src\\main\\resources\\static\\resources\\profile";
+        //String path = "C:\\Users\\YOGO\\git\\CampingSpot\\src\\main\\resources\\static\\resources\\profile";
+        String path = request.getRealPath("\\resources\\profile");
 		String oldFname = mv.getMc_fname();
         MultipartFile uploadFile = mv.getUploadFile();
 		String fname = null;
