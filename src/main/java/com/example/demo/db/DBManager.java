@@ -113,7 +113,9 @@ public class DBManager {
 	// 영현) 캠핑장 검색 리스트 호출
 	public static CampingSearchResultVo getCampingSpot(HashMap map) {
 		SqlSession session = factory.openSession();
+		System.out.println("getCampingSpot 조건:"+map);
 		CampingSearchResultVo csrv = session.selectOne("reservation.getCampingSpot", map);
+		System.out.println("getCampingSpot Manager:"+csrv);
 		session.close();
 		return csrv;
 	}
