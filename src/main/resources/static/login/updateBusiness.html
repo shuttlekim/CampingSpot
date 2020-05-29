@@ -39,6 +39,12 @@
 		background-color:#fff;
 		margin-left: 140px;
 	}
+	#btnDeleteBusiness{
+		//float: right;
+		position: absolute;
+		//letf: 400px;
+		right: 205px;
+	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -96,6 +102,22 @@ $(function(){
 		    alert("^_____^");
 		}          
 	});			
+	
+	
+	$("#btnDeleteBusiness").click(function(){			
+		
+		var result = confirm("정말 탈퇴하실건가요? ㅠㅠ");
+	
+		if(result == true){
+			$.ajax("/deleteBusiness.do", {data:{"mb_id":mb_id}, success:function(r){}});
+		    alert("잘가요...");
+		    sessionStorage.clear();
+			window.location.href = "/main/main.html";
+		}else{
+		    alert("^_____^");
+		} 
+	});	
+	
 	
 	$("#header").load("/main/header.html");	
 
@@ -163,6 +185,7 @@ $(function(){
 			</table>
 		</form><br><br><br>
 		<button id="btnUpdateOk" style="width:200px;height:40px;font-size:20px;margin-left: 130px;">수정하기</button>
+		<button id="btnDeleteBusiness">회원탈퇴</button>
 		</div>
     </div>
   </div>  
