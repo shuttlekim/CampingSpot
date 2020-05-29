@@ -235,8 +235,8 @@ public class MemberController {
 		System.out.println("MemberController 메시지 : 불러온 smout 의 상태 " + smout);
 			
 		if(smout != null) {
-			//str = smout.getMc_id();
-			str = smout.getMc_name();
+			str = smout.getMc_id();
+			//str = smout.getMc_name();
 			System.out.println("str : " + str);
 		}else {
 			str = null;
@@ -250,13 +250,14 @@ public class MemberController {
 	        dao.insertMember(n);
 	        System.out.println("insertMember 작동");
 	        String memberId = dao.sessionMember(n.getMc_id()).getMc_id();
-	        memberId = n.getMc_name();
+	        //memberId = n.getMc_name();
+	        memberId = n.getMc_id();
 	        System.out.println("memberId : " + memberId);
 	        str = memberId;	        
 	        System.out.println("회원 가입 후 str : " + str);
 	        System.out.println("MemberVo:"+smout);
 	        smout = dao.sessionMember(n.getMc_id());
-	        str = smout.getMc_name();
+	        str = smout.getMc_id();
 		}		
 		return str;		
 	}	

@@ -11,7 +11,7 @@ public class CampingSpotMainApplication {
 	@Bean
     public CommonsMultipartResolver multipartResolver() {
         return new CommonsMultipartResolver();
-    }
+    } 
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CampingSpotMainApplication.class, args);

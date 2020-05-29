@@ -31,14 +31,15 @@
 		        var name = naverLogin.user.getNickName();
 		        var profileImage = naverLogin.user.getProfileImage();  						
 				
-				var memberName = sessionStorage.getItem("memberName");									
+				//var memberName = sessionStorage.getItem("memberName");									
 				var memberId = sessionStorage.getItem("memberId");	
 				
 				var insert_data = {
 							"mc_id"    : uniqId,
 							"mc_email" : email,
 							"mc_name"  : name,
-							"mc_fname" : profileImage,	
+							//"mc_fname" : profileImage,	
+							"mc_fname" : null,	
 							"mc_auth"  : 4
 							};
 				
@@ -46,21 +47,28 @@
 				
 			$.ajax("/naver.do", {data:insert_data, async:false, success:function(result){			
 					
-					memberName = result;
+					//memberName = result;
+					memberId = result;
 					
 					if(result == ""){
-						memberName = "ok";
-						alert("memberName : " + memberName);
+						//memberName = "ok";
+						memberId = "ok";
+						//alert("memberName : " + memberName);
+						alert("memberId : " + memberId);
 					}else{
-						sessionStorage.setItem("memberName", result);
+						//sessionStorage.setItem("memberName", result);
+						sessionStorage.setItem("memberId", result);
 					}
 					
-					if(memberName == "ok"){						
+					//if(memberName == "ok"){						
+					if(memberId == "ok"){						
 						alert("회원가입진행");
 						alert("네이버 아이디로 회원가입 성공");
-						sessionStorage.setItem("memberName", memberName);										
+						//sessionStorage.setItem("memberName", memberName);										
+						sessionStorage.setItem("memberId", memberId);										
 					}else{
-						sessionStorage.setItem("memberName", memberName);							
+						//sessionStorage.setItem("memberName", memberName);							
+						sessionStorage.setItem("memberId", memberId);							
 					}
 				}});	
 													

@@ -43,20 +43,21 @@ li a:hover:not(.active) {
 	margin-top : 10px;
 	margin-left: 10px;
 }
-/* .cal{
+.cal{
 	margin-top : 30px;
 	margin-left: 200px;
-} */
+}
 
 </style>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.css" rel="stylesheet" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.0/moment.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		
 		var cs_no = Number(location.search.substring(location.search.indexOf("=")+1));
 		//alert(cs_no)
-		
 		
 		// 각 페이지별 이동
 		$("#bossBpage").attr("href", "myBusinessPage.html?cs_no="+cs_no);
@@ -66,7 +67,7 @@ li a:hover:not(.active) {
 		$("#bossReviewList").attr("href", "bossReviewManage.html?cs_no="+cs_no);
 		$("#bossSales").attr("href", "salesManage.html?cs_no="+cs_no);
 		
-		
+ 		
 		// 예약 관리 현황 목록보기
 		$.ajax("/bossReservationList.do",{data:{"cs_no":cs_no},success:function(data){
 			$.each(data, function(idx, br){
@@ -80,6 +81,8 @@ li a:hover:not(.active) {
 				var cr_name = $("<td></td>").html(br.cr_name);
 				var r_date = $("<td></td").html(moment(br.r_date).format("YYYY-MM-DD"));
 				var r_checkin = $("<td></td>").html(moment(br.r_checkin).format("YYYY-MM-DD"));
+				//var r_date = $("<td></td>").html(br.r_date);
+				//var r_checkin = $("<td></td>").html(br.r_checkin);
 				var r_price = $("<td></td>").html(br.r_price);
 				
 				// 예약승인버튼
@@ -159,15 +162,15 @@ li a:hover:not(.active) {
 				
 			});//end each
 			
-		}});//end ajax 예약 관리 현황 목록
+		}});//end ajax 예약 관리 현황 목록 
 		
 		
 		$("#headers").load("/main/header.html");	
 
 		$("#footers").load("/main/footer.html");
-		
+	
 	});//end function
-
+	
 </script>
 </head>
 <body>
@@ -190,7 +193,7 @@ li a:hover:not(.active) {
 		
 		<div class="div rList">
 			<h2>캠핑룸 예약 현황</h2>
-			<table id="rTB" border="2" width="100%">
+			<table id="rTB" border="2">
 				<tr>
 					<th>예약번호</th>
 					<th>예약자명</th>

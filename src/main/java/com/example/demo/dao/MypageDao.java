@@ -24,8 +24,8 @@ public class MypageDao {
 		return DBManager.resrvation_after();
 	}
 
-	public List<ProfileVo> profile() {
-		return DBManager.profile();
+	public List<ProfileVo> profile(String mc_id) {
+		return DBManager.profile(mc_id);
 	}
 
 	public List<CsDVo> myReservationDetail(CsDVo cd) {
@@ -52,8 +52,8 @@ public class MypageDao {
 		return DBManager.deleteMyWish(cw_no);
 	}
 	
-	public int cancelReservation(String mc_id) {
-		return DBManager.cancelReservation(mc_id);
+	public int cancelReservation(int r_no) {
+		return DBManager.cancelReservation(r_no);
 	}
 	
 	public int camping_review_insert(CrVo cr) {

@@ -188,10 +188,10 @@ public class DBManager {
 		return list;
 	}
 	// 현성 : 프로필 출력
-	public static List<ProfileVo> profile() {
+	public static List<ProfileVo> profile(String mc_id) {
 		List<ProfileVo> list = null;
 		SqlSession session = factory.openSession();
-		list = session.selectList("myPage.profile");
+		list = session.selectList("myPage.profile", mc_id);
 		session.close();
 		return list;
 	}
@@ -250,10 +250,10 @@ public class DBManager {
 	}
 	
 	// 현성 : 예약취소요청 update
-	public static int cancelReservation(String mc_id) {
+	public static int cancelReservation(int r_no) {
 		int re = -1;
 		SqlSession session = factory.openSession(true);
-		re = session.update("myPage.cancelReservation", mc_id);
+		re = session.update("myPage.cancelReservation", r_no);
 		session.close();
 		return re;
 	}

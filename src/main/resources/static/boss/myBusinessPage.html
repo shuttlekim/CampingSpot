@@ -7,29 +7,29 @@
 hr{
   border-top: 1px solid green;
 }
-div{
-	float: left;
-	display: inline-block;
-}
 .mainImg{
-	margin-left: 0px;
+	float:left;
 	margin-top: 10px;
 }
 .main{
-	margin-left: 30px;
-	margin-top: 70px;
+	float:right;
+	margin-top: 50px;
 	margin-bottom: 50px;
+	text-align: left;
 }
+
 .line {
-  border-left: 2px solid green;
-  height: 700px;
-  margin-right: 50px;
+	float:left;
+	border-left: 2px solid green;
+	height: 270px;
+	margin-right: 50px;
 }
 ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 200px;
+	list-style:none;
+	float:left;
+	margin: 0;
+	padding: 0;
+	width: 200px;
 }
 
 li a {
@@ -50,10 +50,22 @@ li a:hover:not(.active) {
   color: white;
 }
 .mptb{
-	margin-left: 30px;
+	margin-top: 380px;
+	margin-left: 230px;
 }
-h3{
-	margin-top: 350px;
+#mpList{
+	text-align: center;
+}
+
+th{
+	background: #CCCCCC;
+	color: black;
+	font-weight: bold;
+ 
+}
+th, td{
+	padding: 10px;
+	border: 1px solid black;
 }
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -93,9 +105,9 @@ h3{
 				var imgCS =$("<img></img>").attr({"src":"/resources/camping_spot_img/"+cs_camp_fname[0],"width":400,"height":300});
 				$(".mainImg").append(imgCS);
 				
-				var cs_name = $("<h2></h2>").html(r.cs_name);
+				var cs_name = $("<h2></h2>").html("&nbsp" + r.cs_name);
 				var cs_tel = $("<h4><h4>").html(r.cs_tel);
-				var addr = $("<h4></h4>").html(r.cs_addr_head +" "+ r.cs_addr_remain);
+				var addr = $("<h4></h4>").html(r.cs_addr_head + r.cs_addr_remain);
 				$(".main").append(cs_name,cs_tel[0],addr);
 									 
 			}}); // end ajax list	
@@ -165,14 +177,14 @@ h3{
 			  <li><a id="btnUpdateBusiness" onclick="location.href='/login/updateBusiness.html'">회원정보수정</a></li>
 			</ul>
 		</div>
-		<div class="div line"></div>
 		
-		<div class="div mainImg"></div>
-		<div class="div main"></div>
+		<div class="line"></div>
+		<div class="mainImg"></div>
+		<div class="main"></div>
 		
-		<h3>최근 예약 내역</h3>
 		<div class="mptb">
-			<table id="mpList" border="1">
+			<h3>최근 예약 내역</h3>
+			<table id="mpList">
 				<tr>
 					<th>번호</th>
 					<th>예약번호</th>
