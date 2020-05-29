@@ -309,6 +309,33 @@ body {
   min-height: 460px;
 }
 
+/*======================================================*/
+
+	.middle{
+	  	margin-top: 20px;
+	  	width: 1000px;
+	  	height: 500px;
+	  	position: relative;
+	}
+	.middle-center{
+	  	outline: 1px solid #9F9F9F;
+	  	top: 0px;
+	  	width: 1000px;
+	  	height: 600px;
+	  	//background-color: #00D8FF;
+	}
+	#btnDeleteMember{
+		cursor: pointer;
+	}
+	#btnDeleteBusiness{
+		cursor: pointer;
+	}
+	#btnUpdateMember{
+		cursor: pointer; 
+	} 
+	#btnUpdateBusiness{
+		cursor: pointer;
+	}
 
 </style>
 <script type="text/javascript" src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -316,11 +343,18 @@ body {
 $(function(){
 	var arr;
 		
-	var mc_id = location.search;
+	var mc_id = sessionStorage.getItem("memberId");
+	var mb_id = sessionStorage.getItem("businessId");
+	var mc_id2 = sessionStorage.getItem("memberName");
+	var mc_auth = sessionStorage.getItem("auth");
+		
+	$("#mc_id").html(mc_id);
+	$("#mb_id").html(mb_id);
+	$('#mc_id2').html(mc_id2);	
 	
-	
-	mc_id = mc_id.substring(mc_id.indexOf("=")+1);
-	alert(mc_id);
+	$("#header").load("/main/header.html");	
+
+	$("#footers").load("/main/footer.html");
 	
 	$.ajax("/profile.do",{data:{"mc_id":mc_id}, success:function(data){
 		arr = data;
@@ -336,8 +370,7 @@ $(function(){
 	
 		function myWishList(){
 			
-			var data = {mc_id : mc_id};
-			$.ajax("/myWishList.do", {data : data, success : function(r){
+			$.ajax("/myWishList.do", {data :{"mc_id":mc_id}, success : function(r){
 				arr = r;
 				$.each(arr, function(idx , w){
 					var a = $("<a href='#' class='inner'></a><br>")
@@ -354,23 +387,22 @@ $(function(){
 						var idx = $(this).attr("idx");
 						var no = {cw_no : arr[idx].cw_no};
 							$.ajax("/deleteMyWish", {data : no, success : function(r) {
-								window.location.href = "myPageWishList.html";
-								
+								window.location.href = "login/myPageWishList.html";
 							}});
 					});
 					
 					
 					$("#a1").click(function(){
 						var idx = $(this).attr("idx");
-						window.location.href="/myPage.html";
+						window.location.href="/login/myPage.html";
 					});
 					
 					$("#a2").click(function(c){
-						window.location.href="/myPageReviewList.html?mc_id="+data[0].mc_id;
+						window.location.href="/login/myPageReviewList.html";
 					});
 					
 					$("#a3").click(function(c){
-						window.location.href="/myPageWishList.html?mc_id="+data[0].mc_id;
+						window.location.href="/login/myPageWishList.html";
 					});
 					
 					
@@ -384,6 +416,67 @@ $(function(){
 			}});
 		}
 		myWishList();
+		
+$("#btnDeleteMember").click(function(){			
+			
+			var result = confirm("정말 탈퇴하실건가요? ㅠㅠ");
+		
+			if(result == true){
+				$.ajax("/deleteMember.do", {data:{"mc_id":mc_id}, success:function(r){}});
+			    alert("잘가요...");
+			    sessionStorage.clear();
+				window.location.href = "/main/main.html";
+			}else{
+			    alert("^_____^");
+			}
+		});
+
+		$("#btnDeleteBusiness").click(function(){			
+		
+			var result = confirm("정말 탈퇴하실건가요? ㅠㅠ");
+		
+			if(result == true){
+				$.ajax("/deleteBusiness.do", {data:{"mb_id":mb_id}, success:function(r){}});
+			    alert("잘가요...");
+			    sessionStorage.clear();
+				window.location.href = "/main/main.html";
+			}else{
+			    alert("^_____^");
+			} 
+		});
+
+		if(sessionStorage.getItem("businessId") != null){
+	   		 $("#memberPanel").css("display", "none");
+	   		 $("#hiMember").css("display", "none");
+	         $("#businessPanel").css("display", "block");     
+	         $("#hiBusiness").css("display", "block");
+	         $("#naverPanel").css("display", "none");
+	         $("#hiNaver").css("display", "none");         
+	    }
+		
+		if(sessionStorage.getItem("memberId") != null){
+	   		 $("#memberPanel").css("display", "block");
+	   		 $("#hiMember").css("display", "block");
+	         $("#businessPanel").css("display", "none");     
+	         $("#hiBusiness").css("display", "none");
+	         $("#naverPanel").css("display", "none");
+	         $("#hiNaver").css("display", "none");
+	    }
+		
+		if(sessionStorage.getItem("memberName") != null){
+	   		 $("#memberPanel").css("display", "none");
+	   		 $("#hiMember").css("display", "none");
+	         $("#businessPanel").css("display", "none");     
+	         $("#hiBusiness").css("display", "none");
+	         $("#naverPanel").css("display", "block");
+	         $("#hiNaver").css("display", "block");
+	    }
+		
+		
+		
+		$("#header").load("/main/header.html");	
+
+		$("#footers").load("/main/footer.html");
 });
 </script>
 </head>
@@ -399,13 +492,19 @@ A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themefores
 Licensed under MIT
 -->
 
+<!-- TOP  -->
+<div class="top" id="header"></div>
+<div class="container">
+	<!-- MIDDLE -->
+	<div class="body_wrap">
+	
 <div class="container">
     <div class="row profile">
 		<div class="col-md-3">
 			<div class="profile-sidebar">
 				<!-- SIDEBAR USERPIC -->
 				<div class="profile-userpic">
-					
+				
 				</div>
 				<!-- END SIDEBAR USERPIC -->
 				<!-- SIDEBAR USER TITLE -->
@@ -414,7 +513,8 @@ Licensed under MIT
 					
 					</div>
 					<div class="profile-usertitle-job">
-						<a href="updateMember.html" >회원정보수정</a>
+					<a onclick="location.href='updateMember.html'" id="btnUpdateMember">회원정보수정</a>
+		<!--  <button onclick="location.href='/login/listMember.html'">회원정보 보기</button> -->
 					</div>
 				</div>
 				<!-- END SIDEBAR USER TITLE -->
@@ -432,12 +532,12 @@ Licensed under MIT
 							예약내역 </a>
 							
 						</li>
-						<li id="li2">
+						<li id="li2" >
 							<a id="a2">
 							<i class="glyphicon glyphicon-user"></i>
 							캠핑후기 </a>
-						</li id="li3">
-						<li class="active">
+						</li>
+						<li id="li3" class="active">
 							<a id="a3">
 							<i class="glyphicon glyphicon-ok"></i>
 							위시리스트 </a>
@@ -447,25 +547,28 @@ Licensed under MIT
 				<!-- END MENU -->
 			</div>
 		</div>
-		
 		<div class="col-md-9">
             <div class="profile-content">
 			 
 			 <div id="pattern" class="pattern">
     <ul class="list img-list">
      <h4 id="h4"></h4>
-        <hr>
+      <hr>
         <li id="li">
-       
+
         </li>
     </ul>
 </div>
 <!--End Pattern HTML-->
-			  
             </div>
 		</div>
 	</div>
 </div>
+<!-- BOTTOM -->
+	</div>  
+</div><br>
+
+<div id="footers" class="bottom"></div>
 <br>
 <br>
 </body>

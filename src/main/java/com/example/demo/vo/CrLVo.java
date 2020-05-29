@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class CrLVo {
 
 	private int cre_no;
-	private Date cre_date;
+	private String cre_date;
 	private int cre_rate;
 	private String cs_name;
 	private String cs_camp_fname;

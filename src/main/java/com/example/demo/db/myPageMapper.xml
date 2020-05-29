@@ -86,7 +86,7 @@ camping_spot cs where cw.mc_id = mc.mc_id and cw.cs_no = cs.cs_no and mc.mc_id =
 
 <select id="myReviewList" resultType="CrLVo">
 
-select cre.cre_no, cre_content, cre_rate, cre_date, cre.mc_id, crer.mb_id, cs.cs_camp_fname ,cs.cs_name, cs.cs_no, crer.cre_re_contents
+select cre.cre_no, cre_content, cre_rate, TO_CHAR(cre_date,'YYYY-MM-DD') cre_date, cre.mc_id, crer.mb_id, cs.cs_camp_fname ,cs.cs_name, cs.cs_no, crer.cre_re_contents
 from camping_spot cs, camping_review cre, camping_review_re crer, member_business mb, member_customer mc
 where cs.cs_no = cre.cs_no and crer.mb_id = mb.mb_id and  mc.mc_id = cre.mc_id and mc.mc_id = #{mc_id}
 

@@ -339,18 +339,20 @@ body {
 	#btnUpdateBusiness{
 		cursor: pointer;
 	}
-
-
 </style>
 <script type="text/javascript" src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	var arr;
 
-	var mc_id = location.search;
-
-	mc_id = mc_id.substring(mc_id.indexOf("=")+1);
-	alert(mc_id);
+	var mc_id = sessionStorage.getItem("memberId");
+	var mb_id = sessionStorage.getItem("businessId");
+	var mc_id2 = sessionStorage.getItem("memberName");
+	var mc_auth = sessionStorage.getItem("auth");
+	
+	$("#mc_id").html(mc_id);
+	$("#mb_id").html(mb_id);
+	$('#mc_id2').html(mc_id2);	
 	
 	$("#header").load("/main/header.html");	
 
@@ -369,9 +371,9 @@ $(function(){
 	
 		function myReviewList(){
 			
-			var data = {mc_id : mc_id};
-			$.ajax("myReviewList.do", {data : data, success : function(r){
+			$.ajax("/myReviewList.do", {data:{"mc_id":mc_id}, success : function(r){
 				arr = r;
+				console.log(r);
 				$.each(arr, function(idx , r){
 					var a = $("<div class='inner'></div><br>")
 					var str = r.cs_camp_fname;
@@ -389,24 +391,24 @@ $(function(){
 						var idx = $(this).attr("idx");
 					var no = {cre_no : arr[idx].cre_no };
 						$.ajax("/deleteMyReview", {data : no, success : function(r) {
-							window.location.href = "login/myPageReviewList.html";
+							window.location.href = "/login/myPageReviewList.html";
 							alert("¿Ï·á");
-							}});
-						});
+						}});
+					});
 					
 					
 					
 					$("#a1").click(function(){
 						var idx = $(this).attr("idx");
-						window.location.href="login/myPage.html";
+						window.location.href="/login/myPage.html";
 					});
 					
 					$("#a2").click(function(c){
-						window.location.href="login/myPageReviewList.html?mc_id="+data[0].mc_id;
+						window.location.href="/login/myPageReviewList.html";
 					});
 					
 					$("#a3").click(function(c){
-						window.location.href="login/myPageWishList.html?mc_id="+data[0].mc_id;
+						window.location.href="/login/myPageWishList.html";
 					});
 					
 					
