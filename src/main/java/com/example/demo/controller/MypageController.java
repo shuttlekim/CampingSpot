@@ -113,10 +113,10 @@ public class MypageController {
 	}
 	
 	@RequestMapping("/cancelReservation")
-	public String cancelReservation(String mc_id) {
+	public String cancelReservation(int r_no) {
 		System.out.println("컨트롤러 동작함");
 		String str = "ok";
-		dao.cancelReservation(mc_id);
+		dao.cancelReservation(r_no);
 		return str;
 	}
 	

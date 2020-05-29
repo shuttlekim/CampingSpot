@@ -4,21 +4,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
  <style type="text/css">
-hr{
-  border-top: 1px solid green;
-}
-div{
-	float: left;
-}
 .cs{
 	margin-top: 10px;
-	margin-left: 30px;
+	margin-left: 220px;
+	text-align: left;
 }
 .line {
-  border-left: 2px solid green;
-  height: 700px;
+	float:left;
+	border-left: 2px solid green;
+	height: 750px;
 }
 ul {
+	float:left;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -40,6 +37,14 @@ li a.active {
 li a:hover:not(.active) {
   background-color: pink;
   color: white;
+}
+#f{
+	
+}
+.div cs{
+	float:left;
+}
+.bts{
 }
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -121,12 +126,11 @@ li a:hover:not(.active) {
 			  <li><a id="bossSales">매출관리</a></li>
 			</ul>
 		</div>
-		<div class="div line"></div>
-	
-		<div class="div cs">
-			<h2>캠핑장 등록</h2>
-			<hr>
+		<div class="line"></div>
+		<div class="cs">
+			
 			<form id="f" method="post" enctype="multipart/form-data">
+				<h2>캠핑장 등록</h2>
 				<table>
 					<tr>
 						
@@ -178,7 +182,7 @@ li a:hover:not(.active) {
 						<td><input type="file" name="CampingUploadFile" id="CampingUploadFile" multiple="multiple"></td>
 					</tr>
 					<tr>
-						<th>약도/ 주변시설 사진</th>
+						<th>약도/주변시설 사진</th>
 						<td><input type="file" name="MapUploadFile" id="MapUploadFile"></td>
 					</tr>
 					<tr>
@@ -233,10 +237,10 @@ li a:hover:not(.active) {
 						<th><input type="hidden" id="mb_id" name="mb_id"></th>
 					</tr>				
 				</table>
-			</form>		
-			<button id="csInsert">캠핑장등록</button>
-			<button id="csReset">취소</button>
-			<button id="btnCR">캠핑룸등록</button>			
+			</form>
+			<button class="bts" id="csInsert">캠핑장등록</button>
+			<button class="bts" id="csReset">취소</button>
+			<button class="bts" id="btnCR">캠핑룸등록</button>			
 		</div>
 	
 	 </div>

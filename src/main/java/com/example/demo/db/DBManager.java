@@ -250,10 +250,10 @@ public class DBManager {
 	}
 	
 	// 현성 : 예약취소요청 update
-	public static int cancelReservation(String mc_id) {
+	public static int cancelReservation(int r_no) {
 		int re = -1;
 		SqlSession session = factory.openSession(true);
-		re = session.update("myPage.cancelReservation", mc_id);
+		re = session.update("myPage.cancelReservation", r_no);
 		session.close();
 		return re;
 	}
