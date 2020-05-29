@@ -53,13 +53,15 @@ li a:hover:not(.active) {
 	margin-left: 230px;
 	margin-top: -200px;
 }
-th{
+#crtb>th{
+	border: 1px solid black;
 	background: #CCCCCC;
 	color: black;
 	font-weight: bold;
+	padding: 10px;
  
 }
-th, td{
+td{
 	padding: 10px;
 	border: 1px solid black;
 }
@@ -253,11 +255,11 @@ th, td{
 			</table>
 			<br>
 			<hr id="mid">
-			<h2 id="cr_insert">캠핑룸 추가</h2>
+			<h2 id="cr_insert">캠핑룸 추가/수정</h2>
 			<div class="insertForm">
 				<form id="insertF" >
 				
-					<table id="insertTb">
+					<table class="insertTb">
 						<tr>
 							<th>캠핑룸명</th>
 							<th><input type="text" id="i_cr_name" name="cr_name"></th>
