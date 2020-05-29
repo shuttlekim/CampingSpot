@@ -49,9 +49,9 @@ public class MypageController {
 	}
 
 	@RequestMapping(value = "/profile.do", produces = "application/json;charset=UTF-8")
-	public String profile() {
+	public String profile(String mc_id) {
 		String str = "";
-		List<ProfileVo> list3 = dao.profile();
+		List<ProfileVo> list3 = dao.profile(mc_id);
 		Gson gson = new Gson();
 		str = gson.toJson(list3);
 		System.out.println(str);

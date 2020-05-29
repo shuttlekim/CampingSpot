@@ -45,7 +45,7 @@ where cs.cs_no = cre.cs_no and cs.cs_no = cr.cs_no and cr.cr_no = res.cr_no and 
    
 <!-- 프로필정보 -->  
 <select id="profile" resultType="ProfileVo">
-select mc_fname, mc_point , mc_name from member_customer where mc_id = 'test1234'
+select mc_fname, mc_point , mc_name from member_customer where mc_id = #{mc_id}
 </select>
 
 

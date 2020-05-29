@@ -188,10 +188,10 @@ public class DBManager {
 		return list;
 	}
 	// 현성 : 프로필 출력
-	public static List<ProfileVo> profile() {
+	public static List<ProfileVo> profile(String mc_id) {
 		List<ProfileVo> list = null;
 		SqlSession session = factory.openSession();
-		list = session.selectList("myPage.profile");
+		list = session.selectList("myPage.profile", mc_id);
 		session.close();
 		return list;
 	}

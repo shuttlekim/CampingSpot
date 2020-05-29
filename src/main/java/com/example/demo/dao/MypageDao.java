@@ -24,8 +24,8 @@ public class MypageDao {
 		return DBManager.resrvation_after();
 	}
 
-	public List<ProfileVo> profile() {
-		return DBManager.profile();
+	public List<ProfileVo> profile(String mc_id) {
+		return DBManager.profile(mc_id);
 	}
 
 	public List<CsDVo> myReservationDetail(CsDVo cd) {
