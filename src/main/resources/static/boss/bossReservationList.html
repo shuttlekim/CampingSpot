@@ -8,18 +8,20 @@ hr{
   border-top: 1px solid green;
 }
 div{
-	float: left;
 }
 
 .line {
-  border-left: 2px solid green;
-  height: 700px;
+	float:left;
+	border-left: 2px solid green;
+	height: 480px;
 }
 ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 200px;
+	float:left;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 200px;
+  
 }
 
 li a {
@@ -40,12 +42,23 @@ li a:hover:not(.active) {
   color: white;
 }
 .rList{
+	text-align: center;
+	font-size: 12px;
 	margin-top : 10px;
-	margin-left: 10px;
+	margin-left: 210px;
 }
 .cal{
 	margin-top : 30px;
 	margin-left: 200px;
+}
+th{
+	background: #CCCCCC;
+	color: black;
+	font-weight: bold;
+}
+th, td{
+	padding: 10px;
+	border: 1px solid black;
 }
 
 </style>
@@ -193,14 +206,14 @@ li a:hover:not(.active) {
 		
 		<div class="div rList">
 			<h2>캠핑룸 예약 현황</h2>
-			<table id="rTB" border="2">
+			<table id="rTB">
 				<tr>
 					<th>예약번호</th>
 					<th>예약자명</th>
 					<th>연락처</th>
 					<th>캠핑룸명</th>
-					<th>예약날짜</th>
-					<th>체크인날짜</th>
+					<th>예약일</th>
+					<th>체크인</th>
 					<th>결제요금</th>
 					<th>예약상태</th>
 					<th>취소상태</th> 
