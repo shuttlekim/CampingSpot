@@ -46,6 +46,8 @@
 $(function(){	
 	
 	var mc_id = sessionStorage.getItem("memberId");
+	
+	
 	var mb_id = sessionStorage.getItem("businessId");
 	var mc_id2 = sessionStorage.getItem("memberName");
 	var mc_auth = sessionStorage.getItem("auth");
@@ -143,13 +145,11 @@ $(function(){
 		<div id="memberPanel">
 		<button onclick="location.href='updateMember.html'" id="btnUpdateMember">회원정보 수정</button>
 		<!--  <button onclick="location.href='/login/listMember.html'">회원정보 보기</button> -->
-		<button id="btnDeleteMember">회원탈퇴</button>
 		</div>
 
 		<div id="businessPanel">
 		<button onclick="location.href='updateBusiness.html'" id="btnUpdateBusiness">회원정보 수정</button>
 		<!--  <button onclick="location.href='/login/listBusiness.html'">회원정보 보기</button> -->
-		<button id="btnDeleteBusiness">회원탈퇴</button>
 		<button onclick="location.href='../boss/myBusinessPage.html'" id="btnMyBusinessPage">사업자페이지</button>
 		</div>
 		
