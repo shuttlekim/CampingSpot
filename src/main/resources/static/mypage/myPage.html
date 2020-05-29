@@ -365,7 +365,7 @@ $(function(){
 					
 					$(button1).click(function(){
 						var idx = $(this).attr("idx");
-							window.location.href= "/myReservationDetail.html?mc_id="+arr[idx].mc_id+"&r_no="+arr[idx].r_no;
+							window.location.href= "/mypage/myReservationDetail.html?mc_id="+arr[idx].mc_id+"&r_no="+arr[idx].r_no;
 					});
 					
 					$(button2).click(function(){
@@ -396,7 +396,7 @@ $(function(){
 							var today = new Date();
 							if(today < checkin){
 								alert("리뷰를 쓸수 있어요.");
-								window.location.href="/reviewMyReservation.html?mc_id="+arr[idx].mc_id+"&cs_no="+arr[idx].cs_no;	
+								window.location.href="/mypage/reviewMyReservation.html?mc_id="+arr[idx].mc_id+"&cs_no="+arr[idx].cs_no;	
 							}else{
 								alert("리뷰를 쓸수 없어요.");
 							}
@@ -407,15 +407,15 @@ $(function(){
 
 					$("#a1").click(function(){
 						var idx = $(this).attr("idx");
-						window.location.href="myPage.html";
+						window.location.href="/mypage/myPage.html";
 					});
 					
 					$("#a2").click(function(c){
-						window.location.href="myPageReviewList.html?mc_id="+data[0].mc_id;
+						window.location.href="/mypage/myPageReviewList.html?mc_id="+data[0].mc_id;
 					});
 					
 					$("#a3").click(function(c){
-						window.location.href="myPageWishList.html?mc_id="+data[0].mc_id;
+						window.location.href="/mypage/myPageWishList.html?mc_id="+data[0].mc_id;
 					});
 					
 					
