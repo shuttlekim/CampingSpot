@@ -93,6 +93,19 @@ margin-left: 0%;
  font-size: 40px;
 }
 
+/* 마우스 올리면 무지개색으로 변해요 ㅎㅎ :D */
+a:hover, a:focus { animation-duration: 3s; animation-name: rainbowLink; animation-iteration-count: infinite; }
+@keyframes rainbowLink {
+   0% { color: #ff2a2a; }
+   15% { color: #ff7a2a; }
+   30% { color: #ffc52a }
+   45% { color: #43ff2a; }
+   60% { color: #2a89ff; }
+   75% { color: #202082; }
+   90% { color: #6b2aff; }
+   100% { color: #e82aff; }
+  }
+
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -105,7 +118,7 @@ $(function(){
 });
 </script>
 </head>
-<body>
+<body bgcolor="#A0A0A0">
 
 	<!-- TOP  -->
 	<div class="top" id="header"></div>
@@ -119,6 +132,7 @@ $(function(){
 			<a href="pointFAQ.html"><i class="fas fa-comments-dollar fa-4x" class="PointFAQ"><br><font size="4px" id="font3">쿠폰/포인트FAQ</font></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="changeFAQ.html"><i class="fas fa-exchange-alt fa-4x" class="ChangeFAQ"><br><font size="4px" id="font4">변경/환불FAQ</font></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="accountFAQ.html"><i class="fas fa-headset fa-4x" class="AccountFAQ"><br><font size="4px" id="font5">계정FAQ</font></i></a>
+			<!-- 찐색상변경 <a href="accountFAQ.html"><i class="fas fa-headset fa-4x" class="AccountFAQ" style="color:blue;"><br><font size="4px" id="font5">계정FAQ</font></i></a> -->
 		</div>
 		
 	</div>
