@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	var arr;	
+	
+	//모든 맴버 확인
+	$.getJSON("/listBusiness.do", function(data){
+		
+		arr = data;	
+		
+		$.each(arr, function(idx, e){
+			
+			var tr = $("<tr></tr>");
+			var td1 = $("<td></td>").html(e.mb_id);
+			var td2 = $("<td></td>").html(e.mb_email);
+			var td3 = $("<td></td>").html(e.mb_name);
+			var td4 = $("<td></td>").html(e.mb_nickname);
+			var td5 = $("<td></td>").html(e.mb_tel);
+			var td6 = $("<td></td>").html(e.mb_licence);
+			var td7 = $("<td></td>").html(e.mb_regdate);
+			var td8 = $("<td></td>").html(e.mb_recdate);
+			$(tr).append(td1, td2, td3, td4, td5, td6, td7, td8);
+			
+			$("#tb").append(tr);			
+		});		
+	});
+	
+
+});
+</script>
+</head>
+<body>
+<h2>사업자회원목록</h2>
+<hr>
+		
+<table id="tb" border="1">
+	<tr>
+		<th>회원아디</th>
+		<th>회원메일</th>
+		<th>회원이름</th>
+		<th>회원별명</th>
+		<th>전화번호</th>
+		<th>사등번호</th>
+		<th>가입일자</th>
+		<th>최근접속</th>
+	</tr>
+</table>	
+</body>
+</html>

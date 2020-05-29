@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	.body{
+		min-height: 100vh;
+		height: auto;
+		width: auto;
+	}
+	.filterAndList{
+		display: flex;
+	}
+	.main_search{
+		display: flex;
+		padding-left: 20px;
+	}
+	#filter{
+		min-width: 20vw;
+		min-height: 70vh;
+		width: auto;
+		height: auto;
+		background: #cfd8dc;
+		margin: 10px 0 10px 0;
+	}
+	#themeFilter{
+		padding: 20px;
+	}
+	#themeFilter > div{
+		display: flex;
+	}
+	#themeFilter > div > div{
+		width: 50vw;
+	}
+	#facilityFilter{
+		padding: 20px;
+	}
+	#facilityFilter > div{
+		display: flex;
+	}
+	#facilityFilter > div > div{
+		width: 50vw;
+	}
+	#priceFilter{
+		padding: 20px;
+	}
+	#priceFilter > div > div > input{
+		min-width: 10vw;
+		width: auto;
+	}
+	#filterButtonDiv{
+		padding: 20px;
+	}
+	#filterButtonDiv > button{
+		min-width: 6vw;
+		width: auto;
+	}
+	#searchList{
+		min-width: 75%;
+		min-height: 90vh;
+		width: auto;
+		height: auto;
+		background: #eceff1;
+		margin: 10px 0 10px 10px;
+	}
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+ 	$(function(){
+ 		console.log(decodeURI(location.search));
+ 		var data = decodeURI(location.search).split('&keyword=');
+ 		var data1 = data[0].split('&campingType=');
+ 		var data2 = data1[0].split('&checkout=');
+ 		var data3 = data2[0].split('?checkin=');
+ 		
+ 		//검색조건
+ 		var keyword = data[1];
+ 		var campingType = data1[1];
+ 		var checkout = data2[1];
+ 		var checkin = data3[1];
+ 		var region = null;
+ 		
+ 		//축제페이지에서 검색했다면
+ 		var fest_data = decodeURI(location.search).split('?searchAddr=')[1];
+ 		console.log("축제페이지에서 넘어온 data:",fest_data)
+ 		if(fest_data != null){
+ 			var fest_data1 = fest_data.split(' ')[0];
+ 	 		var searchAddr = fest_data1;
+ 	 		console.log("축제로 검색된 주소:"+searchAddr);
+ 	 		
+ 	 		if(searchAddr.length <= 5){
+ 	 			keyword = searchAddr;
+ 	 		}	
+ 		}
+ 		
+ 		//검색결과 리스트
+ 		var arr;
+ 		
+ 		var search_data = {
+	 				"checkin": checkin,
+	 				"checkout": checkout,
+	 				"campingType": campingType,
+	 				"keyword": keyword
+	 		}
+ 		console.log("체크인",checkin);
+	 	console.log("체크아웃",checkout);
+	 	console.log("캠핑타입",campingType);
+	 	console.log("키워드",keyword);
+ 		
+ 		var searchList = function(input_data){
+ 			
+ 	 		$.ajax("/campingSearchList.do", {data: input_data, success:function(result){
+ 	 			$("#searchList").empty();
+ 	 			arr = result
+ 	 			$.each(arr, function(idx, item){
+ 	 				var title = $("<div></div>").html("이름: "+item.name);
+ 	 				var price = $("<div></div>").html("가격: "+item.price);
+ 	 				var rate = $("<div></div>").html("평점: "+item.rate);
+ 	 				var addr = $("<div></div>").html("주소: "+item.addr_head+" "+item.addr_remain);
+ 	 				var detail = $("<div></div>").html("상세: "+item.detail);
+ 	 				var tel = $("<div></div>").html("연락처: "+item.tel);
+ 	 				var theme = $("<div></div>").html("테마: "+item.theme);
+ 	 				var fac = $("<div></div>").html("시설: "+item.fac);
+ 	 				
+ 	 				var camp_img = item.camp_fname.split(",");
+ 	 				
+ 	 				var big_thumb;
+ 	 				var img_div = $("<div></div>");
+ 	 				
+ 	 				$.each(camp_img, function(idx, img){
+ 	 					if(idx == 0){
+ 	 						big_thumb = $("<img>").attr({
+ 	 							"src":"../resources/camping_spot_img/"+camp_img[idx],
+ 	 							"width":"200px;"
+ 	 						});
+ 	 					}
+ 	 					$(img_div).append( $("<img>").attr({
+ 	 						"src":"../resources/camping_spot_img/"+camp_img[idx],
+ 	 						"width":"50px;"
+ 	 							}) )
+ 	 				})
+ 	 				
+ 	 				var camp_fname=$("<div></div>").html(item.camp_fname);
+ 	 				
+ 	 				var div = $("<div></div>").append(big_thumb, title, price, rate, addr, detail, tel, theme, fac, img_div).attr("idx",idx);
+ 	 				$(div).css({
+ 	 					"padding": "20px",
+ 	 					"border": "1px solid #000",
+ 	 					"margin-bottom": "10px"
+ 	 				})
+ 	 				
+ 	 				$(div).click(function(){
+ 	 					var idx = $(this).attr("idx");
+ 	 					location.href="detailCampingSpot.html?checkin="+checkin+"&checkout="+checkout+"&campingType="+campingType+"&cs_no="+arr[idx].no 	 					
+ 	 				})
+ 	 				
+ 	 				$("#searchList").append(div);
+ 	 			})
+ 	 		}})	
+ 		}
+ 		
+ 		//검색리스트 노출
+ 		searchList(search_data);
+ 		
+ 		
+ 		//검색버튼
+ 		$("#main_btn_search").click(function(){
+ 			keyword = $("#keyword").val();
+ 	 		campingType = $("#campingType").val();
+ 	 		checkout = $("#checkout").val();
+ 	 		checkin = $("#checkin").val()
+ 	 		//region = $("#region").val();
+ 	 		/* if(region == 'ALL'){
+ 	 			region = null;
+ 	 		} */
+ 	 		search_data = {
+	 				"checkin": checkin,
+	 				"checkout": checkout,
+	 				"campingType": campingType,
+	 				"keyword": keyword
+	 		}
+ 	 		
+ 	 		searchList(search_data);
+			
+		})
+		
+		//필터 처리를 위해 필요한 변수
+		//테마
+		var t_chk = $("input[name=themeFilter]");
+ 	 	var t_len = t_chk.length;
+ 	 	var t_checkRow = '';
+ 	 	var t_checkCnt = 0;
+ 	 	var t_checkLast = '';
+ 	 	var t_rowid = '';
+ 	 	var t_cnt = 0;
+ 	 	//시설
+ 	 	var f_chk = $("input[name=facilityFilter]");
+ 	 	var f_len = f_chk.length;
+ 	 	var f_checkRow = '';
+ 	 	var f_checkCnt = 0;
+ 	 	var f_checkLast = '';
+ 	 	var f_rowid = '';
+ 	 	var f_cnt = 0;
+ 	 	//가격
+ 	 	var lowPrice = 0;
+ 	 	var highPrice = 0;
+ 	 	
+		
+		//필터 처리
+		var doFilter = function(){
+ 			t_rowid = '';
+ 			f_rowid = '';
+ 	 		
+ 			//테마필터 처리
+ 	 		for(var i=0; i<t_len; i++){
+ 	 			if(t_chk[i].checked == true){
+ 	 				t_checkCnt++; //체크된 체크박스 개수
+ 	 				t_checkLast = i; //체크된 체크박스의 인덱스
+ 	 			}
+ 	 		}
+ 	 		
+ 	 		for(var i=0; i<t_len; i++){
+ 	 			if(t_chk[i].checked ==true){ //체크된 값 구분
+ 	 				t_checkRow = t_chk[i].value;
+ 	 			}else{
+ 	 				t_cnt++;
+ 	 				t_checkRow='';
+ 	 				continue;
+ 	 			}
+ 	 			
+ 	 			if(t_checkCnt == 1){ //체크된 체크박스 개수가 한개일때
+ 	 				t_rowid += t_checkRow;
+ 	 			}else{	//체크된 체크박스의 개수가 여러 개 일때,
+ 	 				if(i==t_checkLast){ //체크된 체크박스 중 마지막 체크박스 일 때,
+ 	 					t_rowid += t_checkRow; // 마지막에 콤마가 붙지않는다.
+ 	 				}else{
+ 	 					t_rowid += t_checkRow+", "; // 마지막에 콤마가 붙는다.
+ 	 				}
+ 	 			} 
+ 	 			t_cnt++;
+ 	 			t_checkRow=''; //checkRow 초기화
+ 	 		}
+ 	 		
+ 	 		//시설필터 처리
+ 	 		for(var i=0; i<f_len; i++){
+ 	 			if(f_chk[i].checked == true){
+ 	 				f_checkCnt++; //체크된 체크박스 개수
+ 	 				f_checkLast = i; //체크된 체크박스의 인덱스
+ 	 			}
+ 	 		}
+ 	 		
+ 	 		for(var i=0; i<f_len; i++){
+ 	 			if(f_chk[i].checked ==true){ //체크된 값 구분
+ 	 				f_checkRow = f_chk[i].value;
+ 	 			}else{
+ 	 				f_cnt++;
+ 	 				f_checkRow='';
+ 	 				continue;
+ 	 			}
+ 	 			
+ 	 			if(f_checkCnt == 1){ //체크된 체크박스 개수가 한개일때
+ 	 				f_rowid += f_checkRow;
+ 	 			}else{	//체크된 체크박스의 개수가 여러 개 일때,
+ 	 				if(i==f_checkLast){ //체크된 체크박스 중 마지막 체크박스 일 때,
+ 	 					f_rowid += f_checkRow; // 마지막에 콤마가 붙지않는다.
+ 	 				}else{
+ 	 					f_rowid += f_checkRow+", "; // 마지막에 콤마가 붙는다.
+ 	 				}
+ 	 			} 
+ 	 			f_cnt++;
+ 	 			f_checkRow=''; //checkRow 초기화
+ 	 		}
+ 		}
+		
+ 		//필터 검색
+ 		$("#filterSearchBtn").click(function(){
+ 			doFilter();
+ 			lowPrice = $("#input_low_price").val();
+ 			highPrice = $("#input_high_price").val();
+
+ 			var filterData = {
+ 					"theme": t_rowid,
+ 					"facility": f_rowid,
+ 					"lowPrice": lowPrice+'',
+ 					"highPrice": highPrice+'',
+ 					"keyword": keyword,
+ 					"campingType": campingType,
+ 					"checkin": checkin,
+ 					"checkout": checkout
+ 			}
+ 			console.log(filterData);
+ 			
+ 			/* $.ajax("/campingSearchList.do", {data: filterData, success:function(re){
+ 				$("#searchList").empty();
+ 	 			arr = re;
+ 	 			$.each(arr, function(idx, item){
+ 	 				var title = $("<div></div>").html("이름: "+item.name);
+ 	 				var price = $("<div></div>").html("가격: "+item.price);
+ 	 				var rate = $("<div></div>").html("평점: "+item.rate);
+ 	 				var addr = $("<div></div>").html("주소: "+item.addr_head+" "+item.addr_remain);
+ 	 				var detail = $("<div></div>").html("상세: "+item.detail);
+ 	 				var tel = $("<div></div>").html("연락처: "+item.tel);
+ 	 				var theme = $("<div></div>").html("테마: "+item.theme);
+ 	 				var fac = $("<div></div>").html("시설: "+item.fac);
+ 	 				
+ 	 				var camp_img = item.camp_fname.split(",");
+ 	 				
+ 	 				var big_thumb;
+ 	 				var img_div = $("<div></div>");
+ 	 				
+ 	 				$.each(camp_img, function(idx, img){
+ 	 					if(idx == 0){
+ 	 						big_thumb = $("<img>").attr({
+ 	 							"src":"../resources/camping_spot_img/"+camp_img[idx],
+ 	 							"width":"200px;"
+ 	 						});
+ 	 					}
+ 	 					$(img_div).append( $("<img>").attr({
+ 	 						"src":"../resources/camping_spot_img/"+camp_img[idx],
+ 	 						"width":"50px;"
+ 	 							}) )
+ 	 				})
+ 	 				
+ 	 				var camp_fname=$("<div></div>").html(item.camp_fname);
+ 	 				
+ 	 				var div = $("<div></div>").append(big_thumb, title, price, rate, addr, detail, tel, theme, fac, img_div).attr("idx",idx);
+ 	 				$(div).css({
+ 	 					"padding": "20px",
+ 	 					"border": "1px solid #000",
+ 	 					"margin-bottom": "10px"
+ 	 				})
+ 	 				
+ 	 				$(div).click(function(){
+ 	 					var idx = $(this).attr("idx");
+ 	 					location.href="detailCampingSpot.html?checkin="+checkin+"&checkout="+checkout+"&campingType="+campingType+"&cs_no="+arr[idx].no 	 					
+ 	 				})
+ 	 				
+ 	 				$("#searchList").append(div);
+ 	 			})
+ 			}}) */
+ 			searchList(filterData);
+ 			
+ 		})
+ 		
+ 		//헤더 출력
+ 		$("#headers").load("header.html");
+ 		
+ 		//푸터 출력
+ 		$("#footers").load("footer.html");
+ 	})
+</script>
+</head>
+<body>
+	<div id="headers"></div> 
+	<div class="body">
+		<hr>
+		<div class="main_search">
+			<div class="main_search_inner">
+				<form id="main_search_form">
+				체크인&nbsp<input id="checkin" type="date" name="checkin">
+				&nbsp&nbsp
+				체크아웃&nbsp<input id="checkout" type="date" name="checkout">
+				&nbsp&nbsp
+				캠핑타입
+				<select id="campingType" name="campingType">
+					<option value="auto" selected="selected">오토캠핑</option>
+					<option value="glamping">글램핑</option>
+					<option value="caravan">카라반</option>
+				</select>
+				&nbsp&nbsp
+				<input id="keyword" type="text" name="keyword" placeholder="검색어를 입력하세요."/>
+				</form>
+				&nbsp&nbsp
+				<button id="main_btn_search">검색</button>
+			</div>
+		</div>
+		<hr>
+		<div class="filterAndList">
+			<div id="filter">
+				<div id="themeFilter">
+					<p>테마별</p>
+					<div>
+						<div>
+							<label><input type="checkbox" name="themeFilter" value="산"> 산</label><br>
+		      				<label><input type="checkbox" name="themeFilter" value="강"> 강</label><br>
+		      				<label><input type="checkbox" name="themeFilter" value="섬"> 섬</label>
+						</div>
+						<div>
+							<label><input type="checkbox" name="themeFilter" value="바다"> 바다</label><br>
+					        <label><input type="checkbox" name="themeFilter" value="계곡"> 계곡</label><br>
+					        <label><input type="checkbox" name="themeFilter" value="호수"> 호수</label>
+						</div>
+					</div>
+				</div>
+				<div id="facilityFilter">
+					<p>시설별</p>
+					<div>
+						<div>
+							<label><input type="checkbox" name="facilityFilter" value="와이파이"> 와이파이</label><br>
+		      				<label><input type="checkbox" name="facilityFilter" value="놀이터"> 놀이터</label><br>
+		      				<label><input type="checkbox" name="facilityFilter" value="운동시설"> 운동시설</label><br>
+					        <label><input type="checkbox" name="facilityFilter" value="바베큐"> 바베큐</label>
+						</div>
+						<div>
+							<label><input type="checkbox" name="facilityFilter" value="난로대여"> 난로대여</label><br>
+					        <label><input type="checkbox" name="facilityFilter" value="매점"> 매점</label><br>
+		      				<label><input type="checkbox" name="facilityFilter" value="에어컨"> 에어컨</label>
+						</div>
+					</div>
+				</div>
+				<div id="priceFilter">
+					<p>가격별</p>
+					<div>
+						<div><input type="number" id="input_low_price" name="low_price" placeholder="최저가"></div>
+						~
+						<div><input type="number" id="input_high_price" name="high_price" placeholder="최고가"></div>
+					</div>
+				</div>
+				<div id="filterButtonDiv">
+					<button>초기화</button>
+					<button id="filterSearchBtn">검색</button>
+				</div>
+			</div>
+			<div id="searchList"></div>
+		</div>
+	</div>
+	<div id="footers"></div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<style type="text/css">
+.menu a{cursor:pointer;}
+.menu .hide{display:none;}
+
+
+body {
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 25%;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+li a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+</style>
+ <link rel="import" href="menubar.html">
+</head>
+<script type="text/javascript">
+$(function(){
+	$(".menu>a").click(function(){
+        var submenu = $(this).next("ul");
+        // submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
+        if( submenu.is(":visible") ){
+            submenu.slideUp();
+        }else{
+            submenu.slideDown();
+        }
+    });
+
+
+
+
+});
+
+
+</script>
+<body>
+<div>
+		<ul>
+			<li class="menu" ><a href="/admin/adminAuth.html">권한관리</a></li>
+			<li class="menu"><a href="/admin/adminLog.html">로그관리</a></li>
+			<li class="menu"><a href="/admin/adminNotice.html">공지사항관리</a></li>
+			<li class="menu"><a href="/admin/adminStatistic.html">통계관리</a></li>
+			<li class="menu"><a>회원관리</a>
+				<ul class="hide">
+					<li><a href="/admin/adminMember.html">개인회원</a></li>
+					<li><a href="/admin/adminMemberBusiness.html">사업자회원</a></li>
+				</ul>
+			</li>
+		</ul>
+</div>
+
+</body>
+</html>

@@ -97,20 +97,20 @@
  		//검색결과 리스트
  		var arr;
  		
- 		var searchList = function(keyword, campingType, checkout, checkin){
- 			console.log("체크인",checkin);
- 	 		console.log("체크아웃",checkout);
- 	 		console.log("캠핑타입",campingType);
- 	 		console.log("키워드",keyword);
- 	 		
- 	 		var search_data = {
- 	 				"checkin": checkin,
- 	 				"checkout": checkout,
- 	 				"campingType": campingType,
- 	 				"keyword": keyword
- 	 		}
- 	 		
- 	 		$.ajax("/campingSearchList.do", {data: search_data, success:function(result){
+ 		var search_data = {
+	 				"checkin": checkin,
+	 				"checkout": checkout,
+	 				"campingType": campingType,
+	 				"keyword": keyword
+	 		}
+ 		console.log("체크인",checkin);
+	 	console.log("체크아웃",checkout);
+	 	console.log("캠핑타입",campingType);
+	 	console.log("키워드",keyword);
+ 		
+ 		var searchList = function(input_data){
+ 			
+ 	 		$.ajax("/campingSearchList.do", {data: input_data, success:function(result){
  	 			$("#searchList").empty();
  	 			arr = result
  	 			$.each(arr, function(idx, item){
@@ -122,9 +122,28 @@
  	 				var tel = $("<div></div>").html("연락처: "+item.tel);
  	 				var theme = $("<div></div>").html("테마: "+item.theme);
  	 				var fac = $("<div></div>").html("시설: "+item.fac);
+ 	 				
+ 	 				var camp_img = item.camp_fname.split(",");
+ 	 				
+ 	 				var big_thumb;
+ 	 				var img_div = $("<div></div>");
+ 	 				
+ 	 				$.each(camp_img, function(idx, img){
+ 	 					if(idx == 0){
+ 	 						big_thumb = $("<img>").attr({
+ 	 							"src":"../resources/camping_spot_img/"+camp_img[idx],
+ 	 							"width":"200px;"
+ 	 						});
+ 	 					}
+ 	 					$(img_div).append( $("<img>").attr({
+ 	 						"src":"../resources/camping_spot_img/"+camp_img[idx],
+ 	 						"width":"50px;"
+ 	 							}) )
+ 	 				})
+ 	 				
  	 				var camp_fname=$("<div></div>").html(item.camp_fname);
  	 				
- 	 				var div = $("<div></div>").append(title, price, rate, addr, detail, tel, theme, fac, camp_fname).attr("idx",idx);
+ 	 				var div = $("<div></div>").append(big_thumb, title, price, rate, addr, detail, tel, theme, fac, img_div).attr("idx",idx);
  	 				$(div).css({
  	 					"padding": "20px",
  	 					"border": "1px solid #000",
@@ -142,7 +161,7 @@
  		}
  		
  		//검색리스트 노출
- 		searchList(keyword, campingType, checkout, checkin);
+ 		searchList(search_data);
  		
  		
  		//검색버튼
@@ -151,12 +170,18 @@
  	 		campingType = $("#campingType").val();
  	 		checkout = $("#checkout").val();
  	 		checkin = $("#checkin").val()
- 	 		region = $("#region").val();
+ 	 		//region = $("#region").val();
  	 		/* if(region == 'ALL'){
  	 			region = null;
  	 		} */
+ 	 		search_data = {
+	 				"checkin": checkin,
+	 				"checkout": checkout,
+	 				"campingType": campingType,
+	 				"keyword": keyword
+	 		}
  	 		
- 	 		searchList(keyword, campingType, checkout, checkin);
+ 	 		searchList(search_data);
 			
 		})
 		
@@ -266,7 +291,7 @@
  			}
  			console.log(filterData);
  			
- 			$.ajax("/campingSearchList.do", {data: filterData, success:function(re){
+ 			/* $.ajax("/campingSearchList.do", {data: filterData, success:function(re){
  				$("#searchList").empty();
  	 			arr = re;
  	 			$.each(arr, function(idx, item){
@@ -278,9 +303,28 @@
  	 				var tel = $("<div></div>").html("연락처: "+item.tel);
  	 				var theme = $("<div></div>").html("테마: "+item.theme);
  	 				var fac = $("<div></div>").html("시설: "+item.fac);
+ 	 				
+ 	 				var camp_img = item.camp_fname.split(",");
+ 	 				
+ 	 				var big_thumb;
+ 	 				var img_div = $("<div></div>");
+ 	 				
+ 	 				$.each(camp_img, function(idx, img){
+ 	 					if(idx == 0){
+ 	 						big_thumb = $("<img>").attr({
+ 	 							"src":"../resources/camping_spot_img/"+camp_img[idx],
+ 	 							"width":"200px;"
+ 	 						});
+ 	 					}
+ 	 					$(img_div).append( $("<img>").attr({
+ 	 						"src":"../resources/camping_spot_img/"+camp_img[idx],
+ 	 						"width":"50px;"
+ 	 							}) )
+ 	 				})
+ 	 				
  	 				var camp_fname=$("<div></div>").html(item.camp_fname);
  	 				
- 	 				var div = $("<div></div>").append(title, price, rate, addr, detail, tel, theme, fac, camp_fname).attr("idx",idx);
+ 	 				var div = $("<div></div>").append(big_thumb, title, price, rate, addr, detail, tel, theme, fac, img_div).attr("idx",idx);
  	 				$(div).css({
  	 					"padding": "20px",
  	 					"border": "1px solid #000",
@@ -294,7 +338,8 @@
  	 				
  	 				$("#searchList").append(div);
  	 			})
- 			}})
+ 			}}) */
+ 			searchList(filterData);
  			
  		})
  		
@@ -311,7 +356,8 @@
 	<div class="body">
 		<hr>
 		<div class="main_search">
-			<form id="main_search_form">
+			<div class="main_search_inner">
+				<form id="main_search_form">
 				체크인&nbsp<input id="checkin" type="date" name="checkin">
 				&nbsp&nbsp
 				체크아웃&nbsp<input id="checkout" type="date" name="checkout">
@@ -323,31 +369,11 @@
 					<option value="caravan">카라반</option>
 				</select>
 				&nbsp&nbsp
-				<!-- 지역
-				<select id="region" name="region">
-					<option value="ALL" selected="selected">전체</option>
-					<option value="서울">서울</option>
-					<option value="부산">부산</option>
-					<option value="대구">대구</option>
-					<option value="인천">인천</option>
-					<option value="광주">광주</option>
-					<option value="대전">대전</option>
-					<option value="울산">울산</option>
-					<option value="세종">세종</option>
-					<option value="경기도">경기도</option>
-					<option value="강원도">강원도</option>
-					<option value="충청북도">충청북도</option>
-					<option value="충청남도">충청남도</option>
-					<option value="전라북도">전라북도</option>
-					<option value="전라남도">전라남도</option>
-					<option value="경상북도">경상북도</option>
-					<option value="경상남도">경상남도</option>
-					<option value="제주도">제주도</option>
-				</select> -->
 				<input id="keyword" type="text" name="keyword" placeholder="검색어를 입력하세요."/>
-			</form>
-			&nbsp&nbsp
-			<button id="main_btn_search">검색</button>
+				</form>
+				&nbsp&nbsp
+				<button id="main_btn_search">검색</button>
+			</div>
 		</div>
 		<hr>
 		<div class="filterAndList">

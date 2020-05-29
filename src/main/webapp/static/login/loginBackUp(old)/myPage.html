@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	var mc_id = sessionStorage.getItem("memberId");
+	var mb_id = sessionStorage.getItem("businessId");
+	var mc_id2 = sessionStorage.getItem("memberName");
+	
+	console.log("memberId");
+	console.log(mc_id);
+		
+	$("#mc_id").html(mc_id);
+	$("#mb_id").html(mb_id);
+	$('#mc_id2').html(mc_id2);	
+	
+	$("#btnDeleteMember").click(function(){			
+		//data:mc_id 	// json 형태로
+		$.ajax("deleteMember.do", {data:{"mc_id":mc_id}, success:function(r){
+			//alert("삭제성공");			
+			var result = confirm("정말 탈퇴하실건가요? ㅠㅠ");
+			
+			if(result){
+			    alert("잘가요...");
+			    sessionStorage.clear();
+				window.location.href = "main.html";
+			}else{
+			    alert("^_____^");
+			}
+		}});
+
+	});
+	
+	
+	$("#btnDeleteBusiness").click(function(){			
+		//data:mc_id 	// json 형태로
+		$.ajax("deleteBusiness.do", {data:{"mb_id":mb_id}, success:function(r){
+			//alert("삭제성공");			
+			var result = confirm("정말 탈퇴하실건가요? ㅠㅠ");
+			
+			if(result){
+			    alert("잘가요...");
+			    sessionStorage.clear();
+				window.location.href = "main.html";
+			}else{
+			    alert("^_____^");
+			}
+		}});
+
+	});
+
+	
+	if(sessionStorage.getItem("businessId") != null){
+   		//$("#btnLogin").html("로그아웃");
+   		 $("#memberPanel").css("display", "none");
+   		 $("#hiMember").css("display", "none");
+         $("#businessPanel").css("display", "block");     
+         $("#hiBusiness").css("display", "block");
+         $("#naverPanel").css("display", "none");
+         $("#hiNaver").css("display", "none");
+    }
+	
+	if(sessionStorage.getItem("memberId") != null){
+   		//$("#btnLogin").html("로그아웃");
+   		 $("#memberPanel").css("display", "block");
+   		 $("#hiMember").css("display", "block");
+         $("#businessPanel").css("display", "none");     
+         $("#hiBusiness").css("display", "none");
+         $("#naverPanel").css("display", "none");
+         $("#hiNaver").css("display", "none");
+    }
+	
+	if(sessionStorage.getItem("memberName") != null){
+   		//$("#btnLogin").html("로그아웃");
+   		 $("#memberPanel").css("display", "none");
+   		 $("#hiMember").css("display", "none");
+         $("#businessPanel").css("display", "none");     
+         $("#hiBusiness").css("display", "none");
+         $("#naverPanel").css("display", "block");
+         $("#hiNaver").css("display", "block");
+    }
+	
+	
+});
+</script>
+</head>
+<body>
+	<h2>마이페이지</h2>
+	
+	<div id="hiMember">
+		[<span id="mc_id"></span>] 님의 마이페이지 입니다.
+	</div>
+	
+	<div id="hiBusiness">
+		[<span id="mb_id"></span>] 님의 마이페이지 입니다.
+	</div>
+	
+	<div id="hiNaver">
+		[<span id="mc_id2"></span>] 님의 마이페이지 입니다.
+	</div>
+	
+	
+	<hr>
+	
+	<div id="memberPanel">
+	<button onclick="location.href='updateMember.html'">회원정보 수정</button>
+	<button onclick="location.href='listMember.html'">회원정보 보기</button>
+	<button id="btnDeleteMember">회원탈퇴</button>
+	</div>
+	
+	<div id="businessPanel">
+	<button onclick="location.href='updateBusiness.html'">회원정보 수정</button>
+	<button onclick="location.href='listBusiness.html'">회원정보 보기</button>
+	<button id="btnDeleteBusiness">회원탈퇴</button>
+	</div>
+	
+	<div id="naverPanel">
+	<button onclick="location.href='listMember.html'">회원정보 보기</button>
+	</div>
+
+	
+</body>
+</html>
