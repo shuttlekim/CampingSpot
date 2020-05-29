@@ -382,7 +382,7 @@ $(function(){
 			arr = data;
 			console.log(data);
 			$.each(arr, function(idx,c){
-				var a = $("<a href='#' class='inner'></a><br>")
+				var a = $("<a class='inner'></a>").attr("href", "/main/detailCampingSpot.html?cs_no="+c.cs_no);
 				var str = c.cs_camp_fname;
 				var camp_fname = str.split(",");
 				var cs_camp_fname = $("<img></img>").attr({"src":"/mypage/img/"+camp_fname[0]});
@@ -400,6 +400,7 @@ $(function(){
 				$(button1).click(function(){
 					var idx = $(this).attr("idx");
 						window.location.href= "/login/myReservationDetail.html?mc_id="+arr[idx].mc_id+"&r_no="+arr[idx].r_no;
+						
 				});
 				
 				$(button2).click(function(){
@@ -407,10 +408,10 @@ $(function(){
 				    var confirm_test = confirm("예약을 취소하시겠습니까??");
 					 
 				    if ( confirm_test == true ) {
-				    	var idx = $(this).attr("idx");
-						var data = {r_cancel : arr[idx].r_cancel}
+				    	var idx = $(button2).attr("idx");
+						var data = {r_no : arr[idx].r_no}
 				    	$.ajax("/cancelReservation", {data : data, success : function(r) {
-							console.log("동작하나요?");
+							console.log("동작하나요?" + r);
 						$("#btn").css("display" ,"none");
 						$("#msg").css("display" ,"block");
 						
@@ -474,7 +475,16 @@ $(function(){
 					$("#btn").css("display" ,"none");
 					$("#msg").css("display" , "block");
 					
-				}		
+				}else if(c.r_cancel == 2){
+					
+					$(div_li_img).append(cs_camp_fname);
+					$(button_div).append(button1 , button2, review_button);
+					$(reservation_div).append(div_li_img , cs_name, checkin, checkindetail, button_div);
+					$(a).append(reservation_div);
+					$("#li").append(a, message);
+					$("#btn").css("display" ,"none");
+					$("#msg").css("display" , "block");
+				}	
 			});
 		}});
 	}
