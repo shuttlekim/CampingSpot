@@ -61,44 +61,7 @@ $(function(){
 	$("#mb_id").html(mb_id);
 	$('#mc_id2').html(mc_id2);	
 	
-	$("#btnDeleteMember").click(function(){			
-		//data:mc_id 	// json 형태로		
-		
-		var result = confirm("정말 탈퇴하실건가요? ㅠㅠ");
-	
-		if(result == true){
-			$.ajax("/deleteMember.do", {data:{"mc_id":mc_id}, success:function(r){
-				//alert("삭제성공");	
-			}});
-		    alert("잘가요...");
-		    sessionStorage.clear();
-			window.location.href = "/main/main.html";
-		}else{
-		    alert("^_____^");
-		}
-	});
-	
-	
-	$("#btnDeleteBusiness").click(function(){			
-		//data:mc_id 	// json 형태로		
-		
-		var result = confirm("정말 탈퇴하실건가요? ㅠㅠ");
-	
-		if(result == true){
-			$.ajax("/deleteBusiness.do", {data:{"mb_id":mb_id}, success:function(r){
-				//alert("삭제성공");	
-			}});
-		    alert("잘가요...");
-		    sessionStorage.clear();
-			window.location.href = "/main/main.html";
-		}else{
-		    alert("^_____^");
-		} 
-	});
-
-	
 	if(sessionStorage.getItem("businessId") != null){
-   		//$("#btnLogin").html("로그아웃");
    		 $("#memberPanel").css("display", "none");
    		 $("#hiMember").css("display", "none");
          $("#businessPanel").css("display", "block");     
@@ -108,7 +71,6 @@ $(function(){
     }
 	
 	if(sessionStorage.getItem("memberId") != null){
-   		//$("#btnLogin").html("로그아웃");
    		 $("#memberPanel").css("display", "block");
    		 $("#hiMember").css("display", "block");
          $("#businessPanel").css("display", "none");     
@@ -118,7 +80,6 @@ $(function(){
     }
 	
 	if(sessionStorage.getItem("memberName") != null){
-   		//$("#btnLogin").html("로그아웃");
    		 $("#memberPanel").css("display", "none");
    		 $("#hiMember").css("display", "none");
          $("#businessPanel").css("display", "none");     
