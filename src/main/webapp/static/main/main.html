@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	#main_title{
+		float: left;
+		margin: 22px 20px 2px 20px;
+	}
+	#main_title h2{
+		all: unset;
+		font-size: 1.5em;
+		font-weight: bold;
+	}
+	#main_menu{
+		float: left;
+		margin: 27px 20px 2px 0;
+	}
+	#main_menu i{
+		transform: scale(1.5);
+	}
+	.head_section{
+		height: 53px;
+	}
+	.main_search{
+		display: flex;
+		padding-left: 20px;
+	}
+	h4{
+		padding-left: 25px;
+	}
+	#video {
+     /* position: absolute;
+     top: 100px;
+     left: 0px;  */
+     min-width:1120px;
+     max-width:100vw;
+     width: auto;
+     height: auto;
+     z-index: -1;
+     overflow: hidden;
+	} 
+	#main_login{
+		cursor: pointer; 
+	}
+	#main_logout{
+   		display: none;
+   		//border: solid;  
+   		cursor: pointer; 		
+    }
+    #main_signup{
+    	cursor: pointer;
+    }
+    #main_mypage{
+    	display: none;
+    	cursor: pointer; 	
+    }
+    #main_admin{
+    	display: none;
+    	cursor: pointer;
+    }
+    #main_sitemap{
+    	cursor: pointer;
+    }
+    #festMore{
+    	cursor: pointer;
+    }
+    #main_btn_search{
+    	cursor: pointer;
+    }
+    #listThumb{
+    	cursor: pointer;
+    }
+    #faq{
+    	cursor: pointer;
+    }
+    #qna{
+        cursor: pointer;
+    }
+    #boardNotice{
+    	cursor: pointer;
+    }
+    #boardReview{
+    	cursor: pointer;
+    }
+    #boardFree{
+    	cursor: pointer;
+    }
+    #MyBusinessPage{
+ 	   	display: none;
+    	cursor: pointer;
+    }
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://kit.fontawesome.com/3da0640e3c.js" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+	$(function(){
+		
+		
+		var menu = false;
+		var login_menu = false;
+		var today = new Date();
+		var thisMonth = today.getMonth()+1;
+		console.log(thisMonth);
+		var festivalList;
+		
+		//메인페이지로 넘어오면 결제정보는 사라집니다.
+		sessionStorage.removeItem("reservation_data");
+		
+		//진행중인 전국 축제 3개 호출하는 함수
+		var listThumb = function(){
+			$.ajax("/festivalThumb.do", {success:function(festival){
+				festivalList = festival;
+				$.each(festivalList, function(i, item){
+					var img = $("<img/>").attr({
+						"src":item.fname,
+						"width":350,
+						"height":200
+					})
+					var img = $("<div class='backCover' style='background:url("+item.fname+");'>");
+					var title = $("<div></div>").html(item.title)
+					var period = $("<div></div>").html(item.period)
+					var addr = $("<div class='address'></div>").html(item.addr)
+					var detail = $("<div></div>").html(item.detailHead)
+					
+					var div1 = $("<div></div>").append(img)
+					var div2 = $("<div class='text-cover'></div>").append(title, period, addr, detail)
+					var div3 = $("<div></div>").append(div1, div2)
+					$(div3).attr({
+						"key": i
+					})
+					
+					$(div3).click(function(){
+						var idx = $(this).attr("key");
+						var url = festivalList[idx].url;
+						var title = festivalList[idx].title;
+						
+						location.href="detailFestival.html?title="+encodeURI(title)+"&url="+url;
+						
+					})
+					
+					$("#listThumb").append(div3)
+					$("#listThumb").attr("style","display:flex;")
+				})
+			}})
+		}
+	
+		
+		//로그아웃버튼 동작
+		$("#main_logout").click(function(){	
+	        sessionStorage.removeItem("memberId");
+	        sessionStorage.removeItem("businessId");  
+	        sessionStorage.removeItem("memberName");  
+	        $("#main_login").css("display", "block");
+	        $("#main_signup").css("display", "none");	       
+	        $("#main_logout").css("display", "none");
+	        $("#main_mypage").css("display", "none");
+	        $("#main_signup").css("display", "block");
+	        window.location.href = "/main/main.html";
+	        //$("#dock").empty();
+	    });		
+		
+		var mc_id = sessionStorage.getItem("memberId");		
+		$("#mc_id").html(mc_id);
+		
+		//세션유지(일반회원 및 관리자)
+	    if(sessionStorage.getItem("memberId") != null){
+	 		if(mc_id == "admin01"){
+				$("#main_mypage").css("display", "none");
+				$("#main_admin").css("display", "block");
+				$("#main_login").css("display", "none");
+		        $("#main_signup").css("display", "none");
+		        $("#main_logout").css("display", "block");
+			}else{				
+		   		 $("#main_logout").css("display", "block");
+		         $("#main_login").css("display", "none"); 
+		         $("#main_mypage").css("display", "block");
+		         $("#main_signup").css("display", "none");
+			}
+	    }
+		//세션유지(사업자)
+	    if(sessionStorage.getItem("businessId") != null){
+	   		//$("#btnLogin").html("로그아웃");
+	   		 $("#main_logout").css("display", "block");
+	   		 $("#MyBusinessPage").css("display", "block");
+	         $("#main_login").css("display", "none");   
+	         $("#main_mypage").css("display", "none");
+	         $("#main_signup").css("display", "none");
+	    }
+		//세션유지(네이버)
+	    if(sessionStorage.getItem("memberName") != null){
+	   		//$("#btnLogin").html("로그아웃");
+	   		 $("#main_logout").css("display", "block");
+	         $("#main_login").css("display", "none");  
+	         $("#main_mypage").css("display", "block");
+	         $("#main_signup").css("display", "none");
+	    }		
+		//로그인 버튼
+		$("#main_login").click(function(){			
+			//alert("로그인 입니다.");
+			window.location.href = "/login/login.html";
+		})
+		//회원가입 버튼
+		$("#main_signup").click(function(){
+			//alert("회원가입 입니다.");
+			window.location.href = "/login/signInMain.html";
+		})
+		//마이페이지 버튼
+		$("#main_mypage").click(function(){
+			window.location.href = "/login/myPage.html";
+		});		
+		//사업자페이지 버튼
+		$("#MyBusinessPage").click(function(){
+			window.location.href = "../boss/myBusinessPage.html"
+		});		
+		//관리자페이지 버튼
+		$("#main_admin").click(function(){
+			window.location.href = "/admin/adminTest.html";
+		});
+		//사이트맵 버튼
+		$("#main_sitemap").click(function(){
+			alert("사이트맵 입니다.");
+		})
+		
+		//메뉴 버튼
+		$("#main_menu").click(function(){
+			
+			if(menu==false){
+				
+				$(".main_menu_bar").css('display','flex')
+				menu = true
+			}else{
+				
+				$(".main_menu_bar").css('display','none')
+				menu = false
+			}
+		})
+		
+		//검색 버튼
+		$("#main_btn_search").click(function(){
+			var searchData = $("#main_search_form").serialize();
+			console.log(searchData);
+			location.href="campingSearchList.html?"+searchData;
+		})
+		
+		//현재 월
+		$("#thisMonth").html(thisMonth);
+		
+		//축제 더보기
+		$("#festMore").click(function(){
+			location.href="festivalStory.html";
+		})
+		
+		//축제 썸네일 호출
+		listThumb();
+		
+		$("#footers").load("footer.html");		
+		
+		/* //각 페이지로 이동
+		$("#boardNotice").click(function(){
+			location.href = "/board/boardNotice.html";
+		});
+		$("#boardReview").click(function(){
+			location.href = "/board/boardReview.html";
+		});
+		$("#boardFree").click(function(){
+			location.href = "/board/boardFree.html";
+		}); */
+	})
+</script>
+</head>
+<body>
+	<div class="head_section">
+			<div id="main_title">
+				<h2 onclick="location.href='/main/main.html'" style="cursor: pointer;">CAMPINGSPOT</h2>
+			</div>
+			<div id="main_menu">
+				<i class="fas fa-bars" style="cursor: pointer;"></i>
+			</div>
+			<div id="main_status">
+				<span id="main_login">로그인</span>			
+				<span id="main_logout" style="width: auto;">로그아웃</span>&nbsp&nbsp|&nbsp&nbsp
+				<span id="main_signup">회원가입</span><span id="main_mypage" style="width: auto;">마이페이지</span><span id="MyBusinessPage">사업자페이지</span><span id="main_admin">관리자페이지</span>&nbsp&nbsp|&nbsp&nbsp
+				<span id="main_sitemap">사이트맵</span>
+			</div>
+		</div>
+		<!-- <hr> -->
+	<div>
+		<div class="main_menu_bar">
+			<div>
+				<h4>검색SPOT</h4>
+				<ul>
+					<li>캠핑장 검색</li>
+				</ul>
+			</div>
+			<div>
+				<h4>축제이야기</h4>
+				<ul>
+					<li id="festivalStory">지역축제</li>
+				</ul>
+			</div>
+			<div>
+				<h4>커뮤니티</h4>
+				<ul>
+					<li id="boardNotice">공지사항</li>
+					<li id="boardReview">캠핑후기</li>
+					<li id="boardFree">자유게시판</li>
+				</ul>
+			</div>
+			<div>
+				<h4>고객센터</h4>
+				<ul>
+					<li id="faq">FAQ</li>
+					<li id="qna">QnA</li>
+				</ul>
+			</div>
+		</div>
+		<div>
+			<video id="video" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
+		      		<source src="../resources/main_video_update.mp4">
+			</video>
+		</div>
+	</div>
+	<div class="body-wrap">
+		
+		<div class="main_search">
+			<div class="main_search_inner">
+				<form id="main_search_form">
+					체크인&nbsp;<input type="date" name="checkin">
+					&nbsp;&nbsp;
+					체크아웃&nbsp;<input type="date" name="checkout">
+					&nbsp;&nbsp;
+					캠핑타입
+					<select name="campingType">
+						<option value="auto" selected="selected">오토캠핑</option>
+						<option value="glamping">글램핑</option>
+						<option value="caravan">카라반</option>
+					</select>
+					&nbsp;&nbsp;
+					<input type="text" name="keyword" placeholder="검색어를 입력하세요."/>
+				</form>
+				&nbsp;&nbsp;
+				<button id="main_btn_search">검색</button>
+			</div>
+		</div>
+		
+		<div>			
+			
+			<div class="main-festival">
+				<h2><i class="fas fa-quote-right"></i></h2>
+				<h2><span id="thisMonth"></span> 월의 축제 이야기</h2>
+				<span class="subtit">그날의 생생했던 기억, 행복한 웃음, 축제의 설렘을 캠핑과 함께 느껴보세요.</span>
+				
+			</div>
+			
+	
+			<div id="listThumb">
+			</div>
+			<div class="btn-box">
+				<p id="festMore">더보기</p>
+			</div>
+		</div>
+	</div>
+	<div id="footers"></div>
+	
+
+</body>
+</html>

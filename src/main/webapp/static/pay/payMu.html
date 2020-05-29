@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#headers").load("../main/header.html");
+		$("#footers").load("../main/footer.html");
+		
+		var data0 = sessionStorage.getItem("reservation_data");
+		//포인트 적용후 금액이 필요함
+		console.log(data0);
+		data1 = data0.split("&room=");
+		data2 = data1[0].split("&total=");
+		data3 = data2[0].split("&checkout=");
+		data4 = data3[0].split("&checkin=");
+		data5 = data4[0].split("cs_no=");
+		
+		var cr_no = data1[1];
+		var price = data2[1];
+		var checkout = data3[1];
+		var checkin = data4[1];
+		var cs_no = data5[1];
+		var payment = "계좌이체";
+		var mc_id = sessionStorage.getItem("memberId");
+		/* 추후
+		var mc_id = sessionStorage.getItem("memberId");
+		*/
+		
+		$.ajax("/getCampingInfo.do", {data:{"cs_no":cs_no}, success:function(data){
+			$("#accountData").html("<b>"+data.cs_account+"</b>");
+		}})
+		
+		$("#pay_price").html(price+"원");
+		
+		//새로 update해주어야할 포인트
+		var point = document.location.href.split("="); 
+		var updatePoint = Number(point[1]);
+		//var updatePoint = point[1];
+		alert(updatePoint)
+		//사용한포인트 가져옴
+		
+		$("#btn_pay").click(function(){
+			var pay_data = {
+				"mc_id": mc_id,
+				"cr_no": cr_no,
+				"checkin": checkin,
+				"checkout": checkout,
+				"price": price,
+				"payment": payment
+			}
+			$.ajax("/insertReservation.do", {data: pay_data, async:false, success:function(result){
+				//성공시 작동하는거아닌감?
+				sessionStorage.removeItem("reservation_data");
+				alert("메인창으로 이동합니다.(나중에 마이페이지로 이동할까???)")
+				location.href = "/main/main.html";
+			}})
+			
+			//사용한 포인트만큼 차감
+			var pointData = {"mc_point":updatePoint,"mc_id":mc_id}
+			$.ajax("/updatePoint.do",{data:pointData,success:function(r){
+				alert(r)
+			}})
+		})
+	})
+</script>
+</head>
+<body>
+	<div id="headers"></div>
+	<div class="body-wrap">
+		<h2>계좌이체</h2>
+		<div id="accountData"></div>
+		<div id="pay_price"></div>
+		<span>계좌이체 완료후 결제완료 버튼을 눌러주시면, 예약대기로 전환됩니다.</span>
+		<span>이후, 사업자의 승인을 통해 예약이 완료 됩니다.</span><br>
+		<button id="btn_pay">결제완료</button>
+	</div>
+	<div id="footers"></div>
+</body>
+</html>

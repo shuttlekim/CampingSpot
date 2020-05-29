@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+<style type="text/css">
+
+.container{
+  width: 1000px;
+  margin: 0 auto;
+}
+.container div{
+  text-align: center;
+  display: table;
+} 
+.container div span{
+  display: table-cell;
+  vertical-align: middle;
+}
+.top{
+ background-color: white;
+}
+.middle{
+  margin-top: 20px;
+  width: 1000px;
+  height: 1000px;
+  position: relative;
+}
+
+.bottom{
+
+}
+
+
+
+#MainFAQ{
+margin-top: 20%;
+margin-left: 30%;
+}
+
+#service{
+margin-top: 15%;
+margin-left: 20%;
+}
+
+.ul{
+margin-top: -10%;
+}
+
+.li{
+text-decoration: none;
+}
+
+
+.div{
+margin-top: 6%;
+margin-left: 10%;
+}
+
+
+.accordion {
+position:absolute;
+top: 17%;
+left: 57%;
+transform:translateX(-50%);
+width:750px;
+}
+input[id*="answer"] {display:none;}
+input[id*="answer"] + label {display:block;
+padding:20px;
+border:1px solid #232188;
+border-bottom:0;color:#fff;
+font-weight:900;
+background:#3634a5;
+cursor:pointer;
+position:relative;
+}
+input[id*="answer"] + label em {
+position:absolute;
+top:50%;
+right:10px;
+width:30px;
+height:30px;
+margin-top:-15px;
+display:inline-block;
+background:url('/resources/serviceCenter_img/arrow.png') 0 0 no-repeat;
+}
+input[id*="answer"] + label + div {
+max-height:0;
+transition: all .35s;
+overflow:hidden;
+background:#ebf8ff;
+font-size:16px;
+}
+input[id*="answer"] + label + div p {
+display:inline-block;padding:20px;
+}
+input[id*="answer"]:checked + label + div {
+max-height:100px;
+}
+input[id*="answer"]:checked + label em {
+background-position:0 -30px;
+}
+
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function(){	
+
+	$("#header").load("/main/header.html");	
+
+	$("#footers").load("/main/footer.html");
+		
+});
+</script>
+</head>
+<body>
+
+	<!-- TOP  -->
+	<div class="top" id="header">
+	   <span>TOP (1000 x 80) <br/> #FF5E00;</span>
+	</div>
+
+<div class="body-wrap">
+	<div class="middle">
+	<div class="div">
+	<i class="far fa-calendar-alt fa-3x" class="ReservationFAQ">&nbsp;예약FAQ</i>
+	</div>
+	
+	
+	<div class="accordion">
+	<input type="radio" name="accordion" id="answer01">
+		<label for="answer01">1. 예약이 안 돼요<em></em></label>
+		<div>
+			<p>• 이용하시고자 하는 날짜의 캠핑장이 매진이 된 경우가 있습니다.<br>새로 고침하시고 다시 확인해 주세요.</p>
+		</div>
+		<input type="radio" name="accordion" id="answer02">
+		<label for="answer02">2. 예약 후, 예약 내역에서 조회되지 않는데 어떻게 해야 하나요?<em></em></label>
+		<div>
+			<p>• (예약확인문자를 받았을 시)정상 예약되었으나, 일시적인 문제로 예약내역에서 조회되지 않는 경우입니다.</p>
+		</div>
+		<input type="radio" name="accordion" id="answer03">
+		<label for="answer03">3. 예약 FAQ를 찾아봤는데 원하는 답이 없네요.<br>이런 경우에는 어떻게 해야 하나요?<em></em></label>
+		<div>
+			<p>• 고객센터에서 문의하기를 누르시고 제목과 답장 받으실 이메일, 내용을 작성하시고 문의하기 버튼을 누르시면 됩니다.</p>
+		</div>
+		
+		<input type="radio" name="accordion" id="answer04">
+			<label for="answer04">4. 예약은 언제부터 가능한가요?<em></em></label>
+				<div>
+					<p>• 해당 캠핑장에서 공지를 올리야 알 수 있습니다.</p>
+				</div>
+			<input type="radio" name="accordion" id="answer05">
+			<label for="answer05">5. 오고가는 교통편 예약도 가능할까요?<em></em></label>
+				<div>
+					<p>• 불가능합니다. 타사이트를 이용해주세요.</p>
+				</div>
+			<input type="radio" name="accordion" id="answer06">
+			<label for="answer06">6. 전화 예약도 가능한가요?<em></em></label>
+				<div>
+					<p>• 해당 캠핑장에 문의해주시기 바랍니다.</p>
+				</div>
+			<input type="radio" name="accordion" id="answer07">
+			<label for="answer07">7. 예약자와 이용자가 다릅니다. 대리인이 예약하는 것은 가능한가요?<em></em></label>
+				<div>
+					<p>• 불가능합니다.</p>
+				</div>
+			<input type="radio" name="accordion" id="answer08">
+			<label for="answer08">8. 회원등록 후 예약이 가능한가요?<em></em></label>
+				<div>
+					<p>• 비회원은 에약이 불가능합니다.</p>
+				</div>
+			<input type="radio" name="accordion" id="answer09">
+			<label for="answer09">9. 예약확인은 어떻게 확인하나요?<em></em></label>
+				<div>
+					<p>• 마이페이지에서 확인하실 수 있습니다.</p>
+				</div>
+			<input type="radio" name="accordion" id="answer10">
+			<label for="answer10">10. 예약취소는 어떻게 하나요?<em></em></label>
+				<div>
+					<p>• 마이페이지에서 예약취소를 눌러주세요</p>
+				</div>
+		
+		</div>
+	</div>
+</div>
+
+
+	<!-- BOTTOM -->
+  <div id="footers" class="bottom"> <span>BOTTOM (1000 x 100) <br/> #5D5D5D;</span> </div>
+
+</body>
+</html>

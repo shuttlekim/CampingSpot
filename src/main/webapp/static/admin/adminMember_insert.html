@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		$("#btnInsertOk").click(function(){
+		var insertForm = $("#insertForm").serialize();
+		$.ajax("/insertAdminMember.do",{data:insertForm, success:function(data){
+			alert("등록하였습니다.");
+			opener.location.reload();
+			self.close();
+		}});
+		});
+		
+		
+			
+		$("btnInsertReset").click(function(){
+			$("#insertForm input").val("");
+		});
+		
+		document.getElementById('mc_regdate').valueAsDate = new Date();
+		document.getElementById('mc_recdate').valueAsDate = new Date();
+	});
+	
+</script>
+
+</head>
+<body>
+	<h2>개인회원 등록하기</h2>
+	<div id="div">
+	<form id="insertForm">
+		<input type="hidden" name="mc_salt" id="mc_salt" value="mc_pwd">
+	<table id="am_tb">
+		<tr>
+			<td>회원ID</td>
+			<td><input type="text" name="mc_id" id="mc_id"></td>
+		</tr>
+		<tr>
+			<td>비밀번호</td>
+			<td><input type="text" name="mc_pwd" id="mc_pwd" value="1234"></td>
+		</tr>
+		<tr>
+			<td>회원명</td>
+			<td><input type="text" name="mc_name" id="mc_name"></td>
+		</tr>
+		<tr>
+			<td>닉네임</td>
+			<td><input type="text" name="mc_nickname"  id="mc_nickname"  ></td>
+		</tr>
+		<tr>
+			<td>이메일</td>
+			<td><input type="text" name="mc_email" id="mc_email" ></td>
+		</tr>
+		<tr>
+			<td>연락처</td>
+			<td><input type="text" name="mc_tel" id="mc_tel"   ></td>
+		</tr>
+		<tr>
+			<td>가입일</td>
+			<td><input type="date" name="mc_regdate" id="mc_regdate"  readonly="readonly" ></td>
+		</tr>
+		<tr>
+			<td>최근접속일</td>
+			<td><input type="date" name="mc_recdate" id="mc_recdate"  readonly="readonly" ></td>
+		</tr>
+		<tr>
+			<td>포인트</td>
+			<td><input type="number" name="mc_point" id="mc_point"  value="1000" ></td>
+		</tr>
+	</table>
+	</form>
+	<br>
+	<button id="btnInsertOk" type="button" >등록</button>
+	<button id="btnInsertReset" type="button" >지우기</button>
+	<button id="btnInsertBack" type="button" onclick="window.close()">목록으로</button>
+	</div>
+
+	
+</body>
+</html>

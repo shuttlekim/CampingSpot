@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		$("#btnInsertOk").click(function(){
+		var insertForm = $("#insertForm").serialize();
+		$.ajax("/insertAdminBusiness.do",{data:insertForm, success:function(data){
+			alert("등록하였습니다.");
+			opener.location.reload();
+			self.close();
+		}});
+		});
+		
+		
+			
+		$("btnInsertReset").click(function(){
+			$("#insertForm").val("");
+		});
+		
+		document.getElementById('mb_regdate').valueAsDate = new Date();
+		document.getElementById('mb_recdate').valueAsDate = new Date();
+	});
+	
+</script>
+
+</head>
+<body>
+	<h2>사업주 회원 등록하기</h2>
+	<div id="div">
+	<form id="insertForm">
+	<table id="amb_tb">
+		<tr>
+			<td>회원ID</td>
+			<td><input type="text" name="mb_id" id="mb_id"></td>
+		</tr>
+		<tr>
+			<td>비밀번호</td>
+			<td><input type="text" name="mb_pwd" id="mb_pwd" value="1234"></td>
+		</tr>
+		<tr>
+			<td>회원명</td>
+			<td><input type="text" name="mb_name" id="mb_name"></td>
+		</tr>
+		<tr>
+			<td>닉네임</td>
+			<td><input type="text" name="mb_nickname"  id="mb_nickname"  ></td>
+		</tr>
+		<tr>
+			<td>이메일</td>
+			<td><input type="text" name="mb_email" id="mb_email" ></td>
+		</tr>
+		<tr>
+			<td>연락처</td>
+			<td><input type="text" name="mb_tel" id="mb_tel"   ></td>
+		</tr>
+		<tr>
+			<td>사업자등록번호</td>
+			<td><input type="text" name="mb_licence" id="mb_licence"   ></td>
+		</tr>
+		<tr>
+			<td>가입일</td>
+			<td><input type="date" name="mb_regdate" id="mb_regdate"  readonly="readonly" ></td>
+		</tr>
+		<tr>
+			<td>최근접속일</td>
+			<td><input type="date" name="mb_recdate" id="mb_recdate"  readonly="readonly" ></td>
+		</tr>
+	</table>
+	</form>
+	<br>
+	<button id="btnInsertOk" type="button" >등록</button>
+	<button id="btnInsertReset" type="button" >지우기</button>
+	<button id="btnInsertBack" type="button" onclick="window.close()">목록으로</button>
+	</div>
+
+	
+</body>
+</html>
