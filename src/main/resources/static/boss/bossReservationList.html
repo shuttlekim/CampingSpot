@@ -5,14 +5,11 @@
 <title>Insert title here</title>
 <style type="text/css">
 hr{
-  border-top: 1px solid green;
+  border-top: 1px solid black;
 }
-div{
-}
-
 .line {
 	float:left;
-	border-left: 2px solid green;
+	border-left: 2px solid black;
 	height: 480px;
 }
 ul {
@@ -31,20 +28,27 @@ li a {
 }
 
 li a.active {
-  background-color: #4CAF50;
+ /* background-color: #4CAF50;*/
+  background-color: black;
   color: white;
+  font-weight: bold;
 }
 
 li a:hover:not(.active) {
 /*  background-color: #555;*/
-  background-color: pink;
+  background-color: #AFA5FB;
   color: white;
+  font-weight: bold;
 }
 .rList{
 	text-align: center;
 	font-size: 12px;
 	margin-top : 10px;
 	margin-left: 210px;
+}
+#h2{
+	text-align : left;
+	font-size : 30px;
 }
 .cal{
 	margin-top : 30px;
@@ -204,7 +208,7 @@ th, td{
 		<div class="div line"></div>
 		
 		<div class="div rList">
-			<h2>캠핑룸 예약 현황</h2>
+		<h2 id="h2">캠핑룸 예약 현황</h2>		
 			<table id="rTB">
 				<tr>
 					<th>예약번호</th>

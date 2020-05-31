@@ -4,11 +4,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.active{
-	background: lavendar;
+.colorActive{
+	background: black;
+	color: white;
+	font-weight: bold;
 }
-hr{
-	border-top: 1px solid green;
+ hr{
+  border-top: 1px solid black;
 }
 #mid{
 	margin-left: 220px;
@@ -20,7 +22,7 @@ hr{
 }
 .line {
 	float:left;
-	border-left: 2px solid green;
+	border-left: 2px solid black;
 	height: 270px;
 	margin-right: 50px;
 }
@@ -40,13 +42,17 @@ li a {
 }
 
 li a.active {
-  background-color: #4CAF50;
+ /* background-color: #4CAF50;*/
+  background-color: black;
   color: white;
+  font-weight: bold;
 }
 
 li a:hover:not(.active) {
-  background-color: pink;
+/*  background-color: #555;*/
+  background-color: #AFA5FB;
   color: white;
+  font-weight: bold;
 }
 #crtb{
 	float:left;
@@ -162,8 +168,8 @@ td{
 						// 클릭한 내용 가져오기
 						$(tr).attr("idx", idx);
 						$(tr).click(function(){
-							$("tr").removeClass("active");
-							$(this).addClass("active");
+							$("tr").removeClass("colorActive");
+							$(this).addClass("colorActive");
 							var idx = $(this).attr("idx");
 							
 							$("#u_cr_no").val(data[idx].cr_no).css("visibility", "hidden");
@@ -358,7 +364,7 @@ td{
 			<br>
 			<button id="crUpdateOK">수정</button>
 			<button id="crDelete">삭제</button>
-			<button id="crResetOK">취소</button>
+			<button id="crResetOK" >취소</button>
 			<br>
 			</div>
 	

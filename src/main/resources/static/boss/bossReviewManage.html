@@ -5,10 +5,10 @@
 <title>Insert title here</title>
 <style type="text/css">
 hr{
-  border-top: 1px solid green;
+  border-top: 2px solid black;
 }
 .line {
-	border-left: 2px solid green;
+	border-left: 2px solid black;
 	height: 700px;
 	margin-left: 220px;
 }
@@ -28,17 +28,27 @@ li a {
 }
 
 li a.active {
-  background-color: #4CAF50;
+ /* background-color: #4CAF50;*/
+  background-color: black;
   color: white;
+  font-weight: bold;
 }
 
 li a:hover:not(.active) {
 /*  background-color: #555;*/
-  background-color: pink;
+  background-color: #AFA5FB;
   color: white;
+  font-weight: bold;
 }
-.active{
-		background: lavender;
+.colorActive{
+		background: black;
+		color: white;
+		font-weight: bold;
+}
+
+#reviewList{
+	margin-top: 0px;
+	margin-left: 250px;
 }
 
 th{
@@ -102,12 +112,12 @@ th, td{
 					
 				// 리뷰글 클릭한 내용 가져오기
 				$(tr).attr("idx", idx);
-				$(tr).click(function(){
+				$(tr).mouseover(function(){
 					
 					$("#insertCreRe").show();
 					
-					$("tr").removeClass("active");
-					$(this).addClass("active");
+					$("tr").removeClass("colorActive");
+					$(this).addClass("colorActive");
 					var idx = $(this).attr("idx");
 					
 					$("#cre_no").val(cre_no);
@@ -185,7 +195,7 @@ th, td{
 		</div>
 		<div class="div line"></div>
 		
-		<div id="bossReviewList">
+		<div id="reviewList">
 			<h2>캠핑장 리뷰 관리</h2>
 			<table id="bossCreTB" border="1">
 				<tr>
@@ -197,24 +207,24 @@ th, td{
 					<th>댓글현황</th>
 				</tr>
 			</table>
-		</div>
-		<br>
-		<div id="insertCreRe">
-			
-			리뷰글 내용 : <br>
-					<textarea rows="5" cols="70" id="cre_content" name="cre_content"></textarea>
-					<br>
-			작성자 : <input type="text" id="mc_id" name="mc_id">
-			등록일 : <input type="text" id="cre_date" name="cre_date"><br>
 			<br>
-			<form id="reF">
-			리뷰 댓글 : <br>
-					<textarea rows="5" cols="70" id="cre_re_contents" name="cre_re_contents"></textarea>
-					<input type="hidden" id="mb_id" name="mb_id" value="test5678">
-					<input type="hidden" id="cre_no" name="cre_no">
-			</form>
-			<button id="btnInsertCrr">댓글등록</button>
-			<button id="btnDeleteCrr">댓글삭제</button>
+			<div id="insertCreRe">
+				
+				리뷰글 내용 : <br>
+						<textarea rows="5" cols="70" id="cre_content" name="cre_content"></textarea>
+						<br>
+				작성자 : <input type="text" id="mc_id" name="mc_id">
+				등록일 : <input type="text" id="cre_date" name="cre_date"><br>
+				<br>
+				<form id="reF">
+				리뷰 댓글 : <br>
+						<textarea rows="5" cols="70" id="cre_re_contents" name="cre_re_contents"></textarea>
+						<input type="hidden" id="mb_id" name="mb_id" value="test5678">
+						<input type="hidden" id="cre_no" name="cre_no">
+				</form>
+				<button id="btnInsertCrr">댓글등록</button>
+				<button id="btnDeleteCrr">댓글삭제</button>
+			</div>
 		</div>
 	
 	</div>
