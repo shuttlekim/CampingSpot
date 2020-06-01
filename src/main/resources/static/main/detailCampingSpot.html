@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <style type="text/css">
-   #detail{
+   /* #detail{
    
       position:relative;
       float:right;
@@ -17,11 +17,12 @@
       margin-bottom: 5px;
       */
       
-      background-color: pink;
+      /* background-color: pink; 
       overflow-x: hidden;
       overflow-y: hidden;
       
-   }
+   } 
+   */
    .btn{
       width: 100px;
       height: 40px;
@@ -29,6 +30,164 @@
    #main_img{
       width:300px;
       height:200px;
+   }
+   #input_chkin, #input_chkout, #room_selector, #show_campType, #show_total{
+   	  width: 220px;
+   }
+   #campingSpot_detail{
+   	  width: 65%;
+   	  margin: 20px;
+   	  overflow: hidden;
+   }
+   .d_head_section{
+      margin: 20px;
+   }
+   #d_campingTitle{
+      font-weight: bold;
+      font-size: 1.3em;
+   }
+   .star-rating { 
+   	  width: 150px; 
+   }   
+   .star-rating, .star-rating span { 
+      display:inline-block; 
+      height:32px; 
+      overflow:hidden; 
+      background:url(../resources/camping_spot_icon/star_rating.png)no-repeat; 
+   } 
+   .star-rating span{ 
+      background-position:left bottom; 
+      line-height:0; 
+      vertical-align:top; 
+   } 
+   #rate_section{
+      position: relative;
+   	  float: right;
+   	  top: -30px;
+   	  margin-right: 10px;
+   }
+   #d_campingRate{
+      position: relative;
+      top: -10px;
+      font-weight: 500;
+      font-size: 1.2em;
+      color: #ff2646;
+      font-style: italic;
+      margin: 10px;
+   }
+   #line{
+   	  width: 97%;
+   	  height: 1px;
+   	  background-color: #9b9b9b;
+   	  margin: 10px auto;
+   }
+   .d_detail_section{
+   	  margin: 20px 10px;
+   	  padding: 20px;
+   }
+   #d_campingAddr{
+      margin: 10px 0;
+   }
+   #d_campingTel{
+   	  margin: 10px 0;
+   }
+   #d_campingUrl{
+      margin: 10px 0;
+   }
+   #d_campingDetail{
+      margin-top: 50px;
+   }
+   .detail_icon{
+   	  width: 60px;
+   	  height: 60px;
+   	  margin-right: 10px;
+   }
+   #d_campingMap{
+   	  margin: 0 20px;
+   }
+   #d_campingTheme{
+      
+   }
+   #d_campingFac{
+      
+   }
+   .d_map_section{
+		overflow:hidden;
+		margin-top:80px;
+   }
+   .d_map_section h2{text-align:center}
+   .fa-map-signs{
+      font-size: 40px;
+      color: #4f4f4f;
+   }
+   .d_review_section{
+		overflow:hidden;
+		margin-top:80px;
+   }
+   .d_review_section h2{text-align:center}
+   .review_head{
+      padding: 5px 5px;
+      font-weight: bold;
+      font-size: 1.3em;
+   }
+   .review_detail{
+      margin: 20px;
+   }
+   .fa-comments{
+      font-size: 40px;
+      color: #4f4f4f;
+   }
+   .review_list{
+      margin: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      background: #f7f7f7;
+   }
+   .div_review table{
+   	  margin: 0 auto; 
+   }
+   .tr_header{
+   	  width: 100%;
+   	  display: flex;
+   	  line-height: 30px;
+   }
+   .tr_header_hd{
+   	  background: #f7f7f7;
+   	  width: 15%;
+   	  height: 30px; 
+   	  text-align: center;
+   }
+   .tr_header_ct{
+   	  text-align: center;
+   	  background: #fff;
+   	  border-radius: 10px;
+   }
+   .tr_content{
+      margin-top: 10px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 5px;
+   }
+   .tr_comment_section{
+   	  margin: 20px;
+   	  margin-bottom: 0;
+   	  display: flex;
+   }
+   .tr_comment{
+      margin: 10px;
+      margin-top: 0;
+      margin-right: 0;
+      padding: 20px;
+      background: #e5e5e5;
+      border-radius: 10px;
+      width: 85%;
+   }
+   .tr_comment_boss{
+   	  font-weight: bold;
+   	  margin-bottom: 20px;
+   }
+   .fa-arrow-right{
+      color: #bfbfbf;
    }
 </style>
 <script type="text/javascript">
@@ -77,19 +236,121 @@ $(function(){
     	}
     	$.ajax("/detailCampingSpot.do", {data:input_data, async:false, success:function(data){
     		
-    		$("#campingTitle").html(data.cs_name);
-    		var min_price = $("<div></div>").html("최저가: "+data.price);
-    		var rate = $("<div></div>").html("평점: "+data.rate);
-    		var detail = $("<div></div>").html("상세설명: "+data.cs_detail);
-    		var addr = $("<div></div>").html("주소: "+data.cs_addr_head+"&nbsp"+data.cs_addr_remain);
-    		var tel = $("<div></div").html("연락처: "+data.cs_tel);
-    		var url = $("<div></div>").html("홈페이지: "+data.cs_url);
-    		var map_fname = $("<div></div>").html("캠핑장 약도 & 룸위치: "+data.cs_map_fname);
-    		var fac = $("<div></div>").html("시설: "+data.cs_fac);
-    		var theme = $("<div></div>").html("테마: "+data.cs_theme);
+    		$("#d_campingTitle").html(data.cs_name);
+    		$("#d_campingRate").html(data.rate);
+    		
+    		$("#star-ratio").css("width", (data.rate / 5.0)*100+"%")
+    		
+    		$("#d_campingDetail").html(data.cs_detail);
+    		$("#d_campingAddr").html(data.cs_addr_head+"&nbsp;"+data.cs_addr_remain);
+    		$("#d_campingTel").html(data.cs_tel);
+    		$("#d_campingUrl").html(data.cs_url);
+    		$("#d_campingMap").append( $("<img>").attr({
+    			"src": "../resources/camping_spot_img/"+data.cs_map_fname,
+    			"width": "720px"
+    		}))
+    		//var min_price = $("<div></div>").html("최저가: "+data.price);
+    		//var rate = $("<div></div>").html("평점: "+data.rate);
+    		//var detail = $("<div></div>").html("상세설명: "+data.cs_detail);
+    		//var addr = $("<div></div>").html("주소: "+data.cs_addr_head+"&nbsp;"+data.cs_addr_remain);
+    		//var tel = $("<div></div").html("연락처: "+data.cs_tel);
+    		//var url = $("<div></div>").html("홈페이지: "+data.cs_url);
+    		//var map_fname = $("<div></div>").html("캠핑장 약도 & 룸위치: "+data.cs_map_fname);
+    		//var fac = $("<div></div>").html("시설: "+data.cs_fac);
+    		//var theme = $("<div></div>").html("테마: "+data.cs_theme);
+    		
+    		var theme_div = $("<div></div>");
+    		$("#d_campingTheme").append(theme_div);
+    		var theme_icon = data.cs_theme.split(",");
+				$.each(theme_icon, function(idx, ticon){
+					switch(ticon){
+					case '산': 
+						$(theme_div).append( $("<img>").attr({
+	 						"src":"../resources/camping_spot_icon/mountain.png",
+	 						"class":"detail_icon"
+	 							}) );break;
+	 				case '강': 
+ 						$(theme_div).append( $("<img>").attr({
+ 	 						"src":"../resources/camping_spot_icon/river.png",
+ 	 						"class":"detail_icon"
+ 	 							}) );break;
+ 					
+	 				case '섬': 
+ 						$(theme_div).append( $("<img>").attr({
+ 	 						"src":"../resources/camping_spot_icon/island.png",
+ 	 						"class":"detail_icon"
+ 	 							}) );break;
+ 					
+	 	 			case '바다': 
+							$(theme_div).append( $("<img>").attr({
+		 						"src":"../resources/camping_spot_icon/sea.png",
+		 						"class":"detail_icon"
+		 							}) );break;
+						
+		 	 		case '계곡': 
+							$(theme_div).append( $("<img>").attr({
+								"src":"../resources/camping_spot_icon/valley.png",
+								"class":"detail_icon"
+									}) );break;
+						
+		 	 		case '호수': 
+							$(theme_div).append( $("<img>").attr({
+								"src":"../resources/camping_spot_icon/lake.png",
+								"class":"detail_icon"
+									}) );break;
+						}
+				})
+				
+				var fac_div = $("<div></div>");
+				$("#d_campingFac").append(fac_div);
+				var fac_icon = data.cs_fac.split(",");
+				$.each(fac_icon, function(idx, ficon){
+					switch(ficon){
+					case '와이파이': 
+						$(fac_div).append( $("<img>").attr({
+	 						"src":"../resources/camping_spot_icon/wifi.png",
+	 						"class":"detail_icon"
+	 							}) );break;
+	 				case '놀이터': 
+ 						$(fac_div).append( $("<img>").attr({
+ 	 						"src":"../resources/camping_spot_icon/fun.png",
+ 	 						"class":"detail_icon"
+ 	 							}) );break;
+ 					
+	 				case '운동시설': 
+ 						$(fac_div).append( $("<img>").attr({
+ 	 						"src":"../resources/camping_spot_icon/fitness.png",
+ 	 						"class":"detail_icon"
+ 	 							}) );break;
+ 					
+	 	 			case '바베큐': 
+							$(fac_div).append( $("<img>").attr({
+		 						"src":"../resources/camping_spot_icon/bbq.png",
+		 						"class":"detail_icon"
+		 							}) );break;
+						
+		 	 		case '난로대여': 
+							$(fac_div).append( $("<img>").attr({
+								"src":"../resources/camping_spot_icon/heater.png",
+								"class":"detail_icon"
+									}) );break;
+						
+		 	 		case '매점': 
+							$(fac_div).append( $("<img>").attr({
+								"src":"../resources/camping_spot_icon/store.png",
+								"class":"detail_icon"
+									}) );break;
+					case '에어컨': 
+						$(fac_div).append( $("<img>").attr({
+							"src":"../resources/camping_spot_icon/aircon.png",
+							"class":"detail_icon"
+								}) );break;
+					}
+				})
+			
     		
     		var camp_img;
-    		var img_div = $("<div></div>")
+    		var img_div = $("<div></div>");
     		
     		var detail_img = data.cs_camp_fname.split(",");
     		$.each(detail_img, function(idx, img){
@@ -99,7 +360,7 @@ $(function(){
     			}
     		})
     		$("#search_detail_img").append(img_div);
-    		$("#campingSpot_detail").append(min_price, rate, detail, addr, tel, url, map_fname, fac, theme);
+    /* 		$("#campingSpot_detail").append(min_price, rate, detail, addr, tel, url, map_fname, fac, theme); */
     		
     	}})
     }
@@ -132,12 +393,11 @@ $(function(){
     				$(select).append(option2);
     			}
     		})
-    		$("#form_selector").append(select);
+    		$("#room_selector").append(select);
     		
     	}})
   
     }
-    
     
     var callReview = function(cs_no){
     	var reviewList;	
@@ -145,14 +405,44 @@ $(function(){
 
     		reviewList = data;
 			$.each(reviewList, function(idx, item){
-				var div_review = $("<div></div>")
+				var div_review = $("<div class='review_list'><div class='div_review'></div></div>");
+				
+				date = new Date(item.cre_date);
+				var year = date.getFullYear();
+		    	var month = (1 + date.getMonth());
+		    	var day = date.getDate();
+		    	var that_date = year+'년 '+month+'월 '+day+'일';
+				
+				var table = $("<div></div>");
+				var tr1 = $("<div class='tr_header'></div>");
+				var td1 = $("<div class='tr_header_hd'></div>").html("작성자");
+				var td2 = $("<div class='tr_header_ct' style='width:15%'></div>").html(item.mc_id);
+				var td3 = $("<div class='tr_header_hd'></div>").html("평점");
+				var td4 = $("<div class='tr_header_ct' style='width:15%'></div>").html(item.cre_rate);
+				var td5 = $("<div class='tr_header_hd'></div>").html("작성일자");
+				var td6 = $("<div class='tr_header_ct' style='width:20%'></div>").html(that_date);
+				$(tr1).append(td1, td2, td3, td4, td5, td6);
+				
+				var tr2 = $("<div class='tr_content'></div>");
+				var td22 = $("<div></div>").html(item.cre_content);
+				$(tr2).append(td22);
+				
+				if(item.cre_re_contents != null){
+					var tr3 = $("<div class='tr_comment_section'></div>");
+					var td31 = $("<div></div>").html("<i class='fas fa-arrow-right'></i>");
+					var td32 = $("<div class='tr_comment'></div>")
+					var td321 = $("<div class='tr_comment_boss'></div>").html("사장님");
+					var td322 = $("<div class='tr_comment_ct'></div>").html(item.cre_re_contents);
+					$(td32).append(td321, td322);
+					$(tr3).append(td31, td32);
+					$(table).append(tr1, "<hr>", tr2, tr3);
+				}else{
+					$(table).append(tr1, "<hr>", tr2);
+				}
+				
+				$(div_review).append(table);
 	    	      
-	    	    var re_writer = $("<div></div>").html("작성자: "+item.mc_id);
-	    	    var re_content = $("<div></div>").text("리뷰내용: "+item.cre_content);
-	    	    var re_rate = $("<div></div>").text("평점: "+item.cre_rate);
-	    	    var re_date = $("<div></div>").text("작성일자: "+item.cre_date);
-	    	   
-	    	    var re_reply = $("<div></div>").text("ㄴ 사장님: "+item.cre_re_contents);
+	    	    /* var re_reply = $("<div></div>").text("ㄴ 사장님: "+item.cre_re_contents);
 	    	    
 	    	    var hr = $("<hr>");
 	    	    
@@ -160,7 +450,7 @@ $(function(){
 	    	    	$(div_review).append(hr, re_writer, re_content, re_rate, re_date, re_reply);
 	    	    }else{
 		    	    $(div_review).append(hr, re_writer, re_content, re_rate, re_date);
-	    	    }
+	    	    } */
 	    	    $("#review_list").append(div_review);
 			})
 
@@ -173,16 +463,29 @@ $(function(){
     selectRoom(cs_no, campingType, checkout, checkin);
    	callReview(cs_no);
    	
+   	
+   	// 캠핑타입을 표시해준다.
+   	if(campingType == 'auto'){
+   		$("#show_campType").attr("value", '오토캠핑');
+   	}else if(campingType == 'caravan'){
+   		$("#show_campType").attr("value", '카라반');
+   	}else if(campingType == 'glamping'){
+   		$("#show_campType").attr("value", '글램핑');
+   	}else {
+   		$("#show_campType").attr("value", '지정안됨');
+   	}
+   	
+   	
    	// 룸을 선택할때 해당 숙박비용을 구해서 input 에 지정해준다.
    	var total = $("#select_room option:selected()").attr("price") * days;
     
     $("#input_total").attr("value", total);
-    $("#show_total").html(total);
+    $("#show_total").attr("value", total+" 원");
     
     $("#select_room").on('change', function(){
     	total = $("#select_room option:selected()").attr("price") * days;
     	$("#input_total").attr("value", total);
-    	$("#show_total").html(total);
+    	$("#show_total").attr("value",total+" 원");
     })
     //------------------------------------------------------------------
    
@@ -219,7 +522,7 @@ $(function(){
    });
    
    $("#btn_review").click(function(){
-	   var review_top = $("#review_detail").offset().top;
+	   var review_top = $("#review_head").offset().top;
 	   window.scrollTo(0, review_top);
    })
    
@@ -234,24 +537,43 @@ $(function(){
 	<div id="headers"></div>
 	<div class="body-wrap">
 		<div class="search_detail_head">
-			<div class="search_detail_title"><div id="campingTitle"></div></div>
+			<div class="search_detail_title">캠핑장 상세페이지</div>
 			<div class="search_detail_head_btn"><button id="btn_back">돌아가기</button></div>
 		</div>
-		<hr>
 		<div id="search_detail_img">
 		</div>
-		<hr>
 		<div id="detail">
 			<div class="search_detail_search">
 				<div class="search_inner">
-					<div></div><form id="form_selector">
+					<div><form id="form_selector">
 						<input type="hidden" id="input_cs_no" name="cs_no">
 						<input type="hidden" id="input_total" name="total">
-						체크인&nbsp;&nbsp;<input type="date" id="input_chkin" name="checkin" readonly="readonly"><br>
-						체크아웃&nbsp;&nbsp;<input type="date" id="input_chkout" name="checkout" readonly="readonly"><br>
-						룸 선택&nbsp;&nbsp;
-					</form></div>
-					<div>총액&nbsp;&nbsp;<span id="show_total"></span></div>
+						<table class="search_table" width="100%">
+							<tr>
+								<td width="60px">체크인</td>
+								<td><input type="date" id="input_chkin" name="checkin" readonly="readonly"></td>
+							</tr>
+							<tr>
+								<td>체크아웃</td>
+								<td><input type="date" id="input_chkout" name="checkout" readonly="readonly"></td>
+							</tr>
+							<tr>
+								<td>룸 선택</td>
+								<td id="room_selector"></td>
+							</tr>
+						</table>
+						</form>
+						<table class="search_table" width="100%">
+							<tr>
+								<td width="60px">캠핑타입</td>
+								<td><input type="text" id="show_campType" readonly="readonly"></input></td>
+							</tr>
+							<tr>
+								<td>총  액</td>
+								<td><input type="text" id="show_total" readonly="readonly"></input></td>
+							</tr>
+						</table>
+					</div>
 				</div>
 				<div id="div_btns">
 			    	<button class="btn" id="btn_reservation">예약하기</button>
@@ -259,17 +581,62 @@ $(function(){
 			        <button class="btn" id="btn_review">리뷰 보러가기</button>
 			    </div>
 			</div>
-			
-			
-		 	<div id="detail_weather"></div>
-		   	<div id="campingSpot_detail"></div>
+		   	<div id="campingSpot_detail">
+		   		<div class="d_head_section">
+		   			<div id="d_campingTitle"></div>
+		   			<div id="rate_section">
+		   				<div class='star-rating'>
+		   					<span id="star-ratio"></span>
+		   				</div>
+		   				<span id="d_campingRate"></span>
+		   			</div>
+		   		</div>
+		   		<div id="line"></div>
+		   		<div class="d_detail_section">
+		   			<table width="100%">
+		   				<tr>
+		   					<td>주  소</td>
+		   					<td><div id="d_campingAddr"></div><td>
+		   				</tr>
+		   				<tr>
+		   					<td>연락처</td>
+		   					<td><div id="d_campingTel"></div><td>
+		   				</tr>
+		   				<tr>
+		   					<td>홈페이지</td>
+		   					<td><div id="d_campingUrl"></div><td>
+		   				</tr>
+		   				<tr>
+		   					<td>캠핑테마</td>
+		   					<td><div id="d_campingTheme"></div><td>
+		   				</tr>
+		   				<tr>
+		   					<td>시  설</td>
+		   					<td><div id="d_campingFac"></div><td>
+		   				</tr>
+		   			</table>
+		   			<div id="d_campingDetail"></div>
+		   		</div>
+		   		<div class="d_map_section">
+		   			<h2><i class="fas fa-map-signs"></i></h2>
+					<h2>캠핑장 약도</h2>
+					<span class="subtit">약도에서 캠핑룸의 위치를 확인하세요 !</span>
+		   			<div id="d_campingMap"></div>
+		   		</div>
+		   		<div class="review_detail">
+				   <div class="d_review_section">
+			   			<h2><i class="far fa-comments"></i></h2>
+						<h2 id="review_head">캠핑장 리뷰</h2>
+						<span class="subtit">여러분의 솔직한 후기를 들려주세요 !</span>
+			   			<div id="review_list"></div>
+				   </div>
+				</div>
+		   		
+		   	</div>
 		</div>
 		
+		<hr>
 		
-		<div id="review_detail">
-		   <div>캠핑장 리뷰</div>
-		   <div id="review_list"></div>
-		</div>
 	</div>
 	<div id="footers"></div>
 </body>

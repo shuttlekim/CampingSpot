@@ -275,10 +275,19 @@ public class CampingSpotController {
    public String campingReviewList(int cs_no) {
       String str = "";
       //System.out.println("현재 cs_no : "+cs_no);
+      System.out.println("======== campingReviewList 컨트롤러 실행 ! ===========");
 
-      Gson gson = new Gson();
-      str = gson.toJson(dao.campingReviewList(cs_no));
+//      SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+//      
+      List<CampingReviewVo> list = dao.campingReviewList(cs_no);
+//      for (int i=0; i<list.size(); i++) {
+//    	  Date from = list.get(i).getCre_date();
+//      }
       
+      Gson gson = new Gson();
+      str = gson.toJson(list);
+      
+      System.out.println(str);
       //System.out.println(str);
       
       return str;

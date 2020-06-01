@@ -23,15 +23,17 @@ $(function(){
 	var data0 = sessionStorage.getItem("reservation_data");
 	//console.log(data0);
 	data1 = data0.split("&room=");
-	data2 = data1[0].split("&total=");
-	data3 = data2[0].split("&checkout=");
-	data4 = data3[0].split("&checkin=");
+	data2 = data1[0].split("&checkout=");
+	data3 = data2[0].split("&checkin=");
+	data4 = data3[0].split("&total=");
 	data5 = data4[0].split("cs_no=");
 	
+	/* cs_no=100&total=50000&checkin=2020-06-01&checkout=2020-06-02&room=1001 */
+	
 	var cr_no = data1[1];
-	var total = data2[1];
-	var checkout = data3[1];
-	var checkin = data4[1];
+	var checkout = data2[1];
+	var checkin = data3[1];
+	var total = data4[1];
 	var cs_no = data5[1];
 	
 	$.ajax("/getCampingInfo.do", {data:{"cs_no":cs_no}, success:function(data){
