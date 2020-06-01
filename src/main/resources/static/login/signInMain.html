@@ -34,9 +34,41 @@
 		margin-left: 270px;
 	}
 	#btn{
-		width: 500px;
-		height: 90px;
-		font-size: 30px;
+		//width: 100px;
+		//height: 90px;
+		//font-size: 30px;
+	}
+	 	.middle-left{
+  		outline: 1px solid #9F9F9F;
+		position: absolute;
+		//left: 5px;
+		top: 70px;
+	  	width: 450px;
+		height: 550px;
+		border: hidden;
+		//border-radius: 5%;
+		//background-color: #EBDEF0 ;
+		//background-color: #DDD5D5 ;
+		box-shadow: 5px 5px 5px 10px;
+	}	
+	.middle-right{
+  		outline: 1px solid #9F9F9F;
+		position: absolute;
+		top: 70px;
+		left: 570px;
+	  	width: 450px;
+		height: 550px;
+		border: hidden;
+		//background-color: #F5C8C8 ;
+		box-shadow: 5px 5px 5px 10px;
+	}	
+	.img{
+		width: 180px;
+		height: 180px;
+	}
+	p{
+		font-family:Nanum Gothic;
+		font-size: 17px;
 	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -56,16 +88,30 @@ $(function(){
 <div class="top" id="header"></div>
 
 <div class="container">
-	<!-- MIDDLE -->
+<!-- MIDDLE -->
 	<div class="middle">
-	    <div class="middle-center"><br>
-			<div id="middle-center-inner">
-			<button onclick="location.href='terms.html'" id="btn">일반회원 가입하러가기</button><br><br>
-			<button onclick="location.href='terms2.html'" id="btn">사업자회원 가입하러가기</button>
+   		<div class="middle-center">
+   
+   		<!-- 일반 회원가입 -->
+   		<div class="middle-left" onclick="location.href='terms.html'" style="cursor: pointer"><br><br><br>
+   		<img src="/resources/profile/pro02.png" class="img"><br>
+   		<h2 style="font-family:Nanum Gothic;font-size: 40px">일반회원</h2>
+   		<p>(CAMPINGSPOT 이용 개인회원)</p>
+   		<p>CAMPINGSPOT 개인 회원 가입  화면으로 이동합니다.</p>		
 		</div>
+
+		<!-- 사업자 회원가입  -->
+		<div class="middle-right" onclick="location.href='terms2.html'" style="cursor: pointer"><br><br><br>
+		<img src="/resources/profile/pro01.png" class="img"><br>
+		<h2 style="font-family:Nanum Gothic;font-size: 40px">사업자 회원</h2>
+   		<p>(CAMPINGSPOT 이용 사업자회원)</p>
+   		<p>CAMPINGSPOT 사업자 회원 가입  화면으로 이동합니다.</p>	
+		</div>      
+
+		</div>	    
 	</div>
-  </div>  
-</div><br>
+	</div><br><br><br></div><br><br><br>
+	
 
 <!-- BOTTOM -->
 <div id="footers" class="bottom"></div>
