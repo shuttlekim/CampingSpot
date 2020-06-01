@@ -14,7 +14,10 @@
 	.container div span{
 	 	display: table-cell;
 	  	vertical-align: middle;
-	}	
+	}
+	.top{
+	
+	}
 	.middle{
 	  	margin-top: 20px;
 	  	width: 1000px;
@@ -33,19 +36,6 @@
 	}	
 	#btnSendMail{
 		width: 180px;		
-	}
-	.middle{
-	 	outline: 1px solid #9F9F9F;
-		//position: absolute;
-		//left: 5px;
-		top: 60px;
-	  	width: 450px;
-		height: 550px;
-		border: hidden;
-		//border-radius: 5%;
-		//background-color: #EBDEF0 ;
-		//background-color: #DDD5D5 ;
-		box-shadow: 5px 5px 5px 10px;
 	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -84,20 +74,20 @@ $(function(){
 
 <!-- MIDDLE -->
 <div class="body-wrap" style="margin: 0 auto;">
-	<div style="margin: 0 auto; width: 600px" align="center" class="middle">
+	<div style="margin: 0 auto; width: 600px" align="center">
 	
-		<br>
+		<br><br><br>
     	<h2 style="font-family:Nanum Gothic;font-size: 40px">비밀번호 찾기</h2>
-		<hr width="250px"><br>			
+		<hr width="350px"><br>			
 		<form id="s">
-			<input type="text" id="mc_id" name="mc_id" placeholder="아이디" required="required" style="width:230px;height:45px;"><br><br>
-			<input type="text" id="mc_email" name="mc_email" placeholder="이메일" required="required" style="width:230px;height:45px;"><br>
-			<br><br><br><br>
-			<button id="btnSendMail" style="margin:0 auto;align:center;width: 200px;height: 40px">메일보내기</button>
-		</form>
-
-    </div>
-	</div><br><br><br><br><br><br>
+			<input type="text" id="mc_id" name="mc_id" placeholder="아이디" required="required"><br><br>
+			<input type="text" id="mc_email" name="mc_email" placeholder="이메일" required="required"><br>
+		</form><br>
+			
+			<button id="btnSendMail" style="margin:0 auto;align="center">메일보내기</button>
+			</div>
+    </div><br><br><br>
+	
 <!-- BOTTOM -->
 <div id="footers" class="bottom"></div>
 
