@@ -5,20 +5,20 @@
 <style type="text/css">
 	.container{
 		width: 1000px;
-	  	margin: 0 auto;
+		margin: 0 auto;
 	}
 	.container div{
 	  	text-align: center;
 	  	display: table;
 	}
 	.container div span{
-	  	display: table-cell;
+	 	display: table-cell;
 	  	vertical-align: middle;
-	}
+	}	
 	.middle{
 	  	margin-top: 20px;
 	  	width: 1000px;
-	  	height: 500px;
+	 	height: 500px;
 	  	position: relative;
 	}
 	.middle-center{
@@ -32,7 +32,20 @@
 		margin-top: 40px;
 	}	
 	#btnSendMail{
-		width: 180px;
+		width: 180px;		
+	}
+	.middle{
+	 	outline: 1px solid #9F9F9F;
+		//position: absolute;
+		//left: 5px;
+		top: 60px;
+	  	width: 450px;
+		height: 550px;
+		border: hidden;
+		//border-radius: 5%;
+		//background-color: #EBDEF0 ;
+		//background-color: #DDD5D5 ;
+		box-shadow: 5px 5px 5px 10px;
 	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -68,21 +81,22 @@ $(function(){
 <!-- TOP  -->
 <div class="top" id="header"></div>
 
-<div class="container">
 <!-- MIDDLE -->
-  <div class="middle">
-    <div class="middle-center">
-    	<h2>비밀번호 찾기</h2>
-		<hr width="350px"><br>			
+<div class="body-wrap" style="margin: 0 auto;">
+	<div style="margin: 0 auto; width: 600px" align="center" class="middle">
+	
+		<br>
+    	<h2 style="font-family:Nanum Gothic;font-size: 40px">비밀번호 찾기</h2>
+		<hr width="250px"><br>			
 		<form id="s">
-			<input type="text" id="mb_id" name="mb_id" placeholder="아이디" required="required"><br><br>
-			<input type="text" id="mb_email" name="mb_email" placeholder="이메일" required="required"><br>
-		</form><br>
-		<button id="btnSendMail">메일보내기</button>
-    </div>
-  </div>  
-</div><br>
+			<input type="text" id="mb_id" name="mc_id" placeholder="아이디" required="required" style="width:230px;height:45px;"><br><br>
+			<input type="text" id="mb_email" name="mc_email" placeholder="이메일" required="required" style="width:230px;height:45px;"><br>
+			<br><br><br><br>
+			<button id="btnSendMail" style="margin:0 auto;align:center;width: 200px;height: 40px">메일보내기</button>
+		</form>
 
+    </div>
+	</div><br><br><br><br><br><br>
 <!-- BOTTOM -->
 <div id="footers" class="bottom"></div>
 
