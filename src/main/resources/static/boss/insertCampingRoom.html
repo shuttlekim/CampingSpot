@@ -13,17 +13,14 @@
   border-top: 1px solid black;
 }
 #mid{
-	margin-left: 220px;
-	margin-top: 470px;
-	border-top: 1px solid green;
-}
-#cr_insert{
-	margin-left: 220px;
+	margin-left: 110px;
+	margin-top: 480px;
+	border-top: 1px solid black;
 }
 .line {
 	float:left;
 	border-left: 2px solid black;
-	height: 270px;
+	height: 900px;
 	margin-right: 50px;
 }
 ul {
@@ -57,7 +54,7 @@ li a:hover:not(.active) {
 #crtb{
 	float:left;
 	margin-left: 230px;
-	margin-top: -200px;
+	margin-top: -820px;
 }
 #crtb>th{
 	border: 1px solid black;
@@ -70,13 +67,12 @@ td{
 	padding: 10px;
 	border: 1px solid black;
 }
-.insertForm{
-	margin-top : 20px;
-	margin-left: 220px;
+.insertForm, .updateForm{
+	margin-top : -10px;
+	margin-left: 260px;
 }
-.updateForm{
-	margin-top : 20px;
-	margin-left: 220px;
+#updateTb, #insertTb{
+	
 }
 
 </style>
@@ -264,11 +260,10 @@ td{
 			</table>
 			<br>
 			<hr id="mid">
-			<h2 id="cr_insert">캠핑룸 등록</h2>
 			<div class="insertForm">
+			<h2 id="cr_insert">캠핑룸 등록</h2>
 				<form id="insertF" >
-				
-					<table class="insertTb">
+					<table class="insertTb" id="intb">
 						<tr>
 							<th>캠핑룸명</th>
 							<th><input type="text" id="i_cr_name" name="cr_name"></th>
@@ -316,6 +311,7 @@ td{
 				</div>
 	
 		 	 <div class="updateForm">
+		 	 <h2></h2>
 				<form id="updateF" >
 					<table id="updateTb">
 						<tr>
