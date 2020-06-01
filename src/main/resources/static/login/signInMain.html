@@ -79,6 +79,15 @@ $(function(){
 
 	$("#footers").load("/main/footer.html");
 		
+	
+	 var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+	  if (!isChrome){
+	      $('#iframeAudio').remove()
+	  }
+	  else {
+	      $('#playAudio').remove() 
+	  }
+	  
 });	
 </script>
 </head>
@@ -106,9 +115,14 @@ $(function(){
 		<h2 style="font-family:Nanum Gothic;font-size: 40px">사업자 회원</h2>
    		<p>(CAMPINGSPOT 이용 사업자회원)</p>
    		<p>CAMPINGSPOT 사업자 회원 가입  화면으로 이동합니다.</p>	
+   		<div style="margin-left: 150px; margin-top: 40px; display: none">
+			<audio autoplay loop controls style="width: 300px;">
+    		<source src="/resources/profile/Imperial.mp3" type="audio/mp3"></audio>
+			</div>
 		</div>      
 
 		</div>	    
+		
 	</div>
 	</div><br><br><br><br><br><br>
 	
