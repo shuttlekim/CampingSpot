@@ -38,6 +38,19 @@
 	    margin-left:-150px;
 	    margin-top:-150px;
 	}
+	.middle{
+	 	outline: 1px solid #9F9F9F;
+		//position: absolute;
+		//left: 5px;
+		top: 30px;
+	  	width: 450px;
+		height: 800px;
+		border: hidden;
+		//border-radius: 5%;
+		//background-color: #EBDEF0 ;
+		//background-color: #DDD5D5 ;
+		box-shadow: 5px 5px 5px 10px;
+	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -87,12 +100,13 @@ $(function(){
 
 	<!-- MIDDLE -->	
 	<div class="body-wrap" style="margin: 0 auto;">
-		<div style="margin: 0 auto; width: 600px" align="center">
-				<form id="f">
+		<div style="margin: 0 auto; width: 600px" align="center" class="middle">
+				<form id="f"><br><br>
 					<i class="far fa-edit fa-3x" id="service"> 문의하기</i><br><br><br>
+					<hr width="280px"><br>
 					<p>
 						<strong>문의유형:&nbsp;</strong>
-						<select name="title" id="title" size="1" style="width:325px; height:35px; border: solid;">
+						<select name="title" id="title" size="1" style="width:325px; height:35px; border:groove;">
 							<option value="선택해주세요">선택해주세요</option>
 							<option value="예약변경">예약변경</option>
 							<option value="예약취소">예약취소</option>
@@ -104,18 +118,18 @@ $(function(){
 					</p>
 					<p>
 						<strong>전자메일:&nbsp;</strong>
-						<input type="text" name="email" placeholder="답장 받으실 E-MAIL" id="email" style="width:300px; border: solid;">
-					</p><br>
-					<p>
-						<textarea rows="20" cols="60" placeholder="문의내용 작성해 주세요." id="content" font-size="20px" style="border: solid;"></textarea>
+						<input type="text" name="email" placeholder="답장 받으실 E-MAIL" id="email" style="width:300px; border:groove;">
+					</p>
+					<p>					
+						<textarea rows="20" cols="60" placeholder="문의내용 작성해 주세요." id="content" font-size="20px" style="border:groove;"></textarea>
 					</p>
 					
-					<p>
-						<button id="btnSend" style="width:200px;height:40px;font-size:20px;margin-left: 25px;">문의하기</button>
+					<p><br><br><br>
+						<button id="btnSend" style="margin:0 auto;align:center;width: 200px;height: 40px; font-size: 20px">문의하기</button>
 					</p>
 				</form>
 		</div>
-	</div><br>
+	</div><br><br><br><br><br>
 
 	<!-- BOTTOM -->
   <div id="footers" class="bottom"></div>
