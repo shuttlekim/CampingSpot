@@ -74,6 +74,24 @@ li a:hover:not(.active) {
 #total{
 	margin-left: -100px;
 }
+
+table{
+
+font-size: 12px;
+
+}
+.table1 th{
+	border: 1px solid black;
+	background: black;
+	color: white;
+	font-weight: bold;
+	padding: 10px;
+}
+.table1 td{
+	border: 1px solid black;
+	padding: 10px;
+}
+
 </style>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -245,7 +263,7 @@ li a:hover:not(.active) {
 					<input type="hidden" id="cs_no" name="cs_no">
 			  </form>
 			<br>
-			<table id="tbS" border="1">
+			<table class="table1" id="tbS">
 				<tr>
 					<th>번호</th>
 					<th>캠핑룸명</th>
@@ -264,7 +282,7 @@ li a:hover:not(.active) {
 			<button id="btnTot">이번달 총합계</button>
 			<hr>  
 			<div class="div totCR">
-				<table id="sumTb" border="1">
+				<table class="table1" id="sumTb">
 					<tr>
 						<th>캠핑룸명</th>
 						<th>결제금액 총합</th>
@@ -274,7 +292,7 @@ li a:hover:not(.active) {
 				</table>
 			</div>
 			<div class="div tot">
-				<table id="total">
+				<table class="table2" id="total">
 					<tr>
 						<th>결제금액 총합</th>
 						<th><input type="text" id="totR"></th>

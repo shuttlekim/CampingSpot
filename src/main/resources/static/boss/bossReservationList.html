@@ -44,7 +44,7 @@ li a:hover:not(.active) {
 	text-align: center;
 	font-size: 12px;
 	margin-top : 10px;
-	margin-left: 235px;
+	margin-left: 220px;
 }
 #h2{
 	text-align : left;
@@ -55,13 +55,16 @@ li a:hover:not(.active) {
 	margin-left: 200px;
 }
 th{
-	background: #CCCCCC;
-	color: black;
+	background: black;
+	color: white;
 	font-weight: bold;
 }
 th, td{
 	padding: 10px;
 	border: 1px solid black;
+}
+#rTB{
+	width: 950px;
 }
 
 </style>
@@ -123,10 +126,10 @@ th, td{
 				if(r_cancel == 0 ){
 					r_cancel = $("<td></td>").html("");
 				}else if(r_cancel == 1){
-					r_cancel = $("<td></td>").html("취소대기").css("color", "blue");
+					r_cancel = $("<td></td>").html("예약대기").css("color", "blue");
 					$(cAppv).append(cbtn);
 				}else if(r_cancel == 2){
-					r_cancel = $("<td></td>").html("취소완료");
+					r_cancel = $("<td></td>").html("예약완료");
 				}
 
 				$(tr).append(r_no,mc_name,mc_tel,cr_name,r_date,r_checkin,r_price,r_revstatus,r_cancel,rAppv,cAppv);
@@ -208,7 +211,7 @@ th, td{
 		<div class="div line"></div>
 		
 		<div class="div rList">
-		<h2 id="h2">캠핑룸 예약 현황</h2>		
+		<h2 id="h2">캠핑룸 예약 현황</h2>	
 			<table id="rTB">
 				<tr>
 					<th>예약번호</th>
