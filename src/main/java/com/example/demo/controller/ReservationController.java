@@ -262,6 +262,15 @@ public class ReservationController {
 	   @RequestMapping(value="/callCampingRoomForReserve.do", produces = "application/json;charset=utf8")
 	   public String callCampingRoomForReserve(int cs_no, String campingType, String checkin, String checkout) {
 		   String str = "";
+		   if(campingType.equals("undefined")) {
+				  campingType = null;
+			  }
+			  if(checkin.equals("undefined")) {
+				  checkin = null;
+			  }
+			  if(checkout.equals("undefined")) {
+				  checkout = null;
+			  }
 		   System.out.println("======= callCampingRoomForReserve 컨트롤러 작동! ========");
 		   System.out.println("캠핑장 번호: "+cs_no);
 		   System.out.println("캠핑타입: "+campingType);
@@ -274,6 +283,7 @@ public class ReservationController {
 		   map.put("checkout", checkout);
 		   map.put("checkin", checkin);
 		   
+		   
 		   //캠핑장번호와 캠핑타입으로 해당하는 전체룸을 불러온다.
 		   List<CampingRoomVo> list = dao.selectorRoom(map);
 		   
@@ -282,10 +292,14 @@ public class ReservationController {
 		   
 		   for(int i=0; i<list.size(); i++) {
 			   list.get(i).setEmpty(true);
+			   
+			   System.out.println(i+"번째 룸 empty:"+list.get(i));
 			   for(int j=0; j<ingList.size(); j++) {
-				   if(list.get(i).getCr_no() == ingList.get(j).getCr_no()) {
-						  list.get(i).setEmpty(false);
-						  break;
+				   if(campingType != null || checkin != null || checkout != null) {
+					   if(list.get(i).getCr_no() == ingList.get(j).getCr_no()) {
+							  list.get(i).setEmpty(false);
+							  break;
+					   }
 				   }
 			   }
 			   

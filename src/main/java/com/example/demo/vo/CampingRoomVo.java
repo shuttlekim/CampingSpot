@@ -19,4 +19,5 @@ public class CampingRoomVo {
 	private String cr_type;
 	private int cs_no;
 	private boolean empty;
+	
 }

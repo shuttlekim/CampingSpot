@@ -49,8 +49,10 @@
   <select id="ingRoom" resultType="campingRoomVo">
   	select avg(cr_no) cr_no from reserve_search 
   	where cs_no=#{cs_no}
-  	<if test="rs_date != null">
+  	<if test="checkin != null">
   	and rs_date >= to_date(#{checkin}, 'yyyy-mm-dd') 
+  	</if>
+  	<if test="checkout != null">
   	and rs_date <![CDATA[<]]> to_date(#{checkout}, 'yyyy-mm-dd') 
   	</if>
   	<if test="campingType != null">
@@ -65,7 +67,10 @@
   </select>
 
   <select id="selectorRoom" resultType="campingRoomVo">
-  	select * from camping_room where cs_no=#{cs_no} and cr_type=#{campingType}
+  	select * from camping_room where cs_no=#{cs_no} 
+  	<if test="campingType != null">
+  	and cr_type=#{campingType}
+  	</if>
   </select>
 
   <select id="detailCampingSearchResult" resultType="detailCampingSearchResultVo">
