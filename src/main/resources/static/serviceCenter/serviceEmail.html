@@ -3,57 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
-
-.container{
-  width: 1000px;
-  margin: 0 auto;
-}
-.container div{
-  text-align: center;
-  display: table;
-}
-.container div span{
-  display: table-cell;
-  vertical-align: middle;
-} 
-.top{
-
-}
-.middle{
-  margin-top: 20px;
-  width: 1000px;
-  height: 500px;
-  position: relative;
-}
-.middle-center{
-  outline: 1px solid #9F9F9F;
-  top: 0px;
-  width: 800px;
-  height: 800px;
-  background-color: #E6E6E6;
-  margin-left: 110px;
-}
-
-.div1{ 
-    width:300px;
-    height:300px;
-    position:absolute;
-    left:35%;
-    top:40%;
-    margin-left:-150px;
-    margin-top:-150px;
-}
+	.container{
+	  	width: 1000px;
+	  	margin: 0 auto;
+	}
+	.container div{
+	  	text-align: center;
+	  	display: table;
+	}
+	.container div span{
+	  	display: table-cell;
+	  	vertical-align: middle;
+	} 
+	.middle{
+	  	margin-top: 20px;
+	  	width: 1000px;
+	  	height: 500px;
+	  	position: relative;
+	}
+	.middle-center{
+	  	outline: 1px solid #9F9F9F;
+	  	top: 0px;
+	  	width: 800px;
+	  	height: 800px;
+	  	background-color: #E6E6E6;
+	  	margin-left: 110px;
+	}	
+	.div1{ 
+	    width:300px;
+	    height:300px;
+	    position:absolute;
+	    left:35%;
+	    top:40%;
+	    margin-left:-150px;
+	    margin-top:-150px;
+	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-$(function(){
-	
+$(function(){	
 	
 	$("#btnSend").click(function(){
+		
 		var input_title   = $("#title").val();
 		var input_email   = $("#email").val();
 		var input_content = $("#content").val();
-
 		
 		var insert_data = {
 				"title"    : input_title,
@@ -61,10 +55,10 @@ $(function(){
 				"content"  : input_content,
 				};
 		
-		$.ajax("/qnaEmail.do", {data:insert_data, async:false, success:function(r){
-				
+		$.ajax("/qnaEmail.do", {data:insert_data, async:false, success:function(r){				
 
 			if(r != null){
+				
 				var result = confirm("메일전송 성공 \n 메인으로 이동할까요?");
 				
 				if(result == true){				
@@ -75,12 +69,9 @@ $(function(){
 				} 
 			}else{
 				alert("메일전송 실패!!!");
-			}
-	
-		}}); 
-	
-	});	
-
+			}	
+		}});//ajax 종료 	
+	});	//btnSend 종료
 	
 	$("#header").load("/main/header.html");	
 
@@ -92,43 +83,39 @@ $(function(){
 <body>
 
 	<!-- TOP  -->
-	<div class="top" id="header"></div>
+	<div class="top" id="header"></div><br><br>
 
-	<div class="container">
-	<!-- MIDDLE -->
-	  <div class="middle">
-	    <div class="middle-center">
-<form id="f">
-	
-	<br><br>
-	<i class="far fa-edit fa-3x" id="service">문의하기</i>
-	<div class="div1">
-	<p>
-		<strong>제&nbsp;&nbsp;&nbsp;목:&nbsp;</strong>
-		<input type="text" name="title" placeholder="제목을 입력해 주세요" id="title" style="width:300px">
-	</p>
-	<p>
-		<strong>이메일:&nbsp;</strong>
-		<input type="text" name="email" placeholder="답장 받으실 E-MAIL" id="email" style="width:300px">
-	</p><br>
-	<p>
-		<strong>내 용:</strong><br>
-		<textarea rows="20" cols="80" placeholder="문의내용 작성해 주세요." id="content" font-size=18px></textarea>
-	</p>
-	<p>
-		<button id="btnSend" style="width:200px;height:40px;font-size:20px;margin-left: 25px;">문의하기</button>
-	</p>
-	
-	</div>
-</form>
-
-
+	<!-- MIDDLE -->	
+	<div class="body-wrap" style="margin: 0 auto;">
+		<div style="margin: 0 auto; width: 600px" align="center">
+				<form id="f">
+					<i class="far fa-edit fa-3x" id="service"> 문의하기</i><br><br><br>
+					<p>
+						<strong>문의유형:&nbsp;</strong>
+						<select name="title" id="title" size="1" style="width:325px; height:35px; border: solid;">
+							<option value="선택해주세요">선택해주세요</option>
+							<option value="예약변경">예약변경</option>
+							<option value="예약취소">예약취소</option>
+							<option value="예약 상태 조회">예약 상태 조회</option>
+							<option value="기타 문의">기타 문의</option>
+							<option value="웹사이트 문제 신고">웹사이트 문제 신고</option>
+							<option value="불편사항 접수">불편사항 접수</option>		
+						</select>
+					</p>
+					<p>
+						<strong>전자메일:&nbsp;</strong>
+						<input type="text" name="email" placeholder="답장 받으실 E-MAIL" id="email" style="width:300px; border: solid;">
+					</p><br>
+					<p>
+						<textarea rows="20" cols="60" placeholder="문의내용 작성해 주세요." id="content" font-size="20px" style="border: solid;"></textarea>
+					</p>
+					
+					<p>
+						<button id="btnSend" style="width:200px;height:40px;font-size:20px;margin-left: 25px;">문의하기</button>
+					</p>
+				</form>
 		</div>
-	  </div>  
-	</div>
-
-<br>
-
+	</div><br>
 
 
 	<!-- BOTTOM -->
