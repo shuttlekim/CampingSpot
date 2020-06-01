@@ -269,6 +269,14 @@ public class MemberController {
 		return m;
 	}
 	
+	@RequestMapping("/getMember.do")
+	public String getMemberInfo(String mc_id) {
+		String str = "";
+		MemberVo m = dao.getMember(mc_id);
+		str = new Gson().toJson(m);
+		return str;
+	}
+	
 	//포인트 사용시 사용한만큼 '-'해주기
 	@RequestMapping("/updatePoint.do")
 	public String updatePoint(int mc_point, String mc_id) {
