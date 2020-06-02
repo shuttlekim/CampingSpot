@@ -83,12 +83,19 @@
  		var campingType = data1[1];
  		var checkout = data2[1];
  		var checkin = data3[1];
- 		var region = null;
+ 		//var region = null;
  		
  		//축제페이지에서 검색했다면
- 		var fest_data = decodeURI(location.search).split('?searchAddr=')[1];
+ 		var fest_data = decodeURI(location.search).split('&searchAddr=')[1];
  		console.log("축제페이지에서 넘어온 data:",fest_data)
  		if(fest_data != null){
+ 			fest_data1 = decodeURI(location.search).split('&searchAddr=')[0].split('&fcampingType=');
+ 			fest_data2 = fest_data1[0].split('&fcheckout=');
+ 			fest_data3 = fest_data2[0].split('?fcheckin=');
+ 			
+ 			campingType = fest_data1[1];
+ 			checkout = fest_data2[1];
+ 			checkin = fest_data3[1];
  			var fest_data1 = fest_data.split(' ')[0];
  	 		var searchAddr = fest_data1;
  	 		console.log("축제로 검색된 주소:"+searchAddr);

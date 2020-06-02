@@ -9,12 +9,21 @@
 	#detailFestivalImg{
 		height: 300px;
 	}
+	#festivalTitle{
+	    font-size: 1.4em;
+	    font-weight: bold;
+	    color: #333;
+	    margin: 20px 60px;
+	}
 	.festivalContents{
 		display: flex;
 	    margin: 20px;
 	}
-	.festivalContents > div{
-		margin: 0 100px 0 0;
+	.fest_img_div{
+		margin: 0 50px;
+	}
+	.fest_content_div{
+	    padding: 20px 10px;
 	}
 	.fest_search{
 		background:#f7f7f7;
@@ -36,6 +45,63 @@
 		font-size:13px;
 		display:inline-block;
 		color:#666;
+	}
+	.fest_period_div{
+		display: flex;
+		padding : 15px 10px;
+		border-bottom: 1px solid #dbdbdb;
+	}
+	.fest_period_div div:nth-child(1){
+		width: 100px;
+		color: #999;
+	}
+	.fest_location_div{
+		display: flex;
+		padding : 15px 10px;
+		border-bottom: 1px solid #dbdbdb;
+	}
+	.fest_location_div div:nth-child(1){
+		width: 100px;
+		color: #999;
+	}
+	.fest_tel_div{
+		display: flex;
+		padding : 15px 10px;
+		border-bottom: 1px solid #dbdbdb;
+	}
+	.fest_tel_div div:nth-child(1){
+		width: 100px;
+		color: #999;
+	}
+	.fest_host_div{
+		display: flex;
+		padding : 15px 10px;
+		border-bottom: 1px solid #dbdbdb;
+	}
+	.fest_host_div div:nth-child(1){
+		width: 100px;
+		color: #999;
+	}
+	.fest_addr_div{
+		display: flex;
+		padding : 15px 10px;
+	}
+	.fest_addr_div div:nth-child(1){
+		width: 100px;
+		color: #999;
+	}
+	.fest_icon_div{
+		width: 0px;
+		position: relative;
+		float:right;
+		left: -110px;
+		top: -40px;
+	}
+	.fest_icon_div img{
+		width: 100px;
+	}
+	#festivalDetailText{
+		margin: 20px 20px;
 	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -64,9 +130,12 @@
 			searchAddr = detail.addr
 		}})
 		
-		$("#searchCampingFestival").click(function(){
+		$("#fest_btn_search").click(function(){
+			var checkin = $("#fest_input_checkin").val();
+			var checkout = $("#fest_input_checkout").val();
+			var campingType = $("#fest_input_campingType").val();
 			console.log(searchAddr);
-			location.href="campingSearchList.html?searchAddr="+searchAddr;
+			location.href="campingSearchList.html?fcheckin="+checkin+"&fcheckout="+checkout+"&fcampingType="+campingType+"&searchAddr="+searchAddr;
 		})
 		
 		//헤더 출력
@@ -85,45 +154,50 @@
 		<div class="fest_search">
 			<div class="fest_search_inner">
 				<form id="fest_search_form">
-					체크인&nbsp;<input type="date" name="checkin">
+					체크인&nbsp;<input id="fest_input_checkin" type="date" name="checkin" required="required">
 					&nbsp;&nbsp;
-					체크아웃&nbsp;<input type="date" name="checkout">
+					체크아웃&nbsp;<input id="fest_input_checkout" type="date" name="checkout" required="required">
 					&nbsp;&nbsp;
 					캠핑타입
-					<select name="campingType">
+					<select id="fest_input_campingType" name="campingType">
 						<option value="auto" selected="selected">오토캠핑</option>
 						<option value="glamping">글램핑</option>
 						<option value="caravan">카라반</option>
 					</select>
 				</form>
 				&nbsp;&nbsp;
-				<button id="main_btn_search">검색</button>
+				<button id="fest_btn_search">검색</button>
 			</div>
 		</div>
 		<h4 id="festivalTitle"></h4>
 		<div class="festivalContents">
-			<div>
+			<div class="fest_img_div">
 				<img id="detailFestivalImg"/>
 			</div>
-			<div>
-				<div>- 기간</div>
-				<div id="festPeriod"></div>
-				<br>
-				<div>- 장소</div>
-				<div id="festLocation"></div>
-				<br>
-				<div>- 연락처</div>
-				<div id="festTel"></div>
-				<br>
-				<div>- 주최/주관</div>
-				<div id="festHost"></div>
-				<br>
-				<div>- 주소</div>
-				<div id="festAddr"></div>
-				<br>
+			<div class="fest_content_div">
+				<div class="fest_period_div">
+					<div>기 간</div>
+					<div id="festPeriod"></div>
+				</div>
+				<div class="fest_location_div">
+					<div>장 소</div>
+					<div id="festLocation"></div>
+				</div>
+				<div class="fest_tel_div">
+					<div>연락처</div>
+					<div id="festTel"></div>
+				</div>
+				<div class="fest_host_div">
+					<div>주최/주관</div>
+					<div id="festHost"></div>
+				</div>
+				<div class="fest_addr_div">
+					<div>주 소</div>
+					<div id="festAddr"></div>
+				</div>
 			</div>
-			<div>
-				<button id="searchCampingFestival">캠핑장<br>검색하기</button>
+			<div class="fest_icon_div">
+				<img src="../resources/camping_spot_icon/ongoing_o.png">
 			</div>
 		</div>
 		<hr>
