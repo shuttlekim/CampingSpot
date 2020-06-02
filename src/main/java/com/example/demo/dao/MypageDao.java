@@ -16,6 +16,7 @@ import com.example.demo.vo.WishVo;
 @Repository
 public class MypageDao {
 
+	
 	public List<CsRVo> myReservationList(String mc_id) {
 		return DBManager.myReservationList(mc_id);
 	}
@@ -40,8 +41,8 @@ public class MypageDao {
 		return DBManager.myWishList(wish);
 	}
 
-	public List<CrLVo> myReviewList(CrLVo crl) {
-		return DBManager.myReviewList(crl);
+	public List<CrLVo> myReviewList(String mc_id) {
+		return DBManager.myReviewList(mc_id);
 	}
 	
 	public int deleteMyReview(int cre_no) {
@@ -59,4 +60,5 @@ public class MypageDao {
 	public int camping_review_insert(CrVo cr) {
 		return DBManager.camping_review_insert(cr);
 	}
+	
 }

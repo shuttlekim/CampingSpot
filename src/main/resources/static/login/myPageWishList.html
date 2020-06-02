@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="shortcut icon" href="/resources/profile/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/resources/profile/favicon.ico" type="image/x-icon">
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style type="text/css">
@@ -12,6 +10,9 @@ User Profile Sidebar by @keenthemes
 A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
 Licensed under MIT
 ***/
+
+
+
 
 * { 
     -moz-box-sizing: border-box; 
@@ -491,7 +492,7 @@ $("#btnDeleteMember").click(function(){
 });
 </script>
 </head>
-<body>
+<body style="background:#EFF2F4">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -504,19 +505,22 @@ Licensed under MIT
 -->
 
 <!-- TOP  -->
-<div class="top" id="header"></div>
+<div class="top" id="header" style="background: white;"></div>
 <div class="container">
 	<!-- MIDDLE -->
 	<div class="body_wrap">
 	
-<div class="container">
+<div class="container" style="background:#EFF2F4" >
     <div class="row profile">
-		<div class="col-md-3" style="border:ridge; height: 600px">
-			<div class="profile-sidebar">
+		<div class="col-md-3" style="height: 600px">
+			<div class="profile-sidebar" style =" border-radius: 2em;">
 				<!-- SIDEBAR USERPIC -->
-				<div class="profile-userpic">
+
+			
+					<div class="profile-userpic">
 				
-				</div>
+					</div>
+				
 				<!-- END SIDEBAR USERPIC -->
 				<!-- SIDEBAR USER TITLE -->
 				<div class="profile-usertitle">
@@ -537,19 +541,18 @@ Licensed under MIT
 				<!-- SIDEBAR MENU -->
 				<div class="profile-usermenu">
 					<ul class="nav">
-						<li id="li1">
-							<a id="a1">
+						<li id="li1" class="active">
+							<a id="a1" href="/login/myPage.html">
 							<i class="glyphicon glyphicon-home"></i>
 							예약내역 </a>
-							
 						</li>
-						<li id="li2" >
-							<a id="a2">
-							<i class="glyphicon glyphicon-user"></i>
-							캠핑후기 </a>
+						<li id="li2">
+							<a id="a2" href="/login/myPageReviewList.html">
+							<i class='glyphicon glyphicon-user'></i>
+							캠핑후기</a>
 						</li>
-						<li id="li3" class="active">
-							<a id="a3">
+						<li id="li3">
+							<a id="a3" href="/login/myPageWishList.html">
 							<i class="glyphicon glyphicon-ok"></i>
 							위시리스트 </a>
 						</li>
@@ -558,20 +561,22 @@ Licensed under MIT
 				<!-- END MENU -->
 			</div>
 		</div>
-		<div class="col-md-9">
+		<div class="col-md-9" style="background: white;  border-radius: 2em;">
             <div class="profile-content">
+            
 			 
 			 <div id="pattern" class="pattern">
     <ul class="list img-list">
-     <h4 id="h4"></h4>
-      <hr>
+    <h4 id="h4"></h4>
+     <hr>
         <li id="li">
 
         </li>
     </ul>
 </div>
 <!--End Pattern HTML-->
-            </div>
+			  
+            </div> 
 		</div>
 	</div>
 </div>
@@ -580,7 +585,6 @@ Licensed under MIT
 </div><br>
 
 <div id="footers" class="bottom"></div>
-<br>
-<br>
+
 </body>
 </html>

@@ -26,6 +26,7 @@ import com.example.demo.vo.WishVo;
 
 public class DBManager {
 
+	
 	private static SqlSessionFactory factory = null;
 	static {
 		try {
@@ -177,10 +178,12 @@ public class DBManager {
 	public static List<CsRVo> myReservationList(String mc_id) {
 		List<CsRVo> list = null;
 		SqlSession session = factory.openSession();
-		list = session.selectList("myPage.myReservationList", mc_id);
+		list = session.selectList("myPage.myReservationList",  mc_id);
 		session.close();
 		return list;
 	}
+	
+
 	// 현성 : 예약내역 출력 - 사용후
 	public static List<CsRVo> resrvation_after() {
 		List<CsRVo> list = null;
@@ -225,10 +228,10 @@ public class DBManager {
 	}
 	
 	// 현성 : 캠핑 후기 출력
-	public static List<CrLVo> myReviewList(CrLVo crl){
+	public static List<CrLVo> myReviewList(String mc_id){
 		List<CrLVo> list = null;
 		SqlSession session = factory.openSession();
-		list = session.selectList("myPage.myReviewList", crl);
+		list = session.selectList("myPage.myReviewList", mc_id);
 		session.close();
 		return list;
 	}
