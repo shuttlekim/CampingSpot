@@ -5,6 +5,18 @@
 <link rel="icon" href="/resources/profile/favicon.ico" type="image/x-icon">
 <meta charset="UTF-8">
 <style type="text/css">
+	.container{
+	  	width: 1000px;
+	  	margin: 0 auto;
+	}
+	.container div{
+	  	text-align: center;
+	  	display: table;
+	}
+	.container div span{
+	  	display: table-cell;
+	  	vertical-align: middle;
+	}
 	input[type="text"], input[type="date"],input[type="number"],input[type="password"],input[type="email"],input[type="email"], input[type="file"],select{
 		height:30px;		
 		line-height: 30px;
@@ -16,12 +28,18 @@
 		margin-left: 140px;	
 	}
 	.middle{
+		//.rgin-top: 20px;
 		position: relative;
 	 	outline: 1px solid #9F9F9F;
+		//position: absolute;
+		//left: 5px;
 		top: 20px;
 	  	width: 300px;
 		height: 780px;
 		border: hidden;
+		//border-radius: 5%;
+		//background-color: #EBDEF0 ;
+		//background-color: #DDD5D5 ;
 		box-shadow: 5px 5px 5px 5px;
 	}
 	#mc_id{
@@ -36,13 +54,15 @@
 		font-family:Nanum Gothic;
 		transition: background-color 0.2s;
 		cursor: pointer;
-	}	
+	}
+	
 	#idCheck:hover {
   		background-color: #81E5B8;
 	}
 	#idCheck:active {
 	  	background-color: #367c36;
-	}		
+	}	
+	
 	#btnJoinOk{
 		transition: background-color 0.2s;
 	}
@@ -51,7 +71,9 @@
 	}
 	#btnJoinOk:active {
 	  	background-color: #367c36;
-	}	
+	}
+	
+	
 	#mc_pwd{
 		width: 200px;
 		height: 35px;
@@ -86,22 +108,34 @@
 		width: 200px;
 		height: 35px;
 		border: groove;
-	}	
+	}
+	
+	
 	.filebox label {
 	  	display: inline-block;
 	  	padding: .5em .75em;
 		color: #fff;
+		//font-size: inherit;
 		line-height: normal;
 		vertical-align: middle;
+		//background-color: #5cb85c;
 		cursor: pointer;
 		border: 1px solid #4cae4c;
 		border-radius: .25em;
 		-webkit-transition: background-color 0.2s;
 		transition: background-color 0.2s;
+		//margin-left: 140px;
 		text-align: center;
     	background: #2a2a2a;
-    	border-radius: 7px;    	
+    	//height: 30px;
+    	//line-height: 30px;
+   		//padding: 0 10px;
+    	//border: none;
+    	//font-size: 14px;
+    	border-radius: 7px;
+    	
     	width: 90px;
+		//height: 38px;
 		font-size: 16px;
 		font-family:Nanum Gothic;
 	}			
@@ -177,7 +211,9 @@ $(function(){
 				check = 1;
 			}
 		}}); 
-	});	
+	});
+	
+	
 	
 	$("#header").load("/main/header.html");	
 
@@ -191,12 +227,12 @@ $(function(){
 <!-- TOP  -->
 <div class="top" id="header"></div><br>
 
-<!-- MIDDLE -->
-<div class="body-wrap" style="height: 830px">
-	<div style="margin: 0 auto; width: 700px" align="center" class="middle">
-	<br>
-	<h1 style="font-family:Nanum Gothic;font-size: 40px">회원가입</h1>
-	<hr width="300px"><br><br>
+	<!-- MIDDLE -->
+	<div class="body-wrap" style="height: 830px">
+		<div style="margin: 0 auto; width: 700px" align="center" class="middle">
+		<br>
+		<h1 style="font-family:Nanum Gothic;font-size: 40px">회원가입</h1>
+		<hr width="300px"><br><br>
 		<div>
 			<form id="join" method="post" enctype="multipart/form-data">
 				<table width="500px">
@@ -218,13 +254,13 @@ $(function(){
 						<td><input type="email" name="mc_email" id="mc_email" placeholder="E-MAIL" required="required" maxlength="50"></td>
 					</tr>
 					<tr>
-						<td><input type="text" name="mc_name" id="mc_name" placeholder="성함" required="required" maxlength="5"></td>
+						<td><input type="text" name="mc_name" id="mc_name" placeholder="성함" required="required"></td>
 					</tr>
 					<tr>
-						<td><input type="text" name="mc_nickname" id="mc_nickname" placeholder="닉네임 (8자 이내)" required="required" maxlength="5"></td>
+						<td><input type="text" name="mc_nickname" id="mc_nickname" placeholder="닉네임 (8자 이내)" required="required"></td>
 					</tr>
 					<tr>
-						<td><input type="text" name="mc_tel" id="mc_tel" placeholder="전화번호 (-)없이 입력" required="required" maxlength="12"></td>
+						<td><input type="text" name="mc_tel" id="mc_tel" placeholder="전화번호 (-)없이 입력" required="required"></td>
 					</tr>
 					<tr>
 						<td><input type="text"  placeholder="다음 중 회원님의 캠핑 취향은?" required="required" disabled="disabled" style="background-color: #e2e2e2; font-weight: bold" id="grey"></td>
@@ -242,12 +278,12 @@ $(function(){
 					<tr>
 						<td><input type="hidden" name="mc_auth" id="mc_auth" value="3"></td>
 					</tr>
-				</table><br><br><br>
+				</table><br><br><br><br>
 				<button id="btnJoinOk" type="button" style="margin:0 auto;align:center;width: 220px;height: 40px;font-size: 20px;cursor: pointer">회원가입</button>
 			</form>
+				</div>
 		</div>
-	</div>
-</div>
+  </div>
 
 <!-- BOTTOM -->
 <div id="footers" class="bottom"></div>

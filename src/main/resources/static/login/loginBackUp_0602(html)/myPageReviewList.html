@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<link rel="shortcut icon" href="/resources/profile/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/resources/profile/favicon.ico" type="image/x-icon">
+<meta charset="EUC-KR">
+<title>Insert title here</title>
 <style type="text/css">
-body{
-background-color: #93B874;; 
-}
 
+/***
+User Profile Sidebar by @keenthemes
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+***/
 
 * { 
     -moz-box-sizing: border-box; 
@@ -149,16 +154,13 @@ input[type=search] {
 .li-img {
     display: table-cell;
     vertical-align: middle;
-    width: 40%; 
-    //width: 1000px; 
+    width: 30%;
     padding-right: 1em;
-    //border: double;
 }
 
 .li-img img {
     display: block;
-    //width: 100%;
-    width: 800px;
+    width: 100%;
     height: auto;
 }
 
@@ -167,7 +169,6 @@ input[type=search] {
     vertical-align: middle;
     width: 70%;
     padding-right: 1em;
-    padding-bottom: 2em;
 }
 
 .li-head {
@@ -215,12 +216,6 @@ body {
 .profile-sidebar {
   padding: 20px 0 10px 0;
   background: #fff;
-}
-.profile-userpic{
-	width: 180px;
-	height: 180px;
-	//border: double;
-	margin-left: 40px;
 }
 
 .profile-userpic img { 
@@ -319,15 +314,8 @@ body {
 .margin_right{
 	margin-right: 5px;
 }
-#msg{
- font-weight: bold;
-}
-
-
-
-
-
 /*======================================================*/
+
 	.middle{
 	  	margin-top: 20px;
 	  	width: 1000px;
@@ -358,223 +346,186 @@ body {
 		//border: double;
 	}
 </style>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-$(function(){	
+$(function(){
 	var arr;
-	
+
 	var mc_id = sessionStorage.getItem("memberId");
+	var mb_id = sessionStorage.getItem("businessId");
+	var mc_id2 = sessionStorage.getItem("memberName");
 	var mc_auth = sessionStorage.getItem("auth");
-		
+	
 	$("#mc_id").html(mc_id);
+	$("#mb_id").html(mb_id);
+	$('#mc_id2').html(mc_id2);	
 	
 	$("#header").load("/main/header.html");	
 
 	$("#footers").load("/main/footer.html");
+		
+	$("#a1").click(function(){
+		var idx = $(this).attr("idx");
+		window.location.href="/login/myPage.html";
+	});
 	
-	myReservationList();
+	$("#a2").click(function(c){
+		window.location.href="/login/myPageReviewList.html";
+	});
+	
+	$("#a3").click(function(c){
+		window.location.href="/login/myPageWishList.html";
+	});
+	
+	
 	
 	$.ajax("/profile.do",{data:{"mc_id":mc_id}, success:function(data){
 		arr = data;
 		$.each(arr, function(idx,p){
-
 			var mc_fname = $("<img class='img-responsive'></img>").attr({"src":"/resources/profile/"+p.mc_fname});
 			
 			if(p.mc_fname == null){
 				var mc_fname = $("<img class='img-responsive'></img>").attr({"src":"/resources/profile/nullProfile.jpg"});
 			}else{	
 				
-			}			
-			
+			}	
 			$(".profile-userpic").append(mc_fname);
-			$(".profile-usertitle-name").html(p.mc_name+ " ë‹˜");
-			$(".profile-userbuttons").html("ë‚´ í¬ì¸íŠ¸ : " +p.mc_point);
-			$("#h4").html(p.mc_name + " ë‹˜ì˜ ì˜ˆì•½ë‚´ì—­");
+			$(".profile-usertitle-name").html(p.mc_name+ " ´Ô");
+			$(".profile-userbuttons").html("³» Æ÷ÀÎÆ® : " +p.mc_point);
+			$("#h4").html("¢Ñ [" + p.mc_name + "] ´ÔÀÇ Ä·ÇÎÈÄ±â");
 		});
-	}}); 
+	}});
 	
 	
-	function myReservationList(){
-		$.ajax("/myReservationList.do",{data:{"mc_id":mc_id}, success:function(data){
-			arr = data;
-			console.log(data);
-			$.each(arr, function(idx,c){
-				var a = $("<a class='inner'></a>");
-				var str = c.cs_camp_fname;
-				var camp_fname = str.split(",");
-				var cs_camp_fname = $("<img></img>").attr({"src":"/mypage/img/"+camp_fname[0]}).css("border-radius", "2em");
-				var div_li_img = $("<div class='li-img'></div>");
-				var reservation_div = $("<div id='res' class='li-text'></div>").attr("idx", idx);
-				var button_div = $("<div id='btn' class='li-text'></div>").attr("idx", idx);
-				var cs_name = $("<br><h4 class='li-head'></h4>").html(c.cs_name);
-				var checkin = $("<p class='li-summary'></p>").html(c.r_checkin + " ì²´í¬ì¸ì…ë‹ˆë‹¤!! ìœ ì˜í•´ì£¼ì„¸ìš”~!!"); 
-				var checkindetail = $("<p class='li-summary2'></p><br>").html(c.r_checkin + "~" +c.r_checkout);
-				var button1 = $("<button type='button' id='bt1' class='bt1 margin_right btn  btn-success btn-sm'></button>").attr("idx", idx).html("ì˜ˆì•½ì •ë³´í™•ì¸");
-				var button2 = $("<button type='button' id='bt2' class='bt2 margin_right btn  btn-danger btn-sm'></button>").attr("idx", idx).html("ì˜ˆì•½ì·¨ì†Œ");
-				var review_button = $("<button type='button' id='bt3' class='bt3 margin_right btn  btn-warning btn-sm'></button>").attr("idx", idx).html("ë¦¬ë·°ì“°ê¸°");
-				var message = $("<p id='msg'></p>").html("ì˜ˆì•½ ì·¨ì†Œ ëŒ€ê¸°ì¤‘ì…ë‹ˆë‹¤....").css("display", "none");
-				
-				$(button1).click(function(){
-					var idx = $(this).attr("idx");
-						window.location.href= "/login/myReservationDetail.html?mc_id="+arr[idx].mc_id+"&r_no="+arr[idx].r_no;
-						
-				});
-				
-				$(button2).click(function(){
+		function myReviewList(){
+			
+			$.ajax("/myReviewList.do", {data:{"mc_id":mc_id}, success : function(r){
+				arr = r;
+				console.log(r);
+				$.each(arr, function(idx , r){
+					var a = $("<div class='inner'></div><br>")
+					var str = r.cs_camp_fname;
+					var camp_fname = str.split(",");
+					var cs_camp_fname = $("<img></img>").attr({"src":"img/"+camp_fname[0]});
+					var div_li_img = $("<div class='li-img'></div>");
+					var ReviewList_div = $("<div class='li-text'></div>").attr("idx", idx);
+					var cs_name = $("<br><h4 class='li-head'></h4><br>").html(r.cs_name);
+					var cre_date =  $("<p class='li-summary'></p><br>").html("µî·ÏÀÏ: " +r.cre_date);
+					var cre_content = $("<p></p>").html(r.mc_id+ " ´ÔÀÇ ÈÄ±â : " +r.cre_content);
+					var cre_re_contents = $("<p></p>").html(r.mb_id + " ´ÔÀÇ ´ñ±Û : " +r.cre_re_contents);
+					var button = $("<button type='button' class='margin_right btn btn-danger btn-sm'></button>").attr("idx", idx).html("»èÁ¦");
 					
-				    var confirm_test = confirm("ì˜ˆì•½ì„ ì·¨ì†Œí•˜ì‹œê² ìŠµë‹ˆê¹Œ??");
-					 
-				    if ( confirm_test == true ) {
-				    	var idx = $(button2).attr("idx");
-						var data = {r_no : arr[idx].r_no}
-				    	$.ajax("/cancelReservation", {data : data, success : function(r) {
-						
-				    	window.location.href= "/login/myPage.html";
-				    	}}); 
-				    	
-				    } else if ( confirm_test == false ) {
-				    	 alert("ì·¨ì†Œë¥¼ ëˆ„ë¥´ì…¨ìŠµë‹ˆë‹¤.");
-				    }
-				    					
-				});
-				
-					$(review_button).click(function(){
+					$(button).click(function() {
 						var idx = $(this).attr("idx");
-						var arrstr = arr[idx].r_checkin.split("-");
-						var checkin = new Date(arrstr[0],arrstr[1],arrstr[2]);
-						var today = new Date();
-						if(today < checkin){
-							alert("ë¦¬ë·°ë¥¼ ì“¸ìˆ˜ ìˆì–´ìš”.");
-							window.location.href="/login/reviewMyReservation.html?mc_id="+arr[idx].mc_id+"&cs_no="+arr[idx].cs_no;	
-						}else{
-							alert("ë¦¬ë·°ë¥¼ ì“¸ìˆ˜ ì—†ì–´ìš”.");
-						}
-						
+					var no = {cre_no : arr[idx].cre_no };
+						$.ajax("/deleteMyReview", {data : no, success : function(r) {
+							window.location.href = "/login/myPageReviewList.html";
+							alert("¿Ï·á");
+						}});
 					});
-									
-				if(c.r_cancel == 0){
+						
 					
 					$(div_li_img).append(cs_camp_fname);
-					$(button_div).append(button1 , button2, review_button);
-					$(reservation_div).append(div_li_img , cs_name, checkin, checkindetail, button_div);
-					$(a).append(reservation_div);
-					$("#li").append(a, message);
-					$("#btn").css("display" ,"block");
-					$("#msg").css("display" , "none");
-					
-				}else if(c.r_cancel == 1){
-					
-					$(div_li_img).append(cs_camp_fname);
-					$(button_div).append(button1 , button2, review_button);
-					$(reservation_div).append(div_li_img , cs_name, checkin, checkindetail, button_div);
-					$(a).append(reservation_div);
-					$("#li").append(a, message);
-					$("#btn").css("display" ,"none");
-					$("#msg").css("display" , "block");
-					
-				}else if(c.r_cancel == 2){
-					
-					$(div_li_img).append(cs_camp_fname);
-					$(button_div).append(button1 , button2, review_button);
-					$(reservation_div).append(div_li_img , cs_name, checkin, checkindetail, button_div);
-					$(a).append(reservation_div);
-					$("#li").append(a, message);
-					$("#btn").css("display" ,"none");
-					$("#msg").css("display" , "block");
-					
-				}	
-			});
-		}});
-	}
-	 
-	 
-	$("#btnDeleteMember").click(function(){			
-		
-		var result = confirm("ì •ë§ íƒˆí‡´í•˜ì‹¤ê±´ê°€ìš”? ã… ã… ");
-	
-		if(result == true){
-			$.ajax("/deleteMember.do", {data:{"mc_id":mc_id}, success:function(r){}});
-		    alert("ì˜ê°€ìš”...");
-		    sessionStorage.clear();
-			window.location.href = "/main/main.html";
-		}else{
-		    alert("^_____^");
+					$(ReviewList_div).append(div_li_img, cs_name, cre_date, cre_content, cre_re_contents, button);
+					$(a).append(ReviewList_div);
+					$("#li").append(a);
+				});
+			}});
 		}
-	});
-
-	$("#btnDeleteBusiness").click(function(){			
-	
-		var result = confirm("ì •ë§ íƒˆí‡´í•˜ì‹¤ê±´ê°€ìš”? ã… ã… ");
-	
-		if(result == true){
-			$.ajax("/deleteBusiness.do", {data:{"mb_id":mb_id}, success:function(r){}});
-		    alert("ì˜ê°€ìš”...");
-		    sessionStorage.clear();
-			window.location.href = "/main/main.html";
-		}else{
-		    alert("^_____^");
-		} 
-	});
-
-	if(sessionStorage.getItem("businessId") != null){
-   		 $("#memberPanel").css("display", "none");
-   		 $("#hiMember").css("display", "none");
-         $("#businessPanel").css("display", "block");     
-         $("#hiBusiness").css("display", "block");
-         $("#naverPanel").css("display", "none");
-         $("#hiNaver").css("display", "none");         
-    }
-	
-	if(sessionStorage.getItem("memberId") != null){
-   		 $("#memberPanel").css("display", "block");
-   		 $("#hiMember").css("display", "block");
-         $("#businessPanel").css("display", "none");     
-         $("#hiBusiness").css("display", "none");
-         $("#naverPanel").css("display", "none");
-         $("#hiNaver").css("display", "none");
-    }
-	
-	if(sessionStorage.getItem("memberName") != null){
-   		 $("#memberPanel").css("display", "none");
-   		 $("#hiMember").css("display", "none");
-         $("#businessPanel").css("display", "none");     
-         $("#hiBusiness").css("display", "none");
-         $("#naverPanel").css("display", "block");
-         $("#hiNaver").css("display", "block");
-    }
-	
-	
-	
-	$("#header").load("/main/header.html");	
-
-	$("#footers").load("/main/footer.html");
+		myReviewList();
 		
+		
+		
+		$("#btnDeleteMember").click(function(){			
+			
+			var result = confirm("Á¤¸» Å»ÅğÇÏ½Ç°Ç°¡¿ä? ¤Ğ¤Ğ");
+		
+			if(result == true){
+				$.ajax("/deleteMember.do", {data:{"mc_id":mc_id}, success:function(r){}});
+			    alert("Àß°¡¿ä...");
+			    sessionStorage.clear();
+				window.location.href = "/main/main.html";
+			}else{
+			    alert("^_____^");
+			}
+		});
+
+		$("#btnDeleteBusiness").click(function(){			
+		
+			var result = confirm("Á¤¸» Å»ÅğÇÏ½Ç°Ç°¡¿ä? ¤Ğ¤Ğ");
+		
+			if(result == true){
+				$.ajax("/deleteBusiness.do", {data:{"mb_id":mb_id}, success:function(r){}});
+			    alert("Àß°¡¿ä...");
+			    sessionStorage.clear();
+				window.location.href = "/main/main.html";
+			}else{
+			    alert("^_____^");
+			} 
+		});
+
+		if(sessionStorage.getItem("businessId") != null){
+	   		 $("#memberPanel").css("display", "none");
+	   		 $("#hiMember").css("display", "none");
+	         $("#businessPanel").css("display", "block");     
+	         $("#hiBusiness").css("display", "block");
+	         $("#naverPanel").css("display", "none");
+	         $("#hiNaver").css("display", "none");         
+	    }
+		
+		if(sessionStorage.getItem("memberId") != null){
+	   		 $("#memberPanel").css("display", "block");
+	   		 $("#hiMember").css("display", "block");
+	         $("#businessPanel").css("display", "none");     
+	         $("#hiBusiness").css("display", "none");
+	         $("#naverPanel").css("display", "none");
+	         $("#hiNaver").css("display", "none");
+	    }
+		
+		if(sessionStorage.getItem("memberName") != null){
+	   		 $("#memberPanel").css("display", "none");
+	   		 $("#hiMember").css("display", "none");
+	         $("#businessPanel").css("display", "none");     
+	         $("#hiBusiness").css("display", "none");
+	         $("#naverPanel").css("display", "block");
+	         $("#hiNaver").css("display", "block");
+	    }
+		
+		
+		
+		$("#header").load("/main/header.html");	
+
+		$("#footers").load("/main/footer.html");
 });
 </script>
 </head>
-<body style="background:#EFF2F4">
+<body>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
+<!--
+User Profile Sidebar by @keenthemes
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+-->
+
+
 <!-- TOP  -->
-<div class="top" id="header" style="background: white;"></div>
+<div class="top" id="header"></div>
 <div class="container">
 	<!-- MIDDLE -->
 	<div class="body_wrap">
 	
-<div class="container" style="background:#EFF2F4" >
+<div class="container">
     <div class="row profile">
-		<div class="col-md-3" style="height: 600px">
-			<div class="profile-sidebar" style =" border-radius: 2em;">
+		<div class="col-md-3">
+			<div class="profile-sidebar" style="border:ridge; height: 600px">
 				<!-- SIDEBAR USERPIC -->
-
-			
-					<div class="profile-userpic">
+				<div class="profile-userpic">
 				
-					</div>
-				
+				</div>
 				<!-- END SIDEBAR USERPIC -->
 				<!-- SIDEBAR USER TITLE -->
 				<div class="profile-usertitle">
@@ -582,8 +533,8 @@ $(function(){
 					
 					</div>
 					<div class="profile-usertitle-job">
-					<a onclick="location.href='updateMember.html'" id="btnUpdateMember">íšŒì›ì •ë³´ìˆ˜ì •</a>
-		<!--  <button onclick="location.href='/login/listMember.html'">íšŒì›ì •ë³´ ë³´ê¸°</button> -->
+					<a onclick="location.href='updateMember.html'" id="btnUpdateMember">È¸¿øÁ¤º¸¼öÁ¤</a>
+		<!--  <button onclick="location.href='/login/listMember.html'">È¸¿øÁ¤º¸ º¸±â</button> -->
 					</div>
 				</div>
 				<!-- END SIDEBAR USER TITLE -->
@@ -595,49 +546,49 @@ $(function(){
 				<!-- SIDEBAR MENU -->
 				<div class="profile-usermenu">
 					<ul class="nav">
-						<li id="li1" class="active">
-							<a id="a1" href="/login/myPage.html">
+						<li id="li1">
+							<a id="a1">
 							<i class="glyphicon glyphicon-home"></i>
-							ì˜ˆì•½ë‚´ì—­ </a>
+							¿¹¾à³»¿ª </a>
 						</li>
-						<li id="li2">
-							<a id="a2" href="/login/myPageReviewList.html">
-							<i class='glyphicon glyphicon-user'></i>
-							ìº í•‘í›„ê¸°</a>
+						<li id="li2" class="active">
+							<a id="a2">
+							<i class="glyphicon glyphicon-user"></i>
+							Ä·ÇÎÈÄ±â </a>
 						</li>
 						<li id="li3">
-							<a id="a3" href="/login/myPageWishList.html">
+							<a id="a3">
 							<i class="glyphicon glyphicon-ok"></i>
-							ìœ„ì‹œë¦¬ìŠ¤íŠ¸ </a>
+							À§½Ã¸®½ºÆ® </a>
 						</li>
 					</ul>
 				</div>
 				<!-- END MENU -->
 			</div>
 		</div>
-		<div class="col-md-9" style="background: white;  border-radius: 2em;">
-            <div class="profile-content" style= "margin-top: 2px;">
-            
+		<div class="col-md-9">
+            <div class="profile-content">
 			 
 			 <div id="pattern" class="pattern">
     <ul class="list img-list">
-    <h4 id="h4"></h4>
-     <hr>
+     <h4 id="h4"></h4>
+      <hr>
         <li id="li">
 
         </li>
     </ul>
 </div>
 <!--End Pattern HTML-->
-			  
-            </div> 
+            </div>
 		</div>
 	</div>
 </div>
 <!-- BOTTOM -->
-</div>  
+	</div>  
 </div><br>
 
 <div id="footers" class="bottom"></div>
+<br>
+<br>
 </body>
 </html>

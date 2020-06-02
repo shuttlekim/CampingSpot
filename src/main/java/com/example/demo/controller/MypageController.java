@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.example.demo.dao.MypageDao;
-import com.example.demo.vo.CrLVo;
 import com.example.demo.vo.CrVo;
 import com.example.demo.vo.CsCVo;
 import com.example.demo.vo.CsDVo;
@@ -26,7 +26,7 @@ public class MypageController {
 		this.dao = dao;
 	}
 	
-
+	
 	@RequestMapping(value = "/myReservationList.do", produces = "application/json;charset=UTF-8")
 	public String myReservationList(String mc_id) {
 		String str = "";
@@ -89,12 +89,10 @@ public class MypageController {
 	}
 
 	@RequestMapping(value = "/myReviewList.do", produces = "application/json;charset=UTF-8")
-	public String myReviewList(CrLVo crl) {
+	public String myReviewList(String mc_id) {
 		String str = "";
-		List<CrLVo> list7 = dao.myReviewList(crl);
 		Gson gson = new Gson();
-		str = gson.toJson(list7);
-		System.out.println(str);
+		str = gson.toJson(dao.myReviewList(mc_id));
 		return str;
 	}
 

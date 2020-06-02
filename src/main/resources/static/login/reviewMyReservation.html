@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="shortcut icon" href="/resources/profile/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/resources/profile/favicon.ico" type="image/x-icon">
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style type="text/css">
@@ -12,6 +10,7 @@ User Profile Sidebar by @keenthemes
 A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
 Licensed under MIT
 ***/
+
 
 * { 
     -moz-box-sizing: border-box; 
@@ -488,19 +487,22 @@ A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themefores
 Licensed under MIT
 -->
 <!-- TOP  -->
-<div class="top" id="header"></div>
+<div class="top" id="header" style="background: white;"></div>
 <div class="container">
 	<!-- MIDDLE -->
 	<div class="body_wrap">
 	
-<div class="container">
+<div class="container" style="background:#EFF2F4" >
     <div class="row profile">
-		<div class="col-md-3">
-			<div class="profile-sidebar">
+		<div class="col-md-3" style="height: 600px">
+			<div class="profile-sidebar" style =" border-radius: 2em;">
 				<!-- SIDEBAR USERPIC -->
-				<div class="profile-userpic">
-					
-				</div>
+
+			
+					<div class="profile-userpic">
+				
+					</div>
+				
 				<!-- END SIDEBAR USERPIC -->
 				<!-- SIDEBAR USER TITLE -->
 				<div class="profile-usertitle">
@@ -508,7 +510,7 @@ Licensed under MIT
 					
 					</div>
 					<div class="profile-usertitle-job">
-						<a onclick="location.href='updateMember.html'" id="btnUpdateMember">회원정보수정</a>
+					<a onclick="location.href='updateMember.html'" id="btnUpdateMember">회원정보수정</a>
 		<!--  <button onclick="location.href='/login/listMember.html'">회원정보 보기</button> -->
 					</div>
 				</div>
@@ -521,19 +523,18 @@ Licensed under MIT
 				<!-- SIDEBAR MENU -->
 				<div class="profile-usermenu">
 					<ul class="nav">
-						<li class="active">
-							<a href="myPage.html">
+						<li id="li1" class="active">
+							<a id="a1" href="/login/myPage.html">
 							<i class="glyphicon glyphicon-home"></i>
 							예약내역 </a>
-							
 						</li>
-						<li>
-							<a href="myPageReviewList.html">
-							<i class="glyphicon glyphicon-user"></i>
-							캠핑후기 </a>
+						<li id="li2">
+							<a id="a2" href="/login/myPageReviewList.html">
+							<i class='glyphicon glyphicon-user'></i>
+							캠핑후기</a>
 						</li>
-						<li>
-							<a href="myPageWishList.html">
+						<li id="li3">
+							<a id="a3" href="/login/myPageWishList.html">
 							<i class="glyphicon glyphicon-ok"></i>
 							위시리스트 </a>
 						</li>
@@ -579,7 +580,6 @@ Licensed under MIT
 </div><br>
 
 <div id="footers" class="bottom"></div>
-<br>
-<br>
+
 </body>
 </html>

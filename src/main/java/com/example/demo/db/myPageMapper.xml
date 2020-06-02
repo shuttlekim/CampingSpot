@@ -3,11 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="myPage">
-
+<!-- 현성 -->
+<!-- 위시리스트 추가 -->
 	<insert id="insertWish">
 		insert into camping_wish values(wish_seq.nextval, #{mc_id}, #{cs_no})
 	</insert>
-	<!-- 현성 -->
+
+
 
 	<!-- 예약내역 -사용전 -->
 <select id="myReservationList" resultType="CsRVo">
@@ -18,9 +20,7 @@
 	TO_CHAR(r_checkout,'YYYY-MM-DD') r_checkout from reservation where mc_id = #{mc_id})a 
 	where cr.cr_no = a.cr_no) b
 	where cs.cs_no = b.cs_no
-	
-<!--select cs.cs_camp_fname, cs.cs_no, cs.cs_name , TO_CHAR(res.r_checkin,'YYYY-MM-DD') r_checkin ,TO_CHAR(res.r_checkout,'YYYY-MM-DD') r_checkout , res.mc_id, res.r_no, res.r_cancel from reservation res, camping_room cr, camping_spot cs, camping_review cre
-where cs.cs_no = cre.cs_no and cs.cs_no = cr.cs_no and cr.cr_no = res.cr_no and res.mc_id = 'test1234' order by res.r_no   -->
+
 
 </select>   
 
@@ -86,9 +86,9 @@ camping_spot cs where cw.mc_id = mc.mc_id and cw.cs_no = cs.cs_no and mc.mc_id =
 
 <select id="myReviewList" resultType="CrLVo">
 
-select cre.cre_no, cre_content, cre_rate, TO_CHAR(cre_date,'YYYY-MM-DD') cre_date, cre.mc_id, crer.mb_id, cs.cs_camp_fname ,cs.cs_name, cs.cs_no, crer.cre_re_contents
-from camping_spot cs, camping_review cre, camping_review_re crer, member_business mb, member_customer mc
-where cs.cs_no = cre.cs_no and crer.mb_id = mb.mb_id and  mc.mc_id = cre.mc_id and mc.mc_id = #{mc_id}
+  select cs.cs_camp_fname , cs.cs_name , cre.cre_no, cre_content, cre_rate, TO_CHAR(cre_date,'YYYY-MM-DD') cre_date , mc_id, crer.mb_id, cs.cs_no, crer.cre_re_contents
+	  from camping_review cre, camping_review_re crer, camping_spot cs
+	  where cs.cs_no = cre.cs_no and cre.cre_no=crer.cre_no(+) and mc_id = #{mc_id}
 
 </select>
 

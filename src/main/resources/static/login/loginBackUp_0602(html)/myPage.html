@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shortcut icon" href="/resources/profile/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/resources/profile/favicon.ico" type="image/x-icon">
 <meta charset="UTF-8">
 <style type="text/css">
 body{
 background-color: #93B874;; 
 }
-
 
 * { 
     -moz-box-sizing: border-box; 
@@ -167,7 +168,6 @@ input[type=search] {
     vertical-align: middle;
     width: 70%;
     padding-right: 1em;
-    padding-bottom: 2em;
 }
 
 .li-head {
@@ -328,6 +328,7 @@ body {
 
 
 /*======================================================*/
+
 	.middle{
 	  	margin-top: 20px;
 	  	width: 1000px;
@@ -372,7 +373,21 @@ $(function(){
 
 	$("#footers").load("/main/footer.html");
 	
-	myReservationList();
+	$("#a1").click(function(){
+		var idx = $(this).attr("idx");
+		window.location.href="/login/myPage.html";
+	});
+	
+	$("#a2").click(function(c){
+		window.location.href="/login/myPageReviewList.html";
+	});
+	
+	$("#a3").click(function(c){
+		window.location.href="/login/myPageWishList.html";
+	});
+	
+	
+	
 	
 	$.ajax("/profile.do",{data:{"mc_id":mc_id}, success:function(data){
 		arr = data;
@@ -389,25 +404,30 @@ $(function(){
 			$(".profile-userpic").append(mc_fname);
 			$(".profile-usertitle-name").html(p.mc_name+ " 님");
 			$(".profile-userbuttons").html("내 포인트 : " +p.mc_point);
-			$("#h4").html(p.mc_name + " 님의 예약내역");
+			$("#h4").html("☞ [" + p.mc_name + "] 님의 예약내역");
 		});
 	}}); 
 	
+	
+	$("#a1").click(function(){
+		var idx = $(this).attr("idx");
+		window.location.href="/login/myPage.html";
+	});
 	
 	function myReservationList(){
 		$.ajax("/myReservationList.do",{data:{"mc_id":mc_id}, success:function(data){
 			arr = data;
 			console.log(data);
 			$.each(arr, function(idx,c){
-				var a = $("<a class='inner'></a>");
+				var a = $("<a class='inner'></a>").attr("href", "/main/detailCampingSpot.html?cs_no="+c.cs_no);
 				var str = c.cs_camp_fname;
 				var camp_fname = str.split(",");
-				var cs_camp_fname = $("<img></img>").attr({"src":"/mypage/img/"+camp_fname[0]}).css("border-radius", "2em");
+				var cs_camp_fname = $("<img></img>").attr({"src":"/mypage/img/"+camp_fname[0]});
 				var div_li_img = $("<div class='li-img'></div>");
 				var reservation_div = $("<div id='res' class='li-text'></div>").attr("idx", idx);
 				var button_div = $("<div id='btn' class='li-text'></div>").attr("idx", idx);
-				var cs_name = $("<br><h4 class='li-head'></h4>").html(c.cs_name);
-				var checkin = $("<p class='li-summary'></p>").html(c.r_checkin + " 체크인입니다!! 유의해주세요~!!"); 
+				var cs_name = $("<h4 class='li-head'></h4>").html(c.cs_name);
+				var checkin = $("<p class='li-summary'></p>").html(c.r_checkin + "체크인입니다!!"); 
 				var checkindetail = $("<p class='li-summary2'></p><br>").html(c.r_checkin + "~" +c.r_checkout);
 				var button1 = $("<button type='button' id='bt1' class='bt1 margin_right btn  btn-success btn-sm'></button>").attr("idx", idx).html("예약정보확인");
 				var button2 = $("<button type='button' id='bt2' class='bt2 margin_right btn  btn-danger btn-sm'></button>").attr("idx", idx).html("예약취소");
@@ -428,14 +448,17 @@ $(function(){
 				    	var idx = $(button2).attr("idx");
 						var data = {r_no : arr[idx].r_no}
 				    	$.ajax("/cancelReservation", {data : data, success : function(r) {
+							console.log("동작하나요?" + r);
+						$("#btn").css("display" ,"none");
+						$("#msg").css("display" ,"block");
 						
-				    	window.location.href= "/login/myPage.html";
 				    	}}); 
 				    	
 				    } else if ( confirm_test == false ) {
 				    	 alert("취소를 누르셨습니다.");
 				    }
-				    					
+				    
+					
 				});
 				
 					$(review_button).click(function(){
@@ -452,6 +475,7 @@ $(function(){
 						
 					});
 									
+				
 				if(c.r_cancel == 0){
 					
 					$(div_li_img).append(cs_camp_fname);
@@ -481,11 +505,11 @@ $(function(){
 					$("#li").append(a, message);
 					$("#btn").css("display" ,"none");
 					$("#msg").css("display" , "block");
-					
 				}	
 			});
 		}});
 	}
+	 myReservationList();
 	 
 	 
 	$("#btnDeleteMember").click(function(){			
@@ -552,22 +576,22 @@ $(function(){
 });
 </script>
 </head>
-<body style="background:#EFF2F4">
+<body>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
 <!-- TOP  -->
-<div class="top" id="header" style="background: white;"></div>
+<div class="top" id="header"></div>
 <div class="container">
 	<!-- MIDDLE -->
 	<div class="body_wrap">
 	
-<div class="container" style="background:#EFF2F4" >
+<div class="container">
     <div class="row profile">
-		<div class="col-md-3" style="height: 600px">
-			<div class="profile-sidebar" style =" border-radius: 2em;">
+		<div class="col-md-3" style="border:ridge; height: 600px">
+			<div class="profile-sidebar">
 				<!-- SIDEBAR USERPIC -->
 
 			
@@ -596,17 +620,17 @@ $(function(){
 				<div class="profile-usermenu">
 					<ul class="nav">
 						<li id="li1" class="active">
-							<a id="a1" href="/login/myPage.html">
+							<a id="a1">
 							<i class="glyphicon glyphicon-home"></i>
 							예약내역 </a>
 						</li>
 						<li id="li2">
-							<a id="a2" href="/login/myPageReviewList.html">
+							<a id="a2">
 							<i class='glyphicon glyphicon-user'></i>
 							캠핑후기</a>
 						</li>
 						<li id="li3">
-							<a id="a3" href="/login/myPageWishList.html">
+							<a id="a3">
 							<i class="glyphicon glyphicon-ok"></i>
 							위시리스트 </a>
 						</li>
@@ -615,16 +639,15 @@ $(function(){
 				<!-- END MENU -->
 			</div>
 		</div>
-		<div class="col-md-9" style="background: white;  border-radius: 2em;">
-            <div class="profile-content" style= "margin-top: 2px;">
-            
+		<div class="col-md-9">
+            <div class="profile-content">
 			 
 			 <div id="pattern" class="pattern">
     <ul class="list img-list">
     <h4 id="h4"></h4>
      <hr>
         <li id="li">
-
+        
         </li>
     </ul>
 </div>
@@ -635,9 +658,10 @@ $(function(){
 	</div>
 </div>
 <!-- BOTTOM -->
-</div>  
+	</div>  
 </div><br>
 
 <div id="footers" class="bottom"></div>
+
 </body>
 </html>

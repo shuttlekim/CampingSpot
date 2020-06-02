@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shortcut icon" href="/resources/profile/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/resources/profile/favicon.ico" type="image/x-icon">
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style type="text/css">
@@ -10,8 +12,6 @@ User Profile Sidebar by @keenthemes
 A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
 Licensed under MIT
 ***/
-
-
 
 * { 
     -moz-box-sizing: border-box; 
@@ -311,176 +311,187 @@ body {
   min-height: 460px;
 }
 
+/*======================================================*/
 
-/*예약정보확인 css */
-
- #jb-container {
-    margin: 10px auto;
-    padding: 20px;
-    border: 0px solid #bcbcbc;
-  }
-  #jb-header {
-    padding: 20px;
-    margin-bottom: 20px;
-    border: 4px solid #bcbcbc;
-  }
-  #jb-content {
-    padding: 80px;
-    margin-bottom: 20px;
-    border: 4px solid #bcbcbc;
-  }
-  #jb-sidebar {
-    padding: 30px;
-    margin-bottom: 25px;
-    border: 4px solid #bcbcbc;
-  }
-  #jb-footer {
-    padding: 20px;
-    border: 4px solid #bcbcbc;
-  }
-  @media ( min-width: 481px ) {
-    #jb-container {
-      width: 940px;
-    }
-    #jb-content {
-      width: 580px;
-      float: left;
-    }
-    #jb-sidebar {
-      width: 260px;
-      float: right;
-    }
-    #jb-footer {
-      clear: both;
-    }
-    #h4{
+	.middle{
+	  	margin-top: 20px;
+	  	width: 1000px;
+	  	height: 500px;
+	  	position: relative;
+	}
+	.middle-center{
+	  	outline: 1px solid #9F9F9F;
+	  	top: 0px;
+	  	width: 1000px;
+	  	height: 600px;
+	  	//background-color: #00D8FF;
+	}
+	#btnDeleteMember{
+		cursor: pointer;
+	}
+	#btnDeleteBusiness{
+		cursor: pointer;
+	}
+	#btnUpdateMember{
+		cursor: pointer; 
+	} 
+	#btnUpdateBusiness{
+		cursor: pointer;
+	}
+	#h4{
 		font-size: 25px;
 		//border: double;
 	}
-  
+
 </style>
 <script type="text/javascript" src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	var arr;
-
-	var str = location.search.split("&");
-	//mc_id=test1234&r_no=24
-
-	mc_id = str[0].substring(str[0].indexOf("=")+1);
-
-	r_no = str[1].substring(str[1].indexOf("=")+1);
+		
+	var mc_id = sessionStorage.getItem("memberId");
+	var mb_id = sessionStorage.getItem("businessId");
+	var mc_id2 = sessionStorage.getItem("memberName");
+	var mc_auth = sessionStorage.getItem("auth");
+		
+	$("#mc_id").html(mc_id);
+	$("#mb_id").html(mb_id);
+	$('#mc_id2').html(mc_id2);	
 	
 	$("#header").load("/main/header.html");	
 
 	$("#footers").load("/main/footer.html");
 	
-	requestCancel();
+	$("#a1").click(function(){
+		var idx = $(this).attr("idx");
+		window.location.href="/login/myPage.html";
+	});
+	
+	$("#a2").click(function(c){
+		window.location.href="/login/myPageReviewList.html";
+	});
+	
+	$("#a3").click(function(c){
+		window.location.href="/login/myPageWishList.html";
+	});
+	
 	
 	$.ajax("/profile.do",{data:{"mc_id":mc_id}, success:function(data){
 		arr = data;
 		$.each(arr, function(idx,p){
-
-			var mc_fname = $("<img class='img-responsive'></img>").attr({"src":"/resources/profile/"+p.mc_fname});
+			
+		var mc_fname = $("<img class='img-responsive'></img>").attr({"src":"/resources/profile/"+p.mc_fname});
 			
 			if(p.mc_fname == null){
 				var mc_fname = $("<img class='img-responsive'></img>").attr({"src":"/resources/profile/nullProfile.jpg"});
 			}else{	
 				
-			}			
-			
+			}	
 			$(".profile-userpic").append(mc_fname);
 			$(".profile-usertitle-name").html(p.mc_name+ " 님");
 			$(".profile-userbuttons").html("내 포인트 : " +p.mc_point);
-			$("#h4").html(p.mc_name + " 님의 예약내역");
-		});
-	}}); 
-	
-	function requestCancel(){
-	var data = {mc_id : mc_id ,	r_no : r_no};
-	$.ajax("/requestCancel.do", {data : data, success : function(r) {
-		arr = r;
-		$.each(arr, function(idx, c){
-			var ul = $("<ul></ul>");
-			var cs_name = $("<li></li>").html("캠핑장이름 : " + c.cs_name);
-			var cs_addr_remain = $("<li></li>").html("캠핑장 주소 : " + c.cs_addr_remain);
-			var mc_tel = $("<li></li>").html("고객전화번호 : " + c.mc_tel);
-			var cr_type = $("<li></li>").html("캠핑장 타입 : " + c.cr_type);
-			var r_checkin = $("<li></li>").html("체크인 날짜 : " + c.r_checkin);
-			var r_checkout = $("<li></li>").html("체크아웃 날짜 : " + c.r_checkout);
-			var mc_name = $("<li></li>").html("이 캠핑장은 " + c.mc_name + "님 이름으로 예약 되어 있습니다.");			
-			$(ul).append(cs_name, cs_addr_remain, mc_tel , cr_type ,r_checkin, r_checkout, mc_name);
-			$("#jb-sidebar").append(ul);
+			$("#h4").html("☞ [" + p.mc_name + "] 님의 위시리스트");
 		});
 	}});
 	
-	}
 	
-	$("#btnDeleteMember").click(function(){			
-		
-		var result = confirm("정말 탈퇴하실건가요? ㅠㅠ");
-	
-		if(result == true){
-			$.ajax("/deleteMember.do", {data:{"mc_id":mc_id}, success:function(r){}});
-		    alert("잘가요...");
-		    sessionStorage.clear();
-			window.location.href = "/main/main.html";
-		}else{
-		    alert("^_____^");
+		function myWishList(){
+			
+			$.ajax("/myWishList.do", {data :{"mc_id":mc_id}, success : function(r){
+				arr = r;
+				$.each(arr, function(idx , w){
+					var a = $("<a class='inner'></a>").attr("href", "/main/detailCampingSpot.html?cs_no="+c.cs_no);
+					var wishList_div = $("<div class='li-text'></div>").attr("idx", idx);
+					var str = w.cs_camp_fname;
+					var camp_fname = str.split(",");
+					var cs_camp_fname = $("<img></img>").attr({"src":"img/"+camp_fname[0]});
+					var div_li_img = $("<div class='li-img'></div>");
+					var cs_name = $("<br><h4 class='li-head'></h4>").html(w.cs_name);
+					var cs_addr_remain = $("<p class='li-summary'></p>").html(w.cs_addr_remain);
+					var button = $("<button type='button' class='btn btn-danger btn-sm'><br>").attr("idx", idx).html("삭제");
+					
+					$(button).click(function() {
+						var idx = $(this).attr("idx");
+						var no = {cw_no : arr[idx].cw_no};
+							$.ajax("/deleteMyWish", {data : no, success : function(r) {
+								window.location.href = "login/myPageWishList.html";
+							}});
+					});
+					
+					
+					$(div_li_img).append(cs_camp_fname)
+					$(wishList_div).append(cs_camp_fname, cs_name, cs_addr_remain);
+					$(a).append(wishList_div);
+					$("#li").append(a , button);
+				});
+			}});
 		}
-	});
+		myWishList();
+		
+$("#btnDeleteMember").click(function(){			
+			
+			var result = confirm("정말 탈퇴하실건가요? ㅠㅠ");
+		
+			if(result == true){
+				$.ajax("/deleteMember.do", {data:{"mc_id":mc_id}, success:function(r){}});
+			    alert("잘가요...");
+			    sessionStorage.clear();
+				window.location.href = "/main/main.html";
+			}else{
+			    alert("^_____^");
+			}
+		});
 
-	$("#btnDeleteBusiness").click(function(){			
-	
-		var result = confirm("정말 탈퇴하실건가요? ㅠㅠ");
-	
-		if(result == true){
-			$.ajax("/deleteBusiness.do", {data:{"mb_id":mb_id}, success:function(r){}});
-		    alert("잘가요...");
-		    sessionStorage.clear();
-			window.location.href = "/main/main.html";
-		}else{
-		    alert("^_____^");
-		} 
-	});
+		$("#btnDeleteBusiness").click(function(){			
+		
+			var result = confirm("정말 탈퇴하실건가요? ㅠㅠ");
+		
+			if(result == true){
+				$.ajax("/deleteBusiness.do", {data:{"mb_id":mb_id}, success:function(r){}});
+			    alert("잘가요...");
+			    sessionStorage.clear();
+				window.location.href = "/main/main.html";
+			}else{
+			    alert("^_____^");
+			} 
+		});
 
-	if(sessionStorage.getItem("businessId") != null){
-   		 $("#memberPanel").css("display", "none");
-   		 $("#hiMember").css("display", "none");
-         $("#businessPanel").css("display", "block");     
-         $("#hiBusiness").css("display", "block");
-         $("#naverPanel").css("display", "none");
-         $("#hiNaver").css("display", "none");         
-    }
-	
-	if(sessionStorage.getItem("memberId") != null){
-   		 $("#memberPanel").css("display", "block");
-   		 $("#hiMember").css("display", "block");
-         $("#businessPanel").css("display", "none");     
-         $("#hiBusiness").css("display", "none");
-         $("#naverPanel").css("display", "none");
-         $("#hiNaver").css("display", "none");
-    }
-	
-	if(sessionStorage.getItem("memberName") != null){
-   		 $("#memberPanel").css("display", "none");
-   		 $("#hiMember").css("display", "none");
-         $("#businessPanel").css("display", "none");     
-         $("#hiBusiness").css("display", "none");
-         $("#naverPanel").css("display", "block");
-         $("#hiNaver").css("display", "block");
-    }
-	
-	
-	
-	$("#header").load("/main/header.html");	
+		if(sessionStorage.getItem("businessId") != null){
+	   		 $("#memberPanel").css("display", "none");
+	   		 $("#hiMember").css("display", "none");
+	         $("#businessPanel").css("display", "block");     
+	         $("#hiBusiness").css("display", "block");
+	         $("#naverPanel").css("display", "none");
+	         $("#hiNaver").css("display", "none");         
+	    }
+		
+		if(sessionStorage.getItem("memberId") != null){
+	   		 $("#memberPanel").css("display", "block");
+	   		 $("#hiMember").css("display", "block");
+	         $("#businessPanel").css("display", "none");     
+	         $("#hiBusiness").css("display", "none");
+	         $("#naverPanel").css("display", "none");
+	         $("#hiNaver").css("display", "none");
+	    }
+		
+		if(sessionStorage.getItem("memberName") != null){
+	   		 $("#memberPanel").css("display", "none");
+	   		 $("#hiMember").css("display", "none");
+	         $("#businessPanel").css("display", "none");     
+	         $("#hiBusiness").css("display", "none");
+	         $("#naverPanel").css("display", "block");
+	         $("#hiNaver").css("display", "block");
+	    }
+		
+		
+		
+		$("#header").load("/main/header.html");	
 
-	$("#footers").load("/main/footer.html");
-	
+		$("#footers").load("/main/footer.html");
 });
 </script>
 </head>
-<body style="background:#EFF2F4">
+<body>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -493,22 +504,19 @@ Licensed under MIT
 -->
 
 <!-- TOP  -->
-<div class="top" id="header" style="background: white;"></div>
+<div class="top" id="header"></div>
 <div class="container">
 	<!-- MIDDLE -->
 	<div class="body_wrap">
 	
-<div class="container" style="background:#EFF2F4" >
+<div class="container">
     <div class="row profile">
-		<div class="col-md-3" style="height: 600px">
-			<div class="profile-sidebar" style =" border-radius: 2em;">
+		<div class="col-md-3" style="border:ridge; height: 600px">
+			<div class="profile-sidebar">
 				<!-- SIDEBAR USERPIC -->
-
-			
-					<div class="profile-userpic">
+				<div class="profile-userpic">
 				
-					</div>
-				
+				</div>
 				<!-- END SIDEBAR USERPIC -->
 				<!-- SIDEBAR USER TITLE -->
 				<div class="profile-usertitle">
@@ -529,18 +537,19 @@ Licensed under MIT
 				<!-- SIDEBAR MENU -->
 				<div class="profile-usermenu">
 					<ul class="nav">
-						<li id="li1" class="active">
-							<a id="a1" href="/login/myPage.html">
+						<li id="li1">
+							<a id="a1">
 							<i class="glyphicon glyphicon-home"></i>
 							예약내역 </a>
+							
 						</li>
-						<li id="li2">
-							<a id="a2" href="/login/myPageReviewList.html">
-							<i class='glyphicon glyphicon-user'></i>
-							캠핑후기</a>
+						<li id="li2" >
+							<a id="a2">
+							<i class="glyphicon glyphicon-user"></i>
+							캠핑후기 </a>
 						</li>
-						<li id="li3">
-							<a id="a3" href="/login/myPageWishList.html">
+						<li id="li3" class="active">
+							<a id="a3">
 							<i class="glyphicon glyphicon-ok"></i>
 							위시리스트 </a>
 						</li>
@@ -549,31 +558,29 @@ Licensed under MIT
 				<!-- END MENU -->
 			</div>
 		</div>
-		<div class="col-md-9"  style="background: white;  border-radius: 2em;">
-		<div id="jb-container">
-        <h1>※ 고객님의 예약 취소가 확인 되었습니다.</h1>
-      	<br>
-      <div id="jb-content">
-        <h4>특별 요금(환불불가)</h4>
-        <p style="color : red">이 특별 할인 요금은 환불되지 않습니다 따라서 이 예약을 변경하거나 취소하시는 경우 지불하신 금액은 환불되지 않습니다.</p>
-      	<p>다른 문의 사항이 있으시면 이메일 또는 전화번호로 연락해 주시기 바랍니다.</p>
-      	<p style="color: blue">자세한 사항은 캠핑스팟 고객센터를 이용해주시기 바랍니다.</p>
-      	<p>항상 감사드립니다. 더 나은 캠핑스팟이 되겠습니다.</p>
-      </div>
-      <div id="jb-sidebar">
-        <h4>고객예약취소정보</h4>
-        <br>
-      </div>
-   
-		<button type="button" id="bt" class="btn btn-success btn-block">메인으로 이동</button>
-   		<!--End Pattern HTML-->
-			</div>
+		<div class="col-md-9">
+            <div class="profile-content">
+			 
+			 <div id="pattern" class="pattern">
+    <ul class="list img-list">
+     <h4 id="h4"></h4>
+      <hr>
+        <li id="li">
+
+        </li>
+    </ul>
+</div>
+<!--End Pattern HTML-->
+            </div>
 		</div>
 	</div>
 </div>
 <!-- BOTTOM -->
-</div>  
+	</div>  
 </div><br>
+
 <div id="footers" class="bottom"></div>
+<br>
+<br>
 </body>
 </html>

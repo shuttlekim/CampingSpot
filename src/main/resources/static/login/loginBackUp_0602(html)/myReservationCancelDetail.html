@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shortcut icon" href="/resources/profile/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/resources/profile/favicon.ico" type="image/x-icon">
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style type="text/css">
@@ -10,8 +12,6 @@ User Profile Sidebar by @keenthemes
 A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
 Licensed under MIT
 ***/
-
-
 
 * { 
     -moz-box-sizing: border-box; 
@@ -364,39 +364,28 @@ body {
 $(function(){
 	var arr;
 
+	
 	var str = location.search.split("&");
 	//mc_id=test1234&r_no=24
 
+
 	mc_id = str[0].substring(str[0].indexOf("=")+1);
 
+	
 	r_no = str[1].substring(str[1].indexOf("=")+1);
 	
-	$("#header").load("/main/header.html");	
-
-	$("#footers").load("/main/footer.html");
 	
-	requestCancel();
 	
-	$.ajax("/profile.do",{data:{"mc_id":mc_id}, success:function(data){
+	$.getJSON("/Profile.do" , function(data){
 		arr = data;
 		$.each(arr, function(idx,p){
-
 			var mc_fname = $("<img class='img-responsive'></img>").attr({"src":"/resources/profile/"+p.mc_fname});
-			
-			if(p.mc_fname == null){
-				var mc_fname = $("<img class='img-responsive'></img>").attr({"src":"/resources/profile/nullProfile.jpg"});
-			}else{	
-				
-			}			
-			
 			$(".profile-userpic").append(mc_fname);
 			$(".profile-usertitle-name").html(p.mc_name+ " 님");
-			$(".profile-userbuttons").html("내 포인트 : " +p.mc_point);
-			$("#h4").html(p.mc_name + " 님의 예약내역");
+			$(".profile-userbuttons").html("내 포인트 : "+p.mc_point)
 		});
-	}}); 
+	});
 	
-	function requestCancel(){
 	var data = {mc_id : mc_id ,	r_no : r_no};
 	$.ajax("/requestCancel.do", {data : data, success : function(r) {
 		arr = r;
@@ -413,74 +402,10 @@ $(function(){
 			$("#jb-sidebar").append(ul);
 		});
 	}});
-	
-	}
-	
-	$("#btnDeleteMember").click(function(){			
-		
-		var result = confirm("정말 탈퇴하실건가요? ㅠㅠ");
-	
-		if(result == true){
-			$.ajax("/deleteMember.do", {data:{"mc_id":mc_id}, success:function(r){}});
-		    alert("잘가요...");
-		    sessionStorage.clear();
-			window.location.href = "/main/main.html";
-		}else{
-		    alert("^_____^");
-		}
-	});
-
-	$("#btnDeleteBusiness").click(function(){			
-	
-		var result = confirm("정말 탈퇴하실건가요? ㅠㅠ");
-	
-		if(result == true){
-			$.ajax("/deleteBusiness.do", {data:{"mb_id":mb_id}, success:function(r){}});
-		    alert("잘가요...");
-		    sessionStorage.clear();
-			window.location.href = "/main/main.html";
-		}else{
-		    alert("^_____^");
-		} 
-	});
-
-	if(sessionStorage.getItem("businessId") != null){
-   		 $("#memberPanel").css("display", "none");
-   		 $("#hiMember").css("display", "none");
-         $("#businessPanel").css("display", "block");     
-         $("#hiBusiness").css("display", "block");
-         $("#naverPanel").css("display", "none");
-         $("#hiNaver").css("display", "none");         
-    }
-	
-	if(sessionStorage.getItem("memberId") != null){
-   		 $("#memberPanel").css("display", "block");
-   		 $("#hiMember").css("display", "block");
-         $("#businessPanel").css("display", "none");     
-         $("#hiBusiness").css("display", "none");
-         $("#naverPanel").css("display", "none");
-         $("#hiNaver").css("display", "none");
-    }
-	
-	if(sessionStorage.getItem("memberName") != null){
-   		 $("#memberPanel").css("display", "none");
-   		 $("#hiMember").css("display", "none");
-         $("#businessPanel").css("display", "none");     
-         $("#hiBusiness").css("display", "none");
-         $("#naverPanel").css("display", "block");
-         $("#hiNaver").css("display", "block");
-    }
-	
-	
-	
-	$("#header").load("/main/header.html");	
-
-	$("#footers").load("/main/footer.html");
-	
 });
 </script>
 </head>
-<body style="background:#EFF2F4">
+<body>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -492,23 +417,14 @@ A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themefores
 Licensed under MIT
 -->
 
-<!-- TOP  -->
-<div class="top" id="header" style="background: white;"></div>
 <div class="container">
-	<!-- MIDDLE -->
-	<div class="body_wrap">
-	
-<div class="container" style="background:#EFF2F4" >
     <div class="row profile">
-		<div class="col-md-3" style="height: 600px">
-			<div class="profile-sidebar" style =" border-radius: 2em;">
+		<div class="col-md-3">
+			<div class="profile-sidebar">
 				<!-- SIDEBAR USERPIC -->
-
-			
-					<div class="profile-userpic">
-				
-					</div>
-				
+				<div class="profile-userpic">
+					
+				</div>
 				<!-- END SIDEBAR USERPIC -->
 				<!-- SIDEBAR USER TITLE -->
 				<div class="profile-usertitle">
@@ -516,8 +432,7 @@ Licensed under MIT
 					
 					</div>
 					<div class="profile-usertitle-job">
-					<a onclick="location.href='updateMember.html'" id="btnUpdateMember">회원정보수정</a>
-		<!--  <button onclick="location.href='/login/listMember.html'">회원정보 보기</button> -->
+						<a href="updateMember.html" >회원정보수정</a>
 					</div>
 				</div>
 				<!-- END SIDEBAR USER TITLE -->
@@ -529,18 +444,19 @@ Licensed under MIT
 				<!-- SIDEBAR MENU -->
 				<div class="profile-usermenu">
 					<ul class="nav">
-						<li id="li1" class="active">
-							<a id="a1" href="/login/myPage.html">
+						<li class="active">
+							<a href="myPage.html">
 							<i class="glyphicon glyphicon-home"></i>
 							예약내역 </a>
+							
 						</li>
-						<li id="li2">
-							<a id="a2" href="/login/myPageReviewList.html">
-							<i class='glyphicon glyphicon-user'></i>
-							캠핑후기</a>
+						<li>
+							<a href="myPageReviewList.html">
+							<i class="glyphicon glyphicon-user"></i>
+							캠핑후기 </a>
 						</li>
-						<li id="li3">
-							<a id="a3" href="/login/myPageWishList.html">
+						<li>
+							<a href="myPageWishList.html">
 							<i class="glyphicon glyphicon-ok"></i>
 							위시리스트 </a>
 						</li>
@@ -549,7 +465,7 @@ Licensed under MIT
 				<!-- END MENU -->
 			</div>
 		</div>
-		<div class="col-md-9"  style="background: white;  border-radius: 2em;">
+		<div class="col-md-9">
 		<div id="jb-container">
         <h1>※ 고객님의 예약 취소가 확인 되었습니다.</h1>
       	<br>
@@ -566,14 +482,11 @@ Licensed under MIT
       </div>
    
 		<button type="button" id="bt" class="btn btn-success btn-block">메인으로 이동</button>
-   		<!--End Pattern HTML-->
-			</div>
-		</div>
+   
+	</div>
 	</div>
 </div>
-<!-- BOTTOM -->
-</div>  
-</div><br>
-<div id="footers" class="bottom"></div>
+<br>
+<br>
 </body>
 </html>

@@ -48,6 +48,7 @@
 	  	width: 450px;
 		height: 550px;
 		border: hidden;
+		//background-color: #F5C8C8 ;
 		box-shadow: 5px 5px 5px 5px;
 	}	
 	form { 
@@ -56,15 +57,17 @@
     }
     #btnLogin{
     	float: center;
+    	//border-radius: 5%;
     	height: 50px;
     }
 	#btnLogin2{
     	float: center;
+    	//border-radius: 5%;
     	height: 50px;
     }    
     #naverIdLogin{
     	position: absolute;
-    	top: 380px;
+    	top: 370px;
     	left: 101px;
     }    	
 	.gradient-button {
@@ -90,12 +93,10 @@
 	    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 	    margin: 8px 10px 12px;
 	}	
-	.gradient-button-2 {
-		background-image: linear-gradient(to right, black 30%, #EAECC6 81%, #2BC0E4 100%)
-	}	
-	.gradient-button-2:hover { 
-		background-position: right center; 	
-	}
+	//.gradient-button-2 {background-image: linear-gradient(to right, #2BC0E4 0%, #EAECC6 51%, #2BC0E4 100%)}
+	.gradient-button-2 {background-image: linear-gradient(to right, black 30%, #EAECC6 81%, #2BC0E4 100%)}
+	.gradient-button-2:hover { background-position: right center; }
+
 	input[type="text"],input[type="password"],input[type="number"],select{
 		height:30px;
 		line-height: 30px;
@@ -104,34 +105,6 @@
 		font-size:14px;
 		border-radius : 7px;
 		background-color:#fff;
-	}
-	#mc_id{
-		width:230px;
-		height:45px;
-		font-size:15px;
-		border: groove;
-	}
-	#mc_pwd{
-		width:230px;
-		height:45px;
-		font-size:15px;
-		border: groove;
-	}
-	#mb_id{
-		width:230px;
-		height:45px;
-		font-size:15px;
-		border: groove;
-	}
-	#mb_pwd{
-		width:230px;
-		height:45px;
-		font-size:15px;
-		border: groove;
-	}
-	.strong{
-		text-decoration: none; 
-		cursor: pointer;
 	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -195,13 +168,13 @@ $(function(){
    		<!-- 회원 로그인 -->
    		<div id="beforeLogin" class="middle-left">
 		<h1 align="center" style="font-family:Nanum Gothic;font-size: 40px">일반 회원</h2><br>		
-			<form id="loginForm" >
-				<input type="text" name="mc_id" placeholder="CAMPINGSPOT ID" id="mc_id"><br><br>
-				<input type="password" name="mc_pwd" id="mc_pwd" placeholder="PASSWORD"><br><br><br>
-				<strong onclick=location.href='/login/terms.html' class="strong">[일반 회원가입]</strong><br>
-				<strong onclick=location.href='/login/findPwd.html' class="strong">[비밀번호 찾기]</strong><br>
-			</form><br><br><br><br><br>
-			<button id="btnLogin" class="gradient-button gradient-button-2">LOGIN</button><br><br>		
+		<form id="loginForm" >
+			<input type="text" name="mc_id" placeholder="CAMPINGSPOT ID" id="mc_id" style="width:230px;height:45px;font-size:15px;border: groove;"><br><br>
+			<input type="password" name="mc_pwd" placeholder="PASSWORD" style="width:230px;height:45px;font-size:15px;border: groove;"><br><br><br>
+			<strong onclick=location.href='/login/terms.html' style="text-decoration: none; cursor: pointer;">[일반 회원가입]</strong><br>
+			<strong onclick=location.href='/login/findPwd.html' style="text-decoration: none; cursor: pointer;">[비밀번호 찾기]</strong><br>
+		</form><br><br><br><br><br>
+		<button id="btnLogin" class="gradient-button gradient-button-2">LOGIN</button><br><br>
 			<!-- 네이버아이디로로그인 버튼 노출 영역 -->
 			<div id="naverIdLogin"></div>
 			<!-- //네이버아이디로로그인 버튼 노출 영역 -->
@@ -210,13 +183,13 @@ $(function(){
 		<!-- 사업자 로그인  -->
 		<div id="beforeLogin2" class="middle-right">
 		<h1 align="center" style="font-family:Nanum Gothic;font-size: 40px">사업자 회원</h1><br>
-			<form id="loginForm2" >
-				<input type="text" name="mb_id" id="mb_id" placeholder="CAMPINGSPOT ID"><br><br>
-				<input type="password" name="mb_pwd" id="mb_pwd" placeholder="PASSWORD"><br><br><br>
-				<strong onclick=location.href='/login/terms2.html' class="strong">[사업자 회원가입]</strong><br>
-				<strong onclick=location.href='/login/findPwd2.html' class="strong">[비밀번호 찾기]</strong><br>
-			</form><br><br><br><br><br>
-			<button id="btnLogin2" class="gradient-button gradient-button-2">LOGIN</button>
+		<form id="loginForm2" >
+			<input type="text" name="mb_id" placeholder="CAMPINGSPOT ID" id="mb_id" style="width:230px;height:45px;font-size:15px;border: groove;"><br><br>
+			<input type="password" name="mb_pwd" placeholder="PASSWORD" style="width:230px;height:45px;font-size:15px;border: groove;"><br><br><br>
+			<strong onclick=location.href='/login/terms2.html' style="text-decoration: none; cursor: pointer;">[사업자 회원가입]</strong><br>
+			<strong onclick=location.href='/login/findPwd2.html' style="text-decoration: none; cursor: pointer;">[비밀번호 찾기]</strong><br>
+		</form><br><br><br><br><br>
+		<button id="btnLogin2" class="gradient-button gradient-button-2">LOGIN</button>
 		</div>      
 
 		<!-- 네이버 로그인 기능처리 -->
@@ -232,7 +205,6 @@ $(function(){
 			/* 설정정보를 초기화하고 연동을 준비 */
 			naverLogin.init();	
 		</script>  
-				
 		</div>	    
 	</div>  
 </div><br><br><br>
