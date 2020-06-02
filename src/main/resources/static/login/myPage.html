@@ -145,7 +145,13 @@ input[type=search] {
     display: table-row;
     overflow: hidden;
 }
-
+.li-img{
+	width: 40%;
+}
+.li-img img{
+	width: 400px;
+}
+/*
 .li-img {
     display: table-cell;
     vertical-align: middle;
@@ -161,7 +167,7 @@ input[type=search] {
     width: 800px;
     height: auto;
 }
-
+*/
 .li-text {
     display: table-cell;
     vertical-align: middle;
@@ -195,7 +201,7 @@ input[type=search] {
 @media screen and (min-width: 60em) {
     .list li {
         float: left;
-        width: 50%;
+        width:100%;
     }
     .inner {
         padding-right: 1em;
@@ -319,13 +325,10 @@ body {
 .margin_right{
 	margin-right: 5px;
 }
+
 #msg{
  font-weight: bold;
 }
-
-
-
-
 
 /*======================================================*/
 	.middle{
@@ -356,6 +359,16 @@ body {
 	#h4{
 		font-size: 25px;
 		//border: double;
+	}
+	#btn{
+		display: table-cell;
+	}
+	#res{
+		display: flex;
+		width: 100%;
+	}
+	.reservation_content{
+		margin: 10px 20px;
 	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -405,7 +418,8 @@ $(function(){
 				var cs_camp_fname = $("<img></img>").attr({"src":"/mypage/img/"+camp_fname[0]}).css("border-radius", "2em");
 				var div_li_img = $("<div class='li-img'></div>");
 				var reservation_div = $("<div id='res' class='li-text'></div>").attr("idx", idx);
-				var button_div = $("<div id='btn' class='li-text'></div>").attr("idx", idx);
+				
+				var button_div = $("<div id='btn' class='li-btn'></div>").attr("idx", idx);
 				var cs_name = $("<br><h4 class='li-head'></h4>").html(c.cs_name);
 				var checkin = $("<p class='li-summary'></p>").html(c.r_checkin + " 체크인입니다!! 유의해주세요~!!"); 
 				var checkindetail = $("<p class='li-summary2'></p><br>").html(c.r_checkin + "~" +c.r_checkout);
@@ -413,6 +427,8 @@ $(function(){
 				var button2 = $("<button type='button' id='bt2' class='bt2 margin_right btn  btn-danger btn-sm'></button>").attr("idx", idx).html("예약취소");
 				var review_button = $("<button type='button' id='bt3' class='bt3 margin_right btn  btn-warning btn-sm'></button>").attr("idx", idx).html("리뷰쓰기");
 				var message = $("<p id='msg'></p>").html("예약 취소 대기중입니다....").css("display", "none");
+				
+				var reservation_content = $("<div class='reservation_content'></div>");
 				
 				$(button1).click(function(){
 					var idx = $(this).attr("idx");
@@ -456,31 +472,34 @@ $(function(){
 					
 					$(div_li_img).append(cs_camp_fname);
 					$(button_div).append(button1 , button2, review_button);
-					$(reservation_div).append(div_li_img , cs_name, checkin, checkindetail, button_div);
+					$(reservation_content).append(cs_name, checkin, checkindetail, button_div);
+					$(reservation_div).append(div_li_img , reservation_content);
 					$(a).append(reservation_div);
 					$("#li").append(a, message);
-					$("#btn").css("display" ,"block");
+					$("#btn").css("display" ,"table-cell");
 					$("#msg").css("display" , "none");
 					
 				}else if(c.r_cancel == 1){
 					
 					$(div_li_img).append(cs_camp_fname);
 					$(button_div).append(button1 , button2, review_button);
-					$(reservation_div).append(div_li_img , cs_name, checkin, checkindetail, button_div);
+					$(reservation_content).append(cs_name, checkin, checkindetail, button_div);
+					$(reservation_div).append(div_li_img , reservation_content);
 					$(a).append(reservation_div);
 					$("#li").append(a, message);
 					$("#btn").css("display" ,"none");
-					$("#msg").css("display" , "block");
+					$("#msg").css("display" , "table-cell");
 					
 				}else if(c.r_cancel == 2){
 					
 					$(div_li_img).append(cs_camp_fname);
 					$(button_div).append(button1 , button2, review_button);
-					$(reservation_div).append(div_li_img , cs_name, checkin, checkindetail, button_div);
+					$(reservation_content).append(cs_name, checkin, checkindetail, button_div);
+					$(reservation_div).append(div_li_img , reservation_content);
 					$(a).append(reservation_div);
 					$("#li").append(a, message);
 					$("#btn").css("display" ,"none");
-					$("#msg").css("display" , "block");
+					$("#msg").css("display" , "table-cell");
 					
 				}	
 			});
@@ -583,7 +602,7 @@ $(function(){
 					</div>
 					<div class="profile-usertitle-job">
 					<a onclick="location.href='updateMember.html'" id="btnUpdateMember">회원정보수정</a>
-		<!--  <button onclick="location.href='/login/listMember.html'">회원정보 보기</button> -->
+				<!--  <button onclick="location.href='/login/listMember.html'">회원정보 보기</button> -->
 					</div>
 				</div>
 				<!-- END SIDEBAR USER TITLE -->
