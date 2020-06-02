@@ -42,7 +42,7 @@
   </select>
   
   <insert id="insertAdminLog">
-  	insert into admin_log values(#{al_no},#{al_regdate},#{al_cancel},#{al_ip},#{r_no})
+  	insert into admin_log(seq_admin_log.nextval,#{al_regdate},#{al_cancel},#{al_ip},#{r_no})#{r_no}) select r_no from reservation where r_restatus=1 and r_cancel=2
   </insert>
   
   
