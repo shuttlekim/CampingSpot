@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -18,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.example.demo.dao.CampingSpotDao;
+import com.example.demo.dao.MemberDao;
 import com.example.demo.db.DBManager;
 import com.example.demo.vo.BossListSalesVo;
 import com.example.demo.vo.CampingReviewVo;
@@ -25,6 +25,7 @@ import com.example.demo.vo.CampingRoomVo;
 import com.example.demo.vo.CampingSpotVo;
 import com.example.demo.vo.CampingWishVo;
 import com.example.demo.vo.DetailCampingSearchResultVo;
+import com.example.demo.vo.MemberVo;
 import com.google.gson.Gson;
 
 @RestController
@@ -33,6 +34,12 @@ public class CampingSpotController {
    @Autowired
    private CampingSpotDao dao;
    
+   @Autowired
+   private MemberDao mdao;
+   
+   public void setMdao(MemberDao mdao) {
+	   this.mdao = mdao;
+   }
 
    public void setDao(CampingSpotDao dao) {
 	   this.dao = dao;
@@ -280,13 +287,16 @@ public class CampingSpotController {
 //      SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 //      
       List<CampingReviewVo> list = dao.campingReviewList(cs_no);
-//      for (int i=0; i<list.size(); i++) {
-//    	  Date from = list.get(i).getCre_date();
-//      }
+      for (int i=0; i<list.size(); i++) {
+    	  String id = list.get(i).getMc_id();
+    	  MemberVo vo = mdao.getMember(id);
+    	  list.get(i).setMc_fname(vo.getMc_fname());
+    	  list.get(i).setMc_name(vo.getMc_name());
+      }
       
       Gson gson = new Gson();
       str = gson.toJson(list);
-      
+      System.out.println(list.get(0).getMc_fname());
       System.out.println(str);
       //System.out.println(str);
       

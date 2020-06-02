@@ -23,21 +23,31 @@
       
    } 
    */
-   .btn{
-      width: 100px;
-      height: 40px;
+   #detail{
+   	overflow:hidden;
+   }
+   
+   #div_btns{
+      text-align: center;
+   }
+   #btn_reservation{
+   	  background: #ff576c;
    }
    #main_img{
       width:300px;
       height:200px;
    }
    #input_chkin, #input_chkout, #room_selector, #show_campType, #show_total{
-   	  width: 220px;
+   	  width: 270px;
+   }
+   #select_room{
+   		width:292px;
    }
    #campingSpot_detail{
-   	  width: 65%;
+   	  width: calc(100% - 470px);
    	  margin: 20px;
    	  overflow: hidden;
+   	  float:left;
    }
    .d_head_section{
       margin: 20px;
@@ -59,7 +69,21 @@
       background-position:left bottom; 
       line-height:0; 
       vertical-align:top; 
+   }
+   .star-rating-small { 
+   	  width: 90px; 
+   }   
+   .star-rating-small, .star-rating-small span { 
+      display:inline-block; 
+      height:20px; 
+      overflow:hidden; 
+      background:url(../resources/camping_spot_icon/star_rating_small.png)no-repeat; 
    } 
+   .star-rating-small span{ 
+      background-position:left bottom; 
+      line-height:0; 
+      vertical-align:top; 
+   }  
    #rate_section{
       position: relative;
    	  float: right;
@@ -84,6 +108,9 @@
    .d_detail_section{
    	  margin: 20px 10px;
    	  padding: 20px;
+   }
+   .d_detail_section table tr td:nth-child(1){
+   	  color: #999;
    }
    #d_campingAddr{
       margin: 10px 0;
@@ -142,25 +169,7 @@
       padding: 20px;
       border-radius: 10px;
       background: #f7f7f7;
-   }
-   .div_review table{
-   	  margin: 0 auto; 
-   }
-   .tr_header{
-   	  width: 100%;
-   	  display: flex;
-   	  line-height: 30px;
-   }
-   .tr_header_hd{
-   	  background: #f7f7f7;
-   	  width: 15%;
-   	  height: 30px; 
-   	  text-align: center;
-   }
-   .tr_header_ct{
-   	  text-align: center;
-   	  background: #fff;
-   	  border-radius: 10px;
+      display: flex;
    }
    .tr_content{
       margin-top: 10px;
@@ -189,8 +198,49 @@
    .fa-arrow-right{
       color: #bfbfbf;
    }
+   .cnt_review_div{
+   	  position: relative;
+   	  text-align: right;
+   	  top: -20px;
+   	  right: 45px;
+   	  color: #999;
+   	  font-size: 0.9em;
+   }
+   .profile_img{
+      margin-right: 20px;
+   }
+   .profile_img img{
+   	  width: 50px;
+   	  height: 50px;
+   	  border-radius: 50%;
+   }
+   .tr_table{
+      width: 90%;
+      margin-right: 10px;
+   }
+   .tr_name_div{
+      font-weight: bold;
+      font-size: 1.1em;
+   }
+   .tr_rate_date_div{
+   	  display: flex;
+   	  font-size: 0.9em;
+   	  color: #999;
+   }
+   .tr_rate{
+      margin: 5px 10px;
+      display: flex;
+   }
+   .tr_date{
+      margin: 5px 10px;
+   }
+   .rate_value{
+      margin: 0 5px;
+   }
 </style>
 <script type="text/javascript">
+
+
 
 $(function(){
 	//헤더출력
@@ -226,6 +276,26 @@ $(function(){
    $("#input_chkin").attr("value", checkin);
    $("#input_chkout").attr("value", checkout);
    
+   // fixed nav
+   var target = $('.search_detail_search');
+   var lnb = target.offset().top;
+   var offsetVal = 743;
+   var contentOffsetL = $('#detail').offset().left;
+	$(window).scroll(function(){
+	  	var window = $(this).scrollTop();
+	  	console.log(contentOffsetL);
+
+	    if(window >= offsetVal){
+/* 	    	target.addClass("fixed"); */
+	    	target.parent().addClass('fixed');
+	    }else{
+/* 	    	target.removeClass("fixed"); */
+	    	target.parent().removeClass('fixed');
+	    }
+	});
+
+	//------------------------------------------------
+   
    
    var getDetail = function(cs_no, campingType, checkout, checkin){
     	var input_data = {
@@ -247,7 +317,7 @@ $(function(){
     		$("#d_campingUrl").html(data.cs_url);
     		$("#d_campingMap").append( $("<img>").attr({
     			"src": "../resources/camping_spot_img/"+data.cs_map_fname,
-    			"width": "720px"
+    			"width": "100%"
     		}))
     		//var min_price = $("<div></div>").html("최저가: "+data.price);
     		//var rate = $("<div></div>").html("평점: "+data.rate);
@@ -405,7 +475,8 @@ $(function(){
 
     		reviewList = data;
 			$.each(reviewList, function(idx, item){
-				var div_review = $("<div class='review_list'><div class='div_review'></div></div>");
+				var div_review = $("<div class='review_list'></div>");
+				$("#cnt_review").html(idx+1);
 				
 				date = new Date(item.cre_date);
 				var year = date.getFullYear();
@@ -413,15 +484,28 @@ $(function(){
 		    	var day = date.getDate();
 		    	var that_date = year+'년 '+month+'월 '+day+'일';
 				
-				var table = $("<div></div>");
-				var tr1 = $("<div class='tr_header'></div>");
-				var td1 = $("<div class='tr_header_hd'></div>").html("작성자");
-				var td2 = $("<div class='tr_header_ct' style='width:15%'></div>").html(item.mc_id);
-				var td3 = $("<div class='tr_header_hd'></div>").html("평점");
-				var td4 = $("<div class='tr_header_ct' style='width:15%'></div>").html(item.cre_rate);
-				var td5 = $("<div class='tr_header_hd'></div>").html("작성일자");
-				var td6 = $("<div class='tr_header_ct' style='width:20%'></div>").html(that_date);
-				$(tr1).append(td1, td2, td3, td4, td5, td6);
+		    	if(item.mc_fnmae == undefined || item.mc_fnmae == null){
+		    		var img_div = $("<div class='profile_img'></div>").append($("<img>").attr({
+			    		"src": "../resources/profile/nullProfile.jpg"
+			    	}))
+		    	}else{
+		    		var img_div = $("<div class='profile_img'></div>").append($("<img>").attr({
+			    		"src": "../resources/profile/"+item.mc_fname
+			    	}))
+		    	}
+		    	var re_rate = $("<div class='rate_value'></div>").html(item.cre_rate);
+		    	var star = $("<div class='star-rating-small'><span id='star-small-ratio' style='width:"+(item.cre_rate/5.0)*100+"%;'></span></div>")
+		    	
+		    	
+		    	
+				var table = $("<div class='tr_table'></div>");
+				var tr1 = $("<div class='tr_name_div'></div>");
+				var tr11 = $("<div class='tr_rate_date_div'></div>")
+				var td2 = $("<div class='tr_name'></div>").html(item.mc_name);
+				var td4 = $("<div class='tr_rate'></div>").append(star, re_rate);
+				var td6 = $("<div class='tr_date'></div>").html(that_date);
+				$(tr1).append(td2);
+				$(tr11).append(td4, td6);
 				
 				var tr2 = $("<div class='tr_content'></div>");
 				var td22 = $("<div></div>").html(item.cre_content);
@@ -435,12 +519,12 @@ $(function(){
 					var td322 = $("<div class='tr_comment_ct'></div>").html(item.cre_re_contents);
 					$(td32).append(td321, td322);
 					$(tr3).append(td31, td32);
-					$(table).append(tr1, "<hr>", tr2, tr3);
+					$(table).append(tr1, tr11, tr2, tr3);
 				}else{
-					$(table).append(tr1, "<hr>", tr2);
+					$(table).append(tr1, tr11, tr2);
 				}
 				
-				$(div_review).append(table);
+				$(div_review).append(img_div, table);
 	    	      
 	    	    /* var re_reply = $("<div></div>").text("ㄴ 사장님: "+item.cre_re_contents);
 	    	    
@@ -523,7 +607,8 @@ $(function(){
    
    $("#btn_review").click(function(){
 	   var review_top = $("#review_head").offset().top;
-	   window.scrollTo(0, review_top);
+	 /*   window.scrollTo(0, review_top); */
+	   $('html, body').animate({scrollTop: review_top}, 500);
    })
    
    $("#btn_back").click(function(){
@@ -543,14 +628,19 @@ $(function(){
 		<div id="search_detail_img">
 		</div>
 		<div id="detail">
+			<div class="fix-item">
 			<div class="search_detail_search">
 				<div class="search_inner">
 					<div><form id="form_selector">
 						<input type="hidden" id="input_cs_no" name="cs_no">
 						<input type="hidden" id="input_total" name="total">
 						<table class="search_table" width="100%">
+							<colgroup>
+								<col style="width:60px">
+								<col style="width:60px">
+							<colgroup>
 							<tr>
-								<td width="60px">체크인</td>
+								<td>체크인</td>
 								<td><input type="date" id="input_chkin" name="checkin" readonly="readonly"></td>
 							</tr>
 							<tr>
@@ -564,8 +654,12 @@ $(function(){
 						</table>
 						</form>
 						<table class="search_table" width="100%">
+							<colgroup>
+								<col style="width:60px">
+								<col style="width:60px">
+							<colgroup>
 							<tr>
-								<td width="60px">캠핑타입</td>
+								<td>캠핑타입</td>
 								<td><input type="text" id="show_campType" readonly="readonly"></input></td>
 							</tr>
 							<tr>
@@ -576,10 +670,11 @@ $(function(){
 					</div>
 				</div>
 				<div id="div_btns">
-			    	<button class="btn" id="btn_reservation">예약하기</button>
-			        <button class="btn" id="btn_insert">찜하기</button>
-			        <button class="btn" id="btn_review">리뷰 보러가기</button>
+			    	<button class="btn rounded" id="btn_reservation">예약하기</button>
+			        <button class="btn rounded" id="btn_insert">찜하기</button>
+			        <button class="btn rounded" id="btn_review">리뷰보기</button>
 			    </div>
+			</div>
 			</div>
 		   	<div id="campingSpot_detail">
 		   		<div class="d_head_section">
@@ -607,11 +702,11 @@ $(function(){
 		   					<td><div id="d_campingUrl"></div><td>
 		   				</tr>
 		   				<tr>
-		   					<td>캠핑테마</td>
+		   					<td>테 마</td>
 		   					<td><div id="d_campingTheme"></div><td>
 		   				</tr>
 		   				<tr>
-		   					<td>시  설</td>
+		   					<td>시 설</td>
 		   					<td><div id="d_campingFac"></div><td>
 		   				</tr>
 		   			</table>
@@ -627,6 +722,7 @@ $(function(){
 				   <div class="d_review_section">
 			   			<h2><i class="far fa-comments"></i></h2>
 						<h2 id="review_head">캠핑장 리뷰</h2>
+						<div class="cnt_review_div">총 <span id="cnt_review"></span>개의 리뷰</div>
 						<span class="subtit">여러분의 솔직한 후기를 들려주세요 !</span>
 			   			<div id="review_list"></div>
 				   </div>
