@@ -6,8 +6,6 @@
 body{
 background-color: #93B874;; 
 }
-
-
 * { 
     -moz-box-sizing: border-box; 
     -webkit-box-sizing: border-box; 
@@ -370,6 +368,17 @@ body {
 	.reservation_content{
 		margin: 10px 20px;
 	}
+	
+	.col-md-9{
+		 box-shadow: -60px 0px 10px -90px #000000,
+        60px 0px 100px -90px #000000;
+	}
+	
+	.profile-sidebar{
+		box-shadow: -60px 0px 10px -90px #000000,
+        60px 0px 100px -90px #000000;
+	}
+	
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -385,7 +394,6 @@ $(function(){
 
 	$("#footers").load("/main/footer.html");
 	
-	myReservationList();
 	
 	$.ajax("/profile.do",{data:{"mc_id":mc_id}, success:function(data){
 		arr = data;
@@ -407,7 +415,6 @@ $(function(){
 	}}); 
 	
 	
-	function myReservationList(){
 		$.ajax("/myReservationList.do",{data:{"mc_id":mc_id}, success:function(data){
 			arr = data;
 			console.log(data);
@@ -420,7 +427,7 @@ $(function(){
 				var reservation_div = $("<div id='res' class='li-text'></div>").attr("idx", idx);
 				
 				var button_div = $("<div id='btn' class='li-btn'></div>").attr("idx", idx);
-				var cs_name = $("<br><h4 class='li-head'></h4>").html(c.cs_name);
+				var cs_name = $("<h4 class='li-head'></h4><br>").html(c.cs_name);
 				var checkin = $("<p class='li-summary'></p>").html(c.r_checkin + " 체크인입니다!! 유의해주세요~!!"); 
 				var checkindetail = $("<p class='li-summary2'></p><br>").html(c.r_checkin + "~" +c.r_checkout);
 				var button1 = $("<button type='button' id='bt1' class='bt1 margin_right btn  btn-success btn-sm'></button>").attr("idx", idx).html("예약정보확인");
@@ -467,7 +474,7 @@ $(function(){
 						}
 						
 					});
-									
+				console.log(c.r_cancel);					
 				if(c.r_cancel == 0){
 					
 					$(div_li_img).append(cs_camp_fname);
@@ -504,7 +511,6 @@ $(function(){
 				}	
 			});
 		}});
-	}
 	 
 	 
 	$("#btnDeleteMember").click(function(){			
@@ -648,7 +654,6 @@ $(function(){
     </ul>
 </div>
 <!--End Pattern HTML-->
-			  
             </div> 
 		</div>
 	</div>
