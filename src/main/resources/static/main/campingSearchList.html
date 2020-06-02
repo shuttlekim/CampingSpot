@@ -24,7 +24,7 @@
 		margin-right: 5px;
 	}
 	#filter{
-		max-width: 270px;
+		max-width: 240px;
 		width: auto;
 		height: auto;
 		background: #f4f4f4;
@@ -63,12 +63,10 @@
 		width: auto;
 	}
 	#searchList{
-		min-width: 75%;
-		min-height: 90vh;
-		width: auto;
+		width: 100%;
 		height: auto;
 		/* background: #f7f7f7; */
-		margin: 10px 0 10px 10px;
+		margin-top: 10px;
 	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -233,8 +231,8 @@
  	 					if(idx == 0){
  	 						big_thumb = $("<img>").attr({
  	 							"src":"../resources/camping_spot_img/"+camp_img[idx],
- 	 							"height":"220px;",
- 	 							"width":"270px;"
+ 	 							"height":"244px;",
+ 	 							"width":"290px;"
  	 						});
  	 						thumb_div.append(big_thumb);
  	 					}
@@ -251,10 +249,8 @@
  	 				
  	 				var div = $("<div></div>").append(thumb_div, content_div).attr("idx",idx);
  	 				$(div).css({
- 	 					"padding": "0 0 20px 20px",
  	 					"display": "flex",
- 	 					/* "border-bottom": "1px solid #000", */
- 	 					"margin-bottom": "10px"
+ 	 					"margin": "0 0 20px 30px"
  	 				})
  	 				
  	 				$(div).click(function(){

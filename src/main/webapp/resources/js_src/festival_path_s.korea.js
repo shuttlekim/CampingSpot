@@ -8,32 +8,47 @@ window.onload = function () {
 	// data를 매게변수로 축제목록을 호출하는 함수
 	var showFestivalList = function(data){
 		$("#itemList").empty();
-		var hr = $("<hr>");
-		var p = $("<p></p>").text("잠시만 기다려주세요 !");
-		$("#itemList").append(hr, p);
+		//var hr = $("<hr>");
+		var loading = $("<div class='loader'></div>");
+		var p = $("<div class='load_ment'></div>").text("잠시만 기다려주세요 !");
+		$("#itemList").append(loading, p);
 		console.log(data);
 		$.ajax("/listFestival", {data:data, success:function(data){
 			$("#itemList").empty();
 			console.log(data)
 			result_list = data;
 			if(data.length == 0){
-				hr = $("<hr>");
-				p = $("<p></p>").text("해당지역에 축제가 없어요 ㅜㅠ");
-				$("#itemList").append(hr, p);
+				//hr = $("<hr>");
+				p = $("<div class='no_ment'></div>").text("해당지역에 축제가 없어요 ㅜㅠ");
+				$("#itemList").append(p);
 			}
 			$.each(result_list, function(i, festival){
 				var hr = $("<hr>")
+				
+				var img_div = $("<div class='fest_img_div'></div>");
 				var img = $("<img/>").attr({
 					"src":festival.fname,
-					"height":150
+					"height":"240px",
+					"width":"290px"
+					
 				})
-				var title = $("<h4></h4>").html(festival.title)
-				var ingStatus = $("<div></div>").html(festival.ingStatus)
-				var period = $("<div></div>").html("기간 : "+festival.period)
-				var addr = $("<div></div>").html("주소 : "+festival.addr)
-				var detail = $("<div></div>").html(festival.detailHead)
+				$(img_div).append(img);
 				
-				var item = $("<div></div>").append(hr, img, title, ingStatus, period, addr, detail)
+				var content_div = $("<div class='fest_list_content'></div>");
+				var title = $("<div class='fest_list_title'></div>").html(festival.title);
+				/*
+				if(festival.ingStatus == '진행중'){
+					var ingStatus = $("<div class='fest_list_icon'></div>").append($("<img>").attr({
+						"src":"../resources/camping_spot_icon/ongoing.png"
+					}))
+				}
+				*/
+				var period = $("<div class='fest_list_period'></div>").html("기 간 : "+festival.period);
+				var addr = $("<div class='fest_list_addr'></div>").html("주 소 : "+festival.addr);
+				var detail = $("<div class='fest_list_detail'></div>").html(festival.detailHead);
+				$(content_div).append(title, period, addr, detail);
+				
+				var item = $("<div class='fest_list_item'></div>").append(img_div, content_div);
 				$(item).attr("key", i)
 				
 				$(item).click(function(){
@@ -111,7 +126,7 @@ window.onload = function () {
 			st[0].onmouseover = function () { // onover
 				current && aus[current].animate({fill: "#fff", stroke: "#999"}, 500) 
 				/*&& (document.getElementById(current).style.display = "")*/;
-				st.animate({fill: "#b3e5fc", stroke: "#b3e5fc"}, 500);
+				st.animate({fill: "#ff586c", stroke: "#ff586c"}, 500);
 				//document.getElementById(state).style.color = "#000000";
 				//document.getElementById(state).style.transform = "scale(2)";
 				//st.toFront();
@@ -228,95 +243,95 @@ window.onload = function () {
 					case "seoul":
 						current_state = "서울";
 						document.getElementById('marker').innerHTML = "서울특별시";
-						document.getElementById('marker1').innerHTML = "서울시";
+						//document.getElementById('marker1').innerHTML = "서울시";
 						
 						break;
 					case "gygg":
 						//st.animate({fill: "#000000", stroke: "#999"}, 500);
 						current_state = "경기";
 						document.getElementById('marker').innerHTML = "경기도";
-						document.getElementById('marker1').innerHTML = "경기도";
+						//document.getElementById('marker1').innerHTML = "경기도";
 						
 						break;
 					case "incheon":
 						current_state = "인천";
 						document.getElementById('marker').innerHTML = "인천광역시";
-						document.getElementById('marker1').innerHTML = "인천시";
+						//document.getElementById('marker1').innerHTML = "인천시";
 						break;
 					case "gangwon":
 						current_state = "강원";
 						document.getElementById('marker').innerHTML = "강원도";
-						document.getElementById('marker1').innerHTML = "강원도";
+						//document.getElementById('marker1').innerHTML = "강원도";
 						break;
 					case "chungbuk":
 						current_state = "충북";
 						document.getElementById('marker').innerHTML = "충청북도";
-						document.getElementById('marker1').innerHTML = "충청북도";
+						//document.getElementById('marker1').innerHTML = "충청북도";
 						break;
 					case "chungnam":
 						current_state = "충남";
 						document.getElementById('marker').innerHTML = "충청남도";
-						document.getElementById('marker1').innerHTML = "충청남도";
+						//document.getElementById('marker1').innerHTML = "충청남도";
 						break;
 					case "daejeon":
 						current_state = "대전";
 						document.getElementById('marker').innerHTML = "대전광역시";
-						document.getElementById('marker1').innerHTML = "대전시";
+						//document.getElementById('marker1').innerHTML = "대전시";
 						break;
 					case "sejong":
 						current_state = "세종";
 						document.getElementById('marker').innerHTML = "세종특별자치시";
-						document.getElementById('marker1').innerHTML = "세종시";
+						//document.getElementById('marker1').innerHTML = "세종시";
 						break;
 					case "jeonbuk":
 						current_state = "전북";
 						document.getElementById('marker').innerHTML = "전라북도";
-						document.getElementById('marker1').innerHTML = "전라북도";
+						//document.getElementById('marker1').innerHTML = "전라북도";
 						break;
 					case "gwangju":
 						current_state = "광주";
 						document.getElementById('marker').innerHTML = "광주광역시";
-						document.getElementById('marker1').innerHTML = "광주시";
+						//document.getElementById('marker1').innerHTML = "광주시";
 						break;
 					case "jeonnam":
 						current_state = "전남";
 						document.getElementById('marker').innerHTML = "전라남도";
-						document.getElementById('marker1').innerHTML = "전라남도";
+						//document.getElementById('marker1').innerHTML = "전라남도";
 						break;
 					case "gyeongbuk":
 						current_state = "경북";
 						document.getElementById('marker').innerHTML = "경상북도";
-						document.getElementById('marker1').innerHTML = "경상북도";
+						//document.getElementById('marker1').innerHTML = "경상북도";
 						break;
 					case "daegu":
 						current_state = "대구";
 						document.getElementById('marker').innerHTML = "대구광역시";
-						document.getElementById('marker1').innerHTML = "대구시";
+						//document.getElementById('marker1').innerHTML = "대구시";
 						break;
 					case "gyeongnam":
 						current_state = "경남";
 						document.getElementById('marker').innerHTML = "경상남도";
-						document.getElementById('marker1').innerHTML = "경상남도";
+						//document.getElementById('marker1').innerHTML = "경상남도";
 						break;
 					case "ulsan":
 						current_state = "울산";
 						document.getElementById('marker').innerHTML = "울산광역시";
-						document.getElementById('marker1').innerHTML = "울산시";
+						//document.getElementById('marker1').innerHTML = "울산시";
 						break;
 					case "busan":
 						current_state = "부산";
 						document.getElementById('marker').innerHTML = "부산광역시"
-						document.getElementById('marker1').innerHTML = "부산시";
+						//document.getElementById('marker1').innerHTML = "부산시";
 						break;
 					case "jeju":
 						current_state = "제주";
 						document.getElementById('marker').innerHTML = "제주도";
-						document.getElementById('marker1').innerHTML = "제주도";
+						//document.getElementById('marker1').innerHTML = "제주도";
 						break;
 					default:
 						current_state = "서울";
 						document.getElementById('marker').innerHTML = "서울특별시";
-						document.getElementById('marker1').innerHTML = "서울시";
+						//document.getElementById('marker1').innerHTML = "서울시";
 						break;
 					}
 				var data = {"ing_festival": ing_festival, "current_state": current_state};
@@ -353,8 +368,8 @@ window.onload = function () {
 	//시/도 전체를 클릭하면 전지역의 축제를 보여준다.
 	$("#whole").click(function(){
 		current_state = null;
-		$("#marker").html("");
-		$("#marker1").html("전체 지역");
+		$("#marker").html("전체 지역");
+//		$("#marker1").html("전체 지역");
 		
 		var data = {"ing_festival": ing_festival, "current_state": current_state};
 		
