@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shortcut icon" href="/resources/profile/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/resources/profile/favicon.ico" type="image/x-icon">
 <meta charset="UTF-8">
 <style type="text/css">
 	.container{
@@ -50,6 +52,16 @@
 		//background-color: #EBDEF0 ;
 		//background-color: #DDD5D5 ;
 		box-shadow: 5px 5px 5px 10px;
+	}
+	#btnSend{
+		transition: background-color 0.2s;
+		cursor: pointer;
+	}	
+	#btnSend:hover {
+  		background-color: #81E5B8;
+	}
+	#btnSend:active {
+	  	background-color: #367c36;
 	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -120,12 +132,12 @@ $(function(){
 					<p>
 						<strong>전자메일:&nbsp;</strong>
 						<input type="text" name="email" placeholder="답장 받으실 E-MAIL" id="email" style="width:300px; border:groove;">
-					</p>
+					</p><br>
 					<p>					
 						<textarea rows="20" cols="60" placeholder="문의내용 작성해 주세요." id="content" font-size="20px" style="border:groove;"></textarea>
 					</p>
 					
-					<p><br><br><br>
+					<p><br><br>
 						<button id="btnSend" style="margin:0 auto;align:center;width: 200px;height: 40px; font-size: 20px">문의하기</button>
 					</p>
 				</form>
