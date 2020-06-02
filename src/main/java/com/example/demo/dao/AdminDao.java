@@ -158,4 +158,7 @@ public class AdminDao {
 		return AdminDBManager.campingrank();
 	}
 	
+	public List<AdminNoticeVo> getAnNo(String userId){
+		return AdminDBManager.getAnNo(userId);
+	}
 }

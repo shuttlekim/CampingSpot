@@ -6,17 +6,36 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.active{
-		background: pink;
-	}
+button {
+    background: #2a2a2a;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    border: none;
+    font-size: 14px;
+    border-radius: 7px;
+}
+
+input {
+  width: 580px;
+  height: 36px;
+}
+
+#div{
+	text-align: center;
+}
+table {
+	font-size: 12px;
+}
+
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+		window.resizeTo(700,600);
 		var an_no = location.search.substring(location.search.indexOf("=")+1);
-		alert(an_no);
 		$.ajax("/detailAdminNotice.do",{data:{"an_no":an_no}, success:function(data){
-				$("#an_no").val(data.an_no);
 				$("#an_title").val(data.an_title);
 				$("#an_content").val(data.an_content);
 				$("#an_regdate").val(data.an_regdate);
@@ -30,20 +49,33 @@
 </script>
 </head>
 <body>
-<h2>공지사항 팝업</h2>
+<h2 align="center">공지사항</h2>
 <br>
 
-<div id="pop_up">
-	No. <input id="an_no"></input><br>
-	제목 <input id="an_title"></input><br>
-	내용 <textarea id="an_content" rows="15", cols="80"></textarea><br>
-	등록일 <input id="an_regdate"></input><br>
-	작성자 <input id="mc_id"></input><br>
-	<br>
-	<p class="pop_footer"><em class="close"><input type="checkbox" class="check" id="noToday">오늘은 더 이상 보지않겠습니다.</em>
-	<span class="btn"></span></p>
-	<button id="btn_popup" onclick="window.close()">닫기</button>
+<div id="pop_up" >
+	<table>
+		<tr>
+			<td>제목</td>
+			<td><input id="an_title" readonly="readonly" ></td>
+		</tr>
+		<tr>
+			<td>내용</td>
+			<td><textarea id="an_content" rows="15", cols="80" readonly="readonly"></textarea></td>
+		</tr>
+		<tr>
+			<td>등록일</td>
+			<td> <input id="an_regdate" readonly="readonly"></td>
+		</tr>
+		<tr>
+			<td>작성자</td>
+			<td><input id="mc_id" readonly="readonly"></td>
+		</tr>
+	</table>
 </div>
+	<br>
+	<div align="center">
+	<button id="btn_popup" onclick="window.close()">닫기</button>
+	</div>
 
 </body>
 </html>

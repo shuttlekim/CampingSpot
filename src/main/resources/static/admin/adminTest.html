@@ -63,6 +63,8 @@ $(function(){
 	
 	$("#left").load("/admin/menubar.html");
 	
+	getAnNo();
+	
 	function authList(){
 // 		$("#auth_tb").empty();
 		$.getJSON("/adminList.do", function(data){
@@ -102,6 +104,20 @@ $(function(){
 		
 		
 	});
+	
+	function getAnNo(){
+		var userId;
+		if(sessionStorage.getItem("businessId") == null){
+			userId = sessionStorage.getItem("memberId");
+		}else{
+			userId = sessionStorage.getItem("businessId");
+		}
+		$.ajax("/getAnNo.do",{data:{"userId":userId},success:function(data){
+			$.each(data, function(idx,pop){
+				window.open('/admin/adminNotice_popUp.html?an_no='+pop.an_no, "_blank", 'popup', 'width=700, height=500, scrollbars= 0, toolbar=0, menubar=no');
+			});
+		}}); 
+	}
 </script>
 </head>
 <body>

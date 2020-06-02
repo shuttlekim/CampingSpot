@@ -85,5 +85,26 @@ SELECT cs_name campingName
  )
  order BY cnt desc
 </select>  
+
+<select id="getAnNo" resultType="adminnoticevo">
+SELECT *
+  FROM admin_notice
+ WHERE ispost = 'Y' -- 팝업여부
+   AND SYSDATE BETWEEN startdate AND enddate
+   -- admin_notice.mc_auth 1:전체, 2:사업자, 3:개인
+   AND (mc_auth = 1 -- 로그인한놈이 전체(1) 다 팝업되야한다
+       OR mc_auth -- 로그인한놈이 사업자(2) 거나 개인(3) 이면 팝업되야한다
+       IN (SELECT mc_auth -- 로그인한 사람의 권한 -- 1:관리자, 2:사업자, 3:개인
+                 FROM (SELECT MC_ID
+                             ,MC_AUTH
+                         FROM member_customer t
+                       UNION ALL
+                       SELECT MB_ID
+                             ,MB_AUTH
+                         FROM member_business)
+                WHERE mc_id = #{userId} -- 로그인한 사람의 ID를 화면에서 받아야함
+               ))
+ ORDER BY an_no DESC
+</select>  
   
 </mapper>

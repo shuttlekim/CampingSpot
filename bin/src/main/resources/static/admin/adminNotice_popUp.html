@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shortcut icon" href="/resources/profile/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/resources/profile/favicon.ico" type="image/x-icon">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
@@ -11,10 +13,9 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+// 		window.resizeTo(800,500);
 		var an_no = location.search.substring(location.search.indexOf("=")+1);
-		alert(an_no);
 		$.ajax("/detailAdminNotice.do",{data:{"an_no":an_no}, success:function(data){
-				$("#an_no").val(data.an_no);
 				$("#an_title").val(data.an_title);
 				$("#an_content").val(data.an_content);
 				$("#an_regdate").val(data.an_regdate);
@@ -32,7 +33,6 @@
 <br>
 
 <div id="pop_up">
-	No. <input id="an_no"></input><br>
 	제목 <input id="an_title"></input><br>
 	내용 <textarea id="an_content" rows="15", cols="80"></textarea><br>
 	등록일 <input id="an_regdate"></input><br>

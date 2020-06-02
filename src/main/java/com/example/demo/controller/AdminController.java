@@ -313,4 +313,15 @@ public class AdminController {
 		str = gson.toJson(list);
 		return str;
 	}
+
+	//////POP
+	@RequestMapping(value="/getAnNo.do", produces = "application/json;charset=utf-8")
+	public String getAnNo(String userId) {
+		String str = "";
+		System.out.println("userId : " + userId);
+		List<AdminNoticeVo> list = an_dao.getAnNo(userId);
+		Gson gson = new Gson();
+		str = gson.toJson(list);
+		return str;
+	}
 }

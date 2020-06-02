@@ -266,7 +266,11 @@ public class AdminDBManager {
 		return list;
 	}
 	
-	
-	
+	public static List<AdminNoticeVo> getAnNo(String userId) {
+		SqlSession session = factory.openSession();
+		List<AdminNoticeVo> anNo = session.selectList("adminnotice.getAnNo", userId);
+		session.close();
+		return anNo;
+	}
 
 }
