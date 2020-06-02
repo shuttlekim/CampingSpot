@@ -41,6 +41,27 @@
 		color:white;
 		margin-left: 30px;
 	}
+	
+	#termsOk{
+		transition: background-color 0.2s;
+	}	
+	#termsOk:hover {
+  		background-color: #81E5B8;
+	}
+	#termsOk:active {
+	  	background-color: #367c36;
+	}	
+	#termsNo{
+		transition: background-color 0.2s;
+	}	
+	#termsNo:hover {
+  		background-color: #81E5B8;
+	}
+	#termsNo:active {
+	  	background-color: #367c36;
+	}	
+	
+	
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -128,14 +149,13 @@ $(function(){
 - 협력회사로부터의 제공
 - 생성정보 수집 툴을 통한 수집
 </textarea><br>
-						<input type="checkbox" name="check" value="check" style="font-size: 30px;"> 개인정보 수집 및 이용에 동의합니다.
+						<input type="checkbox" name="check" value="check" style="font-size: 30px;cursor: pointer"> 개인정보 수집 및 이용에 동의합니다.
 					</td>
  					</tr>
- 
 					<tr>
 					<td align="center" valign="top"><br><br>
-						<input type="button" value="동의" id="termsOk" style="margin:0 auto;align:center;width: 270px;height: 40px;font-size: 23px"/>
-						<input type="button" value="동의하지 않습니다" id="termsNo" style="margin:0 auto;align:center;width: 270px;height: 40px;font-size: 23px"/>
+						<input type="button" value="동의" id="termsOk" style="margin:0 auto;align:center;width: 270px;height: 40px;font-size: 23px;cursor: pointer"/>
+						<input type="button" value="동의하지 않습니다" id="termsNo" style="margin:0 auto;align:center;width: 270px;height: 40px;font-size: 23px;cursor: pointer"/>
 					</td>
 				</tr>
 				</table>

@@ -17,6 +17,12 @@
 	  	display: table-cell;
 	  	vertical-align: middle;
 	}
+	.middle{
+	  	margin-top: 20px;
+	  	width: 1000px;
+	  	height: 500px;
+	  	position: relative;
+	}
 	.middle-center{
 	  	outline: 1px solid #9F9F9F;
 	  	top: 0px;
@@ -25,7 +31,7 @@
 	  	background-color: #E6E6E6;
 	  	margin-left: 300px;
 	}
-	input[type="text"], input[type="date"],input[type="number"],input[type="password"],input[type="email"],input[type="email"], input[type="file"],select{
+	input[type="text"],input[type="date"],input[type="number"],input[type="password"],input[type="email"],input[type="email"],select{
 		height:30px;		
 		line-height: 30px;
 		border:1px solid #e7e7e7;
@@ -33,142 +39,7 @@
 		font-size:14px;
 		border-radius : 7px;
 		background-color:#fff;
-		margin-left: 140px;	
-	}
-	.middle{
-		//.rgin-top: 20px;
-		position: relative;
-	 	outline: 1px solid #9F9F9F;
-		//position: absolute;
-		//left: 5px;
-		top: 20px;
-	  	width: 300px;
-		height: 750px;
-		border: hidden;
-		//border-radius: 5%;
-		//background-color: #EBDEF0 ;
-		//background-color: #DDD5D5 ;
-		box-shadow: 5px 5px 5px 5px;
-	}
-	#mb_id{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}
-	#idCheck{
-		width: 120px;
-		height: 38px;
-		font-size: 16px;
-		font-family:Nanum Gothic;
-		transition: background-color 0.2s;
-		cursor: pointer;
-	}
-	
-	#idCheck:hover {
-  		background-color: #6ed36e;
-	}
-	#idCheck:active {
-	  	background-color: #367c36;
-	}	
-	
-	#btnJoinOk{
-		transition: background-color 0.2s;
-	}
-	#btnJoinOk:hover {
-  		background-color: #6ed36e;
-	}
-	#btnJoinOk:active {
-	  	background-color: #367c36;
-	}
-	
-	
-	#mb_pwd{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}
-	#checkpwd{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}
-	#mb_email{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}
-	#mb_name{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}
-	#mb_nickname{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}
-	#mb_tel{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}
-	#mb_licence{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}	
-	#grey{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}	
-	
-	.filebox label {
-	  	display: inline-block;
-	  	padding: .5em .75em;
-		color: #fff;
-		//font-size: inherit;
-		line-height: normal;
-		vertical-align: middle;
-		//background-color: #5cb85c;
-		cursor: pointer;
-		border: 1px solid #4cae4c;
-		border-radius: .25em;
-		-webkit-transition: background-color 0.2s;
-		transition: background-color 0.2s;
-		//margin-left: 140px;
-		text-align: center;
-    	background: #2a2a2a;
-    	//height: 30px;
-    	//line-height: 30px;
-   		//padding: 0 10px;
-    	//border: none;
-    	//font-size: 14px;
-    	border-radius: 7px;
-    	
-    	width: 90px;
-		//height: 38px;
-		font-size: 16px;
-		font-family:Nanum Gothic;
-	}			
-	.filebox label:hover {
-  		background-color: #6ed36e;
-	}
-	.filebox label:active {
-	  	background-color: #367c36;
-	}
-	.filebox input[type="file"] {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		padding: 0;
-		margin: -1px;
-		overflow: hidden;
-		clip: rect(0, 0, 0, 0);
-		border: 0;
-	}
-	.v{
-		cursor: pointer;
+		margin-left: 140px;		
 	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -229,23 +100,24 @@ $(function(){
 	$("#footers").load("/main/footer.html");
 		
 });
-</script>
+</script> 
 </head>
 <body>
 
 <!-- TOP  -->
-<div class="top" id="header"></div><br>
+<div class="top" id="header"></div>
+
+<div class="container">
 
 	<!-- MIDDLE -->
-	<div class="body-wrap" style="height: 800px">
-		<div style="margin: 0 auto; width: 700px" align="center" class="middle">
-		<br>
-		<h1 style="font-family:Nanum Gothic;font-size: 40px">회원가입</h1>
-		<hr width="300px"><br><br>
+	<div class="middle">
+		<div class="middle-center">
+	    <br><h1>CAMPINGSPOT 사업자 가입</h1>
+		<hr width="300px">
 		<div>
 			<form id="join" method="post" enctype="multipart/form-data">
-				<table   width="500px">
-					<tr>		
+				<table><br><br>
+					<tr>
 						<td><input type="text" name="mb_id" id="mb_id" placeholder="회원 아이디 (15자 이내)" required="required" maxlength="15"></td>
 						<td><button id="idCheck" type="button">중복검사</button></td>
 					</tr>				
@@ -254,10 +126,10 @@ $(function(){
 					</tr>
 					<tr>
 						<td><input type="password" name="checkpwd" id="checkpwd" placeholder="비밀번호 확인 (8자이내)" required="required" maxlength="8"></td>
-						<td width="400px">
-							<span class="alert alert-success" id="alert-success">비밀번호 일치</span>
-							<span class="alert alert-danger" id="alert-danger">비밀번호 불일치</span>
-						</td>				
+						<td>
+							<div class="alert alert-success" id="alert-success">비밀번호 일치</div>
+							<div class="alert alert-danger" id="alert-danger">비밀번호 불일치</div>
+						</td>	
 					</tr>
 					<tr>
 						<td><input type="email" name="mb_email" id="mb_email" placeholder="E-MAIL" required="required" maxlength="50"></td>
@@ -270,24 +142,26 @@ $(function(){
 					</tr>
 					<tr>
 						<td><input type="text" name="mb_tel" id="mb_tel" placeholder="전화번호 (-)없이 입력" required="required"></td>
-					</tr>	
+					</tr>
 					<tr>
 						<td><input type="text" name="mb_licence" id="mb_licence" placeholder="사업자등록번호  (-)없이" required="required"  maxlength="10"></td>
 					</tr>	
 					<tr>
-						<td><input type="text" disabled="disabled" placeholder="프로필 사진" style="background-color: #e2e2e2; font-weight: bold" id="grey"></td>
-						<td class="filebox"><label for="uploadFile">업로드	
-						<input type="file" name="uploadFile" id="uploadFile" style="width:200px;height:30px;font-size:15px;"></td>
-					<tr>
-						<td><input type="hidden" name="mb_auth" id="mb_auth" value="3"></td>
+						<td><input type="text" disabled="disabled" placeholder="프로필 사진" style="background-color: #e2e2e2;"></td>			
 					</tr>
-				</table><br><br><br><br>
-				<button id="btnJoinOk" type="button" style="margin:0 auto;align:center;width: 220px;height: 40px;font-size: 20px;cursor: pointer">회원가입</button>
-			</form>
-			
+					<tr>
+						<td><input type="file" name="uploadFile" id="uploadFile" style="width:200px;height:30px;font-size:15px;margin-left: 150px;"></td>
+					</tr>
+					<tr>
+						<td><input type="hidden" name="mb_auth" id="mb_auth" value="2"></td>
+					</tr>
+				</table>
+			</form><br><br><br>
+			<button id="btnJoinOk" style="width:200px;height:40px;font-size:20px;margin-left: 65px;">회원가입</button>
 		</div>
-	 </div>
-  </div>
+	</div>
+  </div>  
+</div><br>
 
 <!-- BOTTOM -->
 <div id="footers" class="bottom"></div>

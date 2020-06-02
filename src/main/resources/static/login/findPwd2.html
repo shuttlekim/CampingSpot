@@ -47,7 +47,17 @@
 		//border-radius: 5%;
 		//background-color: #EBDEF0 ;
 		//background-color: #DDD5D5 ;
-		box-shadow: 5px 5px 5px 10px;
+		box-shadow: 5px 5px 5px 5px;
+	}
+	#btnSendMail{
+		transition: background-color 0.2s;
+		cursor: pointer;
+	}	
+	#btnSendMail:hover {
+  		background-color: #81E5B8;
+	}
+	#btnSendMail:active {
+	  	background-color: #367c36;
 	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -88,11 +98,11 @@ $(function(){
 	<div style="margin: 0 auto; width: 600px" align="center" class="middle">
 	
 		<br>
-    	<h2 style="font-family:Nanum Gothic;font-size: 40px">비밀번호 찾기</h2>
+    	<h2 style="font-family:Nanum Gothic;font-size: 35px">비밀번호 찾기</h2>
 		<hr width="250px"><br>			
 		<form id="s">
-			<input type="text" id="mb_id" name="mc_id" placeholder="아이디" required="required" style="width:230px;height:45px;"><br><br>
-			<input type="text" id="mb_email" name="mc_email" placeholder="이메일" required="required" style="width:230px;height:45px;"><br>
+			<input type="text" id="mb_id" name="mc_id" placeholder="아이디" required="required" style="width:230px;height:45px; border: groove;"><br><br>
+			<input type="text" id="mb_email" name="mc_email" placeholder="이메일" required="required" style="width:230px;height:45px; border: groove;"><br>
 			<br><br><br><br>
 			<button id="btnSendMail" style="margin:0 auto;align:center;width: 200px;height: 40px;font-size: 20px">메일보내기</button>
 		</form>

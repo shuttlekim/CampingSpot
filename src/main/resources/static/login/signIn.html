@@ -17,12 +17,6 @@
 	  	display: table-cell;
 	  	vertical-align: middle;
 	}
-	.middle{
-	  	margin-top: 20px;
-	  	width: 1000px;
-	  	height: 500px;
-	  	position: relative;
-	}
 	.middle-center{
 	  	outline: 1px solid #9F9F9F;
 	  	top: 0px;
@@ -31,7 +25,7 @@
 	  	background-color: #E6E6E6;
 	  	margin-left: 300px;
 	}
-	input[type="text"], input[type="date"],input[type="number"],input[type="password"],input[type="email"],input[type="email"],select{
+	input[type="text"], input[type="date"],input[type="number"],input[type="password"],input[type="email"],input[type="email"], input[type="file"],select{
 		height:30px;		
 		line-height: 30px;
 		border:1px solid #e7e7e7;
@@ -40,7 +34,138 @@
 		border-radius : 7px;
 		background-color:#fff;
 		margin-left: 140px;	
-		}
+	}
+	.middle{
+		//.rgin-top: 20px;
+		position: relative;
+	 	outline: 1px solid #9F9F9F;
+		//position: absolute;
+		//left: 5px;
+		top: 20px;
+	  	width: 300px;
+		height: 780px;
+		border: hidden;
+		//border-radius: 5%;
+		//background-color: #EBDEF0 ;
+		//background-color: #DDD5D5 ;
+		box-shadow: 5px 5px 5px 5px;
+	}
+	#mc_id{
+		width: 200px;
+		height: 35px;
+		border: groove;
+	}
+	#idCheck{
+		width: 120px;
+		height: 38px;
+		font-size: 16px;
+		font-family:Nanum Gothic;
+		transition: background-color 0.2s;
+		cursor: pointer;
+	}
+	
+	#idCheck:hover {
+  		background-color: #81E5B8;
+	}
+	#idCheck:active {
+	  	background-color: #367c36;
+	}	
+	
+	#btnJoinOk{
+		transition: background-color 0.2s;
+	}
+	#btnJoinOk:hover {
+  		background-color: #6ed36e;
+	}
+	#btnJoinOk:active {
+	  	background-color: #367c36;
+	}
+	
+	
+	#mc_pwd{
+		width: 200px;
+		height: 35px;
+		border: groove;
+	}
+	#checkpwd{
+		width: 200px;
+		height: 35px;
+		border: groove;
+	}
+	#mc_email{
+		width: 200px;
+		height: 35px;
+		border: groove;
+	}
+	#mc_name{
+		width: 200px;
+		height: 35px;
+		border: groove;
+	}
+	#mc_nickname{
+		width: 200px;
+		height: 35px;
+		border: groove;
+	}
+	#mc_tel{
+		width: 200px;
+		height: 35px;
+		border: groove;
+	}
+	#grey{
+		width: 200px;
+		height: 35px;
+		border: groove;
+	}
+	
+	
+	.filebox label {
+	  	display: inline-block;
+	  	padding: .5em .75em;
+		color: #fff;
+		//font-size: inherit;
+		line-height: normal;
+		vertical-align: middle;
+		//background-color: #5cb85c;
+		cursor: pointer;
+		border: 1px solid #4cae4c;
+		border-radius: .25em;
+		-webkit-transition: background-color 0.2s;
+		transition: background-color 0.2s;
+		//margin-left: 140px;
+		text-align: center;
+    	background: #2a2a2a;
+    	//height: 30px;
+    	//line-height: 30px;
+   		//padding: 0 10px;
+    	//border: none;
+    	//font-size: 14px;
+    	border-radius: 7px;
+    	
+    	width: 90px;
+		//height: 38px;
+		font-size: 16px;
+		font-family:Nanum Gothic;
+	}			
+	.filebox label:hover {
+  		background-color: #6ed36e;
+	}
+	.filebox label:active {
+	  	background-color: #367c36;
+	}
+	.filebox input[type="file"] {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		border: 0;
+	}
+	.v{
+		cursor: pointer;
+	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -108,17 +233,17 @@ $(function(){
 <body>
 
 <!-- TOP  -->
-<div class="top" id="header"></div>
+<div class="top" id="header"></div><br>
 
-<div class="container">
 	<!-- MIDDLE -->
-	<div class="middle">
-		<div class="middle-center"><br>
-		<h1>CAMPINGSPOT 회원가입</h1>
-		<hr width="300px">
+	<div class="body-wrap" style="height: 830px">
+		<div style="margin: 0 auto; width: 700px" align="center" class="middle">
+		<br>
+		<h1 style="font-family:Nanum Gothic;font-size: 40px">회원가입</h1>
+		<hr width="300px"><br><br>
 		<div>
 			<form id="join" method="post" enctype="multipart/form-data">
-				<table style="text-align: center;"><br><br>
+				<table   width="500px">
 					<tr>		
 						<td><input type="text" name="mc_id" id="mc_id" placeholder="회원 아이디 (15자 이내)" required="required" maxlength="15"></td>
 						<td><button id="idCheck" type="button">중복검사</button></td>
@@ -128,7 +253,7 @@ $(function(){
 					</tr>
 					<tr>
 						<td><input type="password" name="checkpwd" id="checkpwd" placeholder="비밀번호 확인 (8자이내)" required="required" maxlength="8"></td>
-						<td>
+						<td width="400px">
 							<span class="alert alert-success" id="alert-success">비밀번호 일치</span>
 							<span class="alert alert-danger" id="alert-danger">비밀번호 불일치</span>
 						</td>				
@@ -146,30 +271,28 @@ $(function(){
 						<td><input type="text" name="mc_tel" id="mc_tel" placeholder="전화번호 (-)없이 입력" required="required"></td>
 					</tr>
 					<tr>
-						<td><input type="text"  placeholder="다음 중 회원님의 취향은?" required="required" disabled="disabled" style="background-color: #e2e2e2;"></td>
+						<td><input type="text"  placeholder="다음 중 회원님의 캠핑 취향은?" required="required" disabled="disabled" style="background-color: #e2e2e2; font-weight: bold" id="grey"></td>
 					</tr>
 					<tr>				
-						<td><label style="margin-left: 150px;">산</label><input type="checkbox" name="mc_taste" id="mc_taste" value="산">
-		                 	<label>강</label><input type="checkbox" name="mc_taste" id="mc_taste" value="강">
-		                 	<label>바다</label><input type="checkbox" name="mc_taste" id="mc_taste" value="바다">
-		                 	<label>계곡</label><input type="checkbox" name="mc_taste" id="mc_taste" value="계곡"></td>
+						<td><label style="margin-left: 150px;">산</label><input type="checkbox" name="mc_taste" id="mc_taste" value="산" class="v">
+		                 	<label>강</label><input type="checkbox" name="mc_taste" id="mc_taste" value="강" class="v">
+		                 	<label>바다</label><input type="checkbox" name="mc_taste" id="mc_taste" value="바다" class="v">
+		                 	<label>계곡</label><input type="checkbox" name="mc_taste" id="mc_taste" value="계곡" class="v"></td>
 					</tr>	
 					<tr>
-						<td><input type="text" disabled="disabled" placeholder="프로필 사진" style="background-color: #e2e2e2;"></td>			
-					</tr>
-					<tr>			
-						<td><input type="file" name="uploadFile" id="uploadFile" style="width:200px;height:30px;font-size:15px;margin-left: 150px;"></td>
-					</tr>
+						<td><input type="text" disabled="disabled" placeholder="프로필 사진" style="background-color: #e2e2e2; font-weight: bold" id="grey"></td>
+						<td class="filebox"><label for="uploadFile">업로드	
+						<input type="file" name="uploadFile" id="uploadFile" style="width:200px;height:30px;font-size:15px;"></td>
 					<tr>
 						<td><input type="hidden" name="mc_auth" id="mc_auth" value="3"></td>
 					</tr>
-				</table>
-			</form><br><br><br>
-			<button id="btnJoinOk" style="width:200px;height:40px;font-size:20px;margin-left: 65px;">회원가입</button>
+				</table><br><br><br><br>
+				<button id="btnJoinOk" type="button" style="margin:0 auto;align:center;width: 220px;height: 40px;font-size: 20px;cursor: pointer">회원가입</button>
+			</form>
+			
 		</div>
 	 </div>
-  </div>  
-</div><br>
+  </div>
 
 <!-- BOTTOM -->
 <div id="footers" class="bottom"></div>
