@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="/resources/profile/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/resources/profile/favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<style type="text/css">
+	.container{
+	  	width: 1000px;
+	  	margin: 0 auto;
+	}
+	.container div{
+	  	text-align: center;
+	  	display: table;
+	}
+	.container div span{
+	  	display: table-cell;
+	  	vertical-align: middle;
+	}
+	.middle{
+	  	margin-top: 20px;
+	  	width: 1000px;
+	  	height: 500px;
+	  	position: relative;
+	}
+	.middle-center{
+	  	//outline: 1px solid #9F9F9F;
+	  	top: 100px;
+	  	width: 1000px;
+	  	height: 565px;
+	  	background-color: white;
+	 	//border: double;
+	}
+	#middle-center-inner{
+		margin-top: 150px;
+		margin-left: 270px;
+	}
+	#btn{
+		//width: 100px;
+		//height: 90px;
+		//font-size: 30px;
+	}
+	.middle-left{
+  		outline: 1px solid #9F9F9F;
+		position: absolute;
+		//left: 5px;
+		top: 70px;
+	  	width: 450px;
+		height: 550px;
+		border: hidden;
+		//border-radius: 5%;
+		//background-color: #EBDEF0 ;
+		//background-color: #DDD5D5 ;
+		box-shadow: 5px 5px 5px 5px;
+		transition: background-color 0.2s;
+	}	
+	.middle-left:hover{
+		background-color: #81E5B8;
+	}
+	.#middle-left:active {
+	  	background-color: #367c36;
+	}		
+	.middle-right{
+  		outline: 1px solid #9F9F9F;
+		position: absolute;
+		top: 70px;
+		left: 570px;
+	  	width: 450px;
+		height: 550px;
+		border: hidden;
+		//background-color: #F5C8C8 ;
+		box-shadow: 5px 5px 5px 5px;
+		transition: background-color 0.2s;
+	}		
+	.middle-right:hover{
+		background-color: #81E5B8;
+	}
+	.#middle-right:active {
+	  	background-color: #367c36;
+	}	
+	.img{
+		width: 180px;
+		height: 180px;
+	}
+	p{
+		font-family:Nanum Gothic;
+		font-size: 17px;
+	}
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function(){	
+
+	$("#header").load("/main/header.html");	
+
+	$("#footers").load("/main/footer.html");
+		
+	
+	 var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+	  if (!isChrome){
+	      $('#iframeAudio').remove()
+	  }
+	  else {
+	      $('#playAudio').remove() 
+	  }
+	  
+});	
+</script>
+</head>
+<body>
+
+<!-- TOP  -->
+<div class="top" id="header"></div>
+
+<div class="container">
+<!-- MIDDLE -->
+	<div class="middle">
+   		<div class="middle-center">
+   
+   		<!-- 일반 회원가입 -->
+   		<div class="middle-left" onclick="location.href='terms.html'" style="cursor: pointer"><br><br><br>
+   		<img src="/resources/profile/pro02.png" class="img"><br>
+   		<h2 style="font-family:Nanum Gothic;font-size: 40px">일반회원</h2>
+   		<p>(CAMPINGSPOT 이용 개인회원)</p>
+   		<p>CAMPINGSPOT 개인 회원 가입  화면으로 이동합니다.</p>		
+		</div>
+
+		<!-- 사업자 회원가입  -->
+		<div class="middle-right" onclick="location.href='terms2.html'" style="cursor: pointer"><br><br><br>
+		<img src="/resources/profile/pro01.png" class="img"><br>
+		<h2 style="font-family:Nanum Gothic;font-size: 40px">사업자 회원</h2>
+   		<p>(CAMPINGSPOT 이용 사업자회원)</p>
+   		<p>CAMPINGSPOT 사업자 회원 가입  화면으로 이동합니다.</p>	
+   		<div style="margin-left: 150px; margin-top: 40px; display: none">
+			<audio autoplay loop controls style="width: 300px;">
+    		<source src="/resources/profile/Imperial.mp3" type="audio/mp3"></audio>
+			</div>
+		</div>      
+
+		</div>	    
+		
+	</div>
+	</div><br><br><br><br><br><br>
+	
+
+<!-- BOTTOM -->
+<div id="footers" class="bottom"></div>
+
+</body>
+</html>

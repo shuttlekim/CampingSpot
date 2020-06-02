@@ -5,22 +5,32 @@
 <link rel="icon" href="/resources/profile/favicon.ico" type="image/x-icon">
 <meta charset="UTF-8">
 <style type="text/css">
-	.middle{
-		//.rgin-top: 20px;
-		position: relative;
-	 	outline: 1px solid #9F9F9F;
-		//position: absolute;
-		//left: 5px;
-		top: 40px;
-	  	width: 300px;
-		height: 780px;
-		border: hidden;
-		//border-radius: 5%;
-		//background-color: #EBDEF0 ;
-		//background-color: #DDD5D5 ;
-		box-shadow: 5px 5px 5px 5px;
+	.container{
+	  	width: 1000px;
+	  	margin: 0 auto;
 	}
-
+	.container div{
+	  	text-align: center;
+	  	display: table;
+	}
+	.container div span{
+	  	display: table-cell;
+	  	vertical-align: middle;
+	}
+	.middle{
+	  	margin-top: 20px;
+	  	width: 1000px;
+	  	height: 500px;
+	  	position: relative;
+	}
+	.middle-center{
+	  	outline: 1px solid #9F9F9F;
+	  	top: 0px;
+	  	width: 500px;
+	  	height: 680px;
+	  	background-color: #E6E6E6;
+	  	margin-left: 300px;
+	}
 	input[type="text"], input[type="date"],input[type="number"],input[type="password"],input[type="email"],input[type="email"],select{
 		height:30px;		
 		line-height: 30px;
@@ -29,117 +39,19 @@
 		font-size:14px;
 		border-radius : 7px;
 		background-color:#fff;
-		margin-left: 140px;
+		margin-left: 140px;	
 	}
 	#btnDeleteMember{
 		//float: right;
 		position: absolute;
 		//letf: 400px;
-		top: 10px;
-		right: 10px;
+		right: 205px;
 		cursor: pointer;
-		transition: background-color 0.2s;
 	}
-	#btnDeleteMember:hover{
-		background-color: #6ed36e;
-	}
-	#btnDeleteMember:active{
-		background-color: #367c36;
-	}
-	
 	#btnUpdateOk{
-		transition: background-color 0.2s;
-	}
-	#btnUpdateOk:hover {
-  		background-color: #6ed36e;
-	}
-	#btnUpdateOk:active {
-	  	background-color: #367c36;
-	}
-	
-	#mc_id{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}	
-	#mc_pwd{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}
-	#checkpwd{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}
-	#mc_email{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}
-	#mc_name{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}
-	#mc_nickname{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}
-	#mc_tel{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}
-	#mc_licence{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}
-	#grey{
-		width: 200px;
-		height: 35px;
-		border: groove;
+	    cursor: pointer;
 	}	
 	
-	.filebox label {
-	  	display: inline-block;
-	  	padding: .5em .75em;
-		color: #fff;
-		line-height: normal;
-		vertical-align: middle;
-		cursor: pointer;
-		border: 1px solid #4cae4c;
-		border-radius: .25em;
-		-webkit-transition: background-color 0.2s;
-		transition: background-color 0.2s;
-		text-align: center;
-    	background: #2a2a2a;
-    	border-radius: 7px;    	
-    	width: 90px;
-		font-size: 16px;
-		font-family:Nanum Gothic;
-	}			
-	.filebox label:hover {
-  		background-color: #6ed36e;
-	}
-	.filebox label:active {
-	  	background-color: #367c36;
-	}
-	.filebox input[type="file"] {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		padding: 0;
-		margin: -1px;
-		overflow: hidden;
-		clip: rect(0, 0, 0, 0);
-		border: 0;
-	}
-	.v{
-		cursor: pointer;
-	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -223,14 +135,15 @@ $(function(){
 <!-- TOP  -->
 <div class="top" id="header"></div>
 
+<div class="container">
 	<!-- MIDDLE -->
-	<div class="body-wrap" style="height: 830px;">
-		<div class="middle" style="margin: 0 auto; width: 700px" align="center">
-	    <br><h2 style="font-family:Nanum Gothic;font-size: 35px">회원정보 수정</h2>
-		<hr width = "300px">
-		<div>
+	<div class="middle">
+	<div class="middle-center">
+	<br><h2>회원정보 수정</h2>
+	<hr width = "300px">	
+	<div>
 		<form id="update" method="post" enctype="multipart/form-data">
-			<table style="text-align: center; width: 500px;"><br><br>
+			<table style="text-align: center;"><br><br>
 				<tr>
 					<td><input type="text" name="mc_id" id="mc_id" readonly="readonly"></td>
 				</tr>				
@@ -240,7 +153,7 @@ $(function(){
 				<tr>
 					<td><input type="password" name="checkpwd" id="checkpwd" placeholder="비밀번호 확인 (8자이내)" required="required" maxlength="8">
 				</td>
-					<td width="400px">
+					<td>
 						<div class="alert alert-success" id="alert-success">비밀번호 일치</div>
 						<div class="alert alert-danger" id="alert-danger">비밀번호 불일치</div>
 					</td>	
@@ -252,36 +165,38 @@ $(function(){
 					<td><input type="text" name="mc_name" id="mc_name" placeholder="이름" required="required"></td>
 				</tr>
 				<tr>
-					<td><input type="text" name="mc_nickname" id="mc_nickname" placeholder="별명 (8자 이내)" required="required"></td>
+					<td><input type="text" name="mc_nickname" id="mc_nickname" placeholder="8자 이내" required="required"></td>
 				</tr>		
 				<tr>
-					<td><input type="text" name="mc_tel" id="mc_tel" placeholder="전화번호 (-)없이 입력" required="required"></td>
+					<td><input type="text" name="mc_tel" id="mc_tel" placeholder="(-)없이 입력" required="required"></td>
 				</tr>
 				<tr>
-					<td><input type="text" placeholder="다음 중 회원님의 취향은?" required="required" disabled="disabled" style="background-color: #e2e2e2;"id="grey"></td>
+					<td><input type="text" placeholder="다음 중 회원님의 취향은?" required="required" disabled="disabled" style="background-color: #e2e2e2;"></td>
 				</tr>	
 				<tr>
-					<td><label style="margin-left: 140px;">산</label><input type="checkbox" name="mc_taste" id="mc_taste" value="산" required="required" class="v">
-	                     	<label>강</label><input type="checkbox" name="mc_taste" id="mc_taste" value="강" class="v">
-	                     	<label>바다</label><input type="checkbox" name="mc_taste" id="mc_taste" value="바다" class="v">
-	                     	<label>계곡</label><input type="checkbox" name="mc_taste" id="mc_taste" value="계곡" class="v"></td>
+					<td><label style="margin-left: 140px;">산</label><input type="checkbox" name="mc_taste" id="mc_taste" value="산" required="required">
+	                     	<label>강</label><input type="checkbox" name="mc_taste" id="mc_taste" value="강">
+	                     	<label>바다</label><input type="checkbox" name="mc_taste" id="mc_taste" value="바다">
+	                     	<label>계곡</label><input type="checkbox" name="mc_taste" id="mc_taste" value="계곡"></td>
 				</tr>	
-				<tr>				
-					<td><input type="text" disabled="disabled" placeholder="프로필 사진" style="background-color: #e2e2e2; font-weight: bold" id="grey"></td>
-						<td class="filebox"><label for="uploadFile">업로드	
-						<input type="file" name="uploadFile" id="uploadFile" style="width:200px;height:30px;font-size:15px;"></td>
+				<tr>
+					<td><input type="text" disabled="disabled" placeholder="프로필 사진" style="background-color: #e2e2e2;"></td>			
+				</tr>
+				<tr>
+					<td><input type="file" name="uploadFile" id="uploadFile" style="width: 200px; height: 30px; font-size: 15px; margin-left: 140px;"></td>
 					<td><input type="hidden" name="mc_fname" id="mc_fname"></td>
 				</tr>
 				<tr>
 					<td><input type="hidden" name="mc_auth" value="3"></td>
-				</tr>		
+				</tr>
 			</table>
 		</form><br><br><br>
-		<button id="btnUpdateOk" type="button" style="margin:0 auto;align:center;width: 220px;height: 40px;font-size: 20px;cursor: pointer">수정하기</button>
+		<button id="btnUpdateOk" style="width:200px;height:40px;font-size:20px;margin-left: 130px;">수정하기</button>
 		<button id="btnDeleteMember">회원탈퇴</button>
-		</div>
+	</div> 
     </div>
-  </div><br>
+  </div>  
+</div><br>
 
 <!-- BOTTOM -->
 <div id="footers" class="bottom"></div>

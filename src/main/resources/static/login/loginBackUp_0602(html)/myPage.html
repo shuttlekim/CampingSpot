@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="/resources/profile/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/resources/profile/favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<style type="text/css">
+body{
+background-color: #93B874;; 
+}
+
+* { 
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+    box-sizing: border-box; 
+}
+html, body, div, object, iframe, fieldset { 
+    margin: 0; 
+    padding: 0; 
+    border: 0;
+} 
+ol, ul { 
+    list-style: none;
+    margin: 0;
+    padding: 0;
+} 
+table { 
+    border-collapse: collapse; 
+    border-spacing: 0; 
+}
+header, footer, nav, section, article, hgroup, figure {
+    display: block; 
+}
+legend {
+    display: none;
+}
+/************End Reset**************/
+
+/************Global**************/
+body {
+    background: #fff;
+    color: #000;
+    font: 100%/1.4 "HelveticaNeue", "Helvetica", "Arial", sans-serif;
+    padding: 0;
+    -webkit-text-size-adjust: none;
+}
+a {
+    color: #808080;
+    text-decoration: none;
+}
+a:hover, a:focus {
+    color: #e51837;
+}
+p {
+    margin: 0 0 1em;
+}
+img, object, video {
+    max-width: 100%;
+    border: 0;
+}
+a img {
+    border: 0;
+    outline: 0;
+}
+h1 {
+    font-size: 3em;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.2em;
+}
+h2 {
+    font-size: 2em;
+    line-height: 1.1;
+    margin-bottom: 0.2em;
+}
+h3 {
+    font-weight: normal;
+    line-height: 1.1;
+    padding-bottom: 0.4em;
+    border-bottom: 1px solid #ccc;
+}
+h1 a, h2 a, h3 a {
+    display: block;
+    color: #000;
+}
+h1 a:hover, h2 a:hover, h3 a:hover {
+    color: #e51837;
+}
+blockquote {
+    border-left: 0.5em solid #ddd;
+    padding-left: 1em;
+    margin-left: 1em;
+}
+small {
+    color: #e51837;
+}
+
+input, textarea {
+    border: 1px solid #000;
+}
+
+input[type=search] {
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+::-webkit-input-placeholder {
+    color: #808080;
+}
+:-moz-placeholder {  
+    color: #808080;
+}
+/************End Global**************/
+
+
+
+/* CSS Animations */
+@-webkit-keyframes fadeout {
+  0%   { background: #fff; }
+  10%   { background: #eee; }
+  100% { background: #fff; }
+}
+@-moz-keyframes fadeout {
+  0%   { background: #fff; }
+  10%   { background: #eee; }
+  100% { background: #fff; }
+}
+@-o-keyframes fadeout {
+  0%   { background: #fff; }
+  10%   { background: #eee; }
+  100% { background: #fff; }
+}
+@keyframes fadeout {
+  0%   { background: #fff; }
+  10%   { background: #eee; }
+  100% { background: #fff; }
+}
+
+.list li {
+    border-bottom: 1px solid #b5b4b4;
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.inner {
+    display: table-row;
+    overflow: hidden;
+}
+
+.li-img {
+    display: table-cell;
+    vertical-align: middle;
+    width: 40%; 
+    //width: 1000px; 
+    padding-right: 1em;
+    //border: double;
+}
+
+.li-img img {
+    display: block;
+    //width: 100%;
+    width: 800px;
+    height: auto;
+}
+
+.li-text {
+    display: table-cell;
+    vertical-align: middle;
+    width: 70%;
+    padding-right: 1em;
+}
+
+.li-head {
+    margin: 0;
+}
+
+.li-summary {
+    display: none;
+    margin: 0;
+}
+
+.li-action {
+    margin: 0;
+}
+
+@media screen and (min-width: 40em) {
+    .list li {
+        background: none;
+    }
+    .li-summary {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 60em) {
+    .list li {
+        float: left;
+        width: 50%;
+    }
+    .inner {
+        padding-right: 1em;
+    }
+}
+
+body {
+  background: #F1F3FA;
+}
+
+/* Profile container */
+.profile {
+  margin: 20px 0;
+}
+
+/* Profile sidebar */
+.profile-sidebar {
+  padding: 20px 0 10px 0;
+  background: #fff;
+}
+.profile-userpic{
+	width: 180px;
+	height: 180px;
+	//border: double;
+	margin-left: 40px;
+}
+
+.profile-userpic img { 
+  float: none;
+  margin: 0 auto;
+  width: 180px;
+  height: 180px;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 30% !important;
+}
+
+.profile-usertitle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-usertitle-name {
+  color: #5a7391;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.profile-usertitle-job {
+  text-transform: uppercase;
+  color: #5b9bd1;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.profile-userbuttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile-userbuttons .btn {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 15px;
+  margin-right: 5px;
+}
+
+.profile-userbuttons .btn:last-child {
+  margin-right: 0px;
+}
+    
+.profile-usermenu {
+  margin-top: 30px;
+}
+
+.profile-usermenu ul li {
+  border-bottom: 1px solid #f0f4f7;
+}
+
+.profile-usermenu ul li:last-child {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li a {
+  color: #93a3b5;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.profile-usermenu ul li a i {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.profile-usermenu ul li a:hover {
+  background-color: #fafcfd;
+  color: #5b9bd1;
+}
+
+.profile-usermenu ul li.active {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li.active a {
+  color: #5b9bd1;
+  background-color: #f6f9fb;
+  border-left: 2px solid #5b9bd1;
+  margin-left: -2px;
+}
+
+/* Profile Content */
+.profile-content {
+  padding: 20px;
+  background: #fff;
+  min-height: 460px;
+}
+
+.margin_right{
+	margin-right: 5px;
+}
+#msg{
+ font-weight: bold;
+}
+
+
+
+
+
+/*======================================================*/
+
+	.middle{
+	  	margin-top: 20px;
+	  	width: 1000px;
+	  	height: 500px;
+	  	position: relative;
+	}
+	.middle-center{
+	  	outline: 1px solid #9F9F9F;
+	  	top: 0px;
+	  	width: 1000px;
+	  	height: 600px;
+	  	//background-color: #00D8FF;
+	}
+	#btnDeleteMember{
+		cursor: pointer;
+	}
+	#btnDeleteBusiness{
+		cursor: pointer;
+	}
+	#btnUpdateMember{
+		cursor: pointer; 
+	} 
+	#btnUpdateBusiness{
+		cursor: pointer;
+	}
+	#h4{
+		font-size: 25px;
+		//border: double;
+	}
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function(){	
+	var arr;
+	
+	var mc_id = sessionStorage.getItem("memberId");
+	var mc_auth = sessionStorage.getItem("auth");
+		
+	$("#mc_id").html(mc_id);
+	
+	$("#header").load("/main/header.html");	
+
+	$("#footers").load("/main/footer.html");
+	
+	$("#a1").click(function(){
+		var idx = $(this).attr("idx");
+		window.location.href="/login/myPage.html";
+	});
+	
+	$("#a2").click(function(c){
+		window.location.href="/login/myPageReviewList.html";
+	});
+	
+	$("#a3").click(function(c){
+		window.location.href="/login/myPageWishList.html";
+	});
+	
+	
+	
+	
+	$.ajax("/profile.do",{data:{"mc_id":mc_id}, success:function(data){
+		arr = data;
+		$.each(arr, function(idx,p){
+
+			var mc_fname = $("<img class='img-responsive'></img>").attr({"src":"/resources/profile/"+p.mc_fname});
+			
+			if(p.mc_fname == null){
+				var mc_fname = $("<img class='img-responsive'></img>").attr({"src":"/resources/profile/nullProfile.jpg"});
+			}else{	
+				
+			}			
+			
+			$(".profile-userpic").append(mc_fname);
+			$(".profile-usertitle-name").html(p.mc_name+ " 님");
+			$(".profile-userbuttons").html("내 포인트 : " +p.mc_point);
+			$("#h4").html("☞ [" + p.mc_name + "] 님의 예약내역");
+		});
+	}}); 
+	
+	
+	$("#a1").click(function(){
+		var idx = $(this).attr("idx");
+		window.location.href="/login/myPage.html";
+	});
+	
+	function myReservationList(){
+		$.ajax("/myReservationList.do",{data:{"mc_id":mc_id}, success:function(data){
+			arr = data;
+			console.log(data);
+			$.each(arr, function(idx,c){
+				var a = $("<a class='inner'></a>").attr("href", "/main/detailCampingSpot.html?cs_no="+c.cs_no);
+				var str = c.cs_camp_fname;
+				var camp_fname = str.split(",");
+				var cs_camp_fname = $("<img></img>").attr({"src":"/mypage/img/"+camp_fname[0]});
+				var div_li_img = $("<div class='li-img'></div>");
+				var reservation_div = $("<div id='res' class='li-text'></div>").attr("idx", idx);
+				var button_div = $("<div id='btn' class='li-text'></div>").attr("idx", idx);
+				var cs_name = $("<h4 class='li-head'></h4>").html(c.cs_name);
+				var checkin = $("<p class='li-summary'></p>").html(c.r_checkin + "체크인입니다!!"); 
+				var checkindetail = $("<p class='li-summary2'></p><br>").html(c.r_checkin + "~" +c.r_checkout);
+				var button1 = $("<button type='button' id='bt1' class='bt1 margin_right btn  btn-success btn-sm'></button>").attr("idx", idx).html("예약정보확인");
+				var button2 = $("<button type='button' id='bt2' class='bt2 margin_right btn  btn-danger btn-sm'></button>").attr("idx", idx).html("예약취소");
+				var review_button = $("<button type='button' id='bt3' class='bt3 margin_right btn  btn-warning btn-sm'></button>").attr("idx", idx).html("리뷰쓰기");
+				var message = $("<p id='msg'></p>").html("예약 취소 대기중입니다....").css("display", "none");
+				
+				$(button1).click(function(){
+					var idx = $(this).attr("idx");
+						window.location.href= "/login/myReservationDetail.html?mc_id="+arr[idx].mc_id+"&r_no="+arr[idx].r_no;
+						
+				});
+				
+				$(button2).click(function(){
+					
+				    var confirm_test = confirm("예약을 취소하시겠습니까??");
+					 
+				    if ( confirm_test == true ) {
+				    	var idx = $(button2).attr("idx");
+						var data = {r_no : arr[idx].r_no}
+				    	$.ajax("/cancelReservation", {data : data, success : function(r) {
+							console.log("동작하나요?" + r);
+						$("#btn").css("display" ,"none");
+						$("#msg").css("display" ,"block");
+						
+				    	}}); 
+				    	
+				    } else if ( confirm_test == false ) {
+				    	 alert("취소를 누르셨습니다.");
+				    }
+				    
+					
+				});
+				
+					$(review_button).click(function(){
+						var idx = $(this).attr("idx");
+						var arrstr = arr[idx].r_checkin.split("-");
+						var checkin = new Date(arrstr[0],arrstr[1],arrstr[2]);
+						var today = new Date();
+						if(today < checkin){
+							alert("리뷰를 쓸수 있어요.");
+							window.location.href="/login/reviewMyReservation.html?mc_id="+arr[idx].mc_id+"&cs_no="+arr[idx].cs_no;	
+						}else{
+							alert("리뷰를 쓸수 없어요.");
+						}
+						
+					});
+									
+				
+				if(c.r_cancel == 0){
+					
+					$(div_li_img).append(cs_camp_fname);
+					$(button_div).append(button1 , button2, review_button);
+					$(reservation_div).append(div_li_img , cs_name, checkin, checkindetail, button_div);
+					$(a).append(reservation_div);
+					$("#li").append(a, message);
+					$("#btn").css("display" ,"block");
+					$("#msg").css("display" , "none");
+					
+				}else if(c.r_cancel == 1){
+					
+					$(div_li_img).append(cs_camp_fname);
+					$(button_div).append(button1 , button2, review_button);
+					$(reservation_div).append(div_li_img , cs_name, checkin, checkindetail, button_div);
+					$(a).append(reservation_div);
+					$("#li").append(a, message);
+					$("#btn").css("display" ,"none");
+					$("#msg").css("display" , "block");
+					
+				}else if(c.r_cancel == 2){
+					
+					$(div_li_img).append(cs_camp_fname);
+					$(button_div).append(button1 , button2, review_button);
+					$(reservation_div).append(div_li_img , cs_name, checkin, checkindetail, button_div);
+					$(a).append(reservation_div);
+					$("#li").append(a, message);
+					$("#btn").css("display" ,"none");
+					$("#msg").css("display" , "block");
+				}	
+			});
+		}});
+	}
+	 myReservationList();
+	 
+	 
+	$("#btnDeleteMember").click(function(){			
+		
+		var result = confirm("정말 탈퇴하실건가요? ㅠㅠ");
+	
+		if(result == true){
+			$.ajax("/deleteMember.do", {data:{"mc_id":mc_id}, success:function(r){}});
+		    alert("잘가요...");
+		    sessionStorage.clear();
+			window.location.href = "/main/main.html";
+		}else{
+		    alert("^_____^");
+		}
+	});
+
+	$("#btnDeleteBusiness").click(function(){			
+	
+		var result = confirm("정말 탈퇴하실건가요? ㅠㅠ");
+	
+		if(result == true){
+			$.ajax("/deleteBusiness.do", {data:{"mb_id":mb_id}, success:function(r){}});
+		    alert("잘가요...");
+		    sessionStorage.clear();
+			window.location.href = "/main/main.html";
+		}else{
+		    alert("^_____^");
+		} 
+	});
+
+	if(sessionStorage.getItem("businessId") != null){
+   		 $("#memberPanel").css("display", "none");
+   		 $("#hiMember").css("display", "none");
+         $("#businessPanel").css("display", "block");     
+         $("#hiBusiness").css("display", "block");
+         $("#naverPanel").css("display", "none");
+         $("#hiNaver").css("display", "none");         
+    }
+	
+	if(sessionStorage.getItem("memberId") != null){
+   		 $("#memberPanel").css("display", "block");
+   		 $("#hiMember").css("display", "block");
+         $("#businessPanel").css("display", "none");     
+         $("#hiBusiness").css("display", "none");
+         $("#naverPanel").css("display", "none");
+         $("#hiNaver").css("display", "none");
+    }
+	
+	if(sessionStorage.getItem("memberName") != null){
+   		 $("#memberPanel").css("display", "none");
+   		 $("#hiMember").css("display", "none");
+         $("#businessPanel").css("display", "none");     
+         $("#hiBusiness").css("display", "none");
+         $("#naverPanel").css("display", "block");
+         $("#hiNaver").css("display", "block");
+    }
+	
+	
+	
+	$("#header").load("/main/header.html");	
+
+	$("#footers").load("/main/footer.html");
+		
+});
+</script>
+</head>
+<body>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!-- TOP  -->
+<div class="top" id="header"></div>
+<div class="container">
+	<!-- MIDDLE -->
+	<div class="body_wrap">
+	
+<div class="container">
+    <div class="row profile">
+		<div class="col-md-3" style="border:ridge; height: 600px">
+			<div class="profile-sidebar">
+				<!-- SIDEBAR USERPIC -->
+
+			
+					<div class="profile-userpic">
+				
+					</div>
+				
+				<!-- END SIDEBAR USERPIC -->
+				<!-- SIDEBAR USER TITLE -->
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+					
+					</div>
+					<div class="profile-usertitle-job">
+					<a onclick="location.href='updateMember.html'" id="btnUpdateMember">회원정보수정</a>
+		<!--  <button onclick="location.href='/login/listMember.html'">회원정보 보기</button> -->
+					</div>
+				</div>
+				<!-- END SIDEBAR USER TITLE -->
+				<!-- SIDEBAR BUTTONS -->
+				<div class="profile-userbuttons">
+					
+				</div>
+				<!-- END SIDEBAR BUTTONS -->
+				<!-- SIDEBAR MENU -->
+				<div class="profile-usermenu">
+					<ul class="nav">
+						<li id="li1" class="active">
+							<a id="a1">
+							<i class="glyphicon glyphicon-home"></i>
+							예약내역 </a>
+						</li>
+						<li id="li2">
+							<a id="a2">
+							<i class='glyphicon glyphicon-user'></i>
+							캠핑후기</a>
+						</li>
+						<li id="li3">
+							<a id="a3">
+							<i class="glyphicon glyphicon-ok"></i>
+							위시리스트 </a>
+						</li>
+					</ul>
+				</div>
+				<!-- END MENU -->
+			</div>
+		</div>
+		<div class="col-md-9">
+            <div class="profile-content">
+			 
+			 <div id="pattern" class="pattern">
+    <ul class="list img-list">
+    <h4 id="h4"></h4>
+     <hr>
+        <li id="li">
+        
+        </li>
+    </ul>
+</div>
+<!--End Pattern HTML-->
+			  
+            </div> 
+		</div>
+	</div>
+</div>
+<!-- BOTTOM -->
+	</div>  
+</div><br>
+
+<div id="footers" class="bottom"></div>
+
+</body>
+</html>

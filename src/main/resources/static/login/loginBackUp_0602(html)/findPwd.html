@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="/resources/profile/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/resources/profile/favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<style type="text/css">
+	.container{
+		width: 1000px;
+		margin: 0 auto;
+	}
+	.container div{
+	  	text-align: center;
+	  	display: table;
+	}
+	.container div span{
+	 	display: table-cell;
+	  	vertical-align: middle;
+	}	
+	.middle{
+	  	margin-top: 20px;
+	  	width: 1000px;
+	 	height: 500px;
+	  	position: relative;
+	}
+	.middle-center{
+	  	//outline: 1px solid #9F9F9F;
+	  	top: 0px;
+	  	width: 1000px;
+	  	height: 600px;
+	  	//background-color: #00D8FF;
+	}	
+	#s{
+		margin-top: 40px;
+	}	
+	#btnSendMail{
+		width: 180px;		
+	}
+	.middle{
+	 	outline: 1px solid #9F9F9F;
+		//position: absolute;
+		//left: 5px;
+		top: 60px;
+	  	width: 450px;
+		height: 550px;
+		border: hidden;
+		//border-radius: 5%;
+		//background-color: #EBDEF0 ;
+		//background-color: #DDD5D5 ;
+		box-shadow: 5px 5px 5px 5px;
+	}
+	#btnSendMail{
+		transition: background-color 0.2s;
+		cursor: pointer;
+	}	
+	#btnSendMail:hover {
+  		background-color: #81E5B8;
+	}
+	#btnSendMail:active {
+	  	background-color: #367c36;
+	}
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function(){	
+
+	//메일보내기 버튼 클릭시 동작
+	$("#btnSendMail").click(function(){
+		
+		var input_id = $("#mc_id").val();
+		var input_email = $("#mc_email").val();
+		
+		var data = {
+				"mc_id": input_id,
+				"mc_email": input_email
+				};
+		
+		$.ajax("/email.do", {data:data, success:function(re){
+			alert("메일전송 성공 \n메일이 도착하지 않으셨다면 가입한 아이디/이메일 주소가 아닙니다.");
+			window.location.href = "/main/main.html";					
+		}});
+	});
+
+	
+	$("#header").load("/main/header.html");	
+
+	$("#footers").load("/main/footer.html");
+		
+});
+</script>
+</head>
+<body>
+
+<!-- TOP  -->
+<div class="top" id="header"></div>
+
+<!-- MIDDLE -->
+<div class="body-wrap" style="margin: 0 auto;">
+	<div style="margin: 0 auto; width: 600px" align="center" class="middle">
+	
+		<br>
+    	<h2 style="font-family:Nanum Gothic;font-size: 35px">비밀번호 찾기</h2>
+		<hr width="250px"><br>			
+		<form id="s">
+			<input type="text" id="mc_id" name="mc_id" placeholder="아이디" required="required" style="width:230px;height:45px;border: groove;"><br><br>
+			<input type="text" id="mc_email" name="mc_email" placeholder="이메일" required="required" style="width:230px;height:45px;border: groove;"><br>
+			<br><br><br><br>
+			<button id="btnSendMail" style="margin:0 auto;align:center;width: 200px;height: 40px;font-size: 20px">메일보내기</button>
+		</form>
+
+    </div>
+	</div><br><br><br><br><br><br>
+<!-- BOTTOM -->
+<div id="footers" class="bottom"></div>
+
+</body>
+</html>

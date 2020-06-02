@@ -5,25 +5,13 @@
 <link rel="icon" href="/resources/profile/favicon.ico" type="image/x-icon">
 <meta charset="UTF-8">
 <style type="text/css">
-	.container{
-	  	width: 500px;
-	  	margin: 0 auto;
-	}
-	.container div{
-	  	text-align: center;
-	  	display: table;
-	}
-	.container div span{
-	  	display: table-cell;
-	  	vertical-align: middle;
-	}
 	.middle{
 		//.rgin-top: 20px;
 		position: relative;
 	 	outline: 1px solid #9F9F9F;
 		//position: absolute;
 		//left: 5px;
-		top: 20px;
+		top: 40px;
 	  	width: 300px;
 		height: 780px;
 		border: hidden;
@@ -43,7 +31,7 @@
 		background-color:#fff;
 		margin-left: 140px;
 	}
-	#btnDeleteBusiness{
+	#btnDeleteMember{
 		//float: right;
 		position: absolute;
 		//letf: 400px;
@@ -52,10 +40,10 @@
 		cursor: pointer;
 		transition: background-color 0.2s;
 	}
-	#btnDeleteBusiness:hover{
+	#btnDeleteMember:hover{
 		background-color: #6ed36e;
 	}
-	#btnDeleteBusiness:active{
+	#btnDeleteMember:active{
 		background-color: #367c36;
 	}
 	
@@ -69,16 +57,12 @@
 	  	background-color: #367c36;
 	}
 	
-	
-	
-	
-	
-	#mb_id{
+	#mc_id{
 		width: 200px;
 		height: 35px;
 		border: groove;
 	}	
-	#mb_pwd{
+	#mc_pwd{
 		width: 200px;
 		height: 35px;
 		border: groove;
@@ -88,27 +72,27 @@
 		height: 35px;
 		border: groove;
 	}
-	#mb_email{
+	#mc_email{
 		width: 200px;
 		height: 35px;
 		border: groove;
 	}
-	#mb_name{
+	#mc_name{
 		width: 200px;
 		height: 35px;
 		border: groove;
 	}
-	#mb_nickname{
+	#mc_nickname{
 		width: 200px;
 		height: 35px;
 		border: groove;
 	}
-	#mb_tel{
+	#mc_tel{
 		width: 200px;
 		height: 35px;
 		border: groove;
 	}
-	#mb_licence{
+	#mc_licence{
 		width: 200px;
 		height: 35px;
 		border: groove;
@@ -172,11 +156,11 @@
 <script type="text/javascript">
 $(function(){	
 
-	//비밀번호 맞는지 확인
+	//비밀번호 확인
 	$("#alert-success").hide(); 
 	$("#alert-danger").hide(); 
 	$("input").keyup(function(){ 
-		var pwd1=$("#mb_pwd").val(); 
+		var pwd1=$("#mc_pwd").val(); 
 		var pwd2=$("#checkpwd").val(); 
 		if(pwd1 != "" || pwd2 != ""){ 
 			if(pwd1 == pwd2){ 
@@ -191,55 +175,52 @@ $(function(){
 		} 
 	}); 
 		
-	var mb_id = sessionStorage.getItem("businessId");
-						
-	$.ajax("/sessionBusiness.do", {data:{"mb_id":mb_id}, success:function(r){
-		$("#mb_id").val(r.mb_id);
-		$("#mb_email").val(r.mb_email);
-		$("#mb_name").val(r.mb_name);
-		$("#mb_nickname").val(r.mb_nickname);
-		$("#mb_tel").val(r.mb_tel);		
-		$("#mb_licence").val(r.mb_licence);		
+	var mc_id = sessionStorage.getItem("memberId");
+
+	$.ajax("/sessionMember2.do", {data:{"mc_id":mc_id}, success:function(r){
+		$("#mc_id").val(r.mc_id);
+		$("#mc_email").val(r.mc_email);
+		$("#mc_name").val(r.mc_name);
+		$("#mc_nickname").val(r.mc_nickname);
+		$("#mc_tel").val(r.mc_tel);					
 	}})
 	
 	$("#btnUpdateOk").click(function(){
-
+				
 		var uploadFile = $("#uploadFile").val();
 		
 		var data = new FormData(document.getElementById("update"));
-	
+		     
 		var result = confirm("정말 수정하실건가요 ?");	
 
-		if(result == true){			
-	        $.ajax("/updateBusiness.do", {data:data,
+		if(result == true){
+			$.ajax("/updateMember.do", {data:data,
 				processData:false,
 				contentType:false,
 				type:"POST",
 	        });			
 			
-	        alert("수정완료\n새로운 비밀번호로 로그인 하여 주십시오.");
+		    alert("수정완료\n새로운 비밀번호로 로그인 하여 주십시오.");
 		    sessionStorage.clear();
-		    window.location.href = "/login/login.html"; 
+		    window.location.href = "/login/login.html";
 		}else{
 		    alert("^_____^");
-		}          
+		}           
 	});			
 	
-	
-	$("#btnDeleteBusiness").click(function(){			
+	$("#btnDeleteMember").click(function(){			
 		
 		var result = confirm("정말 탈퇴하실건가요? ㅠㅠ");
 	
 		if(result == true){
-			$.ajax("/deleteBusiness.do", {data:{"mb_id":mb_id}, success:function(r){}});
+			$.ajax("/deleteMember.do", {data:{"mc_id":mc_id}, success:function(r){}});
 		    alert("잘가요...");
 		    sessionStorage.clear();
 			window.location.href = "/main/main.html";
 		}else{
 		    alert("^_____^");
-		} 
+		}
 	});	
-	
 	
 	$("#header").load("/main/header.html");	
 
@@ -262,10 +243,10 @@ $(function(){
 		<form id="update" method="post" enctype="multipart/form-data">
 			<table style="text-align: center; width: 500px;"><br><br>
 				<tr>
-					<td><input type="text" name="mb_id" id="mb_id" readonly="readonly"></td>
+					<td><input type="text" name="mc_id" id="mc_id" readonly="readonly"></td>
 				</tr>				
 				<tr>
-					<td><input type="password" name="mb_pwd" id="mb_pwd" placeholder="비밀번호 (8자이내)" required="required" maxlength="8"></td>
+					<td><input type="password" name="mc_pwd" id="mc_pwd" placeholder="비밀번호 (8자이내)" required="required" maxlength="8"></td>
 				</tr>
 				<tr>
 					<td><input type="password" name="checkpwd" id="checkpwd" placeholder="비밀번호 확인 (8자이내)" required="required" maxlength="8">
@@ -276,36 +257,39 @@ $(function(){
 					</td>	
 				</tr>
 				<tr>
-					<td><input type="email" name="mb_email" id="mb_email" placeholder="E-MAIL" required="required" maxlength="50"></td>
+					<td><input type="email" name="mc_email" id="mc_email" placeholder="E-MAIL" required="required" maxlength="50"></td>
 				</tr>
 				<tr>
-					<td><input type="text" name="mb_name" id="mb_name" placeholder="이름" required="required"></td>
+					<td><input type="text" name="mc_name" id="mc_name" placeholder="이름" required="required"></td>
 				</tr>
 				<tr>
-					<td><input type="text" name="mb_nickname" id="mb_nickname" placeholder="8자 이내" required="required"></td>
+					<td><input type="text" name="mc_nickname" id="mc_nickname" placeholder="별명 (8자 이내)" required="required"></td>
 				</tr>		
 				<tr>
-					<td><input type="text" name="mb_tel" id="mb_tel" placeholder="(-)없이 입력" required="required"></td>
+					<td><input type="text" name="mc_tel" id="mc_tel" placeholder="전화번호 (-)없이 입력" required="required"></td>
 				</tr>
 				<tr>
-					<td><input type="text" disabled="disabled" placeholder="사업자 등록번호" style="background-color: #e2e2e2;" id="grey"></td>			
-				</tr>
+					<td><input type="text" placeholder="다음 중 회원님의 취향은?" required="required" disabled="disabled" style="background-color: #e2e2e2;"id="grey"></td>
+				</tr>	
 				<tr>
-					<td><input type="text" name="mb_licence" id="mb_licence" placeholder="(-)없이 10자리" required="required"  maxlength="10"></td>
+					<td><label style="margin-left: 140px;">산</label><input type="checkbox" name="mc_taste" id="mc_taste" value="산" required="required" class="v">
+	                     	<label>강</label><input type="checkbox" name="mc_taste" id="mc_taste" value="강" class="v">
+	                     	<label>바다</label><input type="checkbox" name="mc_taste" id="mc_taste" value="바다" class="v">
+	                     	<label>계곡</label><input type="checkbox" name="mc_taste" id="mc_taste" value="계곡" class="v"></td>
 				</tr>	
 				<tr>				
 					<td><input type="text" disabled="disabled" placeholder="프로필 사진" style="background-color: #e2e2e2; font-weight: bold" id="grey"></td>
 						<td class="filebox"><label for="uploadFile">업로드	
 						<input type="file" name="uploadFile" id="uploadFile" style="width:200px;height:30px;font-size:15px;"></td>
-					<td><input type="hidden" name="mb_fname" id="mb_fname"></td>
+					<td><input type="hidden" name="mc_fname" id="mc_fname"></td>
 				</tr>
 				<tr>
-					<td><input type="hidden" name="mb_auth" value="3"></td>
+					<td><input type="hidden" name="mc_auth" value="3"></td>
 				</tr>		
 			</table>
 		</form><br><br><br>
 		<button id="btnUpdateOk" type="button" style="margin:0 auto;align:center;width: 220px;height: 40px;font-size: 20px;cursor: pointer">수정하기</button>
-		<button id="btnDeleteBusiness">회원탈퇴</button>
+		<button id="btnDeleteMember">회원탈퇴</button>
 		</div>
     </div>
   </div><br>

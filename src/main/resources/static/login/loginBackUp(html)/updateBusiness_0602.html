@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <style type="text/css">
 	.container{
-	  	width: 500px;
+	  	width: 1000px;
 	  	margin: 0 auto;
 	}
 	.container div{
@@ -18,21 +18,19 @@
 	  	vertical-align: middle;
 	}
 	.middle{
-		//.rgin-top: 20px;
-		position: relative;
-	 	outline: 1px solid #9F9F9F;
-		//position: absolute;
-		//left: 5px;
-		top: 20px;
-	  	width: 300px;
-		height: 780px;
-		border: hidden;
-		//border-radius: 5%;
-		//background-color: #EBDEF0 ;
-		//background-color: #DDD5D5 ;
-		box-shadow: 5px 5px 5px 5px;
+	  	margin-top: 20px;
+	  	width: 1000px;
+	  	height: 500px;
+	  	position: relative;
 	}
-
+	.middle-center{
+	  	outline: 1px solid #9F9F9F;
+	  	top: 0px;
+	 	width: 500px;
+	  	height: 680px;
+	  	background-color: #E6E6E6;
+	  	margin-left: 300px;
+	}
 	input[type="text"], input[type="date"],input[type="number"],input[type="password"],input[type="email"],input[type="email"],select{
 		height:30px;		
 		line-height: 30px;
@@ -47,126 +45,12 @@
 		//float: right;
 		position: absolute;
 		//letf: 400px;
-		top: 10px;
-		right: 10px;
-		cursor: pointer;
-		transition: background-color 0.2s;
-	}
-	#btnDeleteBusiness:hover{
-		background-color: #6ed36e;
-	}
-	#btnDeleteBusiness:active{
-		background-color: #367c36;
-	}
-	
-	#btnUpdateOk{
-		transition: background-color 0.2s;
-	}
-	#btnUpdateOk:hover {
-  		background-color: #6ed36e;
-	}
-	#btnUpdateOk:active {
-	  	background-color: #367c36;
-	}
-	
-	
-	
-	
-	
-	#mb_id{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}	
-	#mb_pwd{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}
-	#checkpwd{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}
-	#mb_email{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}
-	#mb_name{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}
-	#mb_nickname{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}
-	#mb_tel{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}
-	#mb_licence{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}
-	#grey{
-		width: 200px;
-		height: 35px;
-		border: groove;
-	}	
-	
-	.filebox label {
-	  	display: inline-block;
-	  	padding: .5em .75em;
-		color: #fff;
-		//font-size: inherit;
-		line-height: normal;
-		vertical-align: middle;
-		//background-color: #5cb85c;
-		cursor: pointer;
-		border: 1px solid #4cae4c;
-		border-radius: .25em;
-		-webkit-transition: background-color 0.2s;
-		transition: background-color 0.2s;
-		//margin-left: 140px;
-		text-align: center;
-    	background: #2a2a2a;
-    	//height: 30px;
-    	//line-height: 30px;
-   		//padding: 0 10px;
-    	//border: none;
-    	//font-size: 14px;
-    	border-radius: 7px;
-    	
-    	width: 90px;
-		//height: 38px;
-		font-size: 16px;
-		font-family:Nanum Gothic;
-	}			
-	.filebox label:hover {
-  		background-color: #6ed36e;
-	}
-	.filebox label:active {
-	  	background-color: #367c36;
-	}
-	.filebox input[type="file"] {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		padding: 0;
-		margin: -1px;
-		overflow: hidden;
-		clip: rect(0, 0, 0, 0);
-		border: 0;
-	}
-	.v{
+		right: 205px;
 		cursor: pointer;
 	}
-
+	#btnDeleteBusiness{
+		cursor: pointer;
+	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -253,14 +137,15 @@ $(function(){
 <!-- TOP  -->
 <div class="top" id="header"></div>
 
+<div class="container">
 	<!-- MIDDLE -->
-	<div class="body-wrap" style="height: 830px;">
-		<div class="middle" style="margin: 0 auto; width: 700px" align="center">
-	    <br><h2 style="font-family:Nanum Gothic;font-size: 35px">회원정보 수정</h2>
+	<div class="middle">
+		<div class="middle-center">
+	    <br><h2>회원정보 수정</h2>
 		<hr width = "300px">
 		<div>
 		<form id="update" method="post" enctype="multipart/form-data">
-			<table style="text-align: center; width: 500px;"><br><br>
+			<table style="text-align: center;"><br><br>
 				<tr>
 					<td><input type="text" name="mb_id" id="mb_id" readonly="readonly"></td>
 				</tr>				
@@ -270,7 +155,7 @@ $(function(){
 				<tr>
 					<td><input type="password" name="checkpwd" id="checkpwd" placeholder="비밀번호 확인 (8자이내)" required="required" maxlength="8">
 				</td>
-					<td width="400px">
+					<td>
 						<div class="alert alert-success" id="alert-success">비밀번호 일치</div>
 						<div class="alert alert-danger" id="alert-danger">비밀번호 불일치</div>
 					</td>	
@@ -288,15 +173,16 @@ $(function(){
 					<td><input type="text" name="mb_tel" id="mb_tel" placeholder="(-)없이 입력" required="required"></td>
 				</tr>
 				<tr>
-					<td><input type="text" disabled="disabled" placeholder="사업자 등록번호" style="background-color: #e2e2e2;" id="grey"></td>			
+					<td><input type="text" disabled="disabled" placeholder="사업자 등록번호" style="background-color: #e2e2e2;"></td>			
 				</tr>
 				<tr>
 					<td><input type="text" name="mb_licence" id="mb_licence" placeholder="(-)없이 10자리" required="required"  maxlength="10"></td>
 				</tr>	
-				<tr>				
-					<td><input type="text" disabled="disabled" placeholder="프로필 사진" style="background-color: #e2e2e2; font-weight: bold" id="grey"></td>
-						<td class="filebox"><label for="uploadFile">업로드	
-						<input type="file" name="uploadFile" id="uploadFile" style="width:200px;height:30px;font-size:15px;"></td>
+				<tr>
+					<td><input type="text" disabled="disabled" placeholder="프로필 사진" style="background-color: #e2e2e2;"></td>			
+				</tr>
+				<tr>
+					<td><input type="file" name="uploadFile" id="uploadFile" style="width: 200px; height: 30px; font-size: 15px; margin-left: 140px;"></td>
 					<td><input type="hidden" name="mb_fname" id="mb_fname"></td>
 				</tr>
 				<tr>
@@ -304,11 +190,12 @@ $(function(){
 				</tr>		
 			</table>
 		</form><br><br><br>
-		<button id="btnUpdateOk" type="button" style="margin:0 auto;align:center;width: 220px;height: 40px;font-size: 20px;cursor: pointer">수정하기</button>
+		<button id="btnUpdateOk" style="width:200px;height:40px;font-size:20px;margin-left: 130px;">수정하기</button>
 		<button id="btnDeleteBusiness">회원탈퇴</button>
 		</div>
     </div>
-  </div><br>
+  </div>  
+</div><br>
 
 <!-- BOTTOM -->
 <div id="footers" class="bottom"></div>
