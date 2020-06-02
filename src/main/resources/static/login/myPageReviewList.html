@@ -344,6 +344,17 @@ body {
 		font-size: 25px;
 		//border: double;
 	}
+	
+	.col-md-9{
+		 box-shadow: -60px 0px 10px -90px #000000,
+        60px 0px 100px -90px #000000;
+	}
+	
+	.profile-sidebar{
+		box-shadow: -60px 0px 10px -90px #000000,
+        60px 0px 100px -90px #000000;
+	}
+	
 </style>
 <script type="text/javascript" src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -378,7 +389,7 @@ $(function(){
 			$(".profile-userpic").append(mc_fname);
 			$(".profile-usertitle-name").html(p.mc_name+ " ´Ô");
 			$(".profile-userbuttons").html("³» Æ÷ÀÎÆ® : " +p.mc_point);
-			$("#h4").html("¢Ñ [" + p.mc_name + "] ´ÔÀÇ Ä·ÇÎÈÄ±â");
+			$("#h4").html( p.mc_name +" ´ÔÀÇ Ä·ÇÎÈÄ±â");
 		});
 	}});
 	
@@ -556,7 +567,7 @@ Licensed under MIT
 			</div>
 		</div>
 		<div class="col-md-9" style="background: white;  border-radius: 2em;">
-            <div class="profile-content">
+            <div class="profile-content" style= "margin-top: 2px;">
             
 			 
 			 <div id="pattern" class="pattern">
