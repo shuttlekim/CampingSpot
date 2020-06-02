@@ -5,34 +5,15 @@
 <link rel="icon" href="/resources/profile/favicon.ico" type="image/x-icon">
 <meta charset="UTF-8">
 <style type="text/css">
-	.container{
-	  	width: 500px;
-	  	margin: 0 auto;
-	}
-	.container div{
-	  	text-align: center;
-	  	display: table;
-	}
-	.container div span{
-	  	display: table-cell;
-	  	vertical-align: middle;
-	}
 	.middle{
-		//.rgin-top: 20px;
 		position: relative;
 	 	outline: 1px solid #9F9F9F;
-		//position: absolute;
-		//left: 5px;
 		top: 20px;
 	  	width: 300px;
 		height: 780px;
 		border: hidden;
-		//border-radius: 5%;
-		//background-color: #EBDEF0 ;
-		//background-color: #DDD5D5 ;
 		box-shadow: 5px 5px 5px 5px;
 	}
-
 	input[type="text"], input[type="date"],input[type="number"],input[type="password"],input[type="email"],input[type="email"],select{
 		height:30px;		
 		line-height: 30px;
@@ -44,9 +25,7 @@
 		margin-left: 140px;
 	}
 	#btnDeleteBusiness{
-		//float: right;
 		position: absolute;
-		//letf: 400px;
 		top: 10px;
 		right: 10px;
 		cursor: pointer;
@@ -57,8 +36,7 @@
 	}
 	#btnDeleteBusiness:active{
 		background-color: #367c36;
-	}
-	
+	}	
 	#btnUpdateOk{
 		transition: background-color 0.2s;
 	}
@@ -67,12 +45,7 @@
 	}
 	#btnUpdateOk:active {
 	  	background-color: #367c36;
-	}
-	
-	
-	
-	
-	
+	}	
 	#mb_id{
 		width: 200px;
 		height: 35px;
@@ -117,33 +90,22 @@
 		width: 200px;
 		height: 35px;
 		border: groove;
-	}	
-	
+	}		
 	.filebox label {
 	  	display: inline-block;
 	  	padding: .5em .75em;
 		color: #fff;
-		//font-size: inherit;
 		line-height: normal;
 		vertical-align: middle;
-		//background-color: #5cb85c;
 		cursor: pointer;
 		border: 1px solid #4cae4c;
 		border-radius: .25em;
 		-webkit-transition: background-color 0.2s;
 		transition: background-color 0.2s;
-		//margin-left: 140px;
 		text-align: center;
     	background: #2a2a2a;
-    	//height: 30px;
-    	//line-height: 30px;
-   		//padding: 0 10px;
-    	//border: none;
-    	//font-size: 14px;
-    	border-radius: 7px;
-    	
+    	border-radius: 7px;    	
     	width: 90px;
-		//height: 38px;
 		font-size: 16px;
 		font-family:Nanum Gothic;
 	}			
@@ -166,7 +128,6 @@
 	.v{
 		cursor: pointer;
 	}
-
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -253,11 +214,11 @@ $(function(){
 <!-- TOP  -->
 <div class="top" id="header"></div>
 
-	<!-- MIDDLE -->
-	<div class="body-wrap" style="height: 830px;">
-		<div class="middle" style="margin: 0 auto; width: 700px" align="center">
-	    <br><h2 style="font-family:Nanum Gothic;font-size: 35px">회원정보 수정</h2>
-		<hr width = "300px">
+<!-- MIDDLE -->
+<div class="body-wrap" style="height: 830px;">
+	<div class="middle" style="margin: 0 auto; width: 700px" align="center">
+    <br><h2 style="font-family:Nanum Gothic;font-size: 35px">회원정보 수정</h2>
+	<hr width = "300px">
 		<div>
 		<form id="update" method="post" enctype="multipart/form-data">
 			<table style="text-align: center; width: 500px;"><br><br>
@@ -307,8 +268,8 @@ $(function(){
 		<button id="btnUpdateOk" type="button" style="margin:0 auto;align:center;width: 220px;height: 40px;font-size: 20px;cursor: pointer">수정하기</button>
 		<button id="btnDeleteBusiness">회원탈퇴</button>
 		</div>
-    </div>
-  </div><br>
+	</div>
+</div><br>
 
 <!-- BOTTOM -->
 <div id="footers" class="bottom"></div>

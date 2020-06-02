@@ -36,18 +36,12 @@
 		margin-left: 140px;	
 	}
 	.middle{
-		//.rgin-top: 20px;
 		position: relative;
 	 	outline: 1px solid #9F9F9F;
-		//position: absolute;
-		//left: 5px;
 		top: 20px;
 	  	width: 300px;
 		height: 750px;
 		border: hidden;
-		//border-radius: 5%;
-		//background-color: #EBDEF0 ;
-		//background-color: #DDD5D5 ;
 		box-shadow: 5px 5px 5px 5px;
 	}
 	#mb_id{
@@ -79,9 +73,7 @@
 	}
 	#btnJoinOk:active {
 	  	background-color: #367c36;
-	}
-	
-	
+	}	
 	#mb_pwd{
 		width: 200px;
 		height: 35px;
@@ -127,27 +119,17 @@
 	  	display: inline-block;
 	  	padding: .5em .75em;
 		color: #fff;
-		//font-size: inherit;
 		line-height: normal;
 		vertical-align: middle;
-		//background-color: #5cb85c;
 		cursor: pointer;
 		border: 1px solid #4cae4c;
 		border-radius: .25em;
 		-webkit-transition: background-color 0.2s;
 		transition: background-color 0.2s;
-		//margin-left: 140px;
 		text-align: center;
     	background: #2a2a2a;
-    	//height: 30px;
-    	//line-height: 30px;
-   		//padding: 0 10px;
-    	//border: none;
-    	//font-size: 14px;
-    	border-radius: 7px;
-    	
+    	border-radius: 7px;    	
     	width: 90px;
-		//height: 38px;
 		font-size: 16px;
 		font-family:Nanum Gothic;
 	}			
@@ -237,11 +219,11 @@ $(function(){
 <div class="top" id="header"></div><br>
 
 	<!-- MIDDLE -->
-	<div class="body-wrap" style="height: 800px">
-		<div style="margin: 0 auto; width: 700px" align="center" class="middle">
-		<br>
-		<h1 style="font-family:Nanum Gothic;font-size: 40px">회원가입</h1>
-		<hr width="300px"><br><br>
+<div class="body-wrap" style="height: 800px">
+	<div style="margin: 0 auto; width: 700px" align="center" class="middle">
+	<br>
+	<h1 style="font-family:Nanum Gothic;font-size: 40px">회원가입</h1>
+	<hr width="300px"><br><br>
 		<div>
 			<form id="join" method="post" enctype="multipart/form-data">
 				<table   width="500px">
@@ -281,13 +263,12 @@ $(function(){
 					<tr>
 						<td><input type="hidden" name="mb_auth" id="mb_auth" value="3"></td>
 					</tr>
-				</table><br><br><br><br>
+				</table><br><br><br>
 				<button id="btnJoinOk" type="button" style="margin:0 auto;align:center;width: 220px;height: 40px;font-size: 20px;cursor: pointer">회원가입</button>
-			</form>
-			
+			</form>			
 		</div>
-	 </div>
-  </div>
+	</div>
+</div>
 
 <!-- BOTTOM -->
 <div id="footers" class="bottom"></div>

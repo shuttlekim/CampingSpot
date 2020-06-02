@@ -6,21 +6,14 @@
 <meta charset="UTF-8">
 <style type="text/css">
 	.middle{
-		//.rgin-top: 20px;
 		position: relative;
 	 	outline: 1px solid #9F9F9F;
-		//position: absolute;
-		//left: 5px;
 		top: 40px;
 	  	width: 300px;
 		height: 780px;
 		border: hidden;
-		//border-radius: 5%;
-		//background-color: #EBDEF0 ;
-		//background-color: #DDD5D5 ;
 		box-shadow: 5px 5px 5px 5px;
 	}
-
 	input[type="text"], input[type="date"],input[type="number"],input[type="password"],input[type="email"],input[type="email"],select{
 		height:30px;		
 		line-height: 30px;
@@ -32,9 +25,7 @@
 		margin-left: 140px;
 	}
 	#btnDeleteMember{
-		//float: right;
 		position: absolute;
-		//letf: 400px;
 		top: 10px;
 		right: 10px;
 		cursor: pointer;
@@ -45,8 +36,7 @@
 	}
 	#btnDeleteMember:active{
 		background-color: #367c36;
-	}
-	
+	}	
 	#btnUpdateOk{
 		transition: background-color 0.2s;
 	}
@@ -55,8 +45,7 @@
 	}
 	#btnUpdateOk:active {
 	  	background-color: #367c36;
-	}
-	
+	}	
 	#mc_id{
 		width: 200px;
 		height: 35px;
@@ -102,7 +91,6 @@
 		height: 35px;
 		border: groove;
 	}	
-	
 	.filebox label {
 	  	display: inline-block;
 	  	padding: .5em .75em;
@@ -223,11 +211,11 @@ $(function(){
 <!-- TOP  -->
 <div class="top" id="header"></div>
 
-	<!-- MIDDLE -->
-	<div class="body-wrap" style="height: 830px;">
-		<div class="middle" style="margin: 0 auto; width: 700px" align="center">
-	    <br><h2 style="font-family:Nanum Gothic;font-size: 35px">회원정보 수정</h2>
-		<hr width = "300px">
+<!-- MIDDLE -->
+<div class="body-wrap" style="height: 830px;">
+	<div class="middle" style="margin: 0 auto; width: 700px" align="center">
+    <br><h2 style="font-family:Nanum Gothic;font-size: 35px">회원정보 수정</h2>
+	<hr width = "300px">
 		<div>
 		<form id="update" method="post" enctype="multipart/form-data">
 			<table style="text-align: center; width: 500px;"><br><br>
@@ -262,9 +250,9 @@ $(function(){
 				</tr>	
 				<tr>
 					<td><label style="margin-left: 140px;">산</label><input type="checkbox" name="mc_taste" id="mc_taste" value="산" required="required" class="v">
-	                     	<label>강</label><input type="checkbox" name="mc_taste" id="mc_taste" value="강" class="v">
-	                     	<label>바다</label><input type="checkbox" name="mc_taste" id="mc_taste" value="바다" class="v">
-	                     	<label>계곡</label><input type="checkbox" name="mc_taste" id="mc_taste" value="계곡" class="v"></td>
+                     	<label>강</label><input type="checkbox" name="mc_taste" id="mc_taste" value="강" class="v">
+                     	<label>바다</label><input type="checkbox" name="mc_taste" id="mc_taste" value="바다" class="v">
+                     	<label>계곡</label><input type="checkbox" name="mc_taste" id="mc_taste" value="계곡" class="v"></td>
 				</tr>	
 				<tr>				
 					<td><input type="text" disabled="disabled" placeholder="프로필 사진" style="background-color: #e2e2e2; font-weight: bold" id="grey"></td>
@@ -280,8 +268,8 @@ $(function(){
 		<button id="btnUpdateOk" type="button" style="margin:0 auto;align:center;width: 220px;height: 40px;font-size: 20px;cursor: pointer">수정하기</button>
 		<button id="btnDeleteMember">회원탈퇴</button>
 		</div>
-    </div>
-  </div><br>
+	</div>
+</div><br>
 
 <!-- BOTTOM -->
 <div id="footers" class="bottom"></div>

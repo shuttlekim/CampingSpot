@@ -24,35 +24,25 @@
 	  	position: relative;
 	}
 	.middle-center{
-	  	//outline: 1px solid #9F9F9F;
 	  	top: 100px;
 	  	width: 1000px;
 	  	height: 565px;
 	  	background-color: white;
-	 	//border: double;
 	}
 	#middle-center-inner{
 		margin-top: 150px;
 		margin-left: 270px;
 	}
-	#btn{
-		//width: 100px;
-		//height: 90px;
-		//font-size: 30px;
-	}
 	.middle-left{
   		outline: 1px solid #9F9F9F;
 		position: absolute;
-		//left: 5px;
 		top: 70px;
 	  	width: 450px;
 		height: 550px;
 		border: hidden;
-		//border-radius: 5%;
-		//background-color: #EBDEF0 ;
-		//background-color: #DDD5D5 ;
 		box-shadow: 5px 5px 5px 5px;
 		transition: background-color 0.2s;
+		cursor: pointer;
 	}	
 	.middle-left:hover{
 		background-color: #81E5B8;
@@ -68,9 +58,9 @@
 	  	width: 450px;
 		height: 550px;
 		border: hidden;
-		//background-color: #F5C8C8 ;
 		box-shadow: 5px 5px 5px 5px;
 		transition: background-color 0.2s;
+		cursor: pointer;
 	}		
 	.middle-right:hover{
 		background-color: #81E5B8;
@@ -93,17 +83,15 @@ $(function(){
 
 	$("#header").load("/main/header.html");	
 
-	$("#footers").load("/main/footer.html");
-		
+	$("#footers").load("/main/footer.html");		
 	
-	 var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-	  if (!isChrome){
-	      $('#iframeAudio').remove()
-	  }
-	  else {
-	      $('#playAudio').remove() 
-	  }
-	  
+	var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+		if (!isChrome){
+			$('#iframeAudio').remove()
+	  	}
+		else {
+	      	$('#playAudio').remove() 
+	 	}	  
 });	
 </script>
 </head>
@@ -112,37 +100,34 @@ $(function(){
 <!-- TOP  -->
 <div class="top" id="header"></div>
 
-<div class="container">
 <!-- MIDDLE -->
+<div class="container">
 	<div class="middle">
-   		<div class="middle-center">
-   
-   		<!-- 일반 회원가입 -->
-   		<div class="middle-left" onclick="location.href='terms.html'" style="cursor: pointer"><br><br><br>
-   		<img src="/resources/profile/pro02.png" class="img"><br>
-   		<h2 style="font-family:Nanum Gothic;font-size: 40px">일반회원</h2>
-   		<p>(CAMPINGSPOT 이용 개인회원)</p>
-   		<p>CAMPINGSPOT 개인 회원 가입  화면으로 이동합니다.</p>		
-		</div>
-
-		<!-- 사업자 회원가입  -->
-		<div class="middle-right" onclick="location.href='terms2.html'" style="cursor: pointer"><br><br><br>
-		<img src="/resources/profile/pro01.png" class="img"><br>
-		<h2 style="font-family:Nanum Gothic;font-size: 40px">사업자 회원</h2>
-   		<p>(CAMPINGSPOT 이용 사업자회원)</p>
-   		<p>CAMPINGSPOT 사업자 회원 가입  화면으로 이동합니다.</p>	
-   		<div style="margin-left: 150px; margin-top: 40px; display: none">
-			<audio autoplay loop controls style="width: 300px;">
-    		<source src="/resources/profile/Imperial.mp3" type="audio/mp3"></audio>
+	  		<div class="middle-center">
+	  
+	   		<!-- 일반 회원가입 -->
+	   		<div class="middle-left" onclick="location.href='terms.html'"><br><br><br>
+		   		<img src="/resources/profile/pro02.png" class="img"><br>
+		   		<h2 style="font-family:Nanum Gothic;font-size: 40px">일반회원</h2>
+		   		<p>(CAMPINGSPOT 이용 개인회원)</p>
+		   		<p>CAMPINGSPOT 개인 회원 가입  화면으로 이동합니다.</p>		
 			</div>
-		</div>      
-
-		</div>	    
-		
-	</div>
-	</div><br><br><br><br><br><br>
 	
-
+			<!-- 사업자 회원가입  -->
+			<div class="middle-right" onclick="location.href='terms2.html'"><br><br><br>
+				<img src="/resources/profile/pro01.png" class="img"><br>
+				<h2 style="font-family:Nanum Gothic;font-size: 40px">사업자 회원</h2>
+		   		<p>(CAMPINGSPOT 이용 사업자회원)</p>
+		   		<p>CAMPINGSPOT 사업자 회원 가입  화면으로 이동합니다.</p>	
+			   		<div style="margin-left: 150px; margin-top: 40px; display: none">
+						<audio autoplay loop controls style="width: 300px;">
+			    		<source src="/resources/profile/Imperial.mp3" type="audio/mp3"></audio>
+					</div>
+			</div>
+		</div>
+	</div>
+</div><br><br><br><br><br><br>
+	
 <!-- BOTTOM -->
 <div id="footers" class="bottom"></div>
 
