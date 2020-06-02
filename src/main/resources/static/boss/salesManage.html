@@ -58,9 +58,10 @@ li a:hover:not(.active) {
 }
 
 /* #columnchart_values{
-	float : left;
-	top: 150px;
-}  */
+	position : absolute;
+	top: 1000px;
+	left: 900px;
+} */
 
 #content_all{
 	margin-left:260px;
@@ -176,6 +177,8 @@ font-size: 12px;
 		// 이번달 총합계
 		$("#btnTot").click(function(){
 			$("#total").show();
+			$("#sumTb").hide();
+
 			$.ajax("/bossListTotalMonth.do",{data:{"cs_no":cs_no, "month":month}, success:function(r){
 				//alert(r)
 				$("#totR").val(r.totR)
@@ -241,6 +244,7 @@ font-size: 12px;
 			  <li><a id="bossRList">전체예약현황</a></li>
 			  <li><a id="bossReviewList">리뷰관리</a></li>
 			  <li><a class="active" id="bossSales">매출관리</a></li>
+  			  <li><a id="btnUpdateBusiness" onclick="location.href='/login/updateBusiness.html'">회원정보수정</a></li>			  
 			</ul>
 		</div>
 		<div class="div line"></div>
@@ -249,10 +253,10 @@ font-size: 12px;
 			<h2>월별 매출 현황</h2>
 			  <form id="salesF">
 				<select id="month" name="month">
-					<option value="1">1월</option>
+					<!--  <option value="1">1월</option>
 					<option value="2">2월</option>
 					<option value="3">3월</option>
-					<option value="4">4월</option>
+					<option value="4">4월</option>-->
 					<option value="5">5월</option>
 					<option value="6">6월</option>
 					<option value="7">7월</option>
@@ -283,7 +287,7 @@ font-size: 12px;
 			<button id="btnCrTot">캠핑룸별 총합계</button>
 			<button id="btnTot">이번달 총합계</button>
 			<hr>  
-			<div class="div totCR">
+			<div class="totCR">
 				<table class="table1" id="sumTb">
 					<tr>
 						<th>캠핑룸명</th>
@@ -293,7 +297,7 @@ font-size: 12px;
 					</tr>
 				</table>
 			</div>
-			<div class="div tot">
+			<div class="tot">
 				<table class="table2" id="total">
 					<tr>
 						<th>결제금액 총합</th>
