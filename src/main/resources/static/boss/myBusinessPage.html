@@ -17,6 +17,7 @@ hr{
 	float:right;
 	margin-top: 50px;
 	margin-bottom: 50px;
+	margin-right: 70px;
 	text-align: left;
 }
 
@@ -42,21 +43,20 @@ li a {
 }
 
 li a.active {
- /* background-color: #4CAF50;*/
   background-color: black;
   color: white;
   font-weight: bold;
 }
 
 li a:hover:not(.active) {
-/*  background-color: #555;*/
-  background-color: #AFA5FB;
+  background-color: #ff586c;
   color: white;
   font-weight: bold;
 }
 .mptb{
 	margin-top: 380px;
 	margin-left: 230px;
+	height: 240px;
 }
 #mpList{
 	text-align: center;
@@ -139,14 +139,14 @@ th, td{
 					if (r_revstatus == 1 ){
 						r_revstatus = $("<td></td>").html("예약완료");
 					} else {
-						r_revstatus = $("<td></td>").html("예약대기").css("color", "blue");
+						r_revstatus = $("<td></td>").html("예약대기").css("color", "#ff586c");
 					}
 					
 					var r_cancel = mp.r_cancel;
 					if(r_cancel == 0 ){
 						r_cancel = $("<td></td>").html("");
 					}else if(r_cancel == 1){
-						r_cancel = $("<td></td>").html("취소대기").css("color", "blue");
+						r_cancel = $("<td></td>").html("취소대기").css("color", "#ff586c");
 					}else if(r_cancel == 2){
 						r_cancel = $("<td></td>").html("취소완료");
 					}
