@@ -310,7 +310,7 @@ $(function(){
     	$.ajax("/detailCampingSpot.do", {data:input_data, async:false, success:function(data){
     		
     		$("#d_campingTitle").html(data.cs_name);
-    		$("#d_campingRate").html(data.rate);
+    		$("#d_campingRate").html(data.rate.toFixed(1));
     		
     		$("#star-ratio").css("width", (data.rate / 5.0)*100+"%")
     		
@@ -475,14 +475,13 @@ $(function(){
     var callReview = function(cs_no){
     	var reviewList;	
     	$.ajax("/campingReviewList.do", {data:{"cs_no":cs_no}, async:false, success:function(data){        
-			console.log(data);
+			
     		if(data.length == 0){
-				console.log(data);
+				
 				$("#cnt_review").html(0);
 				
 			 }else{
 				 
-				alert(data);
 	    		reviewList = data;
 				$.each(reviewList, function(idx, item){
 					var div_review = $("<div class='review_list'></div>");
@@ -503,7 +502,7 @@ $(function(){
 				    		"src": "../resources/profile/"+item.mc_fname
 				    	}))
 			    	}
-			    	var re_rate = $("<div class='rate_value'></div>").html(item.cre_rate);
+			    	var re_rate = $("<div class='rate_value'></div>").html(item.cre_rate.toFixed(1));
 			    	var star = $("<div class='star-rating-small'><span id='star-small-ratio' style='width:"+(item.cre_rate/5.0)*100+"%;'></span></div>")
 			    	
 			    	
@@ -611,7 +610,7 @@ $(function(){
       var reservation_data = $("#form_selector").serialize();
       console.log(reservation_data);
       sessionStorage.setItem("reservation_data", reservation_data);
-      alert("stop!");
+     
       location.href="../pay/reservationPay.html"
       
    });
