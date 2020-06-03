@@ -5,9 +5,6 @@
 <link rel="icon" href="/resources/profile/favicon.ico" type="image/x-icon">
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
-<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 <style type="text/css">
 a{ 
 	text-decoration:none;
@@ -131,19 +128,20 @@ $(function(){
 		}});
 	});
 	
+    var mc_auth;      
+    $.ajax({url:"/getMmeber.do", data:{"mc_id":memberID},success:function(r){
+       mc_auth = r.mc_auth;   
+       //alert(memberID)
+       alert(mc_auth);
+    }});  
+	
 	$("#btnAdd").click(function(){
-		if(memberID == 'admin01'){
-		//일단 관리자가 1명이라서 이렇게 처리함...
+		if(mc_auth == 1){
 			location.href = "boardInsertNotice.html"
 		}else{
 			alert("관리자 로그인 해주세요.");
-			//location.href = "../login/login.html";
+			location.href = "../login/login.html";
 		}
-		if(sessionStorage.getItem("memberId") == null){
-			// 일단 관리자가 "admin01" 밖에 없으니까..
-				alert("로그인 페이지로 이동합니다.")
-				location.href = "../login/login.html";
-			}
 	});
 	
 	$("#headers").load("/main/header.html");	

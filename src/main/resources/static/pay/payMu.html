@@ -5,6 +5,14 @@
 <link rel="icon" href="/resources/profile/favicon.ico" type="image/x-icon">
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<style type="text/css">
+#res{
+	margin: 20px 10px;
+   	padding: 10px;
+   	width: 100;
+   	margin-left: 50px;
+}
+</style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -74,11 +82,13 @@
 	<div id="headers"></div>
 	<div class="body-wrap">
 		<h2>계좌이체</h2>
-		<div id="accountData"></div>
-		<div id="pay_price"></div>
-		<span>계좌이체 완료후 결제완료 버튼을 눌러주시면, 예약대기로 전환됩니다.</span>
-		<span>이후, 사업자의 승인을 통해 예약이 완료 됩니다.</span><br>
-		<button id="btn_pay">결제완료</button>
+		<hr>
+		<div id="res">
+			입금정보:&nbsp;&nbsp;<span id="accountData"></span><br><span id="pay_price"></span><br>
+			<span>계좌이체 완료후 결제완료 버튼을 눌러주시면, 예약대기로 전환됩니다.</span>
+			<span>이후, 사업자의 승인을 통해 예약이 완료 됩니다.</span><br><br>
+			<button id="btn_pay">결제완료</button>
+		</div>
 	</div>
 	<div id="footers"></div>
 </body>
