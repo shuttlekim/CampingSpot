@@ -30,15 +30,13 @@ li a {
 }
 
 li a.active {
- /* background-color: #4CAF50;*/
   background-color: black;
   color: white;
   font-weight: bold;
 }
 
 li a:hover:not(.active) {
-/*  background-color: #555;*/
-  background-color: #AFA5FB;
+  background-color: #ff586c;
   color: white;
   font-weight: bold;
 }
@@ -108,18 +106,18 @@ th, td{
 				
 				// 예약승인버튼
 				var rAppv = $("<td></td>");
-				var rbtn = $("<button id='btnR'></button>").html("예약승인");
+				var rbtn = $("<button id='btnR'></button>").html("예약승인").css("background-color", "#ff586c");
 			
 				// 취소승인버튼
 				var cAppv = $("<td></td>");
-				var cbtn = $("<button id='btnC'></button>").html("취소승인");
+				var cbtn = $("<button id='btnC'></button>").html("취소승인").css("background-color", "#ff586c");
 				
 				var r_revstatus = br.r_revstatus;
 				
 				if (r_revstatus == 1 ){
 					r_revstatus = $("<td></td>").html("예약완료");
 				} else {
-					r_revstatus = $("<td></td>").html("예약대기").css("color", "blue");
+					r_revstatus = $("<td></td>").html("예약대기").css("color", "#ff586c");
 					$(rAppv).append(rbtn);
 				}
 				
@@ -128,7 +126,7 @@ th, td{
 				if(r_cancel == 0 ){
 					r_cancel = $("<td></td>").html("");
 				}else if(r_cancel == 1){
-					r_cancel = $("<td></td>").html("예약대기").css("color", "blue");
+					r_cancel = $("<td></td>").html("예약대기").css("color", "#ff586c");
 					$(cAppv).append(cbtn);
 				}else if(r_cancel == 2){
 					r_cancel = $("<td></td>").html("예약완료");
