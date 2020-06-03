@@ -30,20 +30,18 @@ li a {
 }
 
 li a.active {
- /* background-color: #4CAF50;*/
   background-color: black;
   color: white;
   font-weight: bold;
 }
 
 li a:hover:not(.active) {
-/*  background-color: #555;*/
-  background-color: #AFA5FB;
+  background-color: #ff586c;
   color: white;
   font-weight: bold;
 }
 .colorActive{
-		background: #AFA5FB;
+		background: #ff586c;
 		color: white;
 		font-weight: bold;
 }
@@ -110,7 +108,7 @@ th, td{
 					a = $("<a></a>").html("댓글완료");
 					
 				} else {
-					a = $("<a></a>").html("댓글대기").css("color", "blue");
+					a = $("<a></a>").html("댓글대기").css("color", "#ff586c");
 				}
 				
 				$(re_check).append(a);
@@ -121,9 +119,11 @@ th, td{
 					
 				// 리뷰글 클릭한 내용 가져오기
 				$(tr).attr("idx", idx);
-				$(tr).mouseover(function(){
+				$(tr).click(function(){
 					
 					$("#insertCreRe").show();
+					
+					a.css("color", "white")
 					
 					$("tr").removeClass("colorActive");
 					$(this).addClass("colorActive");

@@ -35,15 +35,13 @@ li a {
 }
 
 li a.active {
- /* background-color: #4CAF50;*/
   background-color: black;
   color: white;
   font-weight: bold;
 }
 
 li a:hover:not(.active) {
-/*  background-color: #555;*/
-  background-color: #AFA5FB;
+  background-color: #ff586c;
   color: white;
   font-weight: bold;
 }
@@ -107,7 +105,7 @@ li a:hover:not(.active) {
 					success:function(r){
 						alert(r);
 						findCsno();
-						window.location.href = "insertCampingSpot.html?cs_no="+cs_no;
+						window.location.href = "insertCampingRoom.html?cs_no="+cs_no;
 						$("#f input").val("");	
 			}});
 		});
@@ -253,7 +251,7 @@ li a:hover:not(.active) {
 					</tr>				
 				</table>
 			</form>
-			<button class="bts btn1" id="csInsert">캠핑장등록</button>
+			<button class="bts btn1" id="csInsert" style="background-color: #ff586c">캠핑장등록</button>
 			<button class="bts btn2" id="csReset">취소</button>
 		</div>
 			
