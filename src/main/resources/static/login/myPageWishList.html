@@ -249,12 +249,12 @@ body {
   margin-bottom: 15px;
 }
 
-.profile-userbuttons {
+.profile-userpoint {
   text-align: center;
   margin-top: 10px;
 }
 
-.profile-userbuttons .btn {
+.profile-userpoint .btn {
   text-transform: uppercase;
   font-size: 11px;
   font-weight: 600;
@@ -262,7 +262,7 @@ body {
   margin-right: 5px;
 }
 
-.profile-userbuttons .btn:last-child {
+.profile-userpoint .btn:last-child {
   margin-right: 0px;
 }
     
@@ -399,12 +399,11 @@ $(function(){
 			}	
 			$(".profile-userpic").append(mc_fname);
 			$(".profile-usertitle-name").html(p.mc_name+ " 님");
-			$(".profile-userbuttons").html("내 포인트 : " +p.mc_point);
+			$(".profile-userpoint").html("내 포인트 : " +p.mc_point);
 			$("#h4").html( p.mc_name + " 님의 위시리스트");
 
-	
-	
-		function myWishList(){
+		});
+	}});
 			
 			$.ajax("/myWishList.do", {data :{"mc_id":mc_id}, success : function(r){
 				arr = r;
@@ -415,7 +414,7 @@ $(function(){
 					var camp_fname = str.split(",");
 					var cs_camp_fname = $("<img></img>").attr({"src":"/mypage/img/"+camp_fname[0]}).css("border-radius", "2em");
 					var div_li_img = $("<div class='li-img'></div>");
-					var cs_name = $("<br><br><h4 class='li-head'></h4>").html(w.cs_name);
+					var cs_name = $("<br><br><h4 class='li-head'></h4><br>").html(w.cs_name);
 					var cs_addr_remain = $("<p class='li-summary'></p>").html(w.cs_addr_remain);
 					var button = $("<br><button type='button' class='btn btn-danger btn-sm'><br><br>").attr("idx", idx).html("삭제");
 					
@@ -426,19 +425,14 @@ $(function(){
 								window.location.href = "login/myPageWishList.html";
 							}});
 					});
-					
-					
-					
 					$(div_li_img).append(cs_camp_fname)
 					$(wishList_div).append(cs_camp_fname, cs_name, cs_addr_remain);
 					$(a).append(wishList_div);
 					$("#li").append(a , button);
 				});
 			}});
-		}
-		myWishList();
 		
-$("#btnDeleteMember").click(function(){			
+		$("#btnDeleteMember").click(function(){			
 			
 			var result = confirm("정말 탈퇴하실건가요? ㅠㅠ");
 		
@@ -498,6 +492,7 @@ $("#btnDeleteMember").click(function(){
 		$("#header").load("/main/header.html");	
 
 		$("#footers").load("/main/footer.html");
+		
 });
 </script>
 </head>
@@ -537,14 +532,16 @@ Licensed under MIT
 					
 					</div>
 					<div class="profile-usertitle-job">
-					<a onclick="location.href='updateMember.html'" id="btnUpdateMember">회원정보수정</a>
+					<br><a onclick="location.href='updateMember.html'" id="btnUpdateMember">회원정보수정</a><br>
 		<!--  <button onclick="location.href='/login/listMember.html'">회원정보 보기</button> -->
+					<hr>
 					</div>
 				</div>
 				<!-- END SIDEBAR USER TITLE -->
 				<!-- SIDEBAR BUTTONS -->
-				<div class="profile-userbuttons">
-					
+				<div class="profile-userpoint">
+					<br>
+					<hr>
 				</div>
 				<!-- END SIDEBAR BUTTONS -->
 				<!-- SIDEBAR MENU -->

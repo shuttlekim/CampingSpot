@@ -357,7 +357,7 @@ body {
 	
 	
 </style>
-<script type="text/javascript" src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	var arr;
@@ -392,11 +392,9 @@ $(function(){
 			$(".profile-userbuttons").html("내 포인트 : " +p.mc_point);
 			$("#h4").html( p.mc_name +" 님의 캠핑후기");
 
-
-			
+		});
+	}});
 	
-	
-		function myReviewList(){
 			
 			$.ajax("/myReviewList.do", {data:{"mc_id":mc_id}, success : function(r){
 				arr = r;
@@ -430,8 +428,6 @@ $(function(){
 					$("#li").append(a);
 				});
 			}});
-		}
-		myReviewList();
 		
 		
 		
