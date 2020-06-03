@@ -132,9 +132,9 @@ $(function(){
     $.ajax({url:"/getMmeber.do", async:false, data:{"mc_id":memberID}, success:function(r){
        mc_auth = r.mc_auth;   
        //alert(memberID)
-       alert(mc_auth);
+       //alert(mc_auth);
     }});  
-	alert(mc_auth)
+	//alert(mc_auth)
 	$("#btnAdd").click(function(){
 		if(mc_auth == 1){
 			location.href = "boardInsertNotice.html"
