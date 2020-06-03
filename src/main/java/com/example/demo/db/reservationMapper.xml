@@ -80,7 +80,7 @@
 
   <select id="getCampingSpot" resultType="campingSearchResultVo">
   	select cs_name name, A.cs_no no, A.price price, A.avg rate, cs_addr_head addr_head, cs_addr_remain addr_remain, cs_detail detail, cs_tel tel, cs_theme theme, cs_fac fac, cs_camp_fname camp_fname
-	from (select cr.cs_no cs_no, min(cr_price) price, avg(cre_rate) avg from camping_room cr, camping_review cre where cr.cs_no = cre.cs_no 
+	from (select cr.cs_no cs_no, min(cr_price) price, avg(cre_rate) avg from camping_room cr, camping_review cre where cr.cs_no = cre.cs_no(+) 
 	<if test="campingType != null">
 	and cr_type=#{campingType} 
 	</if>

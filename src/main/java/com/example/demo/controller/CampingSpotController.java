@@ -287,18 +287,24 @@ public class CampingSpotController {
 //      SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 //      
       List<CampingReviewVo> list = dao.campingReviewList(cs_no);
-      for (int i=0; i<list.size(); i++) {
-    	  String id = list.get(i).getMc_id();
-    	  MemberVo vo = mdao.getMember(id);
-    	  list.get(i).setMc_fname(vo.getMc_fname());
-    	  list.get(i).setMc_name(vo.getMc_name());
+      System.out.println("불러온 list:"+list);
+      if( list.size() != 0 ) {
+    	  for (int i=0; i<list.size(); i++) {
+        	  String id = list.get(i).getMc_id();
+        	  MemberVo vo = mdao.getMember(id);
+        	  list.get(i).setMc_fname(vo.getMc_fname());
+        	  list.get(i).setMc_name(vo.getMc_name());
+          }
+          
+          Gson gson = new Gson();
+          str = gson.toJson(list);
+          System.out.println(list.get(0).getMc_fname());
+          System.out.println(str);
+      }else {
+    	  str = new Gson().toJson(list);
       }
       
-      Gson gson = new Gson();
-      str = gson.toJson(list);
-      System.out.println(list.get(0).getMc_fname());
       System.out.println(str);
-      //System.out.println(str);
       
       return str;
    }

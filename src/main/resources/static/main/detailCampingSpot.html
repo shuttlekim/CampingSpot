@@ -474,72 +474,80 @@ $(function(){
     var callReview = function(cs_no){
     	var reviewList;	
     	$.ajax("/campingReviewList.do", {data:{"cs_no":cs_no}, async:false, success:function(data){        
-
-    		reviewList = data;
-			$.each(reviewList, function(idx, item){
-				var div_review = $("<div class='review_list'></div>");
-				$("#cnt_review").html(idx+1);
+			console.log(data);
+    		if(data.length == 0){
+				console.log(data);
+				$("#cnt_review").html(0);
 				
-				date = new Date(item.cre_date);
-				var year = date.getFullYear();
-		    	var month = (1 + date.getMonth());
-		    	var day = date.getDate();
-		    	var that_date = year+'년 '+month+'월 '+day+'일';
-				
-		    	if(item.mc_fnmae == undefined || item.mc_fnmae == null){
-		    		var img_div = $("<div class='profile_img'></div>").append($("<img>").attr({
-			    		"src": "../resources/profile/nullProfile.jpg"
-			    	}))
-		    	}else{
-		    		var img_div = $("<div class='profile_img'></div>").append($("<img>").attr({
-			    		"src": "../resources/profile/"+item.mc_fname
-			    	}))
-		    	}
-		    	var re_rate = $("<div class='rate_value'></div>").html(item.cre_rate);
-		    	var star = $("<div class='star-rating-small'><span id='star-small-ratio' style='width:"+(item.cre_rate/5.0)*100+"%;'></span></div>")
-		    	
-		    	
-		    	
-				var table = $("<div class='tr_table'></div>");
-				var tr1 = $("<div class='tr_name_div'></div>");
-				var tr11 = $("<div class='tr_rate_date_div'></div>")
-				var td2 = $("<div class='tr_name'></div>").html(item.mc_name);
-				var td4 = $("<div class='tr_rate'></div>").append(star, re_rate);
-				var td6 = $("<div class='tr_date'></div>").html(that_date);
-				$(tr1).append(td2);
-				$(tr11).append(td4, td6);
-				
-				var tr2 = $("<div class='tr_content'></div>");
-				var td22 = $("<div></div>").html(item.cre_content);
-				$(tr2).append(td22);
-				
-				if(item.cre_re_contents != null){
-					var tr3 = $("<div class='tr_comment_section'></div>");
-					var td31 = $("<div></div>").html("<i class='fas fa-arrow-right'></i>");
-					var td32 = $("<div class='tr_comment'></div>")
-					var td321 = $("<div class='tr_comment_boss'></div>").html("사장님");
-					var td322 = $("<div class='tr_comment_ct'></div>").html(item.cre_re_contents);
-					$(td32).append(td321, td322);
-					$(tr3).append(td31, td32);
-					$(table).append(tr1, tr11, tr2, tr3);
-				}else{
-					$(table).append(tr1, tr11, tr2);
-				}
-				
-				$(div_review).append(img_div, table);
-	    	      
-	    	    /* var re_reply = $("<div></div>").text("ㄴ 사장님: "+item.cre_re_contents);
-	    	    
-	    	    var hr = $("<hr>");
-	    	    
-	    	    if(item.cre_re_contents != null) {
-	    	    	$(div_review).append(hr, re_writer, re_content, re_rate, re_date, re_reply);
-	    	    }else{
-		    	    $(div_review).append(hr, re_writer, re_content, re_rate, re_date);
-	    	    } */
-	    	    $("#review_list").append(div_review);
-			})
-
+			 }else{
+				 
+				alert(data);
+	    		reviewList = data;
+				$.each(reviewList, function(idx, item){
+					var div_review = $("<div class='review_list'></div>");
+					$("#cnt_review").html(idx+1);
+					
+					date = new Date(item.cre_date);
+					var year = date.getFullYear();
+			    	var month = (1 + date.getMonth());
+			    	var day = date.getDate();
+			    	var that_date = year+'년 '+month+'월 '+day+'일';
+					
+			    	if(item.mc_fnmae == undefined || item.mc_fnmae == null){
+			    		var img_div = $("<div class='profile_img'></div>").append($("<img>").attr({
+				    		"src": "../resources/profile/nullProfile.jpg"
+				    	}))
+			    	}else{
+			    		var img_div = $("<div class='profile_img'></div>").append($("<img>").attr({
+				    		"src": "../resources/profile/"+item.mc_fname
+				    	}))
+			    	}
+			    	var re_rate = $("<div class='rate_value'></div>").html(item.cre_rate);
+			    	var star = $("<div class='star-rating-small'><span id='star-small-ratio' style='width:"+(item.cre_rate/5.0)*100+"%;'></span></div>")
+			    	
+			    	
+			    	
+					var table = $("<div class='tr_table'></div>");
+					var tr1 = $("<div class='tr_name_div'></div>");
+					var tr11 = $("<div class='tr_rate_date_div'></div>")
+					var td2 = $("<div class='tr_name'></div>").html(item.mc_name);
+					var td4 = $("<div class='tr_rate'></div>").append(star, re_rate);
+					var td6 = $("<div class='tr_date'></div>").html(that_date);
+					$(tr1).append(td2);
+					$(tr11).append(td4, td6);
+					
+					var tr2 = $("<div class='tr_content'></div>");
+					var td22 = $("<div></div>").html(item.cre_content);
+					$(tr2).append(td22);
+					
+					if(item.cre_re_contents != null){
+						var tr3 = $("<div class='tr_comment_section'></div>");
+						var td31 = $("<div></div>").html("<i class='fas fa-arrow-right'></i>");
+						var td32 = $("<div class='tr_comment'></div>")
+						var td321 = $("<div class='tr_comment_boss'></div>").html("사장님");
+						var td322 = $("<div class='tr_comment_ct'></div>").html(item.cre_re_contents);
+						$(td32).append(td321, td322);
+						$(tr3).append(td31, td32);
+						$(table).append(tr1, tr11, tr2, tr3);
+					}else{
+						$(table).append(tr1, tr11, tr2);
+					}
+					
+					$(div_review).append(img_div, table);
+		    	      
+		    	    /* var re_reply = $("<div></div>").text("ㄴ 사장님: "+item.cre_re_contents);
+		    	    
+		    	    var hr = $("<hr>");
+		    	    
+		    	    if(item.cre_re_contents != null) {
+		    	    	$(div_review).append(hr, re_writer, re_content, re_rate, re_date, re_reply);
+		    	    }else{
+			    	    $(div_review).append(hr, re_writer, re_content, re_rate, re_date);
+		    	    } */
+		    	    $("#review_list").append(div_review);
+				})
+				 
+			 }
     	}})  // reviewList ajex 종료
     	    
     }
