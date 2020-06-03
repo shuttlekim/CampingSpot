@@ -15,6 +15,7 @@
   border-top: 1px solid black;
 }
 #mid{
+	position: relative;
 	margin-left: 110px;
 	margin-top: 480px;
 	border-top: 1px solid black;
@@ -54,7 +55,7 @@ li a:hover:not(.active) {
 #crtb{
 	float:left;
 	margin-left: 230px;
-	margin-top: -820px;
+	margin-top: -840px;
 }
 #crtb>th{
 	border: 1px solid black;
@@ -71,10 +72,6 @@ td{
 	margin-top : -10px;
 	margin-left: 260px;
 }
-#updateTb, #insertTb{
-	
-}
-
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -245,20 +242,20 @@ td{
 			</div>
 			<div class="div line"></div>
 			
-			<h2>캠핑룸 목록</h2>
-			<table id="crtb">
-				<tr>
-					<th>번호</th>
-					<th>캠핑룸번호</th>
-					<th>캠핑룸명</th>
-					<th>최대인원수</th>
-					<th>체크인시간</th>
-					<th>체크아웃시간</th>
-					<th>요금</th>
-					<th>성수기요금</th>
-					<th>캠핑룸타입</th>
-				</tr>
-			</table>
+				<h2>캠핑룸 목록</h2>
+				<table id="crtb">
+					<tr>
+						<th>번호</th>
+						<th>캠핑룸번호</th>
+						<th>캠핑룸명</th>
+						<th>최대인원수</th>
+						<th>체크인시간</th>
+						<th>체크아웃시간</th>
+						<th>요금</th>
+						<th>성수기요금</th>
+						<th>캠핑룸타입</th>
+					</tr>
+				</table>
 			<br>
 			<hr id="mid">
 			<div class="insertForm">
