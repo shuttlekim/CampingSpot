@@ -74,38 +74,34 @@ margin-left: 30%;
 
 #font1{
 margin-left: -10%;
+font-family: sans-serif;
 }
 #font2{
 margin-left: 0%;
+font-family: sans-serif;
 }
 #font3{
 margin-left: -20%;
+font-family: sans-serif;
 }
 #font4{
 margin-left: -20%;
+font-family: sans-serif;
 }
 #font5{
 margin-left: 0%;
+font-family: sans-serif;
 }
 
 
 #titleFAQ{
- margin-left: 80px;
+ margin-left: 90px;
  margin-top: 30px;
 }
-
-/* 마우스 올리면 무지개색으로 변해요 ㅎㅎ :D */
-a:hover, a:focus { animation-duration: 3s; animation-name: rainbowLink; animation-iteration-count: infinite; }
-@keyframes rainbowLink {
-   0% { color: #ff2a2a; }
-   15% { color: #ff7a2a; }
-   30% { color: #ffc52a }
-   45% { color: #43ff2a; }
-   60% { color: #2a89ff; }
-   75% { color: #202082; }
-   90% { color: #6b2aff; }
-   100% { color: #e82aff; }
-  }
+#ft{
+ font-weight:normal;
+ font-size: 45px;
+}
 
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -126,15 +122,14 @@ $(function(){
 
 <div class="body-wrap">
 	<div class="middle">
-		<i class="fas fa-angle-double-right fa-3x" id="titleFAQ">&nbsp;자주묻는질문(FAQ)</i>
+		<i class="fas fa-angle-double-right fa-3x" id="titleFAQ">&nbsp;<font id="ft">자주묻는질문(FAQ)</font></i>
 		<br><br>
 		<div class="but">
-			<a href="reservationFAQ.html"><i class="far fa-calendar-alt fa-4x" class="ReservationFAQ"><br><font size="4px" id="font1">예약FAQ</font></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="paymentFAQ.html"><i class="far fa-credit-card fa-4x" class="PaymentFAQ"><br><font size="4px" id="font2">결제FAQ</font></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="pointFAQ.html"><i class="fas fa-comments-dollar fa-4x" class="PointFAQ"><br><font size="4px" id="font3">쿠폰/포인트FAQ</font></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="changeFAQ.html"><i class="fas fa-exchange-alt fa-4x" class="ChangeFAQ"><br><font size="4px" id="font4">변경/환불FAQ</font></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="accountFAQ.html"><i class="fas fa-headset fa-4x" class="AccountFAQ"><br><font size="4px" id="font5">계정FAQ</font></i></a>
-			<!-- 찐색상변경 <a href="accountFAQ.html"><i class="fas fa-headset fa-4x" class="AccountFAQ" style="color:blue;"><br><font size="4px" id="font5">계정FAQ</font></i></a> -->
+			<a href="reservationFAQ.html"><i class="far fa-calendar-alt fa-4x" class="ReservationFAQ" style="color:black;"><br><font size="4px" id="font1">예약FAQ</font></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="paymentFAQ.html"><i class="far fa-credit-card fa-4x" class="PaymentFAQ" style="color:black;"><br><font size="4px" id="font2">결제FAQ</font></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="pointFAQ.html"><i class="far fa-handshake fa-4x" class="PointFAQ" style="color:black;"><br><font size="4px" id="font3">쿠폰/포인트FAQ</font></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="changeFAQ.html"><i class="far fa-hourglass fa-4x" class="ChangeFAQ" style="color:black;"><br><font size="4px" id="font4">변경/환불FAQ</font></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="accountFAQ.html"><i class="far fa-address-card fa-4x" class="AccountFAQ" style="color:black;"><br><font size="4px" id="font5">계정FAQ</font></i></a>
 		</div>
 		
 	</div>
