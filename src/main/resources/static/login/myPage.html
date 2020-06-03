@@ -485,16 +485,17 @@ $(function(){
 				
 					$(review_button).click(function(){
 						var idx = $(this).attr("idx");
-						var arrstr = arr[idx].r_checkin.split("-");
-						var checkin = new Date(arrstr[0],arrstr[1],arrstr[2]);
+						var arrstr = arr[idx].r_checkout.split("-");
+						var checkout = new Date(arrstr[0],arrstr[1],arrstr[2]);
 						var today = new Date();
-						if(today < checkin){
+						console.log(today);
+						console.log(checkout);
+						if(today > checkout){
 							alert("리뷰를 쓸수 있어요.");
 							window.location.href="/login/reviewMyReservation.html?mc_id="+arr[idx].mc_id+"&cs_no="+arr[idx].cs_no;	
 						}else{
 							alert("리뷰를 쓸수 없어요.");
 						}
-						
 					});
 					
 				console.log(c.r_cancel);
@@ -526,7 +527,7 @@ $(function(){
 				}else if(c.r_cancel == 2){
 					
 					$(div_li_img).append(cs_camp_fname);
-					$(button_div).append(button1 , button3, review_button);
+					$(button_div).append(button3);
 					$(reservation_content).append(cs_name, checkin, checkindetail, button_div , message);
 					$(reservation_div).append(div_li_img , reservation_content);
 					$(a).append(reservation_div);
