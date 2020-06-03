@@ -309,7 +309,7 @@ body {
 .profile-content {
   padding: 20px;
   background: #fff;
-  min-height: 460px;
+  height: 300px; 
 }
 
 /*======================================================*/
@@ -411,6 +411,9 @@ body {
 		height: 100%;
 		border-radius: 5%;
 	}
+	li{
+		font-size: 18px;
+	}
 	
 </style>
 <script type="text/javascript" src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -453,6 +456,7 @@ $(function(){
 			$("#h4").html(p.mc_name + " 님의 예약내역");
 		});
 	}}); 
+
 	
 	function myReservationList(){	
 	var data = {mc_id : mc_id ,	r_no : r_no};
@@ -460,21 +464,20 @@ $(function(){
 		arr = r;
 		$.each(arr, function(idx, r){
 			var ul = $("<ul></ul>");
-			var loadview = $("<button type='button' id='btn'></button>").attr("idx", idx).html("길찾기");
+			var loadview = $("<img src='/resources/profile/kakaomap.png' width='130px' style='border-radius: 10px; cursor: pointer;'><p style='cursor: pointer;'>[카카오 길찾기 바로가기]</p><br>").attr("idx", idx);
 			var str = r.cs_camp_fname;
 			var camp_fname = str.split(",");
 			var cs_camp_fname1 = $("<img></img>").attr({"src":"/resources/camping_spot_img/"+camp_fname[0]});
 			var cs_camp_fname2 = $("<img></img>").attr({"src":"/resources/camping_spot_img/"+camp_fname[1]});
 			var cs_camp_fname3 = $("<img></img>").attr({"src":"/resources/camping_spot_img/"+camp_fname[2]});
-			var cs_name = $("<li></li>").html("캠핑장이름 : " + r.cs_name);
-			var cs_addr_remain = $("<li></li>").html("캠핑장 주소 : " + r.cs_addr_remain);
-			var mc_tel = $("<li></li>").html("고객전화번호 : " + r.mc_tel);
-			var cr_type = $("<li></li>").html("캠핑장 타입 : " + r.cr_type);
-			var r_checkin = $("<li></li>").html("체크인 날짜 : " + r.r_checkin);
-			var r_checkout = $("<li></li>").html("체크아웃 날짜 : " + r.r_checkout);
-			var mc_name = $("<li></li>").html("이 캠핑장은 " + r.mc_name + "님 이름으로 예약 되어 있습니다.");
-			var mc_tel = $("<li></li>").html(r.mc_tel);
-			
+			var cs_name = $("<hr width='auto'><li></li><br>").html("캠핑장 이름  : " + r.cs_name);
+			var cs_addr_remain = $("<li></li><br>").html("캠핑장 주소  : " + r.cs_addr_remain);		
+			var mc_tel = $("<li></li><br>").html("고객전화번호 : " + r.mc_tel);	
+			var cr_type = $("<li></li><br>").html("캠핑장 타입 : " + r.cr_type);
+			var r_checkin = $("<li></li><br>").html("체크인 날짜 : " + r.r_checkin);
+			var r_checkout = $("<li></li><br><br>").html("체크아웃 날짜 : " + r.r_checkout);
+			var mc_name = $("<li></li><br>").html("이 캠핑장은 " + r.mc_name + "님 이름으로 예약 되어 있습니다.");
+			 
 			$("#img1").append(cs_camp_fname1);
 			$("#img2").append(cs_camp_fname2);
 			$("#img3").append(cs_camp_fname3);
@@ -581,8 +584,7 @@ Licensed under MIT
 		<div class="col-md-3" style="height: 600px">
 			<div class="profile-sidebar" style =" border-radius: 2em;">
 				<!-- SIDEBAR USERPIC -->
-
-			
+				
 					<div class="profile-userpic">
 				
 					</div>
@@ -627,14 +629,15 @@ Licensed under MIT
 				<!-- END MENU -->
 			</div>
 		</div>
-		<div class="col-md-9" style="background: white;  border-radius: 2em;">
-		 <div class="profile-content" style= "margin-top: 2px;">
+		<div class="col-md-9" style="background: white;  border-radius: 2em; padding-right: 5px;">
+		 <div class="profile-content" style= "margin-top: 2px; padding-left: 0px; padding-right: 0px;">
 		 
-	<h4>캠핑장 사진</h3>
-	<div id="img1" style="float: left; width: 33%; height: 180px; padding:8px;"></div>
-	<div id="img2" style="float: left; width: 33%;  height: 180px; padding:8px;"></div>
-	<div id="img3" style="float: left; width: 33%; height: 180px; padding:8px;"></div>
-	
+	<p style="font-size: 20px; font-weight: bold;">▶ 캠핑장 사진</p>
+	<div id="img1" style="float: left; width: 33%; height: 180px; padding:5px;"></div>
+	<div id="img2" style="float: left; width: 33%;  height: 180px; padding:5px;"></div>
+	<div id="img3" style="float: left; width: 33%; height: 180px; padding:5px;"></div>
+
+	<!-- <img src="/resources/profile/kakaomap.png" width="130px" style="border-radius: 10px">  -->
 	<!--End Pattern HTML-->
 			</div>
 		</div>
