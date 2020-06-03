@@ -90,7 +90,7 @@ public class BusinessController {
         m.setSalt(salt);
                 
         //String path = "C:\\\\Users\\\\YOGO\\\\git\\\\CampingSpot\\\\src\\\\main\\\\resources\\\\static\\\\resources\\\\profile";
-        String path = request.getRealPath("\\resources\\profile");
+        String path = request.getRealPath("/resources/profile");
 		MultipartFile uploadFile = m.getUploadFile();
 		String fname = "";
 		 if(uploadFile != null) {
@@ -149,7 +149,7 @@ public class BusinessController {
         mv.setSalt(check.getSalt());  
         
         //String path = "C:\\\\Users\\\\YOGO\\\\git\\\\CampingSpot\\\\src\\\\main\\\\resources\\\\static\\\\resources\\\\profile";
-        String path = request.getRealPath("\\resources\\profile");
+        String path = request.getRealPath("/resources/profile");
 		String oldFname = mv.getMb_fname();
         MultipartFile uploadFile = mv.getUploadFile();
 		String fname = null;
