@@ -186,7 +186,7 @@ public class MemberController {
         mv.setSalt(check.getSalt());  
         
         //String path = "C:\\Users\\YOGO\\git\\CampingSpot\\src\\main\\resources\\static\\resources\\profile";
-        String path = request.getRealPath("\\resources\\profile");
+        String path = request.getRealPath("/resources/profile");
 		String oldFname = mv.getMc_fname();
         MultipartFile uploadFile = mv.getUploadFile();
 		String fname = null;

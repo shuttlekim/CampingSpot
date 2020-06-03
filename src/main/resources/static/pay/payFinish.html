@@ -35,7 +35,7 @@ $(function(){
 	var point = document.location.href.split("="); 
 	var updatePoint = Number(point[1]);
 	//var updatePoint = point[1];
-	alert(updatePoint)
+	//alert(updatePoint)
 	//사용한포인트 가져옴
 	
 	var pay_data = {
@@ -53,7 +53,7 @@ $(function(){
 	//사용한 포인트만큼 차감
 	var pointData = {"mc_point":updatePoint,"mc_id":mc_id}
 	$.ajax("/updatePoint.do",{data:pointData,success:function(r){
-		alert(r)
+		//alert(r)
 	}})
 })
 </script>
