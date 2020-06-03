@@ -151,16 +151,16 @@ li a:hover:not(.active) {
 					</tr>
 					<tr>
 						<th>캠핑장명</th>
-						<td><input type="text" name="cs_name" id="cs_name" placeholder="캠핑장명을 입력하세요" style="width: 250px;"></td>
+						<td><input type="text" name="cs_name" id="cs_name" placeholder="캠핑장명을 입력하세요" required="required" style="width: 250px;"></td>
 					</tr>
 					<tr>
 						<th>캠핑장전화</th>
-						<td><input type="text" name="cs_tel" id="cs_tel" placeholder="010-1234-5678" style="width: 250px;"></td>
+						<td><input type="text" name="cs_tel" id="cs_tel" placeholder="010-1234-5678" required="required" style="width: 250px;"></td>
 					</tr>
 					<tr>
 						<th>캠핑장주소1</th>
 						<td>
-							<select name="cs_addr_head" id="cs_addr_head">
+							<select name="cs_addr_head" id="cs_addr_head" required="required">
 								<option value="서울">서울</option>
 								<option value="인천">인천</option>
 								<option value="경기도">경기도</option>
@@ -177,7 +177,7 @@ li a:hover:not(.active) {
 					</tr>
 					<tr>
 						<th>캠핑장주소2</th>
-						<td><input type="text" name="cs_addr_remain" id="cs_addr_remain" placeholder="나머지 주소를 입력하세요" style="width: 250px;"></td>
+						<td><input type="text" name="cs_addr_remain" id="cs_addr_remain" placeholder="나머지 주소를 입력하세요" required="required" style="width: 250px;"></td>
 					</tr>
 					<tr>
 						<th>캠핑장 홈페이지</th>
@@ -185,11 +185,11 @@ li a:hover:not(.active) {
 					</tr>
 					<tr>
 						<th>사업자 계좌번호</th>
-						<td><input type="text" name="cs_account" id="cs_account" placeholder="123-456-789 ㅇㅇ은행 예금주명:" style="width: 250px;"></td>
+						<td><input type="text" name="cs_account" id="cs_account" placeholder="예) 123-456-789 ㅇㅇ은행 예금주명:" style="width: 250px;"></td>
 					</tr>
 					<tr>
 						<th>사업자등록증</th>
-						<td><input type="file" name="uploadFile" id="uploadFile" placeholder="-포함하여 입력하세요" style="width: 250px;"></td>
+						<td><input type="file" name="uploadFile" id="uploadFile" style="width: 250px;"></td>
 					</tr>
 					<tr>
 						<th>캠핑장 사진</th>
