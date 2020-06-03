@@ -8,6 +8,7 @@
 <style type="text/css">
 hr{
   border-top: 2px solid black;
+  
 }
 .line {
 	border-left: 2px solid black;
@@ -45,7 +46,6 @@ li a:hover:not(.active) {
 		color: white;
 		font-weight: bold;
 }
-
 #reviewList{
 	margin-top: -700px;
 	margin-left: 250px;
@@ -221,10 +221,10 @@ th, td{
 			<div id="insertCreRe">
 				
 				리뷰글 내용 : <br>
-						<textarea rows="5" cols="70" id="cre_content" name="cre_content"></textarea>
+						<textarea rows="5" cols="70" id="cre_content" name="cre_content" readonly="readonly"></textarea>
 						<br>
-				작성자 : <input type="text" id="mc_id" name="mc_id">
-				등록일 : <input type="text" id="cre_date" name="cre_date"><br>
+				작성자 : <input type="text" id="mc_id" name="mc_id" readonly="readonly">
+				등록일 : <input type="text" id="cre_date" name="cre_date" readonly="readonly"><br>
 				<br>
 				<form id="reF">
 				리뷰 댓글 : <br>
