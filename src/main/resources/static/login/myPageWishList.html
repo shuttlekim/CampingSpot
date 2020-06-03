@@ -422,7 +422,7 @@ $(function(){
 						var idx = $(this).attr("idx");
 						var no = {cw_no : arr[idx].cw_no};
 							$.ajax("/deleteMyWish", {data : no, success : function(r) {
-								window.location.href = "login/myPageWishList.html";
+								window.location.href = "/login/myPageWishList.html";
 							}});
 					});
 					$(div_li_img).append(cs_camp_fname)

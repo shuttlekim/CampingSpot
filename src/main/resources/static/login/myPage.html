@@ -453,7 +453,7 @@ $(function(){
 						var data = {r_no : arr[idx].r_no}
 				    	$.ajax("/cancelReservation", {data : data, success : function(r) {
 						
-				    	window.location.href= "/login/myPage.html";
+				    	window.location.href= "/login/myReservationCancelDetail.html?mc_id="+arr[idx].mc_id+"&r_no="+arr[idx].r_no;
 				    	}}); 
 				    	
 				    } else if ( confirm_test == false ) {
