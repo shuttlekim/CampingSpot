@@ -277,6 +277,7 @@ public class MemberController {
 		return str;
 	}
 	
+	
 	//포인트 사용시 사용한만큼 '-'해주기
 	@RequestMapping("/updatePoint.do")
 	public String updatePoint(int mc_point, String mc_id) {
