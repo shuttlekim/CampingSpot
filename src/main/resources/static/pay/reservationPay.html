@@ -14,6 +14,17 @@ li{
 	padding: 3px;
 	cursor: pointer;
 }
+.res{
+	margin: 20px 10px;
+   	padding: 20px;
+   	width: 100;
+}
+.tdtd{
+	color: gray;
+}
+#mc_id{
+	color: gray;
+}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
@@ -64,6 +75,7 @@ $(function(){
 		location.href = "../login/login.html";
 	}
 	var loginData = {"mc_id":memberId}
+	$("#mc_id").html(memberId)
 	
 	var price = total;
 	// 총 숙박비 'total'
@@ -158,28 +170,42 @@ $(function(){
 	<div id="headers"></div>
 	<div class="body-wrap">
 		<h2>예약상세정보</h2>
-		<div>
-			<div class="chkRsvHead">캠핑장명</div>
-			<span class="chkRsvContent" id="chkName"></span><br>
-			<div class="chkRsvHead">룸정보</div>
-			<span class="chkRsvContent" id="chkRoom"></span><br>
-			<div class="chkRsvHead">체크인</div>
-			<span class="chkRsvContent" id="chkIn"></span><br>
-			<div class="chkRsvHead">체크아웃</div>
-			<span class="chkRsvContent" id="chkOut"></span><br>
-			<div class="chkRsvHead">비용</div>
-			<span class="chkRsvContent" id="chkPrice"></span><br>
+		<hr>
+		<table class="res" style="width:100%">
+			<tr>
+				<td class="tdtd">캠핑장명</td>
+				<td id="chkName"></td>
+			</tr>
+			<tr>
+				<td class="tdtd">룸정보</td>
+				<td id="chkRoom"></td>
+			</tr>
+			<tr>
+				<td class="tdtd">체크인</td>
+				<td id="chkIn"></td>
+			</tr>
+			<tr>
+				<td class="tdtd">체크아웃</td>
+				<td id="chkOut"></td>
+			</tr>
+			<tr>
+				<td class="tdtd">비용</td>
+				<td id="chkPrice"></td>
+			</tr>
+		</table>
+		<!-- <hr>
+		<h2>결제하기</h2> -->
+		<hr>
+		<div class="res">
+		<span id="mc_id"></span><span>님의 보유포인트:&nbsp;<span id="point"></span>원&nbsp;&nbsp;</span><input type="number" id="putPoint"></input>&nbsp;&nbsp;<button id="applyPoint">적용하기</button></div><hr>
+		
+		<!-- 로그인한 아이디가 가지고 있는 포인트 id="totalPoint"에먼저 뿌려준다음 가격 입력하고 적용하기 누르면 총 가격-포인트=결제할금액 알려준다 -->
+		<div class="res">
+		총 결제할 금액: <h4 id="total_price"></h4>
+		총가격: <span id="price"></span><br>
+		포인트 사용: <span id="usePoint"></span>
 		</div>
 		<hr>
-		<h2>결제하기</h2>
-		<hr>
-		<span>보유포인트: <span id="point"></span>원</span><input type="number" id="putPoint"></input><button id="applyPoint">적용하기</button><br><br><hr>
-		<!-- 로그인한 아이디가 가지고 있는 포인트 id="totalPoint"에먼저 뿌려준다음 가격 입력하고 적용하기 누르면 총 가격-포인트=결제할금액 알려준다 -->
-		
-		결제할 금액: <h4 id="total_price"></h4>
-		총가격: <span id="price"></span><br>
-		포인트 사용: <span id="usePoint"></span><br><hr>
-		
 		<ul>
 			<li>
 				<input type="radio" name="r_payment" value="계좌이체">
@@ -190,8 +216,8 @@ $(function(){
 				<label for="카드결제">카드결제</label><br>
 			</li>
 		</ul>
+		<br>
 		<button id="finalPay">결제하기</button>
-		<!-- 결제하기 누르면 먼저 예약이가능한지 체크한 후에 reservation에 insert한다 -->
 	</div>
 	<div id="footers"></div>
 </body>

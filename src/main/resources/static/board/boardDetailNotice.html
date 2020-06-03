@@ -68,16 +68,25 @@ $(function(){
 	$.ajax("/detailBoard.do",{data:data, success:function(data){
 		var fname = data.b_fname.split(",");
 		var title = $("<span></span>").html(data.b_title);
-		var mc_id = $("<span></span>").html(data.mc_id);
-		var b_contents = $("<span></span>").html(data.b_contents);
+		//var mc_id = $("<span></span>").html(data.mc_id);
+		//var b_contents = $("<span></span>").html(data.b_contents);
 		for(var i = 0 ; i < fname.length ; i++){
 			var img = $("<img/>").attr("src","/resources/board_img/"+fname[i]).attr("width",300).attr("onerror","this.style.display='none'");
 			var br = $("<br>");
 			$("#b_fname").append(img,br);
 		}
-		$("#b_title").append(title);
-		$("#mc_id").append(mc_id);
-		$("#b_contents").append(b_contents);
+		$("#b_title").append(data.b_title);
+		$("#mc_id").append(data.mc_id);
+		$("#b_contents").append(data.b_contents);
+		
+		//글 수정하기는 페이지로 이동
+		$("#btnUpdate").click(function(){
+			if(memberID == data.mc_id){
+				location.href = "boardUpdateNotice.html?b_no="+b_no[1];
+			}else{
+				alert("수정 할 수 없습니다.");
+			}
+		});	
 	}});
 	
 	//글 삭제하기
@@ -98,14 +107,14 @@ $(function(){
 	
 	//글 수정하기는 페이지로 이동
 	//수정할때 관리자만 수정할 수 있게 만들자
-	$("#btnUpdate").click(function(){
+	/* $("#btnUpdate").click(function(){
 		if(memberID == 'admin01'){
 			//일단 관리자가 1명이라서 이렇게 처리함...
 				location.href = location.href = "boardUpdateNotice.html?b_no="+b_no[1];
 			}else{
 				alert("관리자 로그인 해주세요.");
 			}
-	});
+	}); */
 	
 	$("#btnList").click(function(){
 		location.href = "boardNotice.html"
