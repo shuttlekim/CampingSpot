@@ -78,7 +78,9 @@ $(function(){
 		location.href = "../login/login.html";
 	}
 	var loginData = {"mc_id":memberId}
-	$("#mc_id").html(memberId)
+	$.ajax({url:"/getMmeber.do", data:loginData,success:function(r){
+       $("#mc_id").html(r.mc_name)
+    }}); 
 	
 	var price = total;
 	// ÃÑ ¼÷¹Úºñ 'total'
