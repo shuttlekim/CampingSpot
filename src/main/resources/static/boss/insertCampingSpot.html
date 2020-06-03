@@ -54,7 +54,17 @@ li a:hover:not(.active) {
 	float:left;
 }
 .bts{
+	margin-top: 30px;
+	margin-left: 220px;
+	text-align: center;
 }
+.btn2{
+	margin-left: 10px;
+}
+.insertTable{
+	margin-left: 100px;
+}
+
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -134,9 +144,10 @@ li a:hover:not(.active) {
 		<div class="line"></div>
 		<div class="cs">
 			
+		 <div class="insertTable">
 			<form id="f" method="post" enctype="multipart/form-data">
 				<h2>캠핑장 등록</h2>
-				<table>
+				<table width = "700">
 					<tr>
 						
 					</tr>
@@ -242,8 +253,10 @@ li a:hover:not(.active) {
 					</tr>				
 				</table>
 			</form>
-			<button class="bts" id="csInsert">캠핑장등록</button>
-			<button class="bts" id="csReset">취소</button>
+			<button class="bts btn1" id="csInsert">캠핑장등록</button>
+			<button class="bts btn2" id="csReset">취소</button>
+		</div>
+			
 		</div>
 	
 	 </div>
