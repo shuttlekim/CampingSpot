@@ -148,7 +148,8 @@
 				})
 			}})
 		}
-	
+		
+		
 		
 		//로그아웃버튼 동작
 		$("#main_logout").click(function(){	
@@ -167,9 +168,17 @@
 		var mc_id = sessionStorage.getItem("memberId");		
 		$("#mc_id").html(mc_id);
 				
+		
+		var mc_auth;		
+		$.ajax({url:"/getMmeber.do", data:{"mc_id":mc_id},success:function(r){
+			mc_auth = r.mc_auth;	
+			alert(mc_auth);
+		}});		
+		
+	
 		//세션유지(일반회원 및 관리자)
 	    if(sessionStorage.getItem("memberId") != null){
-	 		if(mc_id == "admin01"){
+	 		if(mc_auth = 1){
 				$("#main_mypage").css("display", "none");
 				$("#main_admin").css("display", "block");
 				$("#main_login").css("display", "none");

@@ -38,19 +38,19 @@
 		cursor: pointer;
 	}	
 	#idCheck:hover {
-  		background-color: #81E5B8;
+  		background-color: #ff586c;
 	}
 	#idCheck:active {
-	  	background-color: #367c36;
+	  	background-color: #ff586c;
 	}		
 	#btnJoinOk{
 		transition: background-color 0.2s;
 	}
 	#btnJoinOk:hover {
-  		background-color: #6ed36e;
+  		background-color: #ff586c;
 	}
 	#btnJoinOk:active {
-	  	background-color: #367c36;
+	  	background-color: #ff586c;
 	}	
 	#mc_pwd{
 		width: 200px;
@@ -104,22 +104,6 @@
     	width: 90px;
 		font-size: 16px;
 		font-family:Nanum Gothic;
-	}			
-	.filebox label:hover {
-  		background-color: #6ed36e;
-	}
-	.filebox label:active {
-	  	background-color: #367c36;
-	}
-	.filebox input[type="file"] {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		padding: 0;
-		margin: -1px;
-		overflow: hidden;
-		clip: rect(0, 0, 0, 0);
-		border: 0;
 	}
 	.v{
 		cursor: pointer;
@@ -195,7 +179,7 @@ $(function(){
 <div class="body-wrap" style="height: 830px">
 	<div style="margin: 0 auto; width: 700px" align="center" class="middle">
 	<br>
-	<h1 style="font-family:Nanum Gothic;font-size: 40px">회원가입</h1>
+	<h1 style="font-family:Nanum Gothic;font-size: 35px">회원가입</h1>
 	<hr width="300px"><br><br>
 		<div>
 			<form id="join" method="post" enctype="multipart/form-data">
@@ -237,8 +221,10 @@ $(function(){
 					</tr>	
 					<tr>
 						<td><input type="text" disabled="disabled" placeholder="프로필 사진" style="background-color: #e2e2e2; font-weight: bold" id="grey"></td>
-						<td class="filebox"><label for="uploadFile">업로드	
-						<input type="file" name="uploadFile" id="uploadFile" style="width:200px;height:30px;font-size:15px;"></td>
+					</tr>
+					<tr>
+						<td><input type="file" name="uploadFile" id="uploadFile" style="width:200px;height:30px;font-size:15px;"></td>
+					</tr>
 					<tr>
 						<td><input type="hidden" name="mc_auth" id="mc_auth" value="3"></td>
 					</tr>

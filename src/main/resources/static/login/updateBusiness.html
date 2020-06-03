@@ -32,19 +32,19 @@
 		transition: background-color 0.2s;
 	}
 	#btnDeleteBusiness:hover{
-		background-color: #6ed36e;
+		background-color: #ff586c;
 	}
 	#btnDeleteBusiness:active{
-		background-color: #367c36;
+		background-color: #ff586c;
 	}	
 	#btnUpdateOk{
 		transition: background-color 0.2s;
 	}
 	#btnUpdateOk:hover {
-  		background-color: #6ed36e;
+  		background-color: #ff586c;
 	}
 	#btnUpdateOk:active {
-	  	background-color: #367c36;
+	  	background-color: #ff586c;
 	}	
 	#mb_id{
 		width: 200px;
@@ -90,40 +90,6 @@
 		width: 200px;
 		height: 35px;
 		border: groove;
-	}		
-	.filebox label {
-	  	display: inline-block;
-	  	padding: .5em .75em;
-		color: #fff;
-		line-height: normal;
-		vertical-align: middle;
-		cursor: pointer;
-		border: 1px solid #4cae4c;
-		border-radius: .25em;
-		-webkit-transition: background-color 0.2s;
-		transition: background-color 0.2s;
-		text-align: center;
-    	background: #2a2a2a;
-    	border-radius: 7px;    	
-    	width: 90px;
-		font-size: 16px;
-		font-family:Nanum Gothic;
-	}			
-	.filebox label:hover {
-  		background-color: #6ed36e;
-	}
-	.filebox label:active {
-	  	background-color: #367c36;
-	}
-	.filebox input[type="file"] {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		padding: 0;
-		margin: -1px;
-		overflow: hidden;
-		clip: rect(0, 0, 0, 0);
-		border: 0;
 	}
 	.v{
 		cursor: pointer;
@@ -256,8 +222,9 @@ $(function(){
 				</tr>	
 				<tr>				
 					<td><input type="text" disabled="disabled" placeholder="프로필 사진" style="background-color: #e2e2e2; font-weight: bold" id="grey"></td>
-						<td class="filebox"><label for="uploadFile">업로드	
-						<input type="file" name="uploadFile" id="uploadFile" style="width:200px;height:30px;font-size:15px;"></td>
+				</tr>
+				<tr>
+					<td><input type="file" name="uploadFile" id="uploadFile" style="width:200px;height:30px;font-size:15px;margin-left: 120px;"></td>
 					<td><input type="hidden" name="mb_fname" id="mb_fname"></td>
 				</tr>
 				<tr>

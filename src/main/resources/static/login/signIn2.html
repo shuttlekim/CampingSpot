@@ -59,20 +59,20 @@
 	}
 	
 	#idCheck:hover {
-  		background-color: #6ed36e;
+  		background-color: #ff586c;
 	}
 	#idCheck:active {
-	  	background-color: #367c36;
+	  	background-color: #ff586c;
 	}	
 	
 	#btnJoinOk{
 		transition: background-color 0.2s;
 	}
 	#btnJoinOk:hover {
-  		background-color: #6ed36e;
+  		background-color: #ff586c;
 	}
 	#btnJoinOk:active {
-	  	background-color: #367c36;
+	  	background-color: #ff586c;
 	}	
 	#mb_pwd{
 		width: 200px;
@@ -133,22 +133,6 @@
 		font-size: 16px;
 		font-family:Nanum Gothic;
 	}			
-	.filebox label:hover {
-  		background-color: #6ed36e;
-	}
-	.filebox label:active {
-	  	background-color: #367c36;
-	}
-	.filebox input[type="file"] {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		padding: 0;
-		margin: -1px;
-		overflow: hidden;
-		clip: rect(0, 0, 0, 0);
-		border: 0;
-	}
 	.v{
 		cursor: pointer;
 	}
@@ -226,7 +210,7 @@ $(function(){
 	<hr width="300px"><br><br>
 		<div>
 			<form id="join" method="post" enctype="multipart/form-data">
-				<table   width="500px">
+				<table width="500px">
 					<tr>		
 						<td><input type="text" name="mb_id" id="mb_id" placeholder="회원 아이디 (15자 이내)" required="required" maxlength="15"></td>
 						<td><button id="idCheck" type="button">중복검사</button></td>
@@ -257,9 +241,11 @@ $(function(){
 						<td><input type="text" name="mb_licence" id="mb_licence" placeholder="사업자등록번호  (-)없이" required="required"  maxlength="10"></td>
 					</tr>	
 					<tr>
-						<td><input type="text" disabled="disabled" placeholder="프로필 사진" style="background-color: #e2e2e2; font-weight: bold" id="grey"></td>
-						<td class="filebox"><label for="uploadFile">업로드	
-						<input type="file" name="uploadFile" id="uploadFile" style="width:200px;height:30px;font-size:15px;"></td>
+						<td><input type="text" disabled="disabled" placeholder="프로필 사진" style="background-color: #e2e2e2; font-weight: bold" id="grey"></td>	
+					</tr>
+					<tr>
+						<td><input type="file" name="uploadFile" id="uploadFile" style="width:200px;height:30px;font-size:15px;"></td>
+					</tr>
 					<tr>
 						<td><input type="hidden" name="mb_auth" id="mb_auth" value="3"></td>
 					</tr>

@@ -42,15 +42,10 @@
 	}
 	.middle{
 	 	outline: 1px solid #9F9F9F;
-		//position: absolute;
-		//left: 5px;
 		top: 30px;
 	  	width: 450px;
 		height: 775px;
 		border: hidden;
-		//border-radius: 5%;
-		//background-color: #EBDEF0 ;
-		//background-color: #DDD5D5 ;
 		box-shadow: 5px 5px 5px 10px;
 	}
 	#btnSend{
@@ -58,10 +53,10 @@
 		cursor: pointer;
 	}	
 	#btnSend:hover {
-  		background-color: #81E5B8;
+  		background-color: #ff586c;
 	}
 	#btnSend:active {
-	  	background-color: #367c36;
+	  	background-color: #ff586c;
 	}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -79,7 +74,7 @@ $(function(){
 				"email"    : input_email,
 				"content"  : input_content,
 				};
-		
+	
 		$.ajax("/qnaEmail.do", {data:insert_data, async:false, success:function(r){				
 
 			if(r != null){
@@ -88,15 +83,18 @@ $(function(){
 				
 				if(result == true){				
 				    alert("메인으로 이~~~~동");
-					window.location.href = "../main/main.html";
+					window.location.href = "/main/main.html";
 				}else{
 				    alert("^_____^");
-				} 
+				}
 			}else{
 				alert("메일전송 실패!!!");
 			}	
-		}});//ajax 종료 	
+		}});//ajax 종료
+		location.href = "../main/main.html";
+		
 	});	//btnSend 종료
+	
 	
 	$("#header").load("/main/header.html");	
 
@@ -134,11 +132,11 @@ $(function(){
 						<input type="text" name="email" placeholder="답장 받으실 E-MAIL" id="email" style="width:300px; border:groove;">
 					</p><br>
 					<p>					
-						<textarea rows="20" cols="60" placeholder="문의내용 작성해 주세요." id="content" font-size="20px" style="border:groove;"></textarea>
+						<textarea rows="20" cols="55" placeholder="문의내용 작성해 주세요." id="content" font-size="20px" style="border:groove;"></textarea>
 					</p>
 					
 					<p><br><br>
-						<button id="btnSend" style="margin:0 auto;align:center;width: 200px;height: 40px; font-size: 20px">문의하기</button>
+						<button id="btnSend" style="margin:0 auto;align:center;width: 200px;height: 40px; font-size: 20px" type="button">문의하기</button>
 					</p>
 				</form>
 		</div>
