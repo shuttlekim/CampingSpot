@@ -110,7 +110,7 @@ public class MemberController {
 				fname = uploadFile.getOriginalFilename();
 				try {
 					byte []data = uploadFile.getBytes();
-					FileOutputStream fos = new FileOutputStream(path +"/"+fname);
+					FileOutputStream fos = new FileOutputStream(path +"\\"+fname);
 					fos.write(data);
 					fos.close();
 				}catch (Exception e) {				

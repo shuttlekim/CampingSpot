@@ -299,6 +299,7 @@ $(function(){
 
 	//------------------------------------------------
    
+   
    var getDetail = function(cs_no, campingType, checkout, checkin){
     	var input_data = {
     			"cs_no":cs_no,
@@ -309,7 +310,7 @@ $(function(){
     	$.ajax("/detailCampingSpot.do", {data:input_data, async:false, success:function(data){
     		
     		$("#d_campingTitle").html(data.cs_name);
-    		$("#d_campingRate").html(data.rate.toFixed(1));
+    		$("#d_campingRate").html(data.rate);
     		
     		$("#star-ratio").css("width", (data.rate / 5.0)*100+"%")
     		
