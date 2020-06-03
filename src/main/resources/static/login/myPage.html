@@ -420,7 +420,7 @@ $(function(){
 		});
 	}}); 
 	
-	
+		
 		$.ajax("/myReservationList.do",{data:{"mc_id":mc_id}, success:function(data){
 			arr = data;
 			console.log(data);
@@ -486,12 +486,11 @@ $(function(){
 				
 					$(review_button).click(function(){
 						var idx = $(this).attr("idx");
-						var arrstr = arr[idx].r_checkout.split("-");
-						var checkout = new Date(arrstr[0],arrstr[1],arrstr[2]);
+						var checkout = new Date(arr[idx].r_checkout);
 						var today = new Date();
 						console.log(today);
 						console.log(checkout);
-						if(today > checkout){
+						if(today.getTime() > checkout.getTime()){
 							alert("리뷰를 쓸수 있어요.");
 							window.location.href="/login/reviewMyReservation.html?mc_id="+arr[idx].mc_id+"&cs_no="+arr[idx].cs_no;	
 						}else{

@@ -16,8 +16,8 @@ public class CsDVo {
 	private double cs_lati;
 	private double cs_long;
 	private String cs_name;
-	private Date r_checkin;
-	private Date r_checkout;
+	private String r_checkin;
+	private String r_checkout;
 	private String cr_type;
 	private String cs_addr_remain;
 	private String mc_name;

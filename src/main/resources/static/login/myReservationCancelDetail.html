@@ -420,8 +420,9 @@ $(function(){
 			var cr_type = $("<li></li>").html("캠핑장 타입 : " + c.cr_type);
 			var r_checkin = $("<li></li>").html("체크인 날짜 : " + c.r_checkin);
 			var r_checkout = $("<li></li>").html("체크아웃 날짜 : " + c.r_checkout);
-			var mc_name = $("<li></li>").html("이 캠핑장은 " + c.mc_name + "님 이름으로 예약 되어 있습니다.");			
-			$(ul).append(cs_name, cs_addr_remain, mc_tel , cr_type ,r_checkin, r_checkout, mc_name);
+			var mc_name = $("<li></li>").html("이 캠핑장은 " + c.mc_name + "님 이름으로 예약 되어 있습니다.");
+			var r_price =  $("<li></li>").html("이 예약에 대해 결제하신 금액은  "+c.r_price+"원 입니다.");
+			$(ul).append(cs_name, cs_addr_remain, mc_tel , cr_type ,r_checkin, r_checkout, mc_name ,r_price);
 			$("#jb-sidebar").append(ul);
 		});
 	}});
@@ -579,10 +580,11 @@ Licensed under MIT
         <br>
       </div>
    
-		<button type="button" id="bt" class="btn btn-success btn-block">메인으로 이동</button>
+		
    		<!--End Pattern HTML-->
 			</div>
 		</div>
+		<button type="button" id="bt" class="btn btn-success ">메인으로 이동</button>
 	</div>
 </div>
 <!-- BOTTOM -->

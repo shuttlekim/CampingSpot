@@ -423,12 +423,20 @@ $(function(){
 							alert("완료");
 						}});
 					});
-						
+					
+					if(r.cs_name != null){			
 					
 					$(div_li_img).append(cs_camp_fname);
 					$(ReviewList_div).append(div_li_img, cs_name, cre_date, cre_content, cre_re_contents, button);
 					$(a).append(ReviewList_div);
 					$("#li").append(a);
+					
+					}else if(r.cs_name == null){
+						
+						var Message2 = $("<h3 class='li-head'></h3>").html("예약내역이 없습니다...");
+						$(".profile-content").append(Message2);
+				
+					}
 				});
 			}});
 		
