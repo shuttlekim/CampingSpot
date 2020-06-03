@@ -475,14 +475,13 @@ $(function(){
     var callReview = function(cs_no){
     	var reviewList;	
     	$.ajax("/campingReviewList.do", {data:{"cs_no":cs_no}, async:false, success:function(data){        
-			console.log(data);
+			
     		if(data.length == 0){
-				console.log(data);
+				
 				$("#cnt_review").html(0);
 				
 			 }else{
 				 
-				alert(data);
 	    		reviewList = data;
 				$.each(reviewList, function(idx, item){
 					var div_review = $("<div class='review_list'></div>");
@@ -611,7 +610,6 @@ $(function(){
       var reservation_data = $("#form_selector").serialize();
       console.log(reservation_data);
       sessionStorage.setItem("reservation_data", reservation_data);
-      alert("stop!");
       location.href="../pay/reservationPay.html"
       
    });

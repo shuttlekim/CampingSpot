@@ -397,36 +397,41 @@ $(function(){
 	
 			
 			$.ajax("/myReviewList.do", {data:{"mc_id":mc_id}, success : function(r){
-				arr = r;
-				console.log(r);
-				$.each(arr, function(idx , r){
-					var a = $("<div class='inner'></div><br>")
-					var str = r.cs_camp_fname;
-					var camp_fname = str.split(",");
-					var cs_camp_fname = $("<img></img>").attr({"src":"/mypage/img/"+camp_fname[0]}).css("border-radius", "2em");
-					var div_li_img = $("<div class='li-img'></div>");
-					var ReviewList_div = $("<div class='li-text'></div>").attr("idx", idx);
-					var cs_name = $("<br><h4 class='li-head'></h4><br>").html(r.cs_name);
-					var cre_date =  $("<p class='li-summary'></p><br>").html("등록일: " +r.cre_date);
-					var cre_content = $("<p></p>").html(r.mc_id+ " 님의 후기 : " +r.cre_content);
-					var cre_re_contents = $("<p></p>").html(r.mb_id + " 님의 댓글 : " +r.cre_re_contents);
-					var button = $("<button type='button' class='margin_right btn btn-danger btn-sm'></button>").attr("idx", idx).html("삭제");
-					
-					$(button).click(function() {
-						var idx = $(this).attr("idx");
-					var no = {cre_no : arr[idx].cre_no };
-						$.ajax("/deleteMyReview", {data : no, success : function(r) {
-							window.location.href = "/login/myPageReviewList.html";
-							alert("완료");
-						}});
-					});
+				if(r.length == 0){
+					var no_message = $("<div></div>").html("등록한 후기가 없습니다.");
+					$("#profile_review_contents").append(no_message);
+				}else{
+					arr = r;
+					console.log(r);
+					$.each(arr, function(idx , r){
+						var a = $("<div class='inner'></div><br>")
+						var str = r.cs_camp_fname;
+						var camp_fname = str.split(",");
+						var cs_camp_fname = $("<img></img>").attr({"src":"/mypage/img/"+camp_fname[0]}).css("border-radius", "2em");
+						var div_li_img = $("<div class='li-img'></div>");
+						var ReviewList_div = $("<div class='li-text'></div>").attr("idx", idx);
+						var cs_name = $("<br><h4 class='li-head'></h4><br>").html(r.cs_name);
+						var cre_date =  $("<p class='li-summary'></p><br>").html("등록일: " +r.cre_date);
+						var cre_content = $("<p></p>").html(r.mc_id+ " 님의 후기 : " +r.cre_content);
+						var cre_re_contents = $("<p></p>").html(r.mb_id + " 님의 댓글 : " +r.cre_re_contents);
+						var button = $("<button type='button' class='margin_right btn btn-danger btn-sm'></button>").attr("idx", idx).html("삭제");
 						
-					
-					$(div_li_img).append(cs_camp_fname);
-					$(ReviewList_div).append(div_li_img, cs_name, cre_date, cre_content, cre_re_contents, button);
-					$(a).append(ReviewList_div);
-					$("#li").append(a);
-				});
+						$(button).click(function() {
+							var idx = $(this).attr("idx");
+						var no = {cre_no : arr[idx].cre_no };
+							$.ajax("/deleteMyReview", {data : no, success : function(r) {
+								window.location.href = "/login/myPageReviewList.html";
+								alert("완료");
+							}});
+						});
+							
+						
+						$(div_li_img).append(cs_camp_fname);
+						$(ReviewList_div).append(div_li_img, cs_name, cre_date, cre_content, cre_re_contents, button);
+						$(a).append(ReviewList_div);
+						$("#li").append(a);
+					});
+				}
 			}});
 		
 		
@@ -566,19 +571,14 @@ Licensed under MIT
 		</div>
 		<div class="col-md-9" style="background: white;  border-radius: 2em;">
             <div class="profile-content" style= "margin-top: 2px;">
-            
-			 
-			 <div id="pattern" class="pattern">
-    <ul class="list img-list">
-    <h4 id="h4"></h4>
-     <hr>
-        <li id="li">
-
-        </li>
-    </ul>
-</div>
-<!--End Pattern HTML-->
-			  
+				<div id="pattern" class="pattern">
+		    		<ul id="profile_review_contents" class="list img-list">
+			    		<h4 id="h4"></h4>
+			     		<hr>
+			        	<li id="li">
+			        	</li>
+		    		</ul>
+				</div><!--End Pattern HTML-->  
             </div> 
 		</div>
 	</div>

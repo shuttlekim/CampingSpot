@@ -158,7 +158,7 @@ public class DBManager {
 	
 	// 근희) 위시리스트 추가 - 수정(영현)
 	public static int insertWish(HashMap map) {
-	      SqlSession session = factory.openSession();
+	      SqlSession session = factory.openSession(true);
 	      int re = session.insert("myPage.insertWish", map);
 	      session.commit();
 	      session.close();

@@ -446,53 +446,57 @@ $(function(){
 						
 				});
 				
-			if(c.r_cancel == 0){
-					
-				$(button2).click(function(){
-					
-				    var confirm_test = confirm("예약을 취소하시겠습니까??");
-					 
-				    if ( confirm_test == true ) {
-				    		
-				    	var idx = $(button2).attr("idx");
-						var data = {r_no : arr[idx].r_no}
-				    	$.ajax("/cancelReservation", {data : data, success : function(r) {
+				if(c.r_cancel == 0){
 						
-				    		window.location.href= "/login/myPage.html";
-				    	}});
+					$(button2).click(function(){
 						
-				    	
-				    } else if ( confirm_test == false ) {
-				    	 alert("취소를 누르셨습니다.");
-				    }					
-				});
-				
-			}
-				
-			else if(c.r_cancel == 2){
+					    var confirm_test = confirm("예약을 취소하시겠습니까??");
+						 
+					    if ( confirm_test == true ) {
+					    		
+					    	var idx = $(button2).attr("idx");
+							var data = {r_no : arr[idx].r_no}
+					    	$.ajax("/cancelReservation", {data : data, success : function(r) {
+							
+					    		window.location.href= "/login/myPage.html";
+					    	}});
+							
+					    	
+					    } else if ( confirm_test == false ) {
+					    	 alert("취소를 누르셨습니다.");
+					    }					
+					});
 					
-				$(button3).click(function(){
-					
-					var idx = $(button3).attr("idx");
-					window.location.href= "/login/myReservationCancelDetail.html?mc_id="+arr[idx].mc_id+"&r_no="+arr[idx].r_no;
-					
-				});
-				
-			}
-				
-					$(review_button).click(function(){
-						var idx = $(this).attr("idx");
-						var arrstr = arr[idx].r_checkin.split("-");
-						var checkin = new Date(arrstr[0],arrstr[1],arrstr[2]);
-						var today = new Date();
-						if(today < checkin){
-							alert("리뷰를 쓸수 있어요.");
-							window.location.href="/login/reviewMyReservation.html?mc_id="+arr[idx].mc_id+"&cs_no="+arr[idx].cs_no;	
-						}else{
-							alert("리뷰를 쓸수 없어요.");
-						}
+				}else if(c.r_cancel == 2){
+						
+					$(button3).click(function(){
+						
+						var idx = $(button3).attr("idx");
+						window.location.href= "/login/myReservationCancelDetail.html?mc_id="+arr[idx].mc_id+"&r_no="+arr[idx].r_no;
 						
 					});
+					
+				}
+				
+				$(review_button).click(function(){
+					var idx = $(this).attr("idx");
+					var arrstr = arr[idx].r_checkout.split("-");
+					//var checkout = new Date(arrstr[0],arrstr[1],arrstr[2]);
+					console.log(arr[idx].r_checkout);
+					var checkout = new Date(arr[idx].r_checkout);
+					var today = new Date();
+					console.log("체크아웃:"+checkout);
+					console.log("오늘:"+today);
+					console.log(checkout.getTime());
+					console.log(today.getTime());
+					if(today.getTime() > checkout.getTime()){
+						alert("리뷰를 쓸수 있어요.");
+						window.location.href="/login/reviewMyReservation.html?mc_id="+arr[idx].mc_id+"&cs_no="+arr[idx].cs_no;	
+					}else{
+						alert("리뷰를 쓸수 없어요.");
+					}
+					
+				});
 					
 				console.log(c.r_cancel);
 				
