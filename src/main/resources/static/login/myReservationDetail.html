@@ -415,6 +415,9 @@ body {
 		font-size: 18px;
 	}
 	
+	loadview{
+		float: center;
+	}
 </style>
 <script type="text/javascript" src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -475,7 +478,8 @@ $(function(){
 			var mc_tel = $("<li></li><br>").html("고객전화번호 : " + r.mc_tel);	
 			var cr_type = $("<li></li><br>").html("캠핑장 타입 : " + r.cr_type);
 			var r_checkin = $("<li></li><br>").html("체크인 날짜 : " + r.r_checkin);
-			var r_checkout = $("<li></li><br><br>").html("체크아웃 날짜 : " + r.r_checkout);
+			var r_checkout = $("<li></li><br><hr>").html("체크아웃 날짜 : " + r.r_checkout);
+			var r_date = $("<li></li>")
 			var mc_name = $("<li></li><br>").html("이 캠핑장은 " + r.mc_name + "님 이름으로 예약 되어 있습니다.");
 			 
 			$("#img1").append(cs_camp_fname1);
