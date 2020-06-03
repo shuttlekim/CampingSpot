@@ -405,7 +405,7 @@ $(function(){
 					var a = $("<div class='inner'></div><br>")
 					var str = r.cs_camp_fname;
 					var camp_fname = str.split(",");
-					var cs_camp_fname = $("<img></img>").attr({"src":"/mypage/img/"+camp_fname[0]}).css("border-radius", "2em");
+					var cs_camp_fname = $("<img></img>").attr({"src":"/resources/camping_spot_img/"+camp_fname[0]}).css("border-radius", "2em");
 					var div_li_img = $("<div class='li-img'></div>");
 					var ReviewList_div = $("<div class='li-text'></div>").attr("idx", idx);
 					var cs_name = $("<br><h4 class='li-head'></h4><br>").html(r.cs_name);
@@ -413,6 +413,7 @@ $(function(){
 					var cre_content = $("<p></p>").html(r.mc_id+ " ¥‘¿« »ƒ±‚ : " +r.cre_content);
 					var cre_re_contents = $("<p></p>").html(r.mb_id + " ¥‘¿« ¥Ò±€ : " +r.cre_re_contents);
 					var button = $("<button type='button' class='margin_right btn btn-danger btn-sm'></button>").attr("idx", idx).html("ªË¡¶");
+					
 					
 					$(button).click(function() {
 						var idx = $(this).attr("idx");

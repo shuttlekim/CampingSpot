@@ -127,7 +127,7 @@
  	 			$.each(arr, function(idx, item){
  	 				var title = $("<div class='search_list_title'></div>").html(item.name);
  	 				var price = $("<div class='search_list_price'></div>").html("₩ "+item.price);
- 	 				var rate = $("<div> class='search_list_rate'></div>").html("평점: "+item.rate);
+ 	 				var rate = $("<div> class='search_list_rate'></div>").html("평점: "+item.rate.toFixed(1));
  	 				var addr = $("<div></div>").html("주소: "+item.addr_head+" "+item.addr_remain);
  	 				
  	 				var detail = $("<div class='search_list_detail'></div>").html(item.detail);

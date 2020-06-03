@@ -14,10 +14,9 @@ hr{
 	margin-top: 10px;
 }
 .main{
-	float:right;
 	margin-top: 50px;
-	margin-bottom: 50px;
-	margin-right: 70px;
+	margin-bottom: 0px;
+	margin-left: 700px;
 	text-align: left;
 }
 
@@ -54,7 +53,7 @@ li a:hover:not(.active) {
   font-weight: bold;
 }
 .mptb{
-	margin-top: 380px;
+	margin-top: 200px;
 	margin-left: 230px;
 	height: 240px;
 }
@@ -108,6 +107,7 @@ th, td{
 				var cs_camp_fname = r.cs_camp_fname.split(",")
 				//alert(cs_camp_fname[0])
 				var imgCS =$("<img></img>").attr({"src":"/resources/camping_spot_img/"+cs_camp_fname[0],"width":400,"height":300});
+				imgCS.css("border-radius", "20%")
 				$(".mainImg").append(imgCS);
 				
 				var cs_name = $("<h2></h2>").html("&nbsp" + r.cs_name);
