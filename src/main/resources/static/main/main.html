@@ -178,7 +178,7 @@
 	
 		//세션유지(일반회원 및 관리자)
 	    if(sessionStorage.getItem("memberId") != null){
-	 		if(mc_auth = 1){
+	 		if(mc_auth == 1){
 				$("#main_mypage").css("display", "none");
 				$("#main_admin").css("display", "block");
 				$("#main_login").css("display", "none");

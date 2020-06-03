@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shortcut icon" href="/resources/profile/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/resources/profile/favicon.ico" type="image/x-icon">
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style type="text/css">
@@ -393,6 +395,23 @@ body {
 		box-shadow: -60px 0px 10px -90px #000000,
         60px 0px 100px -90px #000000;
 	}
+	
+	#img1 img{
+		width: 100%;
+		height: 100%;
+		border-radius: 5%;
+	}
+	#img2 img{
+		width: 100%;
+		height: 100%;
+		border-radius: 5%;
+	}
+	#img3 img{
+		width: 100%;
+		height: 100%;
+		border-radius: 5%;
+	}
+	
 </style>
 <script type="text/javascript" src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -404,10 +423,10 @@ $(function(){
 
 
 	mc_id = str[0].substring(str[0].indexOf("=")+1);
-	alert(mc_id);
+	//alert(mc_id);
 	
 	r_no = str[1].substring(str[1].indexOf("=")+1);
-	alert(r_no);
+	//alert(r_no);
 	
 	
 	$("#header").load("/main/header.html");	
@@ -444,9 +463,9 @@ $(function(){
 			var loadview = $("<button type='button' id='btn'></button>").attr("idx", idx).html("길찾기");
 			var str = r.cs_camp_fname;
 			var camp_fname = str.split(",");
-			var cs_camp_fname1 = $("<img></img>").attr({"src":"img/"+camp_fname[0]});
-			var cs_camp_fname2 = $("<img></img>").attr({"src":"img/"+camp_fname[1]});
-			var cs_camp_fname3 = $("<img></img>").attr({"src":"img/"+camp_fname[2]});
+			var cs_camp_fname1 = $("<img></img>").attr({"src":"/resources/camping_spot_img/"+camp_fname[0]});
+			var cs_camp_fname2 = $("<img></img>").attr({"src":"/resources/camping_spot_img/"+camp_fname[1]});
+			var cs_camp_fname3 = $("<img></img>").attr({"src":"/resources/camping_spot_img/"+camp_fname[2]});
 			var cs_name = $("<li></li>").html("캠핑장이름 : " + r.cs_name);
 			var cs_addr_remain = $("<li></li>").html("캠핑장 주소 : " + r.cs_addr_remain);
 			var mc_tel = $("<li></li>").html("고객전화번호 : " + r.mc_tel);
@@ -462,9 +481,9 @@ $(function(){
 			
 			$(loadview).click(function(){
 				var idx = $(this).attr("idx");
-				alert(arr[idx].cs_name);
-				alert(arr[idx].cs_lati);
-				alert(arr[idx].cs_long);
+				//alert(arr[idx].cs_name);
+				//alert(arr[idx].cs_lati);
+				//alert(arr[idx].cs_long);
 				window.location.href= "https://map.kakao.com/link/to/"+arr[idx].cs_name+","+arr[idx].cs_lati+","+arr[idx].cs_long;
 				
 			});
@@ -611,9 +630,10 @@ Licensed under MIT
 		<div class="col-md-9" style="background: white;  border-radius: 2em;">
 		 <div class="profile-content" style= "margin-top: 2px;">
 		 
-	<div id="img1" style="border: 1px solid gold; float: left; width: 30%; height: 150px; padding:0px;"></div>
-	<div id="img2" style="border: 1px solid red; float: left; width: 30%;  height: 150px; padding:0px;"></div>
-	<div id="img3" style="border: 1px solid blue; float: left; width: 30%; height: 150px; padding:0px;"></div>
+	<h4>캠핑장 사진</h3>
+	<div id="img1" style="float: left; width: 33%; height: 180px; padding:8px;"></div>
+	<div id="img2" style="float: left; width: 33%;  height: 180px; padding:8px;"></div>
+	<div id="img3" style="float: left; width: 33%; height: 180px; padding:8px;"></div>
 	
 	<!--End Pattern HTML-->
 			</div>
