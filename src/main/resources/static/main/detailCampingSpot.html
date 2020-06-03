@@ -310,7 +310,7 @@ $(function(){
     	$.ajax("/detailCampingSpot.do", {data:input_data, async:false, success:function(data){
     		
     		$("#d_campingTitle").html(data.cs_name);
-    		$("#d_campingRate").html(data.rate);
+    		$("#d_campingRate").html(data.rate.toFixed(1));
     		
     		$("#star-ratio").css("width", (data.rate / 5.0)*100+"%")
     		

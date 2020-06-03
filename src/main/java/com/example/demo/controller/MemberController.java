@@ -103,14 +103,14 @@ public class MemberController {
 	        
 	        //String path = "/resources/static/resource/profile"; 
 	        //tring path = "C:\\Users\\YOGO\\git\\CampingSpot\\src\\main\\resources\\static\\resources\\profile";
-	        String path = request.getRealPath("\\resources\\profile");
+	        String path = request.getRealPath("/resources/profile");
 			MultipartFile uploadFile = m.getUploadFile();
 			String fname = "";
 			 if(uploadFile != null) {
 				fname = uploadFile.getOriginalFilename();
 				try {
 					byte []data = uploadFile.getBytes();
-					FileOutputStream fos = new FileOutputStream(path +"\\"+fname);
+					FileOutputStream fos = new FileOutputStream(path +"/"+fname);
 					fos.write(data);
 					fos.close();
 				}catch (Exception e) {				
