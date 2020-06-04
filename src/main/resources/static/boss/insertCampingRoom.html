@@ -96,23 +96,34 @@ td{
 		// 캠핑룸 목록 함수
 		function listCampingRoom(){
 			$("#crtb").empty();
-			$("#crtb").html("<th>번호</th><th>캠핑룸번호</th><th>캠핑룸명</th><th>최대인원수</th><th>체크인시간</th><th>체크아웃시간</th><th>요금</th><th>성수기요금</th><th>캠핑룸타입</th>");
-
+			//$("#crtb").html("<th>번호</th><th>캠핑룸번호</th><th>캠핑룸명</th><th>최대인원수</th><th>체크인시간</th><th>체크아웃시간</th><th>요금</th><th>성수기요금</th><th>캠핑룸타입</th>");
+			$("#crtb").html("<th>번호</th><th>캠핑룸명</th><th>최대인원수</th><th>체크인시간</th><th>체크아웃시간</th><th>요금</th><th>성수기요금</th><th>캠핑룸타입</th>");
+			
 			$.ajax("/bossCampingRoomList.do",{data:{"cs_no":cs_no},success:function(data){
 				//alert(data);
 				$.each(data, function(idx, cr){
 					var tr = $("<tr></tr>");
 					var no = $("<td></td").html(idx+1);
-					console.log(no)
-					var cr_no = $("<td></td>").html(cr.cr_no);
+					//console.log(no)
+					//var cr_no = $("<td></td>").html(cr.cr_no);
 					var cr_name = $("<td></td>").html(cr.cr_name);
 					var cr_max = $("<td></td>").html(cr.cr_max);
 					var cr_checkin = $("<td></td>").html(cr.cr_checkin);
 					var cr_checkout = $("<td></td>").html(cr.cr_checkout);
 					var cr_price = $("<td></td>").html(cr.cr_price);
 					var cr_peak_price = $("<td></td>").html(cr.cr_peak_price);
-					var cr_type = $("<td></td>").html(cr.cr_type);
-					$(tr).append(no, cr_no, cr_name, cr_max, cr_checkin, cr_checkout, cr_price, cr_peak_price, cr_type);			
+				
+					var cr_type = cr.cr_type
+					if(cr_type == "glamping"){
+						cr_type = $("<td></td>").html("글램핑");
+					}else if(cr_type == "caravan" ){
+						cr_type = $("<td></td>").html("카라반");
+					}else if(cr_type == "auto"){
+						cr_type = $("<td></td>").html("오토캠핑");
+					}
+					
+//					$(tr).append(no, cr_no, cr_name, cr_max, cr_checkin, cr_checkout, cr_price, cr_peak_price, cr_type);			
+					$(tr).append(no, cr_name, cr_max, cr_checkin, cr_checkout, cr_price, cr_peak_price, cr_type);			
 					$("#crtb").append(tr);
 				}); //end each
 			}});// end ajax 캠핑룸목록
@@ -246,62 +257,7 @@ td{
 				<table id="crtb">
 					<tr>
 						<th>번호</th>
-						<th>캠핑룸번호</th>
-						<th>캠핑룸명</th>
-						<th>최대인원수</th>
-						<th>체크인시간</th>
-						<th>체크아웃시간</th>
-						<th>요금</th>
-						<th>성수기요금</th>
-						<th>캠핑룸타입</th>
-					</tr>
-					<tr>
-						<th>번호</th>
-						<th>캠핑룸번호</th>
-						<th>캠핑룸명</th>
-						<th>최대인원수</th>
-						<th>체크인시간</th>
-						<th>체크아웃시간</th>
-						<th>요금</th>
-						<th>성수기요금</th>
-						<th>캠핑룸타입</th>
-					</tr>
-					<tr>
-						<th>번호</th>
-						<th>캠핑룸번호</th>
-						<th>캠핑룸명</th>
-						<th>최대인원수</th>
-						<th>체크인시간</th>
-						<th>체크아웃시간</th>
-						<th>요금</th>
-						<th>성수기요금</th>
-						<th>캠핑룸타입</th>
-					</tr>
-					<tr>
-						<th>번호</th>
-						<th>캠핑룸번호</th>
-						<th>캠핑룸명</th>
-						<th>최대인원수</th>
-						<th>체크인시간</th>
-						<th>체크아웃시간</th>
-						<th>요금</th>
-						<th>성수기요금</th>
-						<th>캠핑룸타입</th>
-					</tr>
-					<tr>
-						<th>번호</th>
-						<th>캠핑룸번호</th>
-						<th>캠핑룸명</th>
-						<th>최대인원수</th>
-						<th>체크인시간</th>
-						<th>체크아웃시간</th>
-						<th>요금</th>
-						<th>성수기요금</th>
-						<th>캠핑룸타입</th>
-					</tr>
-					<tr>
-						<th>번호</th>
-						<th>캠핑룸번호</th>
+						<!--  <th>캠핑룸번호</th>-->
 						<th>캠핑룸명</th>
 						<th>최대인원수</th>
 						<th>체크인시간</th>
