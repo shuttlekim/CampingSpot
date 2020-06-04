@@ -66,7 +66,7 @@ public class ReservationController {
 	}
 	
 	  //캠핑예약 등록
-	  @RequestMapping(value="/insertReservation.do", produces="application/json;charset=utf8")
+	  @RequestMapping("/insertReservation.do")
 	  public String insertReservation(String mc_id, int cr_no, String checkout, String checkin, int price, String payment) {
 		  String str = "";
 		  System.out.println("======== 예약추가 컨트롤러 작동 ! ===========");
@@ -190,7 +190,7 @@ public class ReservationController {
 		  }else {
 			  System.out.println("예약테이블 등록실패");
 		  }
-		  
+		  str = "결제완료";
 		  return str;
 	  }
 	

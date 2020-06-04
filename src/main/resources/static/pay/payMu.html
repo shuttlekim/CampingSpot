@@ -35,9 +35,6 @@
 		var cs_no = data5[1];
 		var payment = "계좌이체";
 		var mc_id = sessionStorage.getItem("memberId");
-		/* 추후
-		var mc_id = sessionStorage.getItem("memberId");
-		*/
 		
 		$.ajax("/getCampingInfo.do", {data:{"cs_no":cs_no}, success:function(data){
 			$("#accountData").html("<b>"+data.cs_account+"</b>");
@@ -48,10 +45,6 @@
 		//새로 update해주어야할 포인트
 		var point = document.location.href.split("="); 
 		var updatePoint = Number(point[1]);
-		//var updatePoint = point[1];
-		//
-		//alert(updatePoint)
-		//사용한포인트 가져옴
 		
 		$("#btn_pay").click(function(){
 			var pay_data = {
@@ -62,17 +55,17 @@
 				"price": price,
 				"payment": payment
 			}
-			$.ajax("/insertReservation.do", {data: pay_data, async:false, success:function(result){
+			$.ajax("/insertReservation.do", {data:pay_data, async:false, success:function(result){
 				//성공시 작동하는거아닌감?
 				sessionStorage.removeItem("reservation_data");
-				alert("메인창으로 이동합니다.(나중에 마이페이지로 이동할까???)")
-				location.href = "/main/main.html";
+				alert("결제완료! 메인창으로 이동합니다.")
+				window.location.href = "/main/main.html";
 			}})
 			
 			//사용한 포인트만큼 차감
 			var pointData = {"mc_point":updatePoint,"mc_id":mc_id}
 			$.ajax("/updatePoint.do",{data:pointData,success:function(r){
-				alert(r)
+				//alert(r)
 			}})
 		})
 	})

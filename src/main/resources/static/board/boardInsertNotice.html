@@ -29,7 +29,7 @@ h2{
 }
 .btn{
 	position: relative;
-	left: 700px;
+	float: left;
 }
 .btn2{
 	position: static;
@@ -94,28 +94,29 @@ $(function(){
 			<input type="hidden" name="b_del" value="0">
 				<table id="tb">
 					<tr>
-						<th>제목: </th>
-						<td><input type="text" name="b_title" id="b_title"></td>
+						<th>제목</th>
+						<td><input type="text" name="b_title" id="b_title" style="width: 380px"></td>
 					</tr>
 					<tr>
-						<th>작성자: </th>
+						<th>작성자</th>
 						<td><input type="text" name="mc_id" id="mc_id" readonly="readonly"></td>
 					</tr>
 					<tr>
-						<th>내용: </th>
+						<th>내용</th>
 						<td><textarea rows="10" cols="120" name="b_contents" id="b_contents"></textarea></td>
 					</tr>
 					<tr>
-						<th>사진: </th>
+						<th>사진</th>
 						<td><input type="file" name="uploadFile" id="uploadFile" multiple="multiple"></td>
 					</tr>
 				</table>
+				<br><br>
 				<button type="button" id="btnAdd" class="btn">등록</button>
 				<button type="button" id="btnReset" class="btn">취소</button>
 			</form>
 		</div>
 	</div>
-	
+	<br>
 	<div id="footers"></div>
 </body>
 </html>

@@ -144,7 +144,7 @@ $(function(){
 		var member = $("#loginForm").serialize();
 		$.ajax("/login.do", {data:member, type:"POST", success:function(memberId){
 			if(memberId != "no"){					
-				sessionStorage.setItem("memberId", memberId);	
+				sessionStorage.setItem("memberId", memberId);
 				alert("로그인 성공하였습니다.");
 				window.location.href = "/main/main.html";
 			}else{

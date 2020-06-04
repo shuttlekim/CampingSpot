@@ -52,16 +52,15 @@ $(function(){
 	var total = data4[1];
 	var cs_no = data5[1];
 	
-	$.ajax("/getCampingInfo.do", {data:{"cs_no":cs_no}, success:function(data){
+	$.ajax("/getCampingInfo.do", {data:{"cs_no":cs_no}, async:false, success:function(data){
 		$("#chkName").html("<b>"+data.cs_name+"</b>");
 	}})
 	
-	$.ajax("/getRoomInfo.do", {data:{"cr_no":cr_no}, success:function(data){
+	$.ajax("/getRoomInfo.do", {data:{"cr_no":cr_no}, async:false, success:function(data){
 		$("#chkRoom").html("이름: <b>"+data.cr_name+"</b>, 비용: "+data.cr_price+", 최대수용인원: "+data.cr_max);
 		$("#chkIn").html(checkin+", 입실시간: "+data.cr_checkin);
 		$("#chkOut").html(checkout+", 퇴실시간: "+data.cr_checkout);
-	}})
-	
+	}});
 	$("#chkPrice").html(total);
 	
 	//----------------------------------------------------------

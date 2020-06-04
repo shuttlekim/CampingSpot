@@ -5,6 +5,14 @@
 <link rel="icon" href="/resources/profile/favicon.ico" type="image/x-icon">
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<style type="text/css">
+#text{
+	text-align: center;
+}
+h2{
+	text-align: center;
+}
+</style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -48,20 +56,30 @@ $(function(){
 	}
 	$.ajax("/insertReservation.do", {data: pay_data, async:false, success:function(result){
 		sessionStorage.removeItem("reservation_data");
-	}})
+	}});
 	
 	//사용한 포인트만큼 차감
 	var pointData = {"mc_point":updatePoint,"mc_id":mc_id}
 	$.ajax("/updatePoint.do",{data:pointData,success:function(r){
 		//alert(r)
-	}})
+	}});
+	
+	$("#moveMypage").click(function(){
+		window.location.href = "/login/myPage.html";
+	});
 })
 </script>
 </head>
 <body>
 	<div id="headers"></div>
 	<div class="body-wrap">
-		<h2>결제완료!!</h2>
+		<div id="text">
+			<br>
+			<h3>모든 예약이 완료되었습니다.</h3>
+			<br><br>
+			<button id="moveMypage">마이페이지 이동</button>
+			<br><br><br>
+		</div>
 	</div>
 	<div id="footers"></div>
 </body>
