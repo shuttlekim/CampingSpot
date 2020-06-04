@@ -10,12 +10,16 @@
 	.main_first_section{
 	    margin-top : 300px;
 	}
+	.first_title_section{
+		width: 1120px;
+		margin: 0 auto;
+	}
 	.main_first_title{
 		font-size : 4em;
 		font-weight: 300;
 		position: relative;
 		top: -50px;
-		left: 700px;
+		left: 600px;
 		
 	}
 	.main_first_title span{
@@ -273,27 +277,29 @@
 		//메인아이콘 클릭
 		$("#main_icon").click(function(){
 			if(menu == false){
-				$("#main_status").animate({left:350}, 500)
-				$("#main_bar").animate({left:460}, 500)
+				$("#main_status").animate({left:350}, 500);
+				$("#main_bar").animate({left:460}, 500);
 				menu = true;
+				$("#main_menu_section").css("display","block");
 			}else {
 				$("#main_status").animate({left:0}, 500);
-				$("#main_bar").animate({left:1000}, 500)
+				$("#main_bar").animate({left:1000}, 500);
 				menu = false;
+				$("#main_menu_section").css("display","none");
 			}
 		})
 		
 		//메뉴 버튼
 		$("#main_bar").hover(function(){
-			$("#main_menu_section").animate({top:50}, 500)
-			$(".main_menu_bar").css('left',0)	
+			$("#main_menu_section").animate({top:50}, 500);
+			$(".main_menu_bar").css('left',0);
 		}, function(){
 			
 		})
 		$(".main_menu_bar").hover(function(){
-			$("#main_menu_section").animate({top:50}, 500)
+			$("#main_menu_section").animate({top:50}, 500);
 		},function(){
-			$("#main_menu_section").animate({top:-100}, 500)
+			$("#main_menu_section").animate({top:-100}, 500);
 		})
 	})
 </script>
@@ -303,6 +309,7 @@
 		<div class="head_section">
 				<div id="main_title">
 					<h2 onclick="location.href='/main/main.html'" style="cursor: pointer;">CAMPINGSPOT</h2>
+					
 				</div>
 				<div id="main_icon">
 					<i class="fas fa-ellipsis-v"></i>
@@ -344,8 +351,9 @@
 	</div>
 		<!-- <hr> -->
 	<div class="main_first_section">
-		<div><span class="main_first_title"><span>지금 바로</span> 떠나자</div>
-		<div>
+		<div class="first_title_section">
+			<span class="main_first_title"><span>지금 바로</span> 떠나자</span>
+		</div>
 			<video id="video" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
 		      		<source src="../resources/main_video_update.mp4">
 			</video>
