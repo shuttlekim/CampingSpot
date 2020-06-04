@@ -37,7 +37,6 @@ $(function(){
 	
 	// session으로 넘어온 데이터를 분류
 	var data0 = sessionStorage.getItem("reservation_data");
-	//console.log(data0);
 	data1 = data0.split("&room=");
 	data2 = data1[0].split("&checkout=");
 	data3 = data2[0].split("&checkin=");
@@ -62,15 +61,7 @@ $(function(){
 		$("#chkOut").html(checkout+", 퇴실시간: "+data.cr_checkout);
 	}});
 	$("#chkPrice").html(total);
-	
-	//----------------------------------------------------------
-	/* var memberId = "test1234";
-	/*추후
-	var memberId = sessionStorage.getItem("memberId");
-	*/
-	// test1234가 로그인했다고 치고 */
-	
-	
+
 	var memberId = sessionStorage.getItem("memberId");
 	if(memberId == null){
 		alert("로그인 페이지로 이동합니다.")
@@ -124,11 +115,6 @@ $(function(){
 	
 	
 	$("#finalPay").click(function(){
-		//누르면  cr_no, 체크인체크아웃날짜 전달해줘서 반환값이 0이나오면 예약가능 1이상나오면 예약불가능
-		//if(r == 0 ){ 예약하는(insert)하게 전달해준다
-		//if( r > 0) 예약이 불가능합니다 alert띄워주기
-		
-		// ===> 예약이 가능하다면...ㅠㅠ
 		
 		//라디오 버튼이 눌려진 처리에 따라
 		var r_payment = $('input[name=r_payment]:checked').val();
@@ -208,7 +194,7 @@ $(function(){
 		총 결제할 금액: <h4 id="total_price"></h4>
 		총가격: <span id="price"></span><br>
 		포인트 사용: <span id="usePoint"></span>
-		</div>
+		</div> 
 		<hr>
 		<ul>
 			<li>

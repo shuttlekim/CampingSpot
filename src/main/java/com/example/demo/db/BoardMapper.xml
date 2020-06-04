@@ -10,7 +10,6 @@
 	</if>
     order by b_regdate desc 
   </select>
- 
   
   <insert id="insert">
 	insert into board values(seq_board.nextval,#{b_title},#{mc_id},sysdate,0,#{b_contents},#{b_fname},#{b_del})

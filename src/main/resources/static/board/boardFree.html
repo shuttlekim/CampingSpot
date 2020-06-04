@@ -22,8 +22,6 @@ a{
 #container{
 	width: 1000px;
 	margin: 0 auto;
-	//background-color: lightgrey;
-	
 }
 h2{
 	text-align: center;
@@ -40,7 +38,6 @@ h2{
 	
 }
 #tb {
-  //font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
@@ -58,12 +55,6 @@ tr:nth-child(even) {
 $(function(){
 	// 자유게시판 목록 불러오기!!!
 	var arr;
-	/* var memberID = sessionStorage.getItem("memberId");
-	if(sessionStorage.getItem("memberId") == null){
-		alert("로그인 페이지로 이동합니다.")
-		location.href = "../login/login.html";
-	} */
-	
 	var totalRecord=0;
 	var totalPage=1;
 	var pageSIZE=5;
@@ -141,8 +132,7 @@ $(function(){
 		location.href = "boardInsertFree.html"
 	});
 	
-	$("#headers").load("/main/header.html");	
-
+	$("#headers").load("/main/header.html");
 	$("#footers").load("/main/footer.html");
 });
 </script>

@@ -19,9 +19,6 @@ a{
 	cursor: pointer;
 }
 #f{
-	/* width: 1000px;
-	margin: 0 auto;
-	display: table; */
 	margin-left: 90px;
 }
 h2{
@@ -47,8 +44,6 @@ $(function(){
 		alert("로그인 페이지로 이동합니다.")
 		location.href = "../login/login.html";
 	}
-	// 로그인한 자의 id를 세션으로 받아오면 됨
-	
 	$("#mc_id").val(memberID);
 	
 	//사진데이터 전송
@@ -76,8 +71,7 @@ $(function(){
 		location.href = "boardFree.html";
 	});
 	
-	$("#headers").load("/main/header.html");	
-
+	$("#headers").load("/main/header.html");
 	$("#footers").load("/main/footer.html");
 });
 </script>
@@ -87,7 +81,6 @@ $(function(){
 	<div class="body-wrap">
 		<h2>자유게시판 등록</h2>
 		<hr>
-		
 			<form method="post" id="f" enctype="multipart/form-data">
 			<input type="hidden" name="b_del" value="1">
 				<table id="tb">

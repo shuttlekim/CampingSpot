@@ -36,7 +36,6 @@ h2{
 	
 }
 #tb {
-  //font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
@@ -46,7 +45,6 @@ h2{
 $(function(){
 	var memberID = sessionStorage.getItem("memberId");
 	if(sessionStorage.getItem("memberId") == null){
-	// 일단 관리자가 "admin01" 밖에 없으니까..
 		alert("로그인 페이지로 이동합니다.")
 		location.href = "../login/login.html";
 	}
@@ -77,8 +75,7 @@ $(function(){
 		location.href = "boardNotice.html";
 	});
 	
-	$("#headers").load("/main/header.html");	
-
+	$("#headers").load("/main/header.html");
 	$("#footers").load("/main/footer.html");
 });
 </script>
@@ -89,7 +86,6 @@ $(function(){
 		<h2>공지사항 등록</h2>
 		<hr>
 		<div id="container">
-			<!-- <button id="btnList">목록보기</button> -->
 			<form method="post" id="f" enctype="multipart/form-data">
 			<input type="hidden" name="b_del" value="0">
 				<table id="tb">

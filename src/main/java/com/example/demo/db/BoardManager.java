@@ -30,7 +30,6 @@ public class BoardManager {
 		SqlSession session = factory.openSession();
 		List<BoardVo> list = session.selectList("board.selectAll", map);
 		session.close();
-		//System.out.println("매니저동작함");
 		return list;
 	}
 	// 캠핑장후기 작성시 캠핑장 명 불러오기(하지연)

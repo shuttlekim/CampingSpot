@@ -67,9 +67,6 @@ h5{
 <script type="text/javascript">
 $(function(){
 	// 캠핑장리뷰 상세보기
-	
-	// mc_id당 후기쓸 캠핑장이름 불러오기
-	// 나중에 로그인이랑 합치면 로그인 후 세선유지시키고 memberID를 가져온다
 	var memberID = sessionStorage.getItem("memberId");
 	if(sessionStorage.getItem("memberId") == null){
 		alert("로그인 페이지로 이동합니다.")
@@ -91,7 +88,6 @@ $(function(){
 			var img = $("<img/>").attr("src","/resources/board_img/"+fname[i]).attr("width",200).attr("onerror","this.style.display='none'");
 			var br = $("<br>");
 			$("#b_fname").append(img,br);
-			//console.log(i)
 		}
 		
 		//글 수정하기는 페이지로 이동
@@ -106,7 +102,6 @@ $(function(){
 	
 	//글 삭제하기
 	$("#btnDelete").click(function(){
-		//이미 로그인한 상태이기 때문에 컨펌창만 열어두고 삭제를 바로 하기
 		var con = confirm("정말로 삭제하시겠습니까?");
 		if(con == true){
 			$.ajax("/deleteBoard.do",{data:{"mc_id":memberID,"b_no":b_no[1]},success:function(data){
@@ -214,8 +209,7 @@ $(function(){
 		}});
 	});
 	
-	$("#headers").load("/main/header.html");	
-
+	$("#headers").load("/main/header.html");
 	$("#footers").load("/main/footer.html");
 });
 </script>

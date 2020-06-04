@@ -22,8 +22,6 @@ a{
 #container{
 	width: 1000px;
 	margin: 0 auto;
-	//background-color: lightgrey;
-	
 }
 h2{
 	text-align: center;
@@ -40,7 +38,6 @@ h2{
 	
 }
 #tb {
-  //font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
@@ -57,9 +54,7 @@ tr:nth-child(even) {
 <script type="text/javascript">
 $(function(){
 	var memberID = sessionStorage.getItem("memberId");
-	
 	var arr;
-	
 	var totalRecord=0;
 	var totalPage=1;
 	var pageSIZE=5;
@@ -129,6 +124,7 @@ $(function(){
 		}});
 	});
 	
+	//사용자 권한확인
     var mc_auth;      
     $.ajax({url:"/getMmeber.do", async:false, data:{"mc_id":memberID}, success:function(r){
        mc_auth = r.mc_auth; 
@@ -145,8 +141,7 @@ $(function(){
 		}
 	});
 	
-	$("#headers").load("/main/header.html");	
-
+	$("#headers").load("/main/header.html");
 	$("#footers").load("/main/footer.html");
 	
 });
@@ -157,7 +152,6 @@ $(function(){
 	<div class="body-wrap">
 		<br>
 		<h2>공지사항 목록</h2> 
-		
 		<div id="container">
 			총 게시글: <span id="totalRecord"></span>
 			<hr>
@@ -175,7 +169,7 @@ $(function(){
 			<br>
 			<table id="tb"></table>
 			<div class="container2">
-				<ul class="paging_button"></ul>
+			<ul class="paging_button"></ul>
 		</div>
 		<hr>
 		</div>

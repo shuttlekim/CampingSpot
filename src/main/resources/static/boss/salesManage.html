@@ -139,10 +139,12 @@ font-size: 12px;
 					var r_checkin = $("<td></td>").html(moment(s.r_checkin).format("YYYY-MM-DD"));
 					var r_checkout = $("<td></td>").html(moment(s.r_checkout).format("YYYY-MM-DD"));
 					var days = $("<td></td>").html(s.days+"일");
+					
 					var r_price = $("<td></td>").html(s.r_price);
 					var comm = $("<td></td>").html(s.comm);
 					var margin = $("<td></td>").html(s.margin);
 					var r_cancel = $("<td></td>").html(s.r_cancel);
+
 					$(tr).append(no,cr_name,r_no,r_checkin,r_checkout,days,r_price,comm,margin,r_cancel);
 					$("#tbS").append(tr);
 				});//end each
