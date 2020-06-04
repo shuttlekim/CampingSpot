@@ -56,12 +56,8 @@ $(function(){
 	
 	//넘어온 글 번호 받기
 	var arr;
-	//var b_no = location.search.substring(location.search.indexOf("=")+1);
 	var b_no = document.location.href.split("="); 
-	//console.log(para[1]);
- 	//alert(b_no[1])
 	var data = {"b_no":b_no[1]};
- 	//alert(b_no[1])
 	$.ajax("/detailBoard.do",{data:data, async:false, success:function(data){
 		$("#b_title").append(data.b_title);
 		$("#mc_id2").append(data.mc_id);
@@ -90,8 +86,6 @@ $(function(){
 	
 	//글 삭제하기
 	$("#btnDelete").click(function(){
-		//이미 로그인한 상태이기 때문에 컨펌창만 열어두고 삭제를 바로 하기
-		//alert(b_no[1])
 		var con = confirm("정말로 삭제하시겠습니까?");
 		if(con == true){
 			$.ajax("/deleteBoard.do",{data:{"mc_id":memberID,"b_no":b_no[1]},acy,success:function(data){
@@ -104,23 +98,11 @@ $(function(){
 		
 	});
 	
-	//글 수정하기는 페이지로 이동
-	//수정할때 관리자만 수정할 수 있게 만들자
-	/* $("#btnUpdate").click(function(){
-		if(memberID == 'admin01'){
-			//일단 관리자가 1명이라서 이렇게 처리함...
-				location.href = location.href = "boardUpdateNotice.html?b_no="+b_no[1];
-			}else{
-				alert("관리자 로그인 해주세요.");
-			}
-	}); */
-	
 	$("#btnList").click(function(){
 		location.href = "boardNotice.html"
 	});
 	
-	$("#headers").load("/main/header.html");	
-
+	$("#headers").load("/main/header.html");
 	$("#footers").load("/main/footer.html");
 	
 });

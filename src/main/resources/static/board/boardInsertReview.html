@@ -36,7 +36,6 @@ h2{
 	
 }
 #tb {
-  //font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 90%;
 }
@@ -53,7 +52,6 @@ $(function(){
 	// 로그인한 사람이 이용한 캠핑장이름 불러온다
 	$.ajax("/findCampingSpotName.do",{data:{"mc_id":memberID},success:function(cs_name){
 		$.each(cs_name,function(idx, cs){
-			//alert(cs)
 			$("#findSCName").append("<option value='[캠핑장명: "+cs+"]'>"+cs+"</option>");
 		});
 	}});
@@ -76,8 +74,7 @@ $(function(){
 		location.href = "boardReview.html";
 	});
 	
-	$("#headers").load("/main/header.html");	
-
+	$("#headers").load("/main/header.html");
 	$("#footers").load("/main/footer.html");
 });
 </script>

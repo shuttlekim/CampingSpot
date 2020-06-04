@@ -73,11 +73,6 @@ $(function(){
 		alert("로그인 페이지로 이동합니다.")
 		location.href = "../login/login.html";
 	}
-	/* if(memberID != null){
-		$("#delete").css("display","none");
-	} */
-	
-	
 	var arr;
 	var b_no = document.location.href.split("="); 
 	var data = {"b_no":b_no[1]};
@@ -105,7 +100,6 @@ $(function(){
 	
 	//글 삭제하기
 	$("#btnDelete").click(function(){
-		//이미 로그인한 상태이기 때문에 컨펌창만 열어두고 삭제를 바로 하기
 		var con = confirm("정말로 삭제하시겠습니까?");
 		if(con == true){
 			$.ajax("/deleteBoard.do",{data:{"mc_id":memberID,"b_no":b_no[1]},success:function(data){
@@ -116,8 +110,6 @@ $(function(){
 			alert("삭제실패");
 		};
 	});
-	
-	
 	
 	//리뷰글목록으로 이동
 	$("#btnList").click(function(){
@@ -194,8 +186,7 @@ $(function(){
 					location.href = "boardDetailFree.html?b_no="+b_no[1];
 				}});
 			});
-		};
-		
+		};	
 	};
 	
 	// 댓글 리스트 불러오기
@@ -217,8 +208,7 @@ $(function(){
 		}});
 	});
 	
-	$("#headers").load("/main/header.html");	
-
+	$("#headers").load("/main/header.html");
 	$("#footers").load("/main/footer.html");
 });
 </script>
@@ -249,8 +239,7 @@ $(function(){
 				<td><span id="b_contents"></span></td>
 			</tr>
 		</table>
-		<br>
-		<br>
+		<br><br>
 		<button id="btnList" type="button" class="btn2">목록보기</button>
 		<button type="button" id="btnUpdate" class="btn">수정</button>
 		<button type="button" id="btnDelete" class="btn">삭제</button>

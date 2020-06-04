@@ -22,8 +22,6 @@ a{
 #container{
 	width: 1000px;
 	margin: 0 auto;
-	//background-color: lightgrey;
-	
 }
 h2{
 	text-align: center;
@@ -37,7 +35,6 @@ h2{
 }
 .btn2{
 	position: static;
-	
 }
 #tb {
   //font-family: arial, sans-serif;
@@ -57,7 +54,6 @@ tr:nth-child(even) {
 <script type="text/javascript">
 $(function(){
 	var arr;
-	
 	var totalRecord=0;
 	var totalPage=1;
 	var pageSIZE=5;
@@ -110,7 +106,7 @@ $(function(){
 				
 		printPage();
 		printList(1);
-		;
+		
 	}});
 	
 	// 검색할때 키워드랑 컬럼명 전달해줘서 다시 리스트 불러오기
@@ -133,8 +129,7 @@ $(function(){
 		location.href = "boardInsertReview.html"
 	});
 	
-	$("#headers").load("/main/header.html");	
-
+	$("#headers").load("/main/header.html");
 	$("#footers").load("/main/footer.html");
 });
 </script>

@@ -20,7 +20,6 @@ $(function(){
 	$("#footers").load("../main/footer.html");
 	
 	var data0 = sessionStorage.getItem("reservation_data");
-	//console.log(data0);
 	data1 = data0.split("&room=");
 	data2 = data1[0].split("&total=");
 	data3 = data2[0].split("&checkout=");
@@ -35,16 +34,10 @@ $(function(){
 	var payment = "카드결제";
 	
 	var mc_id = sessionStorage.getItem("memberId");
-	/* 추후
-	var mc_id = sessionStorage.getItem("memberId");
-	*/
 	
 	//새로 update해주어야할 포인트
 	var point = document.location.href.split("="); 
 	var updatePoint = Number(point[1]);
-	//var updatePoint = point[1];
-	//alert(updatePoint)
-	//사용한포인트 가져옴
 	
 	var pay_data = {
 			"mc_id": mc_id,

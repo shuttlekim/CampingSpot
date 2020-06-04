@@ -32,8 +32,6 @@ public class BoardReController {
 		
 		Gson gson = new Gson();
 		str = gson.toJson(dao.selectReAll(map));
-		//System.out.println(str);
-		//System.out.println("보드댓글 컨트롤러 동작함: "+ str);
 		return str;
 	}
 	
@@ -44,7 +42,6 @@ public class BoardReController {
 		if(re > 0) {
 			str = "댓글등록에 성공했습니다.";
 		}
-		//System.out.println("댓글등록 컨트롤러 동작함:" + re);
 		return str;
 	}
 	
@@ -55,7 +52,6 @@ public class BoardReController {
 		map.put("br_no", br_no);
 		map.put("mc_id", mc_id);
 		int re = dao.deleteBoardRe(map);
-		//System.err.println("댓글삭제: " + re);
 		if(re > 0) {
 			str = "댓글삭제에 성공했습니다.";
 		}

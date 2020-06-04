@@ -50,7 +50,6 @@ $(function(){
 		location.href = "../login/login.html";
 	}
 	$("#mc_id").val(memberID);
-	//alert(b_no); //글번호는 나옴
 	
 	// 로그인한 사람이 이용한 캠핑장이름 불러온다
 	$.ajax("/findCampingSpotName.do",{data:{"mc_id":memberID},success:function(cs_name){
@@ -91,8 +90,7 @@ $(function(){
 		$("#b_contents").val("");
 	});
 	
-	$("#headers").load("/main/header.html");	
-
+	$("#headers").load("/main/header.html");
 	$("#footers").load("/main/footer.html");
 });
 </script>
@@ -107,7 +105,7 @@ $(function(){
 		<input type="hidden" name="b_no" id="b_no">
 			<table id="tb">
 				<tr>
-					<td>제목: <td>
+					<td>제목<td>
 					<td>
 						<select name="b_title" id="findSCName">
 							<option value="">캠핑장선택</option>
@@ -116,15 +114,15 @@ $(function(){
 					</td>
 				</tr>
 				<tr>
-					<td>작성자: <td>
+					<td>작성자<td>
 					<td><input type="text" name="mc_id" id="mc_id" readonly="readonly"></td>
 				</tr>
 				<tr>
-					<td>내용: <td>
+					<td>내용<td>
 					<td><textarea rows="10" cols="120" name="b_contents" id="b_contents"></textarea></td>
 				</tr>
 				<tr>
-					<td>사진: <td>
+					<td>사진<td>
 					<td>
 						<input type="file" name="uploadFile" id="uploadFile" multiple="multiple">
 						<input type="hidden" name="b_fname" id="b_fname">
