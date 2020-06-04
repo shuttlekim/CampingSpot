@@ -412,8 +412,7 @@ $(function(){
 					var cre_date =  $("<p class='li-summary'></p><br>").html("등록일: " +r.cre_date);
 					var cre_content = $("<p></p>").html(r.mc_nickname + " 님의 후기 : " +r.cre_content);
 					var cre_re_contents = $("<p></p>").html(r.mb_nickname + " 님의 댓글 : " +r.cre_re_contents);
-					var button = $("<button type='button' class='margin_right btn btn-danger btn-sm'></button>").attr("idx", idx).html("삭제");
-					alert(r.mc_nickname);				
+					var button = $("<button type='button' class='margin_right btn btn-danger btn-sm'></button>").attr("idx", idx).html("삭제");				
 				
 					
 					$(button).click(function() {

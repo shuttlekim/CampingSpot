@@ -320,7 +320,10 @@ body {
 #msg{
  font-weight: bold;
 }
-
+.img {
+	width: 100%;
+	height: 100%
+}
 
 </style>
 <script type="text/javascript" src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -353,7 +356,7 @@ $(function(){
 					var a = $("<a href='#' class='inner'></a><br>")
 					var str = c.cs_camp_fname;
 					var camp_fname = str.split(",");
-					var cs_camp_fname = $("<img></img>").attr({"src":"/mypage/img/"+camp_fname[0]});
+					var cs_camp_fname = $("<img class ='img'></img>").attr({"src":"/mypage/img/"+camp_fname[0]});
 					var div_li_img = $("<div class='li-img'></div>");
 					var reservation_div = $("<div id='res' class='li-text'></div>").attr("idx", idx);
 					var button_div = $("<div id='btn' class='li-text'></div>").attr("idx", idx);
@@ -525,7 +528,6 @@ Licensed under MIT
     </ul>
 </div>
 <!--End Pattern HTML-->
-			  
             </div>
 		</div>
 	</div>

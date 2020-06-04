@@ -394,7 +394,7 @@ $(function(){
 	
 	var mc_id = sessionStorage.getItem("memberId");
 	var mc_auth = sessionStorage.getItem("auth");
-		
+	var review = sessionStorage.getItem("review");
 	$("#mc_id").html(mc_id);
 
 	
@@ -514,14 +514,14 @@ $(function(){
 					if(today.getTime() > checkout.getTime()){
 						
 					
-					$(div_li_img).append(cs_camp_fname);
-					$(button_div).append(button1 , review_button);
-					$(reservation_content).append(cs_name, checkin, checkindetail, button_div, message);
-					$(reservation_div).append(div_li_img , reservation_content);
-					$(a).append(reservation_div);
-					$("#li").append(a);
-					$(button_div).css("display" ,"table-cell");
-					$(message).css("display" , "none");
+						$(div_li_img).append(cs_camp_fname);
+						$(button_div).append(button1 , review_button);
+						$(reservation_content).append(cs_name, checkin, checkindetail, button_div, message);
+						$(reservation_div).append(div_li_img , reservation_content);
+						$(a).append(reservation_div);
+						$("#li").append(a);
+						$(button_div).css("display" ,"table-cell");
+						$(message).css("display" , "none");
 					
 					}else if(today.getTime() < checkout.getTime()){
 						

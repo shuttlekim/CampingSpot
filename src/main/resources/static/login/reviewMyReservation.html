@@ -370,10 +370,8 @@ $(function(){
 	var str = location.search.split("&");
 
 	var mc_id = str[0].substring(str[0].indexOf("=")+1);
-	alert(mc_id);
 	
 	var cs_no = str[1].substring(str[1].indexOf("=")+1);
-	alert(cs_no);
 	
 	$("#header").load("/main/header.html");	
 
@@ -411,7 +409,7 @@ $(function(){
 		}
 		console.log(insertData);
 		$.ajax("/camping_review_insert", {data:insertData, success: function(r){
-			alert(r);
+			sessionStorage.setItem("review", 1);
 			window.location.href = "/login/myPageReviewList.html";
 		}})
 				
@@ -561,7 +559,7 @@ Licensed under MIT
         	<div id="insertDiv">
         	
 		<form id="insertForm">
-			<h4>평점을 입력해 주세요.</h4>
+		<h4>평점을 입력해 주세요.</h4>
 			<div class="starRev">
 			<span class="starR on">별1</span> 
 			<span class="starR">별2</span>
@@ -570,8 +568,8 @@ Licensed under MIT
 			<span class="starR">별5</span>
 			</div>
 			<br>
-			<h4>사용하신 캠핑장은 어떠셨나요??</h4>
-			<textarea id="cre_content" name="cre_content" rows="5" cols="70"></textarea>
+		<h4>사용하신 캠핑장은 어떠셨나요??</h4>
+		<textarea id="cre_content" name="cre_content" rows="5" cols="70"></textarea>
 		</form>
 		<br>
 		<button id="btnInsertOk" class="btn">등록</button>

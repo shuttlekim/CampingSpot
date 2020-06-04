@@ -330,7 +330,7 @@ body {
   #jb-content {
     padding: 80px;
     margin-bottom: 20px;
-    border: 4px solid #bcbcbc;
+    border: 2px solid #bcbcbc;
   }
   #jb-sidebar {
     padding: 30px;
@@ -414,16 +414,17 @@ $(function(){
 		arr = r;
 		$.each(arr, function(idx, c){
 			var ul = $("<ul></ul>");
-			var cs_name = $("<li></li>").html("캠핑장이름 : " + c.cs_name);
-			var cs_addr_remain = $("<li></li>").html("캠핑장 주소 : " + c.cs_addr_remain);
-			var mc_tel = $("<li></li>").html("고객전화번호 : " + c.mc_tel);
-			var cr_type = $("<li></li>").html("캠핑장 타입 : " + c.cr_type);
-			var r_checkin = $("<li></li>").html("체크인 날짜 : " + c.r_checkin);
-			var r_checkout = $("<li></li>").html("체크아웃 날짜 : " + c.r_checkout);
-			var mc_name = $("<li></li>").html("이 캠핑장은 " + c.mc_name + "님 이름으로 예약 되어 있습니다.");
-			var r_price =  $("<li></li>").html("이 예약에 대해 결제하신 금액은  "+c.r_price+"원 입니다.");
-			$(ul).append(cs_name, cs_addr_remain, mc_tel , cr_type ,r_checkin, r_checkout, mc_name ,r_price);
-			$("#jb-sidebar").append(ul);
+			var h4 = $("<hr><br><h4></h4><br>").html("고객취소정보");
+			var cs_name = $("<li></li><br>").html("캠핑장이름 : " + c.cs_name);
+			var cs_addr_remain = $("<li></li><br>").html("캠핑장 주소 : " + c.cs_addr_remain);
+			var mc_tel = $("<li></li><br>").html("고객전화번호 : " + c.mc_tel);
+			var cr_type = $("<li></li><br>").html("캠핑장 타입 : " + c.cr_type);
+			var r_checkin = $("<li></li><br>").html("체크인 날짜 : " + c.r_checkin);
+			var r_checkout = $("<li></li><br>").html("체크아웃 날짜 : " + c.r_checkout);
+			var mc_name = $("<li></li><br>").html("이 캠핑장은 " + c.mc_name + "님 이름으로 예약 되어 있습니다.");
+			var r_price =  $("<li></li><br>").html("이 예약에 대해 결제하신 금액은  "+c.r_price+"원 입니다.");
+			$(ul).append( h4 ,cs_name, cs_addr_remain, mc_tel , cr_type ,r_checkin, r_checkout, mc_name , r_price);
+			$("#jb-content").append(ul);
 		});
 	}});
 	
@@ -565,26 +566,24 @@ Licensed under MIT
 			</div>
 		</div>
 		<div class="col-md-9"  style="background: white;  border-radius: 2em;">
-		<div id="jb-container">
-        <h1>※ 고객님의 예약 취소가 확인 되었습니다.</h1>
+		<div id="jb-container" style="align-content: center;">
+        <h2>※ 고객님의 예약 취소가 확인 되었습니다.</h2>
       	<br>
       <div id="jb-content">
-        <h4>특별 요금(환불불가)</h4>
-        <p style="color : red">이 특별 할인 요금은 환불되지 않습니다 따라서 이 예약을 변경하거나 취소하시는 경우 지불하신 금액은 환불되지 않습니다.</p>
+        <h4>특별 요금(환불불가)</h4><br>
+        <p style="color : red" >이 특별 할인 요금은 환불되지 않습니다 따라서 이 예약을 변경하거나 취소하시는 경우 지불하신 금액은 환불되지 않습니다.</p>
       	<p>다른 문의 사항이 있으시면 이메일 또는 전화번호로 연락해 주시기 바랍니다.</p>
       	<p style="color: blue">자세한 사항은 캠핑스팟 고객센터를 이용해주시기 바랍니다.</p>
       	<p>항상 감사드립니다. 더 나은 캠핑스팟이 되겠습니다.</p>
-      </div>
-      <div id="jb-sidebar">
-        <h4>고객예약취소정보</h4>
-        <br>
+      	
       </div>
    
 		
    		<!--End Pattern HTML-->
 			</div>
+			<p><button type="button" class=" btn-success btn-block">메인으로 이동</button></p>
 		</div>
-		<button type="button" id="bt" class="btn btn-success ">메인으로 이동</button>
+		
 	</div>
 </div>
 <!-- BOTTOM -->
