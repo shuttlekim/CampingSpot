@@ -48,7 +48,7 @@ li a:hover:not(.active) {
 }
 #reviewList{
 	margin-top: -700px;
-	margin-left: 250px;
+	margin-left: 380px;
 }
 
 th{
@@ -66,6 +66,9 @@ th, td{
 #footers{
 	margin-top: 300px;
 	
+}
+#btnInsertCrr{
+	margin-left: 350px;
 }
 
 </style>
@@ -99,7 +102,8 @@ th, td{
  				var mc_id = $("<td></td>").html(cre.mc_id);
 				var cre_contents = $("<td></td>").html(cre.cre_content);
 				var cre_rate = $("<td></td>").html(cre.cre_rate);
-				var cre_date = $("<td></td>").html(moment(cre.cre_date).format("YYYY-MM-DD HH:MM:SS"));
+//				var cre_date = $("<td></td>").html(moment(cre.cre_date).format("YYYY-MM-DD HH:MM:SS"));
+				var cre_date = $("<td></td>").html(moment(cre.cre_date).format("YYYY-MM-DD"));
 				
 				// 댓글 대기 or 완료		
 				var re_check = $("<td></td>");
@@ -137,6 +141,10 @@ th, td{
 					// 2) 리뷰글 댓글 입력하기
 					$("#btnInsertCrr").click(function(){
 						$("#cre_no").val(cre_no);
+						if(cre_no != null){
+							alert("이미 등록한 댓글입니다.")
+							return false;
+						}
 						var ref = $("#reF").serialize();
 						$.ajax("/bossInsertCampinReviewRe.do",{data:ref, success:function(r){
 							alert(r);
