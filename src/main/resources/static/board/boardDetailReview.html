@@ -59,6 +59,9 @@ h5{
 .tex{
 	font-weight: bold;
 }
+#delete{
+	display: none;
+}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
@@ -80,7 +83,7 @@ $(function(){
 	var data = {"b_no":b_no[1]};
 	$.ajax("/detailBoard.do",{data:data, success:function(data){
 		var fname = data.b_fname.split(",");
-		$("#b_title").append(b_contents);
+		$("#b_title").append(data.b_contents);
 		$("#mc_id").append(data.mc_id);
 		$("#b_contents").append(data.b_contents);
 		var b_contents = $("<span></span>").html(data.b_contents);
@@ -153,6 +156,14 @@ $(function(){
 		for(var i=start; i<= end; i++){
 			var re = arrRe[i-1];
 			var idx = i-1;
+			
+			var mc_nickname; 
+			var mc_id;
+		    $.ajax({url:"/getMmeber.do", async:false, data:{"mc_id":re.mc_id}, success:function(r){
+		       mc_nickname = r.mc_nickname;   
+		       mc_id = r.mc_id
+		    }});
+			
 			var reMc_id = $("<span></span>").html(re.mc_id);
 			var reBr_contents = $("<span></span>").html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;"+re.br_contents);
 			var reBr_regdate = $("<span></span>").html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;"+re.br_regdate+"&nbsp;&nbsp;");
@@ -160,6 +171,14 @@ $(function(){
 				"idx":idx,
 				"no":re.br_no
 			});
+			
+			//댓글쓴 아이디랑 접속한 아이디가 같을때 삭제버튼이 보인다.
+			if(mc_id == memberID){
+				$(reBtn).css("display","block").css("display","inline");
+			}else if(mc_id != memberID){
+				$(reBtn).css("display","none");
+			} 
+			
 			var p = $("<p></p>").append(reMc_id,reBr_contents,reBr_regdate,reBtn);
 			$("#reList").append(p);
 			
