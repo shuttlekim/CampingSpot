@@ -92,7 +92,7 @@ td{
 		$("#bossRList").attr("href", "bossReservationList.html?cs_no="+cs_no);
 		$("#bossReviewList").attr("href", "bossReviewManage.html?cs_no="+cs_no);
 		$("#bossSales").attr("href", "salesManage.html?cs_no="+cs_no);
-		
+				
 		// 캠핑룸 목록 함수
 		function listCampingRoom(){
 			$("#crtb").empty();
@@ -191,7 +191,6 @@ td{
 										$.ajax("/updateCampingRoom.do",{data:crUpdate, success:function(r){
 											alert(r);
 											window.location.href="insertCampingRoom.html?cs_no="+cs_no;
-											//listCampingRoom();
 											$(".updateForm input").val("");
 										}});//end update Ajax
 								})//end #crUpdateOK
@@ -217,7 +216,6 @@ td{
 			var cr_no = $("#u_cr_no").val();
 			$.ajax("/deleteCampingRoom.do",{data:{"cr_no":cr_no}, success:function(r){
 				alert(r);
-				listCampingRoom();
 				$(".updateForm input").val("");
 			}});//end delete ajax
 			
@@ -283,11 +281,11 @@ td{
 						</tr>
 						<tr>
 							<th>체크인시간</th>
-							<th><input type="text" id="i_cr_checkin" name="cr_checkin" placeholder="예) 15시"></th>
+							<th><input type="text" id="i_cr_checkin" name="cr_checkin" onkeyup="inputTIme(this);" placeholder="예) 1500 or 1130" maxlength="5"></th>
 						</tr>
 						<tr>
 							<th>체크아웃시간</th>
-							<th><input type="text" id="i_cr_checkout" name="cr_checkout" placeholder="예) 11시"></th>
+							<th><input type="text" id="i_cr_checkout" name="cr_checkout" onkeyup="inputTIme(this);" placeholder="예) 1500 or 1130" maxlength="5"></th>
 						</tr>
 						<tr>
 							<th>캠핑요금</th>
