@@ -23,9 +23,8 @@ public class CsDVo {
 	private String mc_name;
 	private String mc_tel;
 	private String mc_email;
-	private Date r_date;
-	private int mc_point;
-	private int mc_price;
+	private String r_date;
+	private int r_price;
 	private String mc_id;
 	private int r_no;
 }

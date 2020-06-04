@@ -439,7 +439,6 @@ $(function(){
 
 	$("#footers").load("/main/footer.html");
 	
-	myReservationList();
 	
 	$.ajax("/profile.do",{data:{"mc_id":mc_id}, success:function(data){
 		arr = data;
@@ -461,7 +460,7 @@ $(function(){
 	}}); 
 
 	
-	function myReservationList(){	
+	
 	var data = {mc_id : mc_id ,	r_no : r_no};
 	$.ajax("/myReservationDetail.do", {data : data, success : function(r) {
 		arr = r;
@@ -475,13 +474,15 @@ $(function(){
 			var cs_camp_fname3 = $("<img></img>").attr({"src":"/resources/camping_spot_img/"+camp_fname[2]});
 			var cs_name = $("<hr width='auto'><li></li><br>").html("캠핑장 이름  : " + r.cs_name);
 			var cs_addr_remain = $("<li></li><br>").html("캠핑장 주소  : " + r.cs_addr_remain);		
-			var mc_tel = $("<li></li><br>").html("고객전화번호 : " + r.mc_tel);	
+			var mc_tel = $("<li></li><br>").html("고객전화번호 : " + r.mc_tel);
+			var mc_email = $("<li></li><br>").html("이메일 : " + r.mc_email);
 			var cr_type = $("<li></li><br>").html("캠핑장 타입 : " + r.cr_type);
 			var r_checkin = $("<li></li><br>").html("체크인 날짜 : " + r.r_checkin);
-			var r_checkout = $("<li></li><br><hr>").html("체크아웃 날짜 : " + r.r_checkout);
-			var r_date = $("<li></li>")
+			var r_checkout = $("<li></li><br>").html("체크아웃 날짜 : " + r.r_checkout);
+			var r_date = $("<li></li><br>").html("결제일 : " + r.r_date);
+			var r_price = $("<li></li><br><hr>").html("결제금액 : " + r.r_price+"원");
 			var mc_name = $("<li></li><br>").html("이 캠핑장은 " + r.mc_name + "님 이름으로 예약 되어 있습니다.");
-			 
+			
 			$("#img1").append(cs_camp_fname1);
 			$("#img2").append(cs_camp_fname2);
 			$("#img3").append(cs_camp_fname3);
@@ -494,14 +495,13 @@ $(function(){
 				window.location.href= "https://map.kakao.com/link/to/"+arr[idx].cs_name+","+arr[idx].cs_lati+","+arr[idx].cs_long;
 				
 			});
-			$(ul).append(loadview, cs_name, cs_addr_remain, mc_tel , cr_type ,r_checkin, r_checkout, mc_name);
+			$(ul).append(loadview , cs_name , cs_addr_remain , mc_tel , mc_email , cr_type ,r_checkin, r_checkout, r_date, r_price, mc_name);
 			$(".col-md-9").append(ul);
 		});
 
 
 		}});
-	
-	}
+
 	
 	$("#btnDeleteMember").click(function(){			
 		

@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CrLVo {
 
+	
 	   private String cs_camp_fname;
 	   private String cs_name;
 	   private int cre_no;
