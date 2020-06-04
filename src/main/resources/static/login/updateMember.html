@@ -125,8 +125,11 @@ $(function(){
 		$("#mc_email").val(r.mc_email);
 		$("#mc_name").val(r.mc_name);
 		$("#mc_nickname").val(r.mc_nickname);
-		$("#mc_tel").val(r.mc_tel);					
+		$("#mc_tel").val(r.mc_tel);			
 	}})
+	
+	var mc_taste = r.mc_taste;
+	alert(mc_taste);
 	
 	$("#btnUpdateOk").click(function(){
 				
@@ -169,6 +172,10 @@ $(function(){
 
 	$("#footers").load("/main/footer.html");
 		
+	
+	/////////////////////////////////체크 박스 불러오기 테스트///////////////////////////////
+
+	
 });
 </script>
 </head>
