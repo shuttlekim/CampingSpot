@@ -14,12 +14,12 @@
 	<!-- 예약내역 -사용전 -->
 <select id="myReservationList" resultType="CsRVo">
 
-	select b.cs_no, cs_name, cs_camp_fname, b.r_no, b.mc_id, b.r_cancel, b.r_checkin, b.r_checkout
-	from camping_spot cs, (select cs_no, a.r_no, a.mc_id, a.r_cancel, a.r_checkin, a.r_checkout 
+	select b.cs_no, cs_name, cs_camp_fname, b.r_no, b.mc_id, b.r_cancel, b.r_checkin, b.r_checkout , b.r_price
+	from camping_spot cs, (select cs_no, a.r_no, a.mc_id, a.r_cancel, a.r_checkin, a.r_checkout ,a.r_price
 	from camping_room cr, (select cr_no, r_no, mc_id, r_cancel, TO_CHAR(r_checkin,'YYYY-MM-DD') r_checkin, 
-	TO_CHAR(r_checkout,'YYYY-MM-DD') r_checkout from reservation where mc_id = #{mc_id})a 
+	TO_CHAR(r_checkout,'YYYY-MM-DD') r_checkout , r_price from reservation where mc_id = #{mc_id})a 
 	where cr.cr_no = a.cr_no) b
-	where cs.cs_no = b.cs_no
+	where cs.cs_no = b.cs_no order by b.r_checkin desc
 
 
 </select>   
@@ -54,7 +54,7 @@ select mc_fname, mc_point , mc_name from member_customer where mc_id = #{mc_id}
 
 <select id="myReservationDetail" resultType="CsDVo">
 select cs_camp_fname, cs_lati ,cs_long , cs_name , TO_CHAR(r_checkin,'YYYY-MM-DD') r_checkin, TO_CHAR(r_checkout,'YYYY-MM-DD') r_checkout, cr_type , cs_addr_remain , mc_name, mc_tel , mc_email , 
-r_date,mc_point, mc.mc_id, r_price, r_no from camping_spot cs , reservation r , member_customer mc , camping_room cr  where  r.cr_no = 
+TO_CHAR(r_date,'YYYY-MM-DD') r_date ,mc_point, mc.mc_id, r_price, r_no from camping_spot cs , reservation r , member_customer mc , camping_room cr  where  r.cr_no = 
 cr.cr_no and cr.cs_no = cs.cs_no and r.mc_id = mc.mc_id and mc.mc_id = #{mc_id} and r_no = #{r_no}
 </select>
 
@@ -79,9 +79,9 @@ camping_spot cs where cw.mc_id = mc.mc_id and cw.cs_no = cs.cs_no and mc.mc_id =
 
 <!-- 캠핑후기 리스트 -->
 <select id="myReviewList" resultType="CrLVo">
-  select cs.cs_camp_fname , cs.cs_name , cre.cre_no, cre_content, cre_rate, TO_CHAR(cre_date,'YYYY-MM-DD') cre_date , mc_id, crer.mb_id, cs.cs_no, crer.cre_re_contents
-  from camping_review cre, camping_review_re crer, camping_spot cs
-  where cs.cs_no = cre.cs_no and cre.cre_no=crer.cre_no(+) and mc_id = #{mc_id}
+  select cs.cs_camp_fname , cs.cs_name , cre.cre_no, cre_content, cre_rate, TO_CHAR(cre_date,'YYYY-MM-DD') cre_date , mc.mc_id, mc.mc_nickname , mb.mb_nickname , crer.mb_id, cs.cs_no, crer.cre_re_contents
+  from camping_review cre, camping_review_re crer, camping_spot cs , member_customer mc , member_business mb 
+  where mb.mb_id=crer.mb_id and cre.mc_id = mc.mc_id and cs.cs_no = cre.cs_no and cre.cre_no=crer.cre_no(+) and mc.mc_id = #{mc_id}
 </select>
 
 <!-- 리뷰쓰기 -->

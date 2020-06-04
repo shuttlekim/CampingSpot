@@ -125,9 +125,9 @@ $(function(){
 		$("#mc_email").val(r.mc_email);
 		$("#mc_name").val(r.mc_name);
 		$("#mc_nickname").val(r.mc_nickname);
-		$("#mc_tel").val(r.mc_tel);					
+		$("#mc_tel").val(r.mc_tel);			
 	}})
-	
+		
 	$("#btnUpdateOk").click(function(){
 				
 		var uploadFile = $("#uploadFile").val();
@@ -157,7 +157,7 @@ $(function(){
 	
 		if(result == true){
 			$.ajax("/deleteMember.do", {data:{"mc_id":mc_id}, success:function(r){}});
-		    alert("잘가요...");
+			alert("그동안 CAMPINGSPOT을 이용해주셔서 감사합니다.");
 		    sessionStorage.clear();
 			window.location.href = "/main/main.html";
 		}else{
@@ -231,7 +231,7 @@ $(function(){
 					<td><input type="hidden" name="mc_auth" value="3"></td>
 				</tr>		
 			</table>
-		</form><br><br><br>
+		</form><br><br>
 		<button id="btnUpdateOk" type="button" style="margin:0 auto;align:center;width: 220px;height: 40px;font-size: 20px;cursor: pointer">수정하기</button>
 		<button id="btnDeleteMember">회원탈퇴</button>
 		</div>

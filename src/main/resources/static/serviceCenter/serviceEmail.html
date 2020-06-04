@@ -58,6 +58,7 @@
 	#btnSend:active {
 	  	background-color: #ff586c;
 	}
+
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -91,7 +92,6 @@ $(function(){
 				alert("메일전송 실패!!!");
 			}	
 		}});//ajax 종료
-		location.href = "../main/main.html";
 		
 	});	//btnSend 종료
 	
@@ -100,6 +100,9 @@ $(function(){
 
 	$("#footers").load("/main/footer.html");
 		
+	
+	document.getElementById("#content").style.fontSize = '20px;'
+	
 });
 </script>
 </head>
@@ -132,7 +135,7 @@ $(function(){
 						<input type="text" name="email" placeholder="답장 받으실 E-MAIL" id="email" style="width:300px; border:groove;">
 					</p><br>
 					<p>					
-						<textarea rows="20" cols="55" placeholder="문의내용 작성해 주세요." id="content" font-size="20px" style="border:groove;"></textarea>
+						<textarea rows="20" cols="52" placeholder="문의내용 작성해 주세요." id="content" font-size="15px" style="border:groove;"></textarea>
 					</p>
 					
 					<p><br><br>

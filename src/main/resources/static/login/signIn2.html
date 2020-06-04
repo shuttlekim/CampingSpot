@@ -40,7 +40,7 @@
 	 	outline: 1px solid #9F9F9F;
 		top: 20px;
 	  	width: 300px;
-		height: 750px;
+		height: 780px;
 		border: hidden;
 		box-shadow: 5px 5px 5px 5px;
 	}
@@ -148,7 +148,7 @@ $(function(){
 		if(check == 1){
 			var business =  new FormData(document.getElementById("join"));
 			$.ajax("/signIn2.do", {data:business, processData:false, contentType:false, type:"POST", success:function(r){
-				alert("축! 가입축하 적립금 1000점! \n 로그인 페이지로 이동!");
+				alert("회원가입 성공\n로그인 페이지로 이동!");
 				window.location.href = "/login/login.html";
 			}}); 
 		}else{
@@ -204,7 +204,7 @@ $(function(){
 
 	<!-- MIDDLE -->
 <div class="body-wrap" style="height: 800px">
-	<div style="margin: 0 auto; width: 700px" align="center" class="middle">
+	<div style="margin: 0 auto; width: 750px" align="center" class="middle">
 	<br>
 	<h1 style="font-family:Nanum Gothic;font-size: 40px">회원가입</h1>
 	<hr width="300px"><br><br>
@@ -249,7 +249,7 @@ $(function(){
 					<tr>
 						<td><input type="hidden" name="mb_auth" id="mb_auth" value="3"></td>
 					</tr>
-				</table><br><br><br>
+				</table><br><br>
 				<button id="btnJoinOk" type="button" style="margin:0 auto;align:center;width: 220px;height: 40px;font-size: 20px;cursor: pointer">회원가입</button>
 			</form>			
 		</div>

@@ -395,12 +395,14 @@ $(function(){
 			var cs_camp_fname3 = $("<img></img>").attr({"src":"img/"+camp_fname[2]});
 			var cs_name = $("<li></li>").html("캠핑장이름 : " + r.cs_name);
 			var cs_addr_remain = $("<li></li>").html("캠핑장 주소 : " + r.cs_addr_remain);
-			var mc_tel = $("<li></li>").html("고객전화번호 : " + r.mc_tel);
+			var mc_tel = $("<li></li>").html("연락처 : +82" + r.mc_tel);
+			var mc_email = $("<li></li>").html("이메일 : " + r.mc_email);
 			var cr_type = $("<li></li>").html("캠핑장 타입 : " + r.cr_type);
 			var r_checkin = $("<li></li>").html("체크인 날짜 : " + r.r_checkin);
 			var r_checkout = $("<li></li>").html("체크아웃 날짜 : " + r.r_checkout);
+			var r_date = $("<li></li>").html("결제일 : " + r.r_date);
+			var r_price = $("<li></li>").html("결제금액 : " + r.r_price);
 			var mc_name = $("<li></li>").html("이 캠핑장은 " + r.mc_name + "님 이름으로 예약 되어 있습니다.");
-			var mc_tel = $("<li></li>").html(r.mc_tel);
 			
 			$("#img1").append(cs_camp_fname1);
 			$("#img2").append(cs_camp_fname2);
@@ -416,7 +418,7 @@ $(function(){
 			});
 			
 			
-			$(ul).append(loadview, cs_name, cs_addr_remain, mc_tel , cr_type ,r_checkin, r_checkout, mc_name);
+			$(ul).append(loadview , cs_name , cs_addr_remain , mc_tel , mc_email , cr_type ,r_checkin, r_checkout, r_date, r_price, mc_name);
 			$(".col-md-9").append(ul);
 		});
 
