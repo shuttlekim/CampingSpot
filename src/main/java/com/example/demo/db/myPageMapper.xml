@@ -47,7 +47,7 @@
 <select id="profile" resultType="ProfileVo">
 select mc_fname, mc_point , mc_name from member_customer where mc_id = #{mc_id}
 </select>
-
+ 
 
 
 <!-- 예약정보확인 -->
