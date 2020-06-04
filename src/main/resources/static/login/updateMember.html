@@ -157,7 +157,7 @@ $(function(){
 	
 		if(result == true){
 			$.ajax("/deleteMember.do", {data:{"mc_id":mc_id}, success:function(r){}});
-		    alert("잘가요...");
+			alert("그동안 CAMPINGSPOT을 이용해주셔서 감사합니다.");
 		    sessionStorage.clear();
 			window.location.href = "/main/main.html";
 		}else{
