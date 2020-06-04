@@ -113,12 +113,13 @@ td{
 					var cr_price = $("<td></td>").html(cr.cr_price);
 					var cr_peak_price = $("<td></td>").html(cr.cr_peak_price);
 				
-					var cr_type = cr.cr_type
-					if(cr_type == "glamping"){
+					//var cr_type = cr.cr_type
+					var cr_type = $("<td></td>").html(cr.cr_type)
+					if(cr.cr_type == "glamping"){
 						cr_type = $("<td></td>").html("글램핑");
-					}else if(cr_type == "caravan" ){
+					}else if(cr.cr_type == "caravan" ){
 						cr_type = $("<td></td>").html("카라반");
-					}else if(cr_type == "auto"){
+					}else if(cr.cr_type == "auto"){
 						cr_type = $("<td></td>").html("오토캠핑");
 					}
 					
