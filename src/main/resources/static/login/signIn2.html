@@ -148,7 +148,7 @@ $(function(){
 		if(check == 1){
 			var business =  new FormData(document.getElementById("join"));
 			$.ajax("/signIn2.do", {data:business, processData:false, contentType:false, type:"POST", success:function(r){
-				alert("축! 가입축하 적립금 1000점! \n 로그인 페이지로 이동!");
+				alert("회원가입 성공\n로그인 페이지로 이동!");
 				window.location.href = "/login/login.html";
 			}}); 
 		}else{
