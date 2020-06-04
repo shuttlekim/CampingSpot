@@ -6,24 +6,23 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	#main_title{
-		float: left;
-		margin: 22px 20px 2px 20px;
+	
+	.main_first_section{
+	    margin-top : 300px;
 	}
-	#main_title h2{
-		all: unset;
-		font-size: 1.5em;
-		font-weight: bold;
+	.main_first_title{
+		font-size : 4em;
+		font-weight: 300;
+		position: relative;
+		top: -50px;
+		left: 700px;
+		
 	}
-	#main_menu{
-		float: left;
-		margin: 27px 20px 2px 0;
+	.main_first_title span{
+	    font-weight: bold;
 	}
-	#main_menu i{
-		transform: scale(1.5);
-	}
-	.head_section{
-		height: 53px;
+	.main_second_section{
+	    margin-top : 500px;
 	}
 	.main_search{
 		display: flex;
@@ -70,6 +69,8 @@
     }
     #main_btn_search{
     	cursor: pointer;
+    	width: 60px;
+    	height: 30px
     }
     #listThumb{
     	cursor: pointer;
@@ -107,6 +108,7 @@
 		var thisMonth = today.getMonth()+1;
 		console.log(thisMonth);
 		var festivalList;
+	
 		
 		//메인페이지로 넘어오면 결제정보는 사라집니다.
 		sessionStorage.removeItem("reservation_data");
@@ -234,20 +236,7 @@
 		$("#main_sitemap").click(function(){
 			alert("사이트맵 입니다.");
 		})
-		
-		//메뉴 버튼
-		$("#main_menu").click(function(){
-			
-			if(menu==false){
-				
-				$(".main_menu_bar").css('display','flex')
-				menu = true
-			}else{
-				
-				$(".main_menu_bar").css('display','none')
-				menu = false
-			}
-		})
+
 		
 		//검색 버튼
 		$("#main_btn_search").click(function(){
@@ -279,55 +268,82 @@
 		$("#boardFree").click(function(){
 			location.href = "/board/boardFree.html";
 		}); */
+		
+		//메인아이콘 클릭
+		$("#main_icon").click(function(){
+			if(menu == false){
+				$("#main_status").animate({left:350}, 500)
+				$("#main_bar").animate({left:460}, 500)
+				menu = true;
+			}else {
+				$("#main_status").animate({left:0}, 500);
+				$("#main_bar").animate({left:1000}, 500)
+				menu = false;
+			}
+		})
+		
+		//메뉴 버튼
+		$("#main_bar").hover(function(){
+			$("#main_menu_section").animate({top:50}, 500)
+			$(".main_menu_bar").css('left',0)	
+		}, function(){
+			
+		})
+		$(".main_menu_bar").hover(function(){
+			$("#main_menu_section").animate({top:50}, 500)
+		},function(){
+			$("#main_menu_section").animate({top:-100}, 500)
+		})
 	})
 </script>
 </head>
 <body>
-	<div class="head_section">
-			<div id="main_title">
-				<h2 onclick="location.href='/main/main.html'" style="cursor: pointer;">CAMPINGSPOT</h2>
-			</div>
-			<div id="main_menu">
-				<i class="fas fa-bars" style="cursor: pointer;"></i>
-			</div>
-			<div id="main_status">
-				<span id="main_login">로그인</span>			
-				<span id="main_logout" style="width: auto;">로그아웃</span>&nbsp&nbsp|&nbsp&nbsp
-				<span id="main_signup">회원가입</span><span id="main_mypage" style="width: auto;">마이페이지</span><span id="MyBusinessPage">사업자페이지</span><span id="main_admin">관리자페이지</span>&nbsp&nbsp|&nbsp&nbsp
-				<span id="main_sitemap">사이트맵</span>
-			</div>
+    <div id="head_section">
+		<div class="head_section">
+				<div id="main_title">
+					<h2 onclick="location.href='/main/main.html'" style="cursor: pointer;">CAMPINGSPOT</h2>
+				</div>
+				<div id="main_icon">
+					<i class="fas fa-ellipsis-v"></i>
+				</div>
+				<div id="main_status">
+					<span id="main_login">로그인</span>			
+					<span id="main_logout" style="width: auto;">로그아웃</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<span id="main_signup">회원가입</span><span id="main_mypage" style="width: auto;">마이페이지</span><span id="MyBusinessPage">사업자페이지</span><span id="main_admin">관리자페이지</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<span id="main_sitemap">사이트맵</span>
+				</div>
+				<div id="main_bar">
+					<span id="">검색하기</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<span id="">축제이야기</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<span id="">커뮤니티</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<span id="">고객센터</span>
+				</div>
 		</div>
+	</div>
+	<div id="main_menu_section">
+		<div class="main_menu_section">
+			<div class="main_menu_bar">
+					<div>
+						<div id="goSearch">캠핑검색</div>
+					</div>
+					<div>
+						<div id="goFestival">지역축제</div>
+					</div>
+					<div class="menu_span">
+						<div id="boardNotice">공지사항</div>
+						<div id="boardReview">캠핑후기</div>
+						<div id="boardFree">자유게시판</div>
+					</div>
+					<div>
+						<div id="faq">FAQ</div>
+						<div id="qna">QnA</div>
+					</div>
+			</div>	
+		</div>
+	</div>
 		<!-- <hr> -->
-	<div>
-		<div class="main_menu_bar">
-			<div>
-				<h4>검색SPOT</h4>
-				<ul>
-					<li>캠핑장 검색</li>
-				</ul>
-			</div>
-			<div>
-				<h4>축제이야기</h4>
-				<ul>
-					<li id="festivalStory">지역축제</li>
-				</ul>
-			</div>
-			<div>
-				<h4>커뮤니티</h4>
-				<ul>
-					<li id="boardNotice">공지사항</li>
-					<li id="boardReview">캠핑후기</li>
-					<li id="boardFree">자유게시판</li>
-				</ul>
-			</div>
-			<div>
-				<h4>고객센터</h4>
-				<ul>
-					<li id="faq">FAQ</li>
-					<li id="qna">QnA</li>
-				</ul>
-			</div>
-		</div>
+	<div class="main_first_section">
+		<div><span class="main_first_title"><span>지금 바로</span> 떠나자</div>
 		<div>
 			<video id="video" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
 		      		<source src="../resources/main_video_update.mp4">
@@ -353,11 +369,11 @@
 					<input type="text" name="keyword" placeholder="검색어를 입력하세요."/>
 				</form>
 				&nbsp;&nbsp;
-				<button id="main_btn_search">검색</button>
+				<button id="main_btn_search">검 색</button>
 			</div>
 		</div>
 		
-		<div>			
+		<div class="main_second_section">			
 			
 			<div class="main-festival">
 				<h2><i class="fas fa-quote-right"></i></h2>

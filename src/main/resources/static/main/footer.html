@@ -314,9 +314,11 @@
 		border-radius:7px;
 	}
 	#main_status{
+	    position: relative;
 		float: right;
 		margin: 22px 20px 2px 20px;
 		display: flex;
+		font-weight: bold;
 	}
 	#main_status span{
 		width: auto;
@@ -371,20 +373,77 @@
 		top:-34px;
 		margin:20px auto;
 	}
+	#main_title{
+		position: relative;
+		top: -7px;
+		float: left;
+		margin: 22px 20px 2px 20px;
+	}
+	#main_title h2{
+		all: unset;
+		font-size: 1.5em;
+		font-weight: bold;
+	}
+	#main_menu{
+		float: left;
+		margin: 27px 20px 2px 0;
+	}
+	#main_menu i{
+		transform: scale(1.5);
+	}
+	#main_icon {
+		float: right;
+		position: relative;
+		top: 22px;
+		margin: 0 20px;
+	}
+	#main_bar {
+		float: left;
+		position: relative;
+		left: 1000px;
+		margin: 22px 20px 2px 20px;
+		display: flex;
+		font-weight: bold;
+	}
+	#head_section{
+		position: fixed;
+		top: 0;
+		width: 100%;
+		background: #fff;
+		z-index: 999;
+	}
+	.main_menu_section{
+		position: relative;
+		width: 1120px;
+		margin: 0 auto;
+
+	}
+	.head_section{
+		height: 53px;
+		overflow: hidden;
+	}
+	#main_menu_section{
+		position: fixed;
+		top: -100px;
+		width: 100%;
+		background: #fff;
+		z-index: 990;
+	}
 	.main_menu_bar{
-		display: none;
-		position: absolute;
+		position: relative;
+		display: flex;
 		min-width: 882px;
 		width:auto;
-		left: 200px;
-		padding: 20px;
-		padding-right: 45px;
-		background-color: rgba(250,250,250,0.8);
+		padding-top: 20px;
+		margin: 0 10px 30px 695px;
 		color: #666;
 		z-index: 2;
 	}
 	.main_menu_bar div{
-		margin-right: 100px;
+		margin-right: 17px;
+	}
+	.menu_span{
+		margin-left: 15px;
 	}
 	.chkRsvHead{
 		width: 100px;
@@ -524,6 +583,9 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+		
+		
+		
 		//메뉴위치이동
 		$(window).on('resize', function(){
 			
