@@ -410,8 +410,8 @@ $(function(){
 					var ReviewList_div = $("<div class='li-text'></div>").attr("idx", idx);
 					var cs_name = $("<br><h4 class='li-head'></h4><br>").html(r.cs_name);
 					var cre_date =  $("<p class='li-summary'></p><br>").html("등록일: " +r.cre_date);
-					var cre_content = $("<p></p>").html(r.mc_id+ " 님의 후기 : " +r.cre_content);
-					var cre_re_contents = $("<p></p>").html(r.mb_id + " 님의 댓글 : " +r.cre_re_contents);
+					var cre_content = $("<p></p>").html(r.mc_nickname + " 님의 후기 : " +r.cre_content);
+					var cre_re_contents = $("<p></p>").html(r.mb_nickname + " 님의 댓글 : " +r.cre_re_contents);
 					var button = $("<button type='button' class='margin_right btn btn-danger btn-sm'></button>").attr("idx", idx).html("삭제");
 					
 					
@@ -420,23 +420,25 @@ $(function(){
 					var no = {cre_no : arr[idx].cre_no };
 						$.ajax("/deleteMyReview", {data : no, success : function(r) {
 							window.location.href = "/login/myPageReviewList.html";
-							alert("완료");
 						}});
 					});
-					
-					if(r.cs_name != null){			
-					
-					$(div_li_img).append(cs_camp_fname);
-					$(ReviewList_div).append(div_li_img, cs_name, cre_date, cre_content, cre_re_contents, button);
-					$(a).append(ReviewList_div);
-					$("#li").append(a);
-					
-					}else if(r.cs_name == null){
+							
+					if(r.mb_nickname != null ){
 						
-						var Message2 = $("<h3 class='li-head'></h3>").html("예약내역이 없습니다...");
-						$(".profile-content").append(Message2);
-				
+						$(div_li_img).append(cs_camp_fname);
+						$(ReviewList_div).append(div_li_img, cs_name, cre_date, cre_content, cre_re_contents, button);
+						$(a).append(ReviewList_div);
+						$("#li").append(a);
+						
+					}else{
+						
+						$(div_li_img).append(cs_camp_fname);
+						$(ReviewList_div).append(div_li_img, cs_name, cre_date, cre_content, button);
+						$(a).append(ReviewList_div);
+						$("#li").append(a);
+						
 					}
+					
 				});
 			}});
 		

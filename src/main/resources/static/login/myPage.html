@@ -493,10 +493,10 @@ $(function(){
 						console.log(today);
 						console.log(checkout);
 						if(today.getTime() > checkout.getTime()){
-							alert("리뷰를 쓸수 있어요. 체크아웃 시간이 지나야 쓸 수 있습니다.");
+							alert("리뷰를 쓸수 있어요.");
 							window.location.href="/login/reviewMyReservation.html?mc_id="+arr[idx].mc_id+"&cs_no="+arr[idx].cs_no;	
 						}else{
-							alert("리뷰를 쓸수 없어요.");
+							alert("리뷰를 쓸수 없어요. 체크아웃 시간이 지나야 쓸 수 있습니다.");
 						}
 					});
 					
@@ -505,15 +505,36 @@ $(function(){
 				if(c.r_cancel != null){
 					
 				if(c.r_cancel == 0){
+					var idx = $(reservation_div).attr("idx");
+					var checkout = new Date(arr[idx].r_checkout);
+					var today = new Date();
+					console.log(today);
+					console.log(checkout);
+					
+					if(today.getTime() > checkout.getTime()){
+						
 					
 					$(div_li_img).append(cs_camp_fname);
-					$(button_div).append(button1 , button2, review_button);
+					$(button_div).append(button1 , review_button);
 					$(reservation_content).append(cs_name, checkin, checkindetail, button_div, message);
 					$(reservation_div).append(div_li_img , reservation_content);
 					$(a).append(reservation_div);
 					$("#li").append(a);
 					$(button_div).css("display" ,"table-cell");
 					$(message).css("display" , "none");
+					
+					}else if(today.getTime() < checkout.getTime()){
+						
+						$(div_li_img).append(cs_camp_fname);
+						$(button_div).append(button1 , button2, review_button);
+						$(reservation_content).append(cs_name, checkin, checkindetail, button_div, message);
+						$(reservation_div).append(div_li_img , reservation_content);
+						$(a).append(reservation_div);
+						$("#li").append(a);
+						$(button_div).css("display" ,"table-cell");
+						$(message).css("display" , "none");
+						
+					}
 					
 				}else if(c.r_cancel == 1){
 					
