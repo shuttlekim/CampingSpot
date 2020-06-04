@@ -55,6 +55,13 @@ li a:hover:not(.active) {
 	padding-top : 0px;
 	margin-left: 100px;
 }
+
+/* #columnchart_values{
+	position : absolute;
+	top: 1000px;
+	left: 900px;
+} */
+
 #content_all{
 	margin-left:260px;
 	margin-top:-940px;
@@ -183,8 +190,8 @@ font-size: 12px;
 		
 		// 구글챠트
 		chartData = [["Element","이용자수",{role:"style"}]];
-		console.log("month:" +month)
-		 $.ajax("/bossChart.do",{data:{"cs_no":cs_no}, success:function(r){
+
+		 $.ajax("/bossChart.do",{data:{"cs_no":cs_no, "month":month}, success:function(r){
 			$.each(r,function(idx,s){
 				console.log(s.cnt)
 				chartData.push([s.cr_name,s.cnt,"pink"]);

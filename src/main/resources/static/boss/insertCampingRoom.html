@@ -23,7 +23,7 @@
 .line {
 	float:left;
 	border-left: 2px solid black;
-	height: 550px;
+	height: 900px;
 	margin-right: 50px;
 }
 ul {
@@ -64,12 +64,10 @@ li a:hover:not(.active) {
 	font-weight: bold;
 	padding: 10px;
 }
-
 td{
 	padding: 10px;
 	border: 1px solid black;
 }
-
 .insertForm, .updateForm{
 	margin-top : -10px;
 	margin-left: 260px;
@@ -208,8 +206,7 @@ td{
 			var cr_no = $("#u_cr_no").val();
 			$.ajax("/deleteCampingRoom.do",{data:{"cr_no":cr_no}, success:function(r){
 				alert(r);
-				//listCampingRoom();
-				window.location.href="insertCampingRoom.html?cs_no="+cs_no;
+				listCampingRoom();
 				$(".updateForm input").val("");
 			}});//end delete ajax
 			
