@@ -71,6 +71,7 @@ li a:hover:not(.active) {
 		var mb_id = sessionStorage.getItem("businessId");
 				
 		var cs_no;
+		
 		function findCsno(){
 			//cs_no 번호 가져오기
 			$.ajax("/getCsNo.do",{data:{"mb_id":mb_id}, async : false, success:function(r){
@@ -89,9 +90,12 @@ li a:hover:not(.active) {
 		$("#bossRList").attr("href", "bossReservationList.html?cs_no="+cs_no);
 		$("#bossReviewList").attr("href", "bossReviewManage.html?cs_no="+cs_no);
 		$("#bossSales").attr("href", "salesManage.html?cs_no="+cs_no);
-		
+						
 		// 캠핑장 등록하기
 		$("#csInsert").click(function(){
+			
+			var num = ("#cs_tel").val();
+			focus(num);
 			
 			$("#mb_id").val(mb_id);
 			var cs = new FormData(document.getElementById("f"));
@@ -147,15 +151,12 @@ li a:hover:not(.active) {
 				<h2>캠핑장 등록</h2>
 				<table width = "700">
 					<tr>
-						
-					</tr>
-					<tr>
 						<th>캠핑장명</th>
 						<td><input type="text" name="cs_name" id="cs_name" placeholder="캠핑장명을 입력하세요" required="required" style="width: 250px;"></td>
 					</tr>
 					<tr>
 						<th>캠핑장전화</th>
-						<td><input type="text" name="cs_tel" id="cs_tel" placeholder="010-1234-5678" required="required" style="width: 250px;"></td>
+						<td><input type="text" name="cs_tel" id="cs_tel" placeholder="숫자만 입력하세요" maxlength="13" required="required" style="width: 250px;"></td>
 					</tr>
 					<tr>
 						<th>캠핑장주소1</th>
