@@ -6,15 +6,9 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style type="text/css">
-
-/***
-User Profile Sidebar by @keenthemes
-A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
-Licensed under MIT
-***/
-
-
-
+body{
+background-color: #93B874;; 
+}
 
 * { 
     -moz-box-sizing: border-box; 
@@ -153,7 +147,13 @@ input[type=search] {
     display: table-row;
     overflow: hidden;
 }
-
+.li-img{
+	width: 40%;
+}
+.li-img img{
+	width: 400px;
+}
+/*
 .li-img {
     display: table-cell;
     vertical-align: middle;
@@ -166,7 +166,7 @@ input[type=search] {
     width: 100%;
     height: auto;
 }
-
+*/
 .li-text {
     display: table-cell;
     vertical-align: middle;
@@ -199,7 +199,7 @@ input[type=search] {
 @media screen and (min-width: 60em) {
     .list li {
         float: left;
-        width: 50%;
+        width: 100%;
     }
     .inner {
         padding-right: 1em;
@@ -213,6 +213,7 @@ body {
 /* Profile container */
 .profile {
   margin: 20px 0;
+  
 }
 
 /* Profile sidebar */
@@ -345,6 +346,16 @@ body {
 		font-size: 25px;
 		//border: double;
 	}
+	#btn{
+		display: table-cell;
+	}
+	#wish{
+		display: flex;
+		width: 100%;
+	}
+	.wishList_content{
+		margin: 10px 20px;
+	}
 	.col-md-9{
 		 box-shadow: -60px 0px 10px -90px #000000,
         60px 0px 100px -90px #000000;
@@ -353,6 +364,10 @@ body {
 	.profile-sidebar{
 		box-shadow: -60px 0px 10px -90px #000000,
         60px 0px 100px -90px #000000;
+	}
+	img{
+		width: 100%;
+		height: 100%;
 	}
 
 </style>
@@ -411,14 +426,19 @@ $(function(){
 				arr = r;
 				$.each(arr, function(idx , w){
 					var a = $("<a class='inner'></a>");
-					var wishList_div = $("<div class='li-text'></div>").attr("idx", idx);
+					
+					var wishList_div = $("<div id='wish' class='li-text'></div>").attr("idx", idx);
+					var button_div = $("<div id='btn' class='li-btn'></div>").attr("idx", idx);
 					var str = w.cs_camp_fname;
 					var camp_fname = str.split(",");
 					var cs_camp_fname = $("<img></img>").attr({"src":"/resources/camping_spot_img/"+camp_fname[0]}).css("border-radius", "2em");
 					var div_li_img = $("<div class='li-img'></div>");
 					var cs_name = $("<br><br><h4 class='li-head'></h4><br>").html(w.cs_name);
 					var cs_addr_remain = $("<p class='li-summary'></p>").html(w.cs_addr_remain);
-					var button = $("<br><button type='button' class='btn btn-danger btn-sm'><br><br>").attr("idx", idx).html("삭제");
+					var button_div = $("<div class='li-btn'></div>").attr("idx", idx);
+					var button = $("<br><button type='button' id='btn' class='btn btn-danger btn-sm'><br><br>").attr("idx", idx).html("삭제");
+					
+					var wishList_content = $("<div class='wishList_content'></div>");
 					
 					$(button).click(function() {
 						var idx = $(this).attr("idx");
@@ -427,10 +447,12 @@ $(function(){
 								window.location.href = "/login/myPageWishList.html";
 							}});
 					});
-					$(div_li_img).append(cs_camp_fname)
-					$(wishList_div).append(cs_camp_fname, cs_name, cs_addr_remain);
+					$(div_li_img).append(cs_camp_fname);
+					$(button_div).append(button);
+					$(wishList_content).append(cs_name, cs_addr_remain, button_div);
+					$(wishList_div).append(div_li_img, wishList_content);
 					$(a).append(wishList_div);
-					$("#li").append(a , button);
+					$("#li").append(a);
 				});
 			}});
 		

@@ -21,7 +21,7 @@
 	from camping_room cr, (select cr_no, r_no, mc_id, r_cancel, TO_CHAR(r_checkin,'YYYY-MM-DD') r_checkin, 
 	TO_CHAR(r_checkout,'YYYY-MM-DD') r_checkout , r_price from reservation where mc_id = #{mc_id})a 
 	where cr.cr_no = a.cr_no) b
-	where cs.cs_no = b.cs_no order by b.r_checkin desc
+	where cs.cs_no = b.cs_no order by b.r_checkout desc
 	
 </select>
 
