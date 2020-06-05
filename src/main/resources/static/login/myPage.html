@@ -387,11 +387,65 @@ body {
 		width: 100%;
 		height: 100%;
 	}
+	/*======================================================*/
+	
+	
+#back-to-top {
+  display: inline-block;
+  background-color: #FF9800;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 4px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  transition: background-color .3s, 
+    opacity .5s, visibility .5s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+}
+#back-to-top::after {
+  content: "\f077";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2em;
+  line-height: 50px;
+  color: #fff;
+}
+#back-to-top:hover {
+  cursor: pointer;
+  background-color: #333;
+}
+#back-to-top:active {
+  background-color: #555;
+}
+#back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $(function(){	
 	var arr;
+	
+	$('#back-to-top').on('click',function(e){
+        e.preventDefault();
+        $('html,body').animate({scrollTop:0},600);
+	});
+
+	$(window).scroll(function() {
+		if ($(document).scrollTop() > 100) {
+		  $('#back-to-top').addClass('show');
+		} else {
+		  $('#back-to-top').removeClass('show');
+		}
+	});
+	
 	
 	var mc_id = sessionStorage.getItem("memberId");
 	var mc_auth = sessionStorage.getItem("auth");
@@ -637,12 +691,15 @@ $(function(){
 </head>
 <body style="background:#EFF2F4">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
 <!-- TOP  -->
+  <a id="back-to-top"></a>
 <div class="top" id="header" style="background: white;"></div>
+
 <div class="container">
 	<!-- MIDDLE -->
 	<div class="body_wrap">
@@ -698,6 +755,7 @@ $(function(){
 				<!-- END MENU -->
 			</div>
 		</div>
+		
 		<div class="col-md-9" style="background: white;  border-radius: 2em;">
             <div class="profile-content" style= "margin-top: 2px;">
             
@@ -717,7 +775,7 @@ $(function(){
 	</div>
 </div>
 <!-- BOTTOM -->
-</div>  
+</div>
 </div><br>
 
 <div id="footers" class="bottom"></div>
