@@ -55,7 +55,6 @@
 
 
 <!-- 예약정보확인 -->
-
 <select id="myReservationDetail" resultType="CsDVo">
 	select cs_camp_fname, cs_lati ,cs_long , cs_name , TO_CHAR(r_checkin,'YYYY-MM-DD') r_checkin, TO_CHAR(r_checkout,'YYYY-MM-DD') r_checkout, cr_type , cs_addr_remain , mc_name, mc_tel , mc_email , 
 	TO_CHAR(r_date,'YYYY-MM-DD') r_date ,mc_point, mc.mc_id, r_price, r_no from camping_spot cs , reservation r , member_customer mc , camping_room cr  where  r.cr_no = 
