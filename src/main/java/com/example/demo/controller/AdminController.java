@@ -324,4 +324,14 @@ public class AdminController {
 		str = gson.toJson(list);
 		return str;
 	}
+	@RequestMapping(value = "/todayclose", produces="application/json;charset=utf-8")
+	public int todayclose(String an_no, String userId) {
+		String str="";
+		System.out.println("an_no : " + an_no);
+		System.out.println("userId : " + userId);
+		int list = an_dao.todayclose(an_no,userId);
+		Gson gson = new Gson();
+//		str = gson.toJson(list);
+		return list;
+	}
 }

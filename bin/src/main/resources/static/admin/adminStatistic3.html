@@ -1,8 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shortcut icon" href="/resources/profile/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/resources/profile/favicon.ico" type="image/x-icon">
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.container{
+  width: 1000px;
+  margin: 0 auto;
+}
+.container div{
+  text-align: center;
+  display: table;
+}
+.container div span{
+  display: table-cell;
+  vertical-align: middle;
+}
+.top{
+
+}
+.middle{
+  margin-top: 20px;
+  width: 1000px;
+  height: 500px;
+  position: relative;
+}
+.middle-center{
+  outline: 1px solid #9F9F9F;
+  top: 0px;
+  width: 1000px;
+  height: 800px;
+  background-color: #00D8FF;
+}
+
+.bottom{
+
+}
+</style>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -10,9 +46,9 @@
 
 var chartData;
 	google.charts.load('current', {packages:['corechart']});
-	google.charts.setOnLoadCallback(drawChartDistrict);
+	google.charts.setOnLoadCallback(drawChartData);
 
-	function drawChartDistrict() {
+	function drawChartData() {
 		// 차트 데이터 설정
 		var data = google.visualization.arrayToDataTable(chartData);
 		
@@ -36,7 +72,7 @@ var chartData;
 				position : 'none' // 항목 표시 여부 (현재 설정은 안함)
 			}
 		};
-		var chart = new google.visualization.ColumnChart(document.getElementById('chart_district'));
+		var chart = new google.visualization.ColumnChart(document.getElementById('chart_campingRank'));
 		chart.draw(view, options);
 	}
 
@@ -44,7 +80,10 @@ var chartData;
 	
 
 $(function(){
-	$("#left").load("menubar.html");
+	$("#header").load("/main/header.html");	
+	$("#footers").load("/main/footer.html");
+	
+	$("#left").load("/admin/menubar.html");
 			
 		
 			 chartData = [
@@ -59,13 +98,13 @@ $(function(){
 			
 			
 			$("#btn_district").click(function(){
-				window.location.href="adminStatistic.html";
+				window.location.href="/admin/adminStatistic.html";
 			});
 			$("#btn_campType").click(function(){
-				window.location.href="adminStatistic2.html";
+				window.location.href="/admin/adminStatistic2.html";
 			});
 			$("#btn_campingRank").click(function(){
-				window.location.href="adminStatistic3.html";
+				window.location.href="/admin/adminStatistic3.html";
 			});
 
 });
@@ -75,19 +114,37 @@ $(function(){
 </script>
 </head>
 <body>
+<!-- TOP  -->
+	<div class="top" id="header">
+	   <span>TOP (1000 x 80) <br/> #FF5E00;</span>
+	</div>
+
+	<div class="container">
+	<!-- MIDDLE -->
+	  <div class="middle">
+<!-- 	    <div class="middle-center"> <span>LEFT (600 x 500) <br/> #00D8FF;</span> </div> -->
+
 <div id="left"></div>
 <div id="contents" style="margin-left:25%;padding:1px 16px;height:1000px;">
 <br>
-<button type="button" id="btn_district">지역별 예약 통계</button>
-<button type="button" id="btn_campType">캠핑타입별 예약 통계</button>
+<div style="text-align: center;">
+<button type="button" id="btn_district">지역별 예약 통계</button>&nbsp;
+<button type="button" id="btn_campType">캠핑타입별 예약 통계</button>&nbsp;
 <button type="button" id="btn_campingRank">캠핑장 순위</button>
+</div>
 <br>
 <hr>
 
-	<div id="chart_district" style="width: 800px; height: 600px;"></div>
-	<div id="chart_campType" style="width: 800px; height: 600px;" ></div>
 	<div id="chart_campingRank" style="width: 800px; height: 600px;"></div>
-	<div></div>
 </div>
+
+ </div>  
+	</div>
+			
+	<br>
+
+	<!-- BOTTOM -->
+  <div id="footers" class="bottom"> <span>BOTTOM (1000 x 100) <br/> #5D5D5D;</span> </div>
+
 </body>
 </html>

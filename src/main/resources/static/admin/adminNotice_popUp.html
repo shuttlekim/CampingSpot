@@ -28,12 +28,19 @@ input {
 table {
 	font-size: 12px;
 }
+#todayclose{
+	font-size: 12px;
+}
+.textsection{
+	width:600px;
+}
+
 
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		window.resizeTo(700,600);
+		window.resizeTo(700,500);
 		var an_no = location.search.substring(location.search.indexOf("=")+1);
 		$.ajax("/detailAdminNotice.do",{data:{"an_no":an_no}, success:function(data){
 				$("#an_title").val(data.an_title);
@@ -42,9 +49,24 @@ table {
 				$("#mc_id").val(data.mc_id);
 			}});	
 		
-		
-		
-		
+		$("#btn_popup").click(function(){
+			if($("#todayclose").is(":checked")){
+				var userId;
+				if(sessionStorage.getItem("businessId") == null){
+					userId = sessionStorage.getItem("memberId");
+				}else{
+					userId = sessionStorage.getItem("businessId");
+				}
+				alert(userId);
+				
+				$.ajax("/todayclose",{data:{an_no:an_no,userId:userId},success:function(data){
+					alert("오늘 다시 보지않기 저장 되었습니다.");
+					window.close();
+				}});
+			}else{
+				window.close();
+			}
+		});
 	});
 </script>
 </head>
@@ -53,28 +75,21 @@ table {
 <br>
 
 <div id="pop_up" >
-	<table>
+	<table style="width:700px;" align="center">
 		<tr>
 			<td>제목</td>
-			<td><input id="an_title" readonly="readonly" ></td>
+			<td><input id="an_title" readonly="readonly" class="textsection" ></td>
 		</tr>
 		<tr>
 			<td>내용</td>
-			<td><textarea id="an_content" rows="15", cols="80" readonly="readonly"></textarea></td>
-		</tr>
-		<tr>
-			<td>등록일</td>
-			<td> <input id="an_regdate" readonly="readonly"></td>
-		</tr>
-		<tr>
-			<td>작성자</td>
-			<td><input id="mc_id" readonly="readonly"></td>
+			<td><textarea id="an_content" rows="15" cols="80" readonly="readonly"  style="resize: none;"  class="textsection"></textarea></td>
 		</tr>
 	</table>
 </div>
 	<br>
 	<div align="center">
-	<button id="btn_popup" onclick="window.close()">닫기</button>
+	<div><input type="checkbox" id="todayclose" name="todayclose"  style="width:15px;height:15px;">오늘은 그만보기   <button id="btn_popup">닫기</button></div>
+	
 	</div>
 
 </body>

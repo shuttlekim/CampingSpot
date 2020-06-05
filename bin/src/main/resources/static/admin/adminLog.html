@@ -1,17 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shortcut icon" href="/resources/profile/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/resources/profile/favicon.ico" type="image/x-icon">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.active{
-		background: pink;
-	}
+.container{
+  width: 1000px;
+  margin: 0 auto;
+}
+.container div{
+  text-align: center;
+  display: table;
+}
+.container div span{
+  display: table-cell;
+  vertical-align: middle;
+}
+.top{
+
+}
+.middle{
+  margin-top: 20px;
+  width: 1000px;
+  height: 500px;
+  position: relative;
+}
+.middle-center{
+  outline: 1px solid #9F9F9F;
+  top: 0px;
+  width: 1000px;
+  height: 800px;
+  background-color: #00D8FF;
+}
+
+.bottom{
+
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {background-color:#f5f5f5;}
 </style>
+<script type="text/javascript" src="http://jsgetip.appspot.com"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$("#left").load("menubar.html");
+		$("#header").load("/main/header.html");	
+		$("#footers").load("/main/footer.html");
+		
+		$("#left").load("/admin/menubar.html");
+		
+		
+// 		var warik = ip();
+// 		alert(warik);
 		
 		function adminLogList(){
 		$.getJSON("/adminLogList.do", function(data){
@@ -19,24 +71,18 @@
 				var tr = $("<tr></tr>").attr("idx",idx);
 				var td1 = $("<td/>").html(al.al_no);
 				var td2 = $("<td/>").html(al.al_regdate);
-				var td3 = $("<td/>").html(al.al_cancel);
-				var td4 = $("<td/>").html(al.al_ip);
+				if(al.al_cancel == 0){
+					var td3 = $("<td/>").html("예약취소");
+				}else if(al.al_cancel == 1){
+					var td3 = $("<td/>").html("예약완료");
+				}else{
+					var td3 = $("<td/>").html("");
+				}
+				
 				var td5 = $("<td/>").html(al.r_no);
-				$(tr).append(td1,td2,td3,td4,td5);
+				$(tr).append(td1,td2,td3,td5);
 				$("#tbody").append(tr);
 					
-				$(tr).click(function(){
-// 					$("#am_tb").empty();
-					$("tr").removeClass("active");
-					$(this).addClass("active");
-					
-					var idx = $(this).attr("idx");
-					var al_no = data[idx].al_no;
-// 					var an_no = data[idx].an_no;
-// 					window.location.href="detail_an.html?an_no="+an_no;
-					window.open('/admin/adminMember_detail.html?mc_id='+mc_id, 'popup', 'width=700, height=500, scrollbars= 0, toolbar=0, menubar=no');
-
-				});
 			});
 		});
 		}
@@ -46,25 +92,45 @@
 </script>
 </head>
 <body>
-<div id="left"></div>
-<div id="contents" style="margin-left:25%;padding:1px 16px;height:1000px;">
+<!-- TOP  -->
+	<div class="top" id="header">
+	   <span>TOP (1000 x 80) <br/> #FF5E00;</span>
+	</div>
 
-<h2>이력내역</h2>
-<br>
-<hr>
-<br>
-<table id="am_tb" border="1" width=70%>
-	<thead>
-	<tr>
-		<th>로그No.</th>
-		<th>로그발생일</th>
-		<th>결제상태</th>
-		<th>아이피</th>
-		<th>예약번호</th>
-	</tr>
-	</thead>
-	<tbody id="tbody"></tbody>
-</table>
-</div>
+	<div class="container">
+	<!-- MIDDLE -->
+	  <div class="middle">
+<!-- 	    <div class="middle-center"> <span>LEFT (600 x 500) <br/> #00D8FF;</span> </div> -->
+	    	<div id="left"></div>
+			<div id="contents" style="margin-left:25%;padding:1px 16px;height:1000px;">
+			<h2>이력내역</h2>
+			<br>
+			<br>
+			<table id="am_tb" style="font-size: 16px;">
+				<thead>
+				<tr>
+					<th>로그No.</th>
+					<th>로그발생일</th>
+					<th>결제상태</th>
+					<th>예약번호</th>
+				</tr>
+				</thead>
+				<tbody id="tbody"></tbody>
+			</table>
+			</div>
+	  </div>  
+	</div>
+			
+			<br>
+
+	<!-- BOTTOM -->
+  <div id="footers" class="bottom"> <span>BOTTOM (1000 x 100) <br/> #5D5D5D;</span> </div>
+
+
+
+
+
+
+
 </body>
 </html>

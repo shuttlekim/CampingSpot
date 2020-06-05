@@ -161,4 +161,10 @@ public class AdminDao {
 	public List<AdminNoticeVo> getAnNo(String userId){
 		return AdminDBManager.getAnNo(userId);
 	}
+	
+	public int todayclose(String an_no,String userId){
+		return AdminDBManager.todayclose(an_no,userId);
+	}
+	
+	
 }

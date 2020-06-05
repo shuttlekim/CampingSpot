@@ -1,59 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="shortcut icon" href="/resources/profile/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/resources/profile/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/resources/profile/favicon.ico"
+	type="image/x-icon">
+<link rel="icon" href="/resources/profile/favicon.ico"
+	type="image/x-icon">
 <meta charset="UTF-8">
 <style type="text/css">
-
-.container{
-  width: 1000px;
-  margin: 0 auto;
-}
-.container div{
-  text-align: center;
-  display: table;
-}
-.container div span{
-  display: table-cell;
-  vertical-align: middle;
-}
-.top{
-
-}
-.middle{
-  margin-top: 20px;
-  width: 1000px;
-  height: 500px;
-  position: relative;
-}
-.middle-center{
-  outline: 1px solid #9F9F9F;
-  top: 0px;
-  width: 1000px;
-  height: 800px;
-  background-color: #00D8FF;
+.container {
+	width: 1000px;
+	margin: 0 auto;
 }
 
-.bottom{
+.container div {
+	text-align: center;
+	display: table;
+}
 
+.container div span {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.top {
+	
+}
+
+.middle {
+	margin-top: 20px;
+	width: 1000px;
+	height: 500px;
+	position: relative;
+}
+
+.middle-center {
+	outline: 1px solid #9F9F9F;
+	top: 0px;
+	width: 1000px;
+	height: 800px;
+	background-color: #00D8FF;
+}
+
+.bottom {
+	
 }
 
 table {
-  border-collapse: collapse;
-  width: 100%;
-  font-size: 11pt;
+	border-collapse: collapse;
+	width: 100%;
+	font-size: 11pt;
 }
 
 th, td {
-  padding: 8px;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
+	padding: 8px;
+	text-align: center;
+	border-bottom: 1px solid #ddd;
 }
 
-tr:hover {background-color:#f5f5f5;}
+tr:hover {
+	background-color: #f5f5f5;
+}
 </style>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $(function(){	
 
@@ -66,7 +75,6 @@ $(function(){
 	getAnNo();
 	
 	function authList(){
-// 		$("#auth_tb").empty();
 		$.getJSON("/adminList.do", function(data){
 			$.each(data, function(idx,auth){
 				var tr = $("<tr></tr>").attr("idx",idx);
@@ -79,16 +87,13 @@ $(function(){
 				$(tr).append(td1,td2,td3,td4,td5,td6);
 				$("#auth_tb").append(tr);
 					
-// 				$(tr).attr("idx",idx);
 				$(tr).click(function(){
 					$("tr").removeClass("active");
 					$(this).addClass("active");
 					
 					var idx = $(this).attr("idx");
 					var mc_id = data[idx].mc_id;
-// 					window.location.href="detail_an.html?an_no="+an_no;
 					window.open('/admin/adminAuth_detail.html?mc_id='+mc_id, 'popup', 'width=700, height=600, scrollbars= 0, toolbar=0, menubar=no');
-// 					var a = $("<a href='detail_an.html?an_no='+an_no; onclick='window.open(this.href, '_blank', 'width=300px,height=300px,toolbars=no,scrollbars=no'); return false;></a>");
 
 				});
 			});
@@ -100,8 +105,6 @@ $(function(){
 			var wintype = "toolbar=no,width=100,height500,top=150,left=150,directories=no,menubar=no,scrollbars=yes";
 		    window.open('/admin/adminAuth_insert.html', 'popup', 'width=800, height=600, scrollbars= 0, toolbar=0, menubar=no');
 		});
-		
-		
 		
 	});
 	
@@ -117,47 +120,51 @@ $(function(){
 				window.open('/admin/adminNotice_popUp.html?an_no='+pop.an_no, "_blank", 'popup', 'width=700, height=500, scrollbars= 0, toolbar=0, menubar=no');
 			});
 		}}); 
-	}
+	}	
 </script>
 </head>
 <body>
 
 	<!-- TOP  -->
-	<div class="top" id="header">
-	   <span>TOP (1000 x 80) <br/> #FF5E00;</span>
+	<div class="top" id="header"></div>
+	<div class="body-wrap">
+
+		<div class="container">
+			<!-- MIDDLE -->
+			<div class="middle">
+				<!-- 	    <div class="middle-center"> <span>LEFT (600 x 500) <br/> #00D8FF;</span> </div> -->
+				<div id="left"></div>
+				<div id="contents"
+					style="margin-left: 25%; padding: 1px 16px; height: 500px;">
+					<h2>권한관리</h2>
+					<br>
+					<div align="left">
+						<button id="btnAdd">등록</button>
+					</div>
+					<hr>
+					<br>
+					<table id="auth_tb" border="1">
+						<tr>
+							<th>관리자ID</th>
+							<th>관리자명</th>
+							<th>이메일</th>
+							<th>연락처</th>
+							<th>등록일</th>
+							<th>최근접속일</th>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<br>
 	</div>
 
-	<div class="container">
-	<!-- MIDDLE -->
-	  <div class="middle">
-<!-- 	    <div class="middle-center"> <span>LEFT (600 x 500) <br/> #00D8FF;</span> </div> -->
-	    	<div id="left"></div>
-			<div id="contents" style="margin-left:25%;padding:1px 16px;height:500px;">
-			<h2>권한관리</h2>
-			<br>
-			<div align="left">
-			<button id="btnAdd">등록</button>
-			</div>
-			<hr>
-			<br>
-			<table id="auth_tb" border="1">
-				<tr>
-					<th>관리자ID</th>
-					<th>관리자명</th>
-					<th>이메일</th>
-					<th>연락처</th>
-					<th>등록일</th>
-					<th>최근접속일</th>
-				</tr>
-			</table>
-			</div>
-	  </div>  
-				</div>
-			
-			<br>
-
 	<!-- BOTTOM -->
-  <div id="footers" class="bottom"> <span>BOTTOM (1000 x 100) <br/> #5D5D5D;</span> </div>
+	<div id="footers" class="bottom">
+		<span>BOTTOM (1000 x 100) <br /> #5D5D5D;
+		</span>
+	</div>
 
 
 </body>

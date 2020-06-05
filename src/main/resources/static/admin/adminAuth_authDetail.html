@@ -48,6 +48,7 @@ table {
 		
 		document.getElementById('mc_regdate').valueAsDate = new Date();
 		document.getElementById('mc_recdate').valueAsDate = new Date();
+		
 
 		$("#btnUpdate").click(function(){
 			var mc_id = location.search.substring(location.search.indexOf("=")+1);
@@ -55,21 +56,15 @@ table {
 			var updateForm = $("#updateForm").serialize();
 			$.ajax("/updateAdminList.do",{data:updateForm,success:function(data){
 				alert("등록하였습니다.");
-				window.opener.location.reload(); 
-				self.close();
-// 				window.location.href="adminAuth.html";
+				window.top.location.reload(true);
+// 				self.close();
+				
+// 				window.location.href="/admin/adminAuth_insert.html";
 			}});
 		});
-		
-		
-		
 		$("#btnBack").click(function(){
-			opener.location.reload();
-			self.close();
-		})
-		
-
-		
+				window.location.href="/admin/adminAuth_insert.html";
+		});
 	});
 	
 </script>

@@ -104,7 +104,22 @@ SELECT *
                          FROM member_business)
                 WHERE mc_id = #{userId} -- 로그인한 사람의 ID를 화면에서 받아야함
                ))
+   AND an_no NOT IN (SELECT an_no
+                       FROM todayclose
+                      WHERE to_char(tc_date, 'yyyymmdd') = to_char(SYSDATE, 'yyyymmdd')
+                        AND userid = #{userId})
  ORDER BY an_no DESC
 </select>  
+  
+  <insert id="inserttodayclose">
+	INSERT INTO todayclose
+	(an_no
+	,userid
+	,tc_Date)
+	VALUES
+	(#{an_no}
+	,#{userId}
+	,SYSDATE)
+  </insert>
   
 </mapper>
