@@ -5,17 +5,9 @@
 <mapper namespace="myPage">
 <!-- 현성 -->
 
-
-<!-- 위시리스트 추가 -->
-	<insert id="insertWish">
-		insert into camping_wish values(wish_seq.nextval, #{mc_id}, #{cs_no})
-	</insert>
-
-
-
-	<!-- 예약내역 -사용전 -->
+<!-- 예약내역 -->
 <select id="myReservationList" resultType="CsRVo">
-
+	
 	select b.cs_no, cs_name, cs_camp_fname, b.r_no, b.mc_id, b.r_cancel, b.r_checkin, b.r_checkout , b.r_price
 	from camping_spot cs, (select cs_no, a.r_no, a.mc_id, a.r_cancel, a.r_checkin, a.r_checkout ,a.r_price
 	from camping_room cr, (select cr_no, r_no, mc_id, r_cancel, TO_CHAR(r_checkin,'YYYY-MM-DD') r_checkin, 
@@ -25,44 +17,17 @@
 	
 </select>
 
-
-
-<!-- 예약내역 - 사용전 -->
-  <!--  	<![CDATA[
-  	select cs_camp_fname, cs_no, cs_name , r_checkin ,r_checkout from (select 
-   cs.cs_camp_fname, cs.cs_no, cs.cs_name , res.r_checkin ,res.r_checkout from reservation res, camping_room cr, camping_spot cs
-   where cs.cs_no = cr.cs_no and cr.cr_no = res.cr_no and res.mc_id = 'test1234') 
-   where to_char(r_checkout, 'YY/MM/DD')   <  to_char(sysdate, 'YY/MM/DD')		
-   ]]> -->
- 
-<!-- 예약내역 - 사용후 -->
-  	<!-- <![CDATA[
-  	select cs_camp_fname, cs_no, cs_name 
-  	, r_checkin ,r_checkout from (select 
-   cs.cs_camp_fname, cs.cs_no, cs.cs_name , res.r_checkin ,res.r_checkout from reservation res, camping_room cr, camping_spot cs
-   where cs.cs_no = cr.cs_no and cr.cr_no = res.cr_no and res.mc_id = 'test1234') 
-   where to_char(r_checkout, 'yyyy-mm-dd')   <  to_char(sysdate, 'yyyy-mm-dd')		
-   ]]> -->
-
-   
-   
-   
 <!-- 프로필정보 -->  
 <select id="profile" resultType="ProfileVo">
 	select mc_fname, mc_point , mc_name from member_customer where mc_id = #{mc_id}
 </select>
  
-
-
 <!-- 예약정보확인 -->
 <select id="myReservationDetail" resultType="CsDVo">
 	select cs_camp_fname, cs_lati ,cs_long , cs_name , TO_CHAR(r_checkin,'YYYY-MM-DD') r_checkin, TO_CHAR(r_checkout,'YYYY-MM-DD') r_checkout, cr_type , cs_addr_remain , mc_name, mc_tel , mc_email , 
 	TO_CHAR(r_date,'YYYY-MM-DD') r_date ,mc_point, mc.mc_id, r_price, r_no from camping_spot cs , reservation r , member_customer mc , camping_room cr  where  r.cr_no = 
 	cr.cr_no and cr.cs_no = cs.cs_no and r.mc_id = mc.mc_id and mc.mc_id = #{mc_id} and r_no = #{r_no}
 </select>
-
-
-
 
 <!-- 예약취소확인 -->
 <select id="requestCancel" resultType="CsCVo">
@@ -71,15 +36,11 @@
 	cr.cr_no and cr.cs_no = cs.cs_no and r.mc_id = mc.mc_id and mc.mc_id = #{mc_id} and r_no = #{r_no}
 </select>
 
-
-
 <!-- 위시리스트 -->
 <select id="myWishList" resultType="WishVo">
 	select cw_no, mc_name,cs_name, cs_camp_fname, cs_addr_remain from camping_wish cw, member_customer mc, 
 	camping_spot cs where cw.mc_id = mc.mc_id and cw.cs_no = cs.cs_no and mc.mc_id = #{mc_id} 
 </select>
-
-
 
 <!-- 캠핑후기 리스트 -->
 <select id="myReviewList" resultType="CrLVo">
@@ -97,6 +58,11 @@
 <delete id="deleteMyReview">
 	delete from camping_review where cre_no = #{cre_no}
 </delete>
+
+<!-- 위시리스트 추가 -->
+	<insert id="insertWish">
+		insert into camping_wish values(wish_seq.nextval, #{mc_id}, #{cs_no})
+	</insert>
 
 <!-- 위시리스트 삭제 -->
 <delete id="deleteMyWish">

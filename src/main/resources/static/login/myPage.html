@@ -383,7 +383,7 @@ body {
 		box-shadow: -60px 0px 10px -90px #000000,
         60px 0px 100px -90px #000000;
 	}
-	img{
+	#img{
 		width: 100%;
 		height: 100%;
 	}
@@ -431,7 +431,7 @@ $(function(){
 				var a = $("<a class='inner'></a>");
 				var str = c.cs_camp_fname;
 				var camp_fname = str.split(",");
-				var cs_camp_fname = $("<img></img>").attr({"src":"/resources/camping_spot_img/"+camp_fname[0]}).css("border-radius", "2em");
+				var cs_camp_fname = $("<img id='img'></img>").attr({"src":"/resources/camping_spot_img/"+camp_fname[0]}).css("border-radius", "2em");
 				var div_li_img = $("<div class='li-img'></div>");
 				var reservation_div = $("<div id='res' class='li-text'></div>").attr("idx", idx);
 				
@@ -691,7 +691,7 @@ $(function(){
 						<li id="li3">
 							<a id="a3" href="/login/myPageWishList.html">
 							<i class="glyphicon glyphicon-ok"></i>
-							위시리스트 </a>
+							위시리스트</a>
 						</li>
 					</ul>
 				</div>
