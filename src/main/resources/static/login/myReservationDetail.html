@@ -466,22 +466,22 @@ $(function(){
 		arr = r;
 		$.each(arr, function(idx, r){
 			var ul = $("<ul></ul>");
-			var loadview = $("<img src='/resources/profile/kakaomap.png' width='130px' style='border-radius: 10px; cursor: pointer;'><p style='cursor: pointer;'>[카카오 길찾기 바로가기]</p><br>").attr("idx", idx);
+			var loadview = $("<img src='/resources/profile/kakaomap.png' width='130px' style='border-radius: 10px; cursor: pointer;'><p style='cursor: pointer;'>[카카오 길찾기 바로가기]</p><br>").attr("idx", idx).css("align", "center");
 			var str = r.cs_camp_fname;
 			var camp_fname = str.split(",");
 			var cs_camp_fname1 = $("<img></img>").attr({"src":"/resources/camping_spot_img/"+camp_fname[0]});
 			var cs_camp_fname2 = $("<img></img>").attr({"src":"/resources/camping_spot_img/"+camp_fname[1]});
 			var cs_camp_fname3 = $("<img></img>").attr({"src":"/resources/camping_spot_img/"+camp_fname[2]});
-			var cs_name = $("<hr width='auto'><li></li><br>").html("캠핑장 이름  : " + r.cs_name);
-			var cs_addr_remain = $("<li></li><br>").html("캠핑장 주소  : " + r.cs_addr_remain);		
-			var mc_tel = $("<li></li><br>").html("고객전화번호 : " + r.mc_tel);
-			var mc_email = $("<li></li><br>").html("이메일 : " + r.mc_email);
-			var cr_type = $("<li></li><br>").html("캠핑장 타입 : " + r.cr_type);
-			var r_checkin = $("<li></li><br>").html("체크인 날짜 : " + r.r_checkin);
-			var r_checkout = $("<li></li><br>").html("체크아웃 날짜 : " + r.r_checkout);
-			var r_date = $("<li></li><br>").html("결제일 : " + r.r_date);
-			var r_price = $("<li></li><br><hr>").html("결제금액 : " + r.r_price+"원");
-			var mc_name = $("<li></li><br>").html("이 캠핑장은 " + r.mc_name + "님 이름으로 예약 되어 있습니다.");
+			var cs_name = $("<hr width='auto'><li></li><br>").html("&nbsp;&nbsp;캠핑장 이름  : " + r.cs_name);
+			var cs_addr_remain = $("<li></li><br>").html("&nbsp;&nbsp;캠핑장 주소  : " + r.cs_addr_remain);		
+			var mc_tel = $("<li></li><br>").html("&nbsp;&nbsp;고객전화번호 : " + r.mc_tel);
+			var mc_email = $("<li></li><br>").html("&nbsp;&nbsp;이메일 : " + r.mc_email);
+			var cr_type = $("<li></li><br>").html("&nbsp;&nbsp;캠핑장 타입 : " + r.cr_type);
+			var r_checkin = $("<li></li><br>").html("&nbsp;&nbsp;체크인 날짜 : " + r.r_checkin);
+			var r_checkout = $("<li></li><br>").html("&nbsp;&nbsp;체크아웃 날짜 : " + r.r_checkout);
+			var r_date = $("<li></li><br>").html("&nbsp;&nbsp;결제일 : " + r.r_date);
+			var r_price = $("<li></li><br><hr>").html("&nbsp;&nbsp;결제금액 : " + r.r_price+"원");
+			var mc_name = $("<li></li><br>").html("&nbsp;&nbsp; 이 캠핑장은 " + r.mc_name + "님 이름으로 예약 되어 있습니다.");
 			
 			$("#img1").append(cs_camp_fname1);
 			$("#img2").append(cs_camp_fname2);
@@ -496,11 +496,11 @@ $(function(){
 				
 			});
 			$(ul).append(loadview , cs_name , cs_addr_remain , mc_tel , mc_email , cr_type ,r_checkin, r_checkout, r_date, r_price, mc_name);
-			$(".col-md-9").append(ul);
+			$("#info").append(ul);
+			$(".col-md-9").append("#info");
+			
 		});
-
-
-		}});
+	}});
 
 	
 	$("#btnDeleteMember").click(function(){			
@@ -641,7 +641,9 @@ Licensed under MIT
 
 	<!-- <img src="/resources/profile/kakaomap.png" width="130px" style="border-radius: 10px">  -->
 	<!--End Pattern HTML-->
+				
 			</div>
+			<div id="info" style="border-radius: 2em; background-color: #E0ECF8;" ></div>
 		</div>
 	</div>
 </div>
