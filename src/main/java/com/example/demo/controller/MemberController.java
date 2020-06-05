@@ -285,7 +285,7 @@ public class MemberController {
 		map.put("mc_point", mc_point);
 		map.put("mc_id", mc_id);
 		System.out.println("==========포인트사용컨트롤러==========");
-		System.out.println("사용한포인트: "+mc_point);
+		System.out.println("사용하고update할 포인트: "+mc_point);
 		System.out.println("사용한ID: "+mc_id);
 		String str = "포인트수정 실패";
 		int re = dao.updatePoint(map);
