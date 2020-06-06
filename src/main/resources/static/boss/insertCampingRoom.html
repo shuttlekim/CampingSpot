@@ -217,6 +217,7 @@ td{
 			var cr_no = $("#u_cr_no").val();
 			$.ajax("/deleteCampingRoom.do",{data:{"cr_no":cr_no}, success:function(r){
 				alert(r);
+				window.location.href="insertCampingRoom.html?cs_no="+cs_no;
 				$(".updateForm input").val("");
 			}});//end delete ajax
 			
@@ -313,7 +314,7 @@ td{
 				</form>
 				<br>
 				<button id="crInsert">캠핑룸등록</button>
-				<button id="crUpdate">캠핑룸수정</button>
+				<button id="crUpdate">캠핑룸수정 / 삭제</button>
 				<button id="crReset">취소</button>
 				<br>
 				</div>
