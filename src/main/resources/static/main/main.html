@@ -8,7 +8,7 @@
 <style type="text/css">
 	
 	.main_first_section{
-	    margin-top : 400px;
+	    margin-top : 150px;
 	}
 	.first_title_section{
 		width: 1120px;
@@ -27,9 +27,16 @@
 	}
 	.main_first_detail{
 		padding: 100px 40px;
-		font-size: 3em;
-		font-weight: 700;
+		font-size: 2em;
+		font-weight: 400;
 		text-align: left;
+	}
+	.main_first_detail div{
+		position: relative;
+		text-align: right;
+	}
+	.main_first_detail span{
+		font-weight: 900;
 	}
 	.main_second_section{
 	    margin-top : 500px;
@@ -82,7 +89,15 @@
     	width: 60px;
     	height: 30px
     }
-    
+    #main_festival_title{
+    	font-size: 2em;
+    }
+    .main-festival-head{
+    	
+    }
+    .fancy{
+    	color: #ff586c;
+    }
     #listThumb{
     	cursor: pointer;
     }
@@ -284,7 +299,7 @@
 		$("#main_icon").click(function(){
 			if(menu == false){
 				$("#main_status").animate({left:350}, 500);
-				$("#main_bar").animate({left:460}, 500);
+				$("#main_bar").animate({left:423}, 500);
 				menu = true;
 				$("#main_menu_section").css("display","block");
 			}else {
@@ -356,10 +371,10 @@
 		</div>
 	</div>
 		<!-- <hr> -->
-	<div class="main_first_section">
-		<div class="first_title_section">
+	<div class="main_first_section"> 
+		<!-- <div class="first_title_section">
 			<span class="main_first_title"><span>쉽고 빠르게</span> 찾으세요</span>
-		</div>
+		</div> -->
 			<video id="video" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
 		      		<source src="../resources/main_video_update.mp4">
 			</video>
@@ -387,15 +402,17 @@
 				<button id="main_btn_search">검 색</button>
 			</div>
 		</div>
-		<div class="main_first_detail">
-			<div>여러분이 원하는 캠핑장을</div>
-			<div>찾아드립니다</div>
-		</div>
+		<!-- <div class="main_first_detail">
+			<div>캠핑에</div>
+			<div>축제의 즐거움을 더하다</div>
+		</div> -->
 		<div class="main_second_section">			
-			
+			<!-- <div class="main-festival-head">캠핑에 축제의 <span class="fancy">즐거움</span>을 더하다</div> -->
 			<div class="main-festival">
+				<div id="main_festival_title">
 				<h2><i class="fas fa-quote-right"></i></h2>
-				<h2><span id="thisMonth"></span> 월의 축제 이야기</h2>
+				<!-- <h2>캠핑에 축제의 <span class="fancy">즐거움</span>을 더하다</h2> -->
+				<h2><span id="thisMonth"></span> 월의 축제 이야기</h2></div>
 				<span class="subtit">그날의 생생했던 기억, 행복한 웃음, 축제의 설렘을 캠핑과 함께 느껴보세요.</span>
 				
 			</div>

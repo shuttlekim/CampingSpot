@@ -282,12 +282,12 @@ $(function(){
    // fixed nav
    var target = $('.search_detail_search');
    var lnb = target.offset().top;
-   var offsetVal = 743;
+   var offsetVal = 640;
    var contentOffsetL = $('#detail').offset().left;
 	$(window).scroll(function(){
 	  	var window = $(this).scrollTop();
-	  	console.log(contentOffsetL);
-
+	  	//console.log(contentOffsetL);
+		//console.log(window);
 	    if(window >= offsetVal){
 /* 	    	target.addClass("fixed"); */
 	    	target.parent().addClass('fixed');
