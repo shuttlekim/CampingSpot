@@ -84,7 +84,7 @@ public class MypageController {
 		List<WishVo> list6 = dao.myWishList(wish);
 		Gson gson = new Gson();
 		str = gson.toJson(list6);
-		System.out.println(str);
+		System.out.println("나의 위시리스트 출력:"+str);
 		return str;
 	}
 

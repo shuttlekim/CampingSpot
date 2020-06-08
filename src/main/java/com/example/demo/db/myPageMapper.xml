@@ -46,7 +46,7 @@
 <select id="myReviewList" resultType="CrLVo">
 	  select cs.cs_camp_fname , cs.cs_name , cre.cre_no, cre_content, cre_rate, TO_CHAR(cre_date,'YYYY-MM-DD') cre_date , mc.mc_id, mc.mc_nickname , mb.mb_nickname , crer.mb_id, cs.cs_no, crer.cre_re_contents
 	  from camping_review cre, camping_review_re crer, camping_spot cs , member_customer mc , member_business mb 
-	  where mb.mb_id=crer.mb_id and cre.mc_id = mc.mc_id and cs.cs_no = cre.cs_no and cre.cre_no=crer.cre_no(+) and mc.mc_id = #{mc_id}
+	  where mb.mb_id=cs.mb_id and cre.mc_id = mc.mc_id and cs.cs_no = cre.cs_no and cre.cre_no=crer.cre_no(+) and mc.mc_id = #{mc_id}
 </select>
 
 <!-- 리뷰쓰기 -->

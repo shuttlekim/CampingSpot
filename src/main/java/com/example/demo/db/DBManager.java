@@ -232,6 +232,7 @@ public class DBManager {
 		List<CrLVo> list = null;
 		SqlSession session = factory.openSession();
 		list = session.selectList("myPage.myReviewList", mc_id);
+		System.out.println("DBmanager 리뷰리스트:"+list);
 		session.close();
 		return list;
 	}

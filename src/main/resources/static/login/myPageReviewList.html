@@ -465,7 +465,7 @@ $(function(){
 					var cs_name = $("<br><h4 class='li-head'></h4><br>").html(r.cs_name);
 					var cre_date =  $("<p class='li-summary'></p><br>").html("µÓ∑œ¿œ: " +r.cre_date);
 					var cre_content = $("<p></p>").html(r.mc_nickname + " ¥‘¿« »ƒ±‚ : " +r.cre_content);
-					var cre_re_contents = $("<p></p>").html(r.mb_nickname + " ¥‘¿« ¥Ò±€ : " +r.cre_re_contents);
+					var cre_re_contents = $("<p></p>").html("ªÁ¿Â¥‘¿« ¥Ò±€ : " +r.cre_re_contents);
 					var button = $("<button type='button' class='margin_right btn btn-danger btn-sm'></button>").attr("idx", idx).html("ªË¡¶");				
 				
 					
@@ -477,7 +477,7 @@ $(function(){
 						}});
 					});
 							 
-					if(r.mb_nickname != null ){
+					if(r.cre_re_contents != null ){
 						
 						$(div_li_img).append(cs_camp_fname);
 						$(ReviewList_div).append(div_li_img, cs_name, cre_date, cre_content, cre_re_contents, button);
