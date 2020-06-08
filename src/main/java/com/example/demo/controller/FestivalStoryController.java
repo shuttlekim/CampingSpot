@@ -216,7 +216,7 @@ public class FestivalStoryController {
 				//System.out.println("리스트의 개수:"+list.size());
 				
 				// 화면에 표시될 축제 갯
-				if(list.size() >= 3) {
+				if(list.size() >= 4) {
 					break;
 				}
 			}

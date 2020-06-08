@@ -87,6 +87,15 @@
     #festMore{
     	cursor: pointer;
     }
+    #festMore:hover{
+    	background: #ff586c;
+    }
+    #spotMore{
+    	cursor: pointer;
+    }
+    #spotMore:hover{
+    	background: #ff586c;
+    }
     #main_btn_search{
     	cursor: pointer;
     	width: 60px;
@@ -136,7 +145,7 @@
     	position: fixed;
     	display: flex;
     	bottom: -18px;
-    	right: 100px;
+    	right: 40px;
     }
     #main_remote div{
     	width: 70px;
@@ -148,11 +157,17 @@
 	    z-index: 9999;
 	    margin: 0 5px;
 	    font-weight: bold;
+	    cursor: pointer;
     }
     #main_remote div:nth-child(1){
     	background: #ff586c;
     }
-   
+    #remote_home img{
+    	width: 41px;
+        position: relative;
+        margin: 10px;
+        cursor: pointer;
+    }
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://kit.fontawesome.com/3da0640e3c.js" crossorigin="anonymous"></script>
@@ -208,7 +223,7 @@
 			}})
 		}
 		
-		//진행중인 전국 축제 3개 호출하는 함수
+		//진행중인 전국 축제를 호출하는 함수
 		var listThumb = function(){
 			$.ajax("/festivalThumb.do", {success:function(festival){
 				festivalList = festival;
@@ -414,14 +429,16 @@
 	 
 	   		$('html, body').animate({scrollTop: spot_top}, 500);
 		})
+		//리모콘 홈버튼
+		$("#remote_home").click(function(){
+			var home_top = 0;
+	 
+	   		$('html, body').animate({scrollTop: home_top}, 500);
+		})
 	})
 </script>
 </head>
 <body>
-	<div id="main_remote">
-		<div id="remote_fest">Festival</div>
-		<div id="remote_spot">Spot</div>
-	</div>
     <div id="head_section">
 		<div class="head_section">
 				<div id="main_title">
@@ -530,7 +547,11 @@
 		</div>
 	</div>
 	<div id="footers"></div>
-	
+	<div id="main_remote">
+		<div id="remote_fest">Festival</div>
+		<div id="remote_spot">Spot</div>
+		<span id="remote_home"><img src="../resources/camping_spot_icon/up-arrow.png"></span>
+	</div>
 
 </body>
 </html>
