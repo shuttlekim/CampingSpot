@@ -72,7 +72,7 @@ $(function(){
 	
 	$("#left").load("/admin/menubar.html");
 	
-	getAnNo();
+// 	getAnNo();
 	
 	function authList(){
 		$.getJSON("/adminList.do", function(data){
@@ -93,7 +93,7 @@ $(function(){
 					
 					var idx = $(this).attr("idx");
 					var mc_id = data[idx].mc_id;
-					window.open('/admin/adminAuth_detail.html?mc_id='+mc_id, 'popup', 'width=700, height=600, scrollbars= 0, toolbar=0, menubar=no');
+					window.open('/admin/adminAuth_detail.html?mc_id='+mc_id, 'popup', 'width=500, height=500, scrollbars= 0, toolbar=0, menubar=no');
 
 				});
 			});
@@ -108,7 +108,7 @@ $(function(){
 		
 	});
 	
-	function getAnNo(){
+	/* function getAnNo(){
 		var userId;
 		if(sessionStorage.getItem("businessId") == null){
 			userId = sessionStorage.getItem("memberId");
@@ -120,7 +120,7 @@ $(function(){
 				window.open('/admin/adminNotice_popUp.html?an_no='+pop.an_no, "_blank", 'popup', 'width=700, height=500, scrollbars= 0, toolbar=0, menubar=no');
 			});
 		}}); 
-	}	
+	}	 */
 </script>
 </head>
 <body>
