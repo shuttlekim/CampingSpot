@@ -39,7 +39,10 @@
 		font-weight: 900;
 	}
 	.main_second_section{
-	    margin-top : 500px;
+	    margin-top : 400px;
+	}
+	.main_third_section{
+		margin-top : 400px;
 	}
 	.main_search{
 		display: flex;
@@ -90,7 +93,10 @@
     	height: 30px
     }
     #main_festival_title{
-    	font-size: 2em;
+    	font-size: 1.2em !important;
+    }
+    #main_spot_title{
+    	font-size: 1.2em !important;
     }
     .main-festival-head{
     	
@@ -126,6 +132,27 @@
  	   	display: none;
     	cursor: pointer;
     }
+    #main_remote{
+    	position: fixed;
+    	display: flex;
+    	bottom: -18px;
+    	right: 100px;
+    }
+    #main_remote div{
+    	width: 70px;
+	    line-height: 70px;
+	    border-radius: 50%;
+	    text-align: center;
+	    background: #333;
+	    color: #fff;
+	    z-index: 9999;
+	    margin: 0 5px;
+	    font-weight: bold;
+    }
+    #main_remote div:nth-child(1){
+    	background: #ff586c;
+    }
+   
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://kit.fontawesome.com/3da0640e3c.js" crossorigin="anonymous"></script>
@@ -140,10 +167,46 @@
 		var thisMonth = today.getMonth()+1;
 		console.log(thisMonth);
 		var festivalList;
+		var spotList;
 	
 		
 		//메인페이지로 넘어오면 결제정보는 사라집니다.
 		sessionStorage.removeItem("reservation_data");
+		
+		//현재등록된 캠핑장 4개를 호출하는 함수
+		var listSpot = function(){
+			$.ajax("/campingSearchList.do", {success:function(spot){
+				spotList = spot;
+				$.each(spotList, function(i, item){
+					var fname = item.camp_fname.split(",");
+					var img = $("<div class='backCover' style='background:url(../resources/camping_spot_img/"+fname[0]+");'>");
+					var title = $("<div></div>").html(item.name);
+					var addr = $("<div class='address'></div>").html(item.addr_head+" "+item.addr_remain);
+					var tel = $("<div></div>").html(item.tel);
+					
+					var div1 = $("<div></div>").append(img);
+					var div2 = $("<div class='text-cover'></div>").append(title, addr, tel);
+					var div3 = $("<div></div>").append(div1, div2);
+					$(div3).attr({
+						"key": i
+					})
+					$(div3).click(function(){
+						var idx = $(this).attr("key");
+						var cs_no = spotList[idx].no;
+						
+						location.href="detailCampingSpot.html?checkin=&checkout=&campingType=auto&cs_no="+cs_no;
+						
+					})
+					
+					$("#listSpot").append(div3)
+					$("#listSpot").attr("style","display:flex;")
+					
+					if(i == 3){
+						return false;
+					}
+				})
+			}})
+		}
 		
 		//진행중인 전국 축제 3개 호출하는 함수
 		var listThumb = function(){
@@ -278,7 +341,14 @@
 		})
 		
 		//현재 월
-		$("#thisMonth").html(thisMonth);
+		$("#thisMonth1").html(thisMonth);
+		$("#thisMonth2").html(thisMonth);
+		
+		
+		//캠핑장 더보기
+		$("#spotMore").click(function(){
+			location.href="campingSearchList.html";
+		})
 		
 		//축제 더보기
 		$("#festMore").click(function(){
@@ -287,6 +357,9 @@
 		
 		//축제 썸네일 호출
 		listThumb();
+		
+		//캠핑장호출
+		listSpot();
 		
 		$("#footers").load("footer.html");		
 		
@@ -328,10 +401,27 @@
 		},function(){
 			$("#main_menu_section").animate({top:-100}, 500);
 		})
+		
+		//리모콘 축제버튼
+		$("#remote_fest").click(function(){
+			var fest_top = $("#main_festival_title").offset().top - 80;
+	 
+	   		$('html, body').animate({scrollTop: fest_top}, 500);
+		})
+		//리모콘 스팟버튼
+		$("#remote_spot").click(function(){
+			var spot_top = $("#main_spot_title").offset().top -80;
+	 
+	   		$('html, body').animate({scrollTop: spot_top}, 500);
+		})
 	})
 </script>
 </head>
 <body>
+	<div id="main_remote">
+		<div id="remote_fest">Festival</div>
+		<div id="remote_spot">Spot</div>
+	</div>
     <div id="head_section">
 		<div class="head_section">
 				<div id="main_title">
@@ -412,18 +502,26 @@
 			<div>캠핑에</div>
 			<div>축제의 즐거움을 더하다</div>
 		</div> -->
+		<div class="main_third_section">			
+			<div class="main-spot">
+				<div id="main_spot_title">
+				<h2><i class="fas fa-quote-right"></i></h2>
+				<h2><span id="thisMonth2"></span> 월 화제의 캠핑 명소</h2></div>
+				<span class="subtit">이번달 가장 핫한 캠핑장 몇 곳을 소개 드립니다.</span>
+			</div>
+			<div id="listSpot">
+			</div>
+			<div class="btn-box">
+				<p id="spotMore">더보기</p>
+			</div>
+		</div>
 		<div class="main_second_section">			
-			<!-- <div class="main-festival-head">캠핑에 축제의 <span class="fancy">즐거움</span>을 더하다</div> -->
 			<div class="main-festival">
 				<div id="main_festival_title">
 				<h2><i class="fas fa-quote-right"></i></h2>
-				<!-- <h2>캠핑에 축제의 <span class="fancy">즐거움</span>을 더하다</h2> -->
-				<h2><span id="thisMonth"></span> 월의 축제 이야기</h2></div>
+				<h2><span id="thisMonth1"></span> 월의 축제 이야기</h2></div>
 				<span class="subtit">그날의 생생했던 기억, 행복한 웃음, 축제의 설렘을 캠핑과 함께 느껴보세요.</span>
-				
 			</div>
-			
-	
 			<div id="listThumb">
 			</div>
 			<div class="btn-box">
