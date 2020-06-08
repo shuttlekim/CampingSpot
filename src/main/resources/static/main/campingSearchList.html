@@ -68,6 +68,30 @@
 		/* background: #f7f7f7; */
 		margin-top: 10px;
 	}
+	.rate_value{
+		position: relative;
+		top: -3px;
+		margin-left: 10px;
+		font-weight: 700;
+		color: #666;
+	}
+	.star_rate{
+		display: flex;
+	}
+	.star-rating-small { 
+   	  width: 90px; 
+   }   
+   .star-rating-small, .star-rating-small span { 
+      display:inline-block; 
+      height:20px; 
+      overflow:hidden; 
+      background:url(../resources/camping_spot_icon/star_rating_small.png)no-repeat; 
+   } 
+   .star-rating-small span{ 
+      background-position:left bottom; 
+      line-height:0; 
+      vertical-align:top; 
+   }  
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
@@ -127,8 +151,15 @@
  	 			$.each(arr, function(idx, item){
  	 				var title = $("<div class='search_list_title'></div>").html(item.name);
  	 				var price = $("<div class='search_list_price'></div>").html("₩ "+item.price);
- 	 				var rate = $("<div> class='search_list_rate'></div>").html("평점: "+item.rate.toFixed(1));
- 	 				var addr = $("<div></div>").html("주소: "+item.addr_head+" "+item.addr_remain);
+ 	 				
+ 	 				//var rate = $("<div> class='search_list_rate'></div>").html("평점: "+item.rate.toFixed(1));
+ 	 				
+ 	 				var rate = $("<div class='rate_value'></div>").html(item.rate.toFixed(1));
+			    	var star = $("<div class='star-rating-small'><span id='star-small-ratio' style='width:"+(item.rate/5.0)*100+"%;'></span></div>")
+ 	 				
+ 	 				var star_rate = $("<div class='star_rate'></div>").append(star, rate);
+			    	
+			    	var addr = $("<div></div>").html("주소: "+item.addr_head+" "+item.addr_remain);
  	 				
  	 				var detail = $("<div class='search_list_detail'></div>").html(item.detail);
  	 				
@@ -144,7 +175,7 @@
  	 				var content_div = $("<div class='search_list_content'></div>");
  	 				var img_div = $("<div class='search_list_img'></div>");
  	 				
- 	 				$(right_side).append(rate, price);
+ 	 				$(right_side).append(star_rate, price);
  	 				$(icon_div).append(theme_div, fac_div);
  	 				$(content_div).append(title, right_side, addr, tel, detail, icon_div, img_div);
  	 				
