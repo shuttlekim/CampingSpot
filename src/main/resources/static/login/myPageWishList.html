@@ -416,6 +416,9 @@ body {
 #main_menu_section{
 	left: -25px !important;
 }
+.li-btn{
+	margin-left: 20px;
+}
 </style>
 <script type="text/javascript" src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -499,19 +502,27 @@ $(function(){
 					var button_div = $("<div class='li-btn'></div>").attr("idx", idx);
 					var button = $("<br><button type='button' id='btn' class='btn btn-danger btn-sm'><br><br>").attr("idx", idx).html("ªË¡¶");
 					
-					var wishList_content = $("<div class='wishList_content'></div>");
+					var wishList_content = $("<div class='wishList_content'></div>").attr("idx", idx);
+					
 					
 					$(button).click(function() {
 						var idx = $(this).attr("idx");
 						var no = {cw_no : arr[idx].cw_no};
 							$.ajax("/deleteMyWish", {data : no, success : function(r) {
-								window.location.href = "/login/myPageWishList.html";
+								location.href = "/login/myPageWishList.html";
 							}});
 					});
+					
+					$(wishList_content).click(function(){
+						var idx = $(this).attr("idx");
+						location.href = "/main/detailCampingSpot.html?checkin=&checkout=&campingType=auto&cs_no="+arr[idx].cs_no;
+					});
+					
+					var wish_box = $("<div class='wish_box'></div>").append(wishList_content, button_div);
 					$(div_li_img).append(cs_camp_fname);
 					$(button_div).append(button);
-					$(wishList_content).append(cs_name, cs_addr_remain, button_div);
-					$(wishList_div).append(div_li_img, wishList_content);
+					$(wishList_content).append(cs_name, cs_addr_remain);
+					$(wishList_div).append(div_li_img, wish_box);
 					$(a).append(wishList_div);
 					$("#li").append(a);
 				});

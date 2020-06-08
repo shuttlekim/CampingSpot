@@ -38,7 +38,7 @@
 
 <!-- 위시리스트 -->
 <select id="myWishList" resultType="WishVo">
-	select cw_no, mc_name,cs_name, cs_camp_fname, cs_addr_remain from camping_wish cw, member_customer mc, 
+	select cw_no, mc_name, cs_name, cs_camp_fname, cs_addr_remain, mc.mc_id mc_id, cs.cs_no cs_no from camping_wish cw, member_customer mc, 
 	camping_spot cs where cw.mc_id = mc.mc_id and cw.cs_no = cs.cs_no and mc.mc_id = #{mc_id} 
 </select>
 

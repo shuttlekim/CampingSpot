@@ -16,6 +16,7 @@ public class WishVo {
 	private String cs_camp_fname;
 	private String cs_addr_remain;
 	private String mc_id;
-	private int cre_no;
+	//private int cre_no;
+	private int cs_no;
 	
 }
