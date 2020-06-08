@@ -175,6 +175,7 @@ public class SearchController {
 				i--;
 			}
 		}
+		
 		str = new Gson().toJson(list);
 		
 		return str;
