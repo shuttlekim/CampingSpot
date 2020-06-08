@@ -418,6 +418,109 @@ body {
 	loadview{
 		float: center;
 	}
+	#info{
+	    padding: 20px 10px 40px 10px;
+	    width: 100%;
+	}
+	#kakaoMap_div{
+		margin: 0 30px;
+	}
+	.info_title_div{
+		display: flex;
+		padding : 15px 30px;
+		margin : 0 30px;
+		border-bottom: 1px solid #dbdbdb;
+	}
+	.info_title_div div:nth-child(1){
+		width: 30%;
+		color: #999;
+	}
+	.info_addr_div{
+		display: flex;
+		padding : 15px 30px;
+		margin : 0 30px;
+		border-bottom: 1px solid #dbdbdb;
+	}
+	.info_addr_div div:nth-child(1){
+		width: 30%;
+		color: #999;
+	}
+	.info_tel_div{
+		display: flex;
+		padding : 15px 30px;
+		margin : 0 30px;
+		border-bottom: 1px solid #dbdbdb;
+	}
+	.info_tel_div div:nth-child(1){
+		width: 30%;
+		color: #999;
+	}
+	.info_email_div{
+		display: flex;
+		padding : 15px 30px;
+		margin : 0 30px;
+		border-bottom: 1px solid #dbdbdb;
+	}
+	.info_email_div div:nth-child(1){
+		width: 30%;
+		color: #999;
+	}
+	.info_type_div{
+		display: flex;
+		padding : 15px 30px;
+		margin : 0 30px;
+		border-bottom: 1px solid #dbdbdb;
+	}
+	.info_type_div div:nth-child(1){
+		width: 30%;
+		color: #999;
+	}
+	.info_in_div{
+		display: flex;
+		padding : 15px 30px;
+		margin : 0 30px;
+		border-bottom: 1px solid #dbdbdb;
+	}
+	.info_in_div div:nth-child(1){
+		width: 30%;
+		color: #999;
+	}
+	.info_out_div{
+		display: flex;
+		padding : 15px 30px;
+		margin : 0 30px;
+		border-bottom: 1px solid #dbdbdb;
+	}
+	.info_out_div div:nth-child(1){
+		width: 30%;
+		color: #999;
+	}
+	.info_date_div{
+		display: flex;
+		padding : 15px 30px;
+		margin : 0 30px;
+		border-bottom: 1px solid #dbdbdb;
+	}
+	.info_date_div div:nth-child(1){
+		width: 30%;
+		color: #999;
+	}
+	.info_price_div{
+		display: flex;
+		padding : 15px 30px;
+		margin : 0 30px;
+		border-bottom: 1px solid #dbdbdb;
+	}
+	.info_price_div div:nth-child(1){
+		width: 30%;
+		color: #999;
+	}
+	.info_check_div div:nth-child(1){
+		display: flex;
+		padding : 15px 30px;
+		margin : 0 30px;
+		border-bottom: 1px solid #dbdbdb;
+	}
 </style>
 <script type="text/javascript" src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
@@ -472,7 +575,7 @@ $(function(){
 			var cs_camp_fname1 = $("<img></img>").attr({"src":"/resources/camping_spot_img/"+camp_fname[0]});
 			var cs_camp_fname2 = $("<img></img>").attr({"src":"/resources/camping_spot_img/"+camp_fname[1]});
 			var cs_camp_fname3 = $("<img></img>").attr({"src":"/resources/camping_spot_img/"+camp_fname[2]});
-			var cs_name = $("<hr width='auto'><li></li><br>").html("&nbsp;&nbsp;캠핑장 이름  : " + r.cs_name);
+			/* var cs_name = $("<hr width='auto'><li></li><br>").html("&nbsp;&nbsp;캠핑장 이름  : " + r.cs_name);
 			var cs_addr_remain = $("<li></li><br>").html("&nbsp;&nbsp;캠핑장 주소  : " + r.cs_addr_remain);		
 			var mc_tel = $("<li></li><br>").html("&nbsp;&nbsp;고객전화번호 : " + r.mc_tel);
 			var mc_email = $("<li></li><br>").html("&nbsp;&nbsp;이메일 : " + r.mc_email);
@@ -481,7 +584,7 @@ $(function(){
 			var r_checkout = $("<li></li><br>").html("&nbsp;&nbsp;체크아웃 날짜 : " + r.r_checkout);
 			var r_date = $("<li></li><br>").html("&nbsp;&nbsp;결제일 : " + r.r_date);
 			var r_price = $("<li></li><br><hr>").html("&nbsp;&nbsp;결제금액 : " + r.r_price+"원");
-			var mc_name = $("<li></li><br>").html("&nbsp;&nbsp; 이 캠핑장은 " + r.mc_name + "님 이름으로 예약 되어 있습니다.");
+			var mc_name = $("<li></li><br>").html("&nbsp;&nbsp; 이 캠핑장은 " + r.mc_name + "님 이름으로 예약 되어 있습니다."); */
 			
 			$("#img1").append(cs_camp_fname1);
 			$("#img2").append(cs_camp_fname2);
@@ -495,9 +598,20 @@ $(function(){
 				window.location.href= "https://map.kakao.com/link/to/"+arr[idx].cs_name+","+arr[idx].cs_lati+","+arr[idx].cs_long;
 				
 			});
-			$(ul).append(loadview , cs_name , cs_addr_remain , mc_tel , mc_email , cr_type ,r_checkin, r_checkout, r_date, r_price, mc_name);
-			$("#info").append(ul);
-			$(".col-md-9").append("#info");
+			
+			$("#kakaoMap_div").append(loadview);
+			$("#infoTitle").html(r.cs_name);
+			$("#infoAddr").html(r.cs_addr_remain);
+			$("#infoTel").html(r.mc_tel);
+			$("#infoEmail").html(r.mc_email);
+			$("#infoType").html(r.cr_type);
+			$("#infoIn").html(r.r_checkin);
+			$("#infoOut").html(r.r_checkout);
+			$("#infoDate").html(r.r_date);
+			$("#infoPrice").html(r.r_price+"원");
+			$("#infoCheck").html("이 캠핑장은 '" + r.mc_name + "'님 이름으로 예약 되어 있습니다.");
+			
+			//$(".col-md-9").append("#info");
 			
 		});
 	}});
@@ -643,7 +757,48 @@ Licensed under MIT
 	<!--End Pattern HTML-->
 				
 			</div>
-			<div id="info" style="border-radius: 2em; background-color: #E0ECF8;" ></div>
+			<div id="info" style="border-radius: 2em;" >
+				<div id="kakaoMap_div"></div>
+				<div class="info_title_div">
+					<div>캠핑장 이름</div>
+					<div id="infoTitle"></div>
+				</div>
+				<div class="info_addr_div">
+					<div>캠핑장 주소</div>
+					<div id="infoAddr"></div>
+				</div>
+				<div class="info_tel_div">
+					<div>고객 연락처</div>
+					<div id="infoTel"></div>
+				</div>
+				<div class="info_email_div">
+					<div>이메일</div>
+					<div id="infoEmail"></div>
+				</div>
+				<div class="info_type_div">
+					<div>캠핑장 타입</div>
+					<div id="infoType"></div>
+				</div>
+				<div class="info_in_div">
+					<div>체크인 날짜</div>
+					<div id="infoIn"></div>
+				</div>
+				<div class="info_out_div">
+					<div>체크아웃 날짜</div>
+					<div id="infoOut"></div>
+				</div>
+				<div class="info_date_div">
+					<div>결제일</div>
+					<div id="infoDate"></div>
+				</div>
+				<div class="info_price_div">
+					<div>결제금액</div>
+					<div id="infoPrice"></div>
+				</div>
+				<div class="info_check_div">
+					<div id="infoCheck"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
