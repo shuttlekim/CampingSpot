@@ -94,6 +94,8 @@ li a:hover:not(.active) {
 		// 캠핑장 등록하기
 		$("#csInsert").click(function(){
 			
+			$("#csInsert").css("background-color", "#ff586c");
+			
 			$("#mb_id").val(mb_id);
 			var cs = new FormData(document.getElementById("f"));
 			
@@ -253,7 +255,7 @@ li a:hover:not(.active) {
 					</tr>				
 				</table>
 			</form>
-			<button class="bts btn1" id="csInsert" style="background-color: #ff586c">캠핑장등록</button>
+			<button class="bts btn1" id="csInsert">캠핑장등록</button>
 			<button class="bts btn2" id="csReset">취소</button>
 		</div>
 			

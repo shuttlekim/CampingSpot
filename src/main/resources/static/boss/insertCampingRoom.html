@@ -135,6 +135,9 @@ td{
 	
 		// 2) 캠핑룸 등록하기
 		$("#crInsert").click(function(){
+			
+			$("#crInsert").css("background-color", "#ff586c");
+
 			$("#i_cs_no").val(cs_no);
 			var cr = $("#insertF").serialize();
 			//alert(cr)
@@ -142,6 +145,7 @@ td{
 				alert(r);
 				listCampingRoom();
 				$("#insertF input").val("");
+				$("#crInsert").css("background-color", "black");
 			}});
 		});//end 캠핑룸 등록
 		
@@ -187,12 +191,16 @@ td{
 								
 								// 4) 최종 수정하기
 								$("#crUpdateOK").click(function(){
+									
+									$("#crUpdateOK").css("background-color", "#ff586c");
+									
 									$("#u_cs_no").val(cs_no);
 									var crUpdate = $("#updateF").serialize();
 										$.ajax("/updateCampingRoom.do",{data:crUpdate, success:function(r){
 											alert(r);
 											window.location.href="insertCampingRoom.html?cs_no="+cs_no;
 											$(".updateForm input").val("");
+											$("#crUpdateOK").css("background-color", "black");
 										}});//end update Ajax
 								})//end #crUpdateOK
 													
@@ -214,11 +222,15 @@ td{
 		
  		// 5) 캠핑룸 삭제하기
 		$("#crDelete").click(function(){
+
+			$("#crDelete").css("background-color", "#ff586c");
+
 			var cr_no = $("#u_cr_no").val();
 			$.ajax("/deleteCampingRoom.do",{data:{"cr_no":cr_no}, success:function(r){
 				alert(r);
 				window.location.href="insertCampingRoom.html?cs_no="+cs_no;
 				$(".updateForm input").val("");
+				$("#crDelete").css("background-color", "black");
 			}});//end delete ajax
 			
 		})//end #crDelete
