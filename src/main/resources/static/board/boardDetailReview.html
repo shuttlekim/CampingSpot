@@ -82,7 +82,7 @@ $(function(){
 	$.ajax("/detailBoard.do",{data:data0, async:false, success:function(data){
 		var title = data.b_title.replace(/,/g, " ");
 		$("#b_title2").append(title);
-		$("#mc_id").append(data.mc_id);
+		$("#mc_id2").append(data.mc_id);
 		$("#b_contents").append(data.b_contents);
 		if(data.b_fname != null){
 			var fname = data.b_fname.split(",");
@@ -229,7 +229,7 @@ $(function(){
 			</tr>
 			<tr>
 				<td class="t">ÀÛ¼ºÀÚ</td>
-				<td class="tex"><span id="mc_id"></span></td>
+				<td class="tex"><span id="mc_id2"></span></td>
 			</tr>
 		</table>
 		<hr>
