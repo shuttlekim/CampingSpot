@@ -615,7 +615,11 @@ $(function(){
 			$("#infoOut").html(r.r_checkout);
 			$("#infoDate").html(r.r_date);
 			$("#infoPrice").html(r.r_price+"원");
-			$("#infoCheck").html("이 캠핑장은 '" + r.mc_name + "'님 이름으로 예약 되어 있습니다.");
+			if(r.r_revstatus == 1){
+				$("#infoCheck").html("이 캠핑장은 '" + r.mc_name + "'님 이름으로 예약 되어 있습니다.");
+			}else if(r.r_revstatus == 0){
+				$("#infoCheck").html("이 캠핑장은 '" + r.mc_name + "'님 이름으로 예약 대기 중입니다.");
+			}
 			
 			//$(".col-md-9").append("#info");
 			

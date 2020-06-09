@@ -464,7 +464,7 @@ $(function(){
 					var str = r.cs_camp_fname;
 					var camp_fname = str.split(",");
 					var cs_camp_fname = $("<img></img>").attr({"src":"/resources/camping_spot_img/"+camp_fname[0]}).css("border-radius", "2em");
-					var div_li_img = $("<div class='li-img'></div>");
+					var div_li_img = $("<div class='li-img'></div>").attr("idx", idx);
 					var ReviewList_div = $("<div class='li-text'></div>").attr("idx", idx);
 					var cs_name = $("<br><h4 class='li-head'></h4><br>").html(r.cs_name);
 					var cre_date =  $("<p class='li-summary'></p><br>").html("µÓ∑œ¿œ: " +r.cre_date);
@@ -475,11 +475,16 @@ $(function(){
 					
 					$(button).click(function() {
 						var idx = $(this).attr("idx");
-					var no = {cre_no : arr[idx].cre_no };
+						var no = {cre_no : arr[idx].cre_no };
 						$.ajax("/deleteMyReview", {data : no, success : function(r) {
 							window.location.href = "/login/myPageReviewList.html";
 						}});
 					});
+					$(div_li_img).click(function(){
+						var idx = $(this).attr("idx");
+						var no = arr[idx].cs_no;
+						location.href = "/main/detailCampingSpot.html?checkin=&checkout=&campingType=auto&cs_no="+no;
+					})
 							 
 					if(r.cre_re_contents != null ){
 						

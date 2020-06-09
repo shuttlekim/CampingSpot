@@ -493,7 +493,7 @@ $(function(){
 			    	var day = date.getDate();
 			    	var that_date = year+'년 '+month+'월 '+day+'일';
 					
-			    	if(item.mc_fnmae == undefined || item.mc_fnmae == null){
+			    	if(item.mc_fname == undefined || item.mc_fname == null){
 			    		var img_div = $("<div class='profile_img'></div>").append($("<img>").attr({
 				    		"src": "../resources/profile/nullProfile.jpg"
 				    	}))
@@ -588,22 +588,29 @@ $(function(){
     	
     	var mc_id = sessionStorage.getItem("memberId");
     	//위 코드로 변경
-    	var wish_data = {
-    			"mc_id":mc_id,
-    			"cs_no":cs_no
-    	}
     	
-        $.ajax("/insertWishList.do", {data:wish_data,
-          async : false,
-          success:function(data){
-          	if( data == 'success'){
-          		alert("찜목록에 등록되었습니다.");
-          	}else if( data == 'double' ){
-          		alert("이미 찜목록에 등록되었습니다.");
-          	}else{
-          		alert("찜목록 등록에 실패하였습니다.");
-          	}
-        }})
+    	if(mc_id == null){
+    		alert("로그인이 필요합니다.");
+    		location.href="/login/login.html";
+    	}else {
+    		var wish_data = {
+        			"mc_id":mc_id,
+        			"cs_no":cs_no
+        	}
+        	
+            $.ajax("/insertWishList.do", {data:wish_data,
+              async : false,
+              success:function(data){
+              	if( data == 'success'){
+              		alert("찜목록에 등록되었습니다.");
+              	}else if( data == 'double' ){
+              		alert("이미 찜목록에 등록되었습니다.");
+              	}else{
+              		alert("찜목록 등록에 실패하였습니다.");
+              	}
+            }})
+    	}
+   
     });
     
    $("#btn_reservation").click(function(){

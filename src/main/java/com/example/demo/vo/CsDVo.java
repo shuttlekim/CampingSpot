@@ -27,4 +27,5 @@ public class CsDVo {
 	private int r_price;
 	private String mc_id;
 	private int r_no;
+	private int r_revstatus;
 }

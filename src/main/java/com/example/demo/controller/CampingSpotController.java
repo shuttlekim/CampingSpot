@@ -292,6 +292,7 @@ public class CampingSpotController {
     	  for (int i=0; i<list.size(); i++) {
         	  String id = list.get(i).getMc_id();
         	  MemberVo vo = mdao.getMember(id);
+        	  System.out.println(vo);
         	  list.get(i).setMc_fname(vo.getMc_fname());
         	  list.get(i).setMc_name(vo.getMc_name());
           }
