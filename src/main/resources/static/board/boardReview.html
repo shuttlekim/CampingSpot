@@ -49,6 +49,17 @@ td, th {
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
+ul{
+	overflow: hidden;
+	margin-left: 450px;
+}
+
+li{
+	float: left;
+	list-style: none;
+	padding: 10px;
+	cursor: pointer;
+}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
@@ -64,9 +75,9 @@ $(function(){
 			var li = $("<li></li>").html(i);
 			$(li).click(function(){
 				var pageNUM = Number( $(this).text() );
-				printGoods(pageNUM);
+				printList(pageNUM);
 			});
-			$(".paging_button").empty();
+			//$(".paging_button").empty();
 			$(".paging_button").append(li);	
 		}
 	}
@@ -83,7 +94,8 @@ $(function(){
 		for(var i=start; i<= end; i++){
 			var n = arr[i-1];
 			var tr = $("<tr></tr>");
-			var a = $("<a href='boardDetailReview.html?b_no="+n.b_no+"'></a>").html(n.b_title);
+			var title = n.b_title.replace(/,/g, " ");
+			var a = $("<a href='boardDetailReview.html?b_no="+n.b_no+"'></a>").html(title);
 			var title = $("<td></td>").html(a);
 			var mc_id = $("<td></td>").html(n.mc_id);
 			var regdate = $("<td></td>").html(n.b_regdate);

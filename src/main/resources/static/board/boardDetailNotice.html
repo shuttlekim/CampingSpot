@@ -62,6 +62,7 @@ $(function(){
 		$("#b_title").append(data.b_title);
 		$("#mc_id2").append(data.mc_id);
 		$("#b_contents").append(data.b_contents);
+		
 		var fname = data.b_fname.split(",");
 		for(var i = 0 ; i < fname.length ; i++){
 			var img = $("<img/>").attr("src","/resources/board_img/"+fname[i]).attr("width",200).attr("onerror","this.style.display='none'");

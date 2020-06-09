@@ -76,12 +76,13 @@ $(function(){
 	var arr;
 	var b_no = document.location.href.split("="); 
 	var data = {"b_no":b_no[1]};
-	$.ajax("/detailBoard.do",{data:data, success:function(data){
-		var fname = data.b_fname.split(",");
+	$.ajax("/detailBoard.do",{data:data, async:false, success:function(data){
 		$("#b_title").append(data.b_title);
 		$("#mc_id2").append(data.mc_id);
 		$("#b_contents").append(data.b_contents);
 		$("#re_mc_id").val(memberID);
+		
+		var fname = data.b_fname.split(",");
 		for(var i = 0 ; i < fname.length ; i++){
 			var img = $("<img/>").attr("src","/resources/board_img/"+fname[i]).attr("width",200).attr("onerror","this.style.display='none'");
 			var br = $("<br>");
