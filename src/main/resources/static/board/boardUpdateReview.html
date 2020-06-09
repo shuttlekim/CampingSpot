@@ -60,7 +60,7 @@ $(function(){
 	}});
 	// 글번호를 전달해주어서 정보를 가져와서 뿌려준다
 	$.ajax("/detailBoard.do",{data:data, success:function(r){
-		$("#b_title").val(r.b_title);
+		//$("#b_title").val(r.b_title);
 		$("#mc_id").val(r.mc_id);
 		$("#b_contents").val(r.b_contents);
 		$("#b_fname").val(r.b_fname);

@@ -103,14 +103,16 @@ public class BoardController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("b_no", b_no);
 		map.put("mc_id", mc_id);
-		int re = dao.delete(map);
-		String path = request.getRealPath("/resources/board_img");
 		
-		for(int i = 0 ; i < fnames.length ; i++) {
-			File file = new File(path + "/" + fnames[i]);
-			file.delete();
+		if(fname != null) {
+			String path = request.getRealPath("/resources/board_img");
+			
+			for(int i = 0 ; i < fnames.length ; i++) {
+				File file = new File(path + "/" + fnames[i]);
+				file.delete();
+			}
 		}
-		
+		int re = dao.delete(map);
 		if(re >= 1) {
 			str = "게시물 삭제 성공했습니다.";
 		}

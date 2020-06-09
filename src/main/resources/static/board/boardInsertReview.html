@@ -60,7 +60,7 @@ $(function(){
 		var review =  new FormData(document.getElementById("f"));
 		alert(b_title)
 		// 리뷰 게시판에 게시물을 등록한다
-		/* $.ajax("/insertBoard.do",{
+		$.ajax("/insertBoard.do",{
 			data:review,
 			processData:false,
 			contentType:false,
@@ -68,7 +68,7 @@ $(function(){
 			success:function(data){
 			alert(data)
 			window.location.href = "boardReview.html";
-		}}); */
+		}});
 	});
 	
 	$("#btnReset").click(function(){
