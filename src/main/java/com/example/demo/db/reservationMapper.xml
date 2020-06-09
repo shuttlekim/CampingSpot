@@ -11,7 +11,7 @@
 		from member_customer mc,(select r_no, cr_no, cr_name, mc_id,  r_date, r_price, r_revstatus, r_cancel from 
 		(select r_no, cs_no, r.cr_no, cr_name, mc_id,  r_date, r_price, r_revstatus, r_cancel  from reservation r, camping_room cr 
 		where r.cr_no = cr.cr_no and cs_no=#{cs_no} order by r_date desc) where rownum <= 3) a 
-		where mc.mc_id = a.mc_id order by r_date desc]]>
+		where mc.mc_id = a.mc_id order by r_no desc]]>
 	</select>
 	
 	<!-- 설아) 사업자 예약승인 -->
@@ -28,7 +28,7 @@
 	<select id="bossReservationList" resultType="BossReservationVo">
 		select cr.cr_name, r_no, mc_name, mc_tel, r_date, r_checkin, r_price, r_revstatus, r_cancel
 		from camping_room cr, reservation r, member_customer mc where cr.cr_no = r.cr_no and r.mc_id = mc.mc_id 
-		and cs_no=#{cs_no} order by r_date desc
+		and cs_no=#{cs_no} order by r_no desc
 	</select>
     
   <!-- 영현) 예약검색등록 -->

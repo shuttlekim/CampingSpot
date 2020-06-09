@@ -129,7 +129,7 @@ th, td{
 				var h3 = $("<h3></h3>").html("최근 예약 내역");
 				$.each(r, function(idx, mp){
 					var tr = $("<tr></tr>");
-					var no = $("<td></td>").html(idx+1);
+					//var no = $("<td></td>").html(idx+1);
 					var cr_name = $("<td></td>").html(mp.cr_name);
 					var r_no = $("<td></td>").html(mp.r_no);
 					var mc_name = $("<td></td>").html(mp.mc_name);
@@ -151,7 +151,7 @@ th, td{
 						r_cancel = $("<td></td>").html("취소완료");
 					}
 					
-					$(tr).append( no,cr_name,r_no,mc_name,mc_tel,r_date,r_revstatus,r_cancel);
+					$(tr).append( r_no,cr_name,mc_name,mc_tel,r_date,r_revstatus,r_cancel);
 					$("#mpList").append(tr);
 					
 				})//end each
@@ -191,7 +191,6 @@ th, td{
 			<h3>최근 예약 내역</h3>
 			<table id="mpList">
 				<tr>
-					<th>번호</th>
 					<th>예약번호</th>
 					<th>캠핑룸명</th>
 					<th>예약자명</th>
