@@ -40,7 +40,7 @@ table {
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		window.resizeTo(700,500);
+		window.resizeTo(700,550);
 		var an_no = location.search.substring(location.search.indexOf("=")+1);
 		$.ajax("/detailAdminNotice.do",{data:{"an_no":an_no}, success:function(data){
 				$("#an_title").val(data.an_title);
@@ -57,10 +57,9 @@ table {
 				}else{
 					userId = sessionStorage.getItem("businessId");
 				}
-				alert(userId);
 				
 				$.ajax("/todayclose",{data:{an_no:an_no,userId:userId},success:function(data){
-					alert("오늘 다시 보지않기 저장 되었습니다.");
+					alert("오늘은 다시 보지않지않습니다..");
 					window.close();
 				}});
 			}else{
