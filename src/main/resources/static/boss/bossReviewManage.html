@@ -80,6 +80,8 @@ th, td{
 		//alert(cs_no)
 		console.log(cs_no)
 		
+		var mb_id = sessionStorage.getItem("businessId");
+		
 		// 각 페이지별 이동
 		$("#bossBpage").attr("href", "myBusinessPage.html?cs_no="+cs_no);
 		$("#bossInsertCS").attr("href", "insertCampingSpot.html?cs_no="+cs_no);
@@ -236,7 +238,7 @@ th, td{
 				<form id="reF">
 				리뷰 댓글 : <br>
 						<textarea rows="5" cols="70" id="cre_re_contents" name="cre_re_contents"></textarea>
-						<input type="hidden" id="mb_id" name="mb_id" value="test5678">
+						<input type="hidden" id="mb_id" name="mb_id" value="mb_id">
 						<input type="hidden" id="cre_no" name="cre_no">
 				</form>
 				<button id="btnInsertCrr">댓글등록</button>

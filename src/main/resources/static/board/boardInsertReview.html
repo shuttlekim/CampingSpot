@@ -58,7 +58,6 @@ $(function(){
 	
 	$("#btnAdd").click(function(){
 		var review =  new FormData(document.getElementById("f"));
-		alert(b_title)
 		// 리뷰 게시판에 게시물을 등록한다
 		$.ajax("/insertBoard.do",{
 			data:review,
@@ -88,7 +87,7 @@ $(function(){
 		<form id="f" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="b_del" value="2">
 			<table id="tb">
-				<tr>
+				<tr>0000
 					<th>제목&nbsp;&nbsp;</th>
 					<td>
 						<select name="b_title" id="findSCName">

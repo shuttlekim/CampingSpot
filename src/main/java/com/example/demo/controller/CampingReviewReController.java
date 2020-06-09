@@ -49,7 +49,7 @@ public class CampingReviewReController {
 		String str = "댓글 등록이 완료되었습니다.";
 		int cre_re_no = crrDao.nextNo();
 		crrVo.setCre_re_no(cre_re_no);
-		
+		System.out.println("답글등록컨트롤러:"+crrVo);
 		int re = crrDao.bossInsertCampingReviewRe(crrVo);
 		if(re < 0) {
 			str = "댓글 등록이 실패하였습니다.";
