@@ -137,7 +137,7 @@ public class MemberController {
 	public int checkId(String mc_id) {
 		System.out.println("입력아이디: " + mc_id);
 		int re = dao.checkId(mc_id);
-		System.out.println("MemberController 메시지 : 중복체크" + re);
+		System.out.println("MemberController 메시지 : 중복체크 : " + re);
 		return re;
 	}
 	
