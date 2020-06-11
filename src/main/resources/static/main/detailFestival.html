@@ -144,6 +144,17 @@
 		
 		//푸터 출력
 		$("#footers").load("footer.html")
+		
+		//체크인 오늘날짜부터 체크아웃 체크인날짜 이상부터 선택가
+		var today = new Date().toISOString().split('T')[0];
+		document.getElementsByName("checkin")[0].setAttribute('min', today);
+		
+		$("#fest_input_checkout").focus(function(){
+			var checkinVal = $("#fest_input_checkin").val()
+			console.log(checkinVal);
+			
+			document.getElementsByName("checkout")[0].setAttribute('min', checkinVal);
+		})
 	})
 </script>
 </head>
@@ -155,9 +166,9 @@
 		<div class="fest_search">
 			<div class="fest_search_inner">
 				<form id="fest_search_form">
-					체크인&nbsp;<input id="fest_input_checkin" type="date" name="checkin" required="required">
+					체크인&nbsp;<input id="fest_input_checkin" type="date" name="checkin" min="2013-04-21">
 					&nbsp;&nbsp;
-					체크아웃&nbsp;<input id="fest_input_checkout" type="date" name="checkout" required="required">
+					체크아웃&nbsp;<input id="fest_input_checkout" type="date" name="checkout" min="2013-04-21">
 					&nbsp;&nbsp;
 					캠핑타입
 					<select id="fest_input_campingType" name="campingType">

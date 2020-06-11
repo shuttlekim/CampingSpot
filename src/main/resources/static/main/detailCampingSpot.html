@@ -439,6 +439,7 @@ $(function(){
     }
     
     var selectRoom = function(cs_no, campingType, checkout, checkin){
+    	$("#room_selector").empty();
    		var roomList;
     	var input_data = {
     			"cs_no":cs_no,
@@ -576,7 +577,7 @@ $(function(){
     $("#input_total").attr("value", total);
     $("#show_total").attr("value", total+" 원");
     
-    $("#select_room").on('change', function(){
+    $("#select_room").change(function(){
     	total = $("#select_room option:selected()").attr("price") * days;
     	$("#input_total").attr("value", total);
     	$("#show_total").attr("value",total+" 원");
@@ -631,6 +632,27 @@ $(function(){
    $("#btn_back").click(function(){
       window.history.back();
    })
+   
+   //체크인 오늘날짜부터 체크아웃 체크인날짜 이상부터 선택가
+	var today = new Date().toISOString().split('T')[0];
+	document.getElementsByName("checkin")[0].setAttribute('min', today);
+	
+	$("#input_chkout").focus(function(){
+		var checkinVal = $("#input_chkin").val()
+		console.log(checkinVal);
+		
+		document.getElementsByName("checkout")[0].setAttribute('min', checkinVal);
+	})
+	$("#input_chkout").change(function(){
+		checkin = $("#input_chkin").val();
+		checkout = $("#input_chkout").val();
+		
+		days = (new Date(checkout).getTime() - new Date(checkin).getTime())/(1000*60*60*24);
+		
+		total = $("#select_room option:selected()").attr("price") * days;
+    	$("#input_total").attr("value", total);
+    	$("#show_total").attr("value",total+" 원");
+	})
     
 });
 </script>
@@ -658,11 +680,11 @@ $(function(){
 							<colgroup>
 							<tr>
 								<td>체크인</td>
-								<td><input type="date" id="input_chkin" name="checkin" readonly="readonly"></td>
+								<td><input type="date" id="input_chkin" name="checkin" min="2013-04-21"></td>
 							</tr>
 							<tr>
 								<td>체크아웃</td>
-								<td><input type="date" id="input_chkout" name="checkout" readonly="readonly"></td>
+								<td><input type="date" id="input_chkout" name="checkout" min="2013-04-21"></td>
 							</tr>
 							<tr>
 								<td>룸 선택</td>

@@ -489,6 +489,17 @@
  		
  		//푸터 출력
  		$("#footers").load("footer.html");
+ 		
+ 		//체크인 오늘날짜부터 체크아웃 체크인날짜 이상부터 선택가
+		var today = new Date().toISOString().split('T')[0];
+		document.getElementsByName("checkin")[0].setAttribute('min', today);
+		
+		$("#checkout").focus(function(){
+			var checkinVal = $("#checkin").val()
+			console.log(checkinVal);
+			
+			document.getElementsByName("checkout")[0].setAttribute('min', checkinVal);
+		})
  	})
 </script>
 </head>
@@ -498,9 +509,9 @@
 		<div class="main_search">
 			<div class="main_search_inner">
 				<form id="main_search_form">
-				체크인&nbsp<input id="checkin" type="date" name="checkin">
+				체크인&nbsp<input id="checkin" type="date" name="checkin" min="2013-04-21">
 				&nbsp&nbsp
-				체크아웃&nbsp<input id="checkout" type="date" name="checkout">
+				체크아웃&nbsp<input id="checkout" type="date" name="checkout" min="2013-04-21">
 				&nbsp&nbsp
 				캠핑타입
 				<select id="campingType" name="campingType">
@@ -557,7 +568,6 @@
 					</div>
 				</div>
 				<div id="filterButtonDiv">
-					<button>초기화</button>
 					<button id="filterSearchBtn">검색</button>
 				</div>
 			</div>
