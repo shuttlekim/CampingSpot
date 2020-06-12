@@ -10,7 +10,7 @@
 		<![CDATA[select r_no, cr_no, cr_name, mc_name, mc_tel, r_date, r_price, r_revstatus, r_cancel 
 		from member_customer mc,(select r_no, cr_no, cr_name, mc_id,  r_date, r_price, r_revstatus, r_cancel from 
 		(select r_no, cs_no, r.cr_no, cr_name, mc_id,  r_date, r_price, r_revstatus, r_cancel  from reservation r, camping_room cr 
-		where r.cr_no = cr.cr_no and cs_no=#{cs_no} order by r_date desc) where rownum <= 3) a 
+		where r.cr_no = cr.cr_no and cs_no=#{cs_no} order by r_no desc) where rownum <= 3) a 
 		where mc.mc_id = a.mc_id order by r_no desc]]>
 	</select>
 	
