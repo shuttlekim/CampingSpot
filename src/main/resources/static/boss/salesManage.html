@@ -104,6 +104,23 @@ font-size: 12px;
 	
 	$(function(){	
 		
+		// 화폐에 컴마 찍는 함수입니다.
+		function comma(num){
+	        var len, point, str; 
+	           
+	        num = num + ""; 
+	        point = num.length % 3 ;
+	        len = num.length; 
+	       
+	        str = num.substring(0, point); 
+	        while (point < len) { 
+	            if (str != "") str += ","; 
+	            str += num.substring(point, point + 3); 
+	            point += 3; 
+	        } 
+	        return str;
+	    }
+		
 		var cs_no = Number(location.search.substring(location.search.indexOf("=")+1));
 		var month;
 				
@@ -140,9 +157,9 @@ font-size: 12px;
 					var r_checkout = $("<td></td>").html(moment(s.r_checkout).format("YYYY-MM-DD"));
 					var days = $("<td></td>").html(s.days+"일");
 					
-					var r_price = $("<td></td>").html(s.r_price);
-					var comm = $("<td></td>").html(s.comm);
-					var margin = $("<td></td>").html(s.margin);
+					var r_price = $("<td></td>").html(comma(s.r_price));
+					var comm = $("<td></td>").html(comma(s.comm));
+					var margin = $("<td></td>").html(comma(s.margin));
 					var r_cancel = $("<td></td>").html(s.r_cancel);
 
 					$(tr).append(no,cr_name,r_no,r_checkin,r_checkout,days,r_price,comm,margin,r_cancel);
@@ -164,10 +181,10 @@ font-size: 12px;
 			$.ajax("/bossListTotalCampingRoom.do",{data:{"cs_no":cs_no, "month":month}, success:function(r){
 				$.each(r, function(idx, s){
 					var tr = $("<tr></tr>");
-					var cr_name = $("<td></td>").html(s.cr_name);
-					var totPrice = $("<td></td>").html(s.totPrice);
-					var totComm = $("<td></td>").html(s.totComm);
-					var totMargin = $("<td></td>").html(s.totMargin);
+					var cr_name = $("<td></td>").html(comma(s.cr_name));
+					var totPrice = $("<td></td>").html(comma(s.totPrice));
+					var totComm = $("<td></td>").html(comma(s.totComm));
+					var totMargin = $("<td></td>").html(comma(s.totMargin));
 					
 					$(tr).append(cr_name,totPrice,totComm,totMargin);
 					$("#sumTb").append(tr);
@@ -182,10 +199,10 @@ font-size: 12px;
 
 			$.ajax("/bossListTotalMonth.do",{data:{"cs_no":cs_no, "month":month}, success:function(r){
 				//alert(r)
-				$("#totR").val(r.totR)
-				$("#totCM").val(r.totCM)
-				$("#totM").val(r.totM)
-				$("#totCC").val(r.totCC)
+				$("#totR").val(comma(r.totR))
+				$("#totCM").val(comma(r.totCM))
+				$("#totM").val(comma(r.totM))
+				$("#totCC").val(comma(r.totCC))
 			}})//end ajax
 						
 		})//end btnTot
@@ -229,6 +246,7 @@ font-size: 12px;
       chart.draw(view, options);
  	}
 	
+    
 </script>
 </head>
 <body>
