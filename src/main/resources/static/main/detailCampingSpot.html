@@ -463,8 +463,10 @@ $(function(){
     			})
     			if( item.empty ){
     				$(select).append(option1);
+    				console.log('있어요');
     			}else{
     				$(select).append(option2);
+    				console.log('품절');
     			}
     		})
     		$("#room_selector").append(select);
@@ -646,6 +648,8 @@ $(function(){
 	$("#input_chkout").change(function(){
 		checkin = $("#input_chkin").val();
 		checkout = $("#input_chkout").val();
+		
+		selectRoom(cs_no, campingType, checkout, checkin);
 		
 		days = (new Date(checkout).getTime() - new Date(checkin).getTime())/(1000*60*60*24);
 		
