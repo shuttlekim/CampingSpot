@@ -160,7 +160,7 @@ font-size: 12px;
 					var r_price = $("<td></td>").html(comma(s.r_price));
 					var comm = $("<td></td>").html(comma(s.comm));
 					var margin = $("<td></td>").html(comma(s.margin));
-					var r_cancel = $("<td></td>").html(s.r_cancel);
+					var r_cancel = $("<td></td>").html(comma(s.r_cancel));
 
 					$(tr).append(no,cr_name,r_no,r_checkin,r_checkout,days,r_price,comm,margin,r_cancel);
 					$("#tbS").append(tr);
