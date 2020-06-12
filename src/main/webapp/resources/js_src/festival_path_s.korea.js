@@ -69,7 +69,7 @@ window.onload = function () {
 	var attr = {
 		fill: "#fff",
 		stroke: "#999",
-		"stroke-width": 3,
+		"stroke-width": 2,
 		"stroke-linejoin": "round"
 	};
 	var aus = {};
