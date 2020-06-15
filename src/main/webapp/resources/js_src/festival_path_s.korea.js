@@ -56,7 +56,7 @@ window.onload = function () {
 					var url = result_list[idx].url
 					var title = result_list[idx].title
 					
-					location.href = "detailFestival.html?title="+title+"&url="+url;
+					location.href = "detailFestival.html?title="+encodeURI(title)+"&url="+url;
 			
 				})
 				

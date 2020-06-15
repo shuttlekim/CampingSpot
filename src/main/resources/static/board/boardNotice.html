@@ -120,6 +120,7 @@ $(function(){
 	// 검색할때 키워드랑 컬럼명 전달해줘서 다시 리스트 불러오기
 	$("#btnSearch").click(function(){
 		$("#totalRecord").empty();
+		$('.paging_button').empty();
 		searchColumn = $("#searchColumn").val();
 		keyword = $('#keyword').val(); 
 		var searchData = {"b_del":"0","searchColumn":searchColumn,"keyword":keyword}; 
@@ -131,7 +132,7 @@ $(function(){
 				
 			printPage();
 			printList(1);	
-			$(".paging_button").empty();
+			//$(".paging_button").empty();
 		}});
 	});
 	
