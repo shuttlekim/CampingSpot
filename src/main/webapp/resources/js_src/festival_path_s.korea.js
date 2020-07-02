@@ -39,7 +39,6 @@ window.onload = function () {
 					"src":sname,
 					"height":"240px",
 					"width":"290px"
-					
 				})
 				$(img_div).append(img);
 				
