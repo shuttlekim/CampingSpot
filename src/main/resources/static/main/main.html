@@ -237,7 +237,15 @@
 						"width":350,
 						"height":200
 					}) */
-					var img = $("<div class='backCover' style='background:url("+item.fname+");'>");
+					var sname = 'name';
+					if(item.fname.charAt(4)=='s'){
+						sname = item.fname.substring(5, item.fname.length);
+						sname = 'http'+ sname;
+					}else{
+						sname = item.fname;
+					}
+					//console.log(sname);
+					var img = $("<div class='backCover' style='background:url("+sname+");'>");
 					var title = $("<div></div>").html(item.title)
 					var period = $("<div></div>").html(item.period)
 					var addr = $("<div class='address'></div>").html(item.addr)

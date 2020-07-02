@@ -26,8 +26,17 @@ window.onload = function () {
 				var hr = $("<hr>")
 				
 				var img_div = $("<div class='fest_img_div'></div>");
+				
+				var sname = 'name';
+				if(festival.fname.charAt(4)=='s'){
+					sname = festival.fname.substring(5, festival.fname.length);
+					sname = 'http'+ sname;
+				}else{
+					sname = item.fname;
+				}
+				
 				var img = $("<img/>").attr({
-					"src":festival.fname,
+					"src":sname,
 					"height":"240px",
 					"width":"290px"
 					
