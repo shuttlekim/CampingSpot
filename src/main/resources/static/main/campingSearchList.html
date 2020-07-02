@@ -109,6 +109,10 @@
  		var checkin = data3[1];
  		//var region = null;
  		
+ 		if(campingType == null || campingType =='undefined'){
+ 			campingType = $("#campingType").val();
+ 		}
+ 		
  		//축제페이지에서 검색했다면
  		var fest_data = decodeURI(location.search).split('&searchAddr=')[1];
  		console.log("축제페이지에서 넘어온 data:",fest_data)
